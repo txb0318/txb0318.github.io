@@ -8,14 +8,20 @@
   <meta name="author" content="John Doe">
 
   
-  <meta name="description" content="华为拓扑测试首先创建拓扑图
+  <meta name="description" content="华为拓扑测试
+首先创建拓扑图
 
 设计目标
-禁止192.168.30.2 访问 192.168.50.0&amp;#x2F;24
 
-禁止ACC4.VLAN10访问ACC6.VLAN40 
+
+禁止192.168.30.2 访问 192.168.50.0/24
+
+
+禁止ACC4.VLAN10访问ACC6.VLAN40
+
 
 禁止ACC2.VLAN30访问ACC6.VLAN40
+
 
 禁止ACC3(192.168.40.2)可以从CORE的所有接口转">
   
@@ -69,47 +75,56 @@
   </header>
   <div class="e-content entry-content">
     
-      <h2 id="华为拓扑测试"><a href="#华为拓扑测试" class="headerlink" title="华为拓扑测试"></a>华为拓扑测试</h2><p>首先创建拓扑图</p>
-<p><img src="C:\Users\田晓滨\AppData\Roaming\marktext\images\2022-11-15-15-10-16-image.png"></p>
-<h4 id="设计目标"><a href="#设计目标" class="headerlink" title="设计目标"></a>设计目标</h4><ol>
-<li><p>禁止192.168.30.2 访问 192.168.50.0&#x2F;24</p>
+      <h2 id="华为拓扑测试">华为拓扑测试</h2>
+<p>首先创建拓扑图</p>
+<p><img src="C:%5CUsers%5C%E7%94%B0%E6%99%93%E6%BB%A8%5CAppData%5CRoaming%5Cmarktext%5Cimages%5C2022-11-15-15-10-16-image.png" alt=""></p>
+<h4 id="设计目标">设计目标</h4>
+<ol>
+<li class="lvl-3">
+<p>禁止192.168.30.2 访问 192.168.50.0/24</p>
 </li>
-<li><p>禁止ACC4.VLAN10访问ACC6.VLAN40 </p>
+<li class="lvl-3">
+<p>禁止ACC4.VLAN10访问ACC6.VLAN40</p>
 </li>
-<li><p>禁止ACC2.VLAN30访问ACC6.VLAN40</p>
+<li class="lvl-3">
+<p>禁止ACC2.VLAN30访问ACC6.VLAN40</p>
 </li>
-<li><p>禁止ACC3(192.168.40.2)可以从CORE的所有接口转发出去</p>
+<li class="lvl-3">
+<p>禁止ACC3(192.168.40.2)可以从CORE的所有接口转发出去</p>
 </li>
-<li><p>NULL</p>
+<li class="lvl-3">
+<p>NULL</p>
 </li>
-<li><p>允许 192.168.10.2 访问192.168.50.0&#x2F;24</p>
+<li class="lvl-3">
+<p>允许 192.168.10.2 访问192.168.50.0/24</p>
 </li>
-<li><p>允许 192.168.10.4 访问192.168.50.0&#x2F;24</p>
+<li class="lvl-3">
+<p>允许 192.168.10.4 访问192.168.50.0/24</p>
 </li>
-<li><p>禁止192.168.10.0&#x2F;24 访问 192.168.50.0&#x2F;24</p>
+<li class="lvl-3">
+<p>禁止192.168.10.0/24 访问 192.168.50.0/24</p>
 </li>
 </ol>
-<h4 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h4><p>ACC3上部署ACL 实现目标6 7 8</p>
+<h4 id="方案">方案</h4>
+<p>ACC3上部署ACL 实现目标6 7 8</p>
 <blockquote>
 <p>使用简化流策略，作用于接口。仅使用了基本ACL，满足了基本ACL尽量离目标近</p>
 </blockquote>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">acl name acl3 2001;</span><br><span class="line">rule 5 permit source 192.168.10.4 0;</span><br><span class="line">rule 10 permit source 192.168.10.2 0;</span><br><span class="line">rule 15 deny source 192.168.10.0 0.0.0.255;</span><br><span class="line"></span><br><span class="line">interface ge0/0/3</span><br><span class="line">traffic-filter inbound acl name acl3 </span><br></pre></td></tr></table></figure>
-
 <p>CORE上部署ACL 实现目标1 3 4</p>
 <blockquote>
 <p>使用流策略，既作用于接口又作用于VLAN。仅使用扩展ACL，扩展ACL离源设备近</p>
 </blockquote>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">acl number 3002;</span><br><span class="line">rule 5 deny ip source 192.168.30.0 0.0.0.255 destination 192.168.50.0 0.0.0.255</span><br><span class="line">acl number 3003;</span><br><span class="line">rule 10 deny ip source 192.168.30.0 0.0.0.255 destination 192.168.40.0 0.0.0.255</span><br><span class="line">acl number 3004;</span><br><span class="line">rule 5 deny ip destination 192.168.40.2 0</span><br><span class="line"></span><br><span class="line">#配置流分类</span><br><span class="line">traffic classifier c1;</span><br><span class="line">if-match acl 3002;</span><br><span class="line">traffic classifier c2;</span><br><span class="line">if-match acl 3003;</span><br><span class="line">traffic classifier c3;</span><br><span class="line">if-match acl 3004;</span><br><span class="line">#配置流行为</span><br><span class="line">traffic behavior b1;</span><br><span class="line">permit;</span><br><span class="line">#配置流策略</span><br><span class="line">traffic policy p1;</span><br><span class="line">classifier c1 behavior b1;</span><br><span class="line">traffic policy p2;</span><br><span class="line">classifier c2 behavior b1;</span><br><span class="line">traffic policy p3;</span><br><span class="line">classifier c3 behavior b1;</span><br><span class="line">traffic-policy p3 global outbound;#全局视图</span><br><span class="line">#应用流策略</span><br><span class="line">int g0/0/2</span><br><span class="line">traffic-policy p1 inbound</span><br><span class="line">vlan 30</span><br><span class="line">traffic-policy p2 inbound</span><br></pre></td></tr></table></figure>
-
 <p>ACC1上部署ACL 实现目标2</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">acl number 3005;</span><br><span class="line">rule 5 deny ip source 192.168.10.0 0.0.0.255 destination 192.168.40.0 0.0.0.255</span><br><span class="line"></span><br><span class="line">#配置流分类</span><br><span class="line">traffic classifier c1;</span><br><span class="line">if-match acl 3005;</span><br><span class="line">#配置流行为</span><br><span class="line">traffic behavior b1;</span><br><span class="line">permit;</span><br><span class="line">#配置流策略</span><br><span class="line">traffic policy p1;</span><br><span class="line">classifier c1 behavior b1;</span><br><span class="line">#应用流策略</span><br><span class="line">vlan 10</span><br><span class="line">traffic-policy p1 inbound</span><br></pre></td></tr></table></figure>
-
-<h4 id="Ensp中删除ACL及流策略、简化流策略"><a href="#Ensp中删除ACL及流策略、简化流策略" class="headerlink" title="Ensp中删除ACL及流策略、简化流策略"></a>Ensp中删除ACL及流策略、简化流策略</h4><p><img src="C:\Users\田晓滨\AppData\Roaming\marktext\images\2022-11-15-16-37-27-image.png"></p>
+<h4 id="Ensp中删除ACL及流策略、简化流策略">Ensp中删除ACL及流策略、简化流策略</h4>
+<p><img src="C:%5CUsers%5C%E7%94%B0%E6%99%93%E6%BB%A8%5CAppData%5CRoaming%5Cmarktext%5Cimages%5C2022-11-15-16-37-27-image.png" alt=""></p>
 <p>删除流策略</p>
 <blockquote>
 <p>如果需要删除的流策略已经应用到全局、接口或VLAN，则不允许直接删除该策略，需要先在相应的视图下执行<strong>undo traffic-policy</strong>命令取消对该策略的应用，然后再到全局执行<strong>undo traffic policy</strong>命令完成删除。如果没有应用，则可以直接删除。</p>
 </blockquote>
-<p><img src="C:\Users\田晓滨\AppData\Roaming\marktext\images\2022-11-15-16-35-33-image.png"></p>
+<p><img src="C:%5CUsers%5C%E7%94%B0%E6%99%93%E6%BB%A8%5CAppData%5CRoaming%5Cmarktext%5Cimages%5C2022-11-15-16-35-33-image.png" alt=""></p>
 <p>删除ACL规则</p>
 <blockquote>
 <p>执行命令<strong>undo acl</strong> { [ <strong>number</strong> ] <em>acl-number</em> | <strong>all</strong> }或<strong>undo acl</strong> <strong>name</strong> <em>acl-name</em>，删除ACL。</p>

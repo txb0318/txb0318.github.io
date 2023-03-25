@@ -8,10 +8,12 @@
   <meta name="author" content="John Doe">
 
   
-  <meta name="description" content="Java后端开发注意事项异常处理
+  <meta name="description" content="Java后端开发注意事项
+异常处理
+
 
 try-catch-finally
-1234567891011121314151617try&amp;#123;    //代码可能存在异常&amp;#125;catch(Exception exception)&amp;#123;    //捕获异常    //1.异常发生时，系统将异">
+1234567891011121314151617try&amp;#123;    //代码可能存在异常&amp;#125;catch(Exception exception)&amp;#123;    //捕获异常    //1.异常发生时，系统">
   
 
   
@@ -63,19 +65,24 @@ try-catch-finally
   </header>
   <div class="e-content entry-content">
     
-      <h3 id="Java后端开发注意事项"><a href="#Java后端开发注意事项" class="headerlink" title="Java后端开发注意事项"></a>Java后端开发注意事项</h3><p>异常处理</p>
+      <h3 id="Java后端开发注意事项">Java后端开发注意事项</h3>
+<p>异常处理</p>
 <ol>
-<li><p>try-catch-finally</p>
+<li class="lvl-3">
+<p>try-catch-finally</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//代码可能存在异常</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">catch</span>(Exception exception)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//捕获异常</span></span><br><span class="line">    <span class="comment">//1.异常发生时，系统将异常封装成Exception对象exception</span></span><br><span class="line">    <span class="comment">//2.传值给catch</span></span><br><span class="line">    <span class="comment">//3.获取异常对象时，程序员自己处理</span></span><br><span class="line">    <span class="comment">//4.若try中代码无异常，则catch不会发生</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">finally</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//1.无论try中代码是否存在异常，始终执行finally    </span></span><br><span class="line">    <span class="comment">//2.通常将释放资源的代码，放在finally关闭</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>throws</p>
+<li class="lvl-3">
+<p>throws</p>
 </li>
 </ol>
 <blockquote>
 <p>main方法由JVM调用，main方法调用 f1 方法，f1 方法调用 f2 方法，如果 f2 方法发生异常，有两种方案，分别是 try-catch-finally 和 throws ，f2 使用 throws 方法，返回给 f1，f1也可以同样选择throws方法，返回给 main 方法，最终返回到 JVM。而 JVM 对处理异常的发生极为粗暴（1.输出异常信息。2. 退出程序）。</p>
 </blockquote>
-<ul>
-<li><input checked="" disabled="" type="checkbox"> </li>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>[x]</p>
+</li>
 </ul>
 
     

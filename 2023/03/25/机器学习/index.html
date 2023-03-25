@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+ <html lang="en">
+<script type="text/javascript" src="/js/love.js"></script>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Hexo</title>
+  <meta name="author" content="John Doe">
+
+  
+  <meta name="description" content="机器学习
+支持向量机的对偶问题
+
+        支持向量机的对偶问题 支持向量机（SVM）中的对偶问题_予亭的博客-CSDN博客_支持向量机对偶问题](https://blog.csdn.net/randompeople/article/details/92083294))
+        [凸集">
+  
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <header id="header" class="inner"><nav>
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+</nav></header>
+  <div id="content" class="inner"><article class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <header>
+    
+  
+    <h1 class="p-name title" itemprop="headline name"></h1>
+  
+
+    <time class="dt-published" datetime="2023-03-25T07:42:03.264Z">
+  <span class="day">25</span><span class="month">Mar</span>
+</time>
+  </header>
+  <div class="e-content entry-content">
+    
+      <h3 id="机器学习"><a href="#机器学习" class="headerlink" title="机器学习"></a>机器学习</h3><ol start="9">
+<li>支持向量机的对偶问题</li>
+</ol>
+<p>        <a href="%5B(7%E6%9D%A1%E6%B6%88%E6%81%AF">支持向量机的对偶问题</a> 支持向量机（SVM）中的对偶问题_予亭的博客-CSDN博客_支持向量机对偶问题](<a target="_blank" rel="noopener" href="https://blog.csdn.net/randompeople/article/details/92083294">https://blog.csdn.net/randompeople/article/details/92083294</a>))</p>
+<p>        [凸集、凸函数、凸优化问题，线性规划，二次规划](<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/263126963">凸集，凸函数，凸优化问题，线性规划，二次规划，二次约束二次规划，半正定规划 - 知乎 (zhihu.com)</a>)</p>
+<p>        <strong>凸优化</strong>：</p>
+<blockquote>
+<ol>
+<li><p>在最小化（最大化）的要求下</p>
+</li>
+<li><p>目标函数是一个凸函数（凹函数）</p>
+</li>
+<li><p>约束条件所形成的可行域集合是一个凸集</p>
+</li>
+</ol>
+</blockquote>
+<p>        仿射函数</p>
+<p>        $F (x) &#x3D; A x + b$</p>
+<ol start="10">
+<li><p>支持向量机中支撑向量</p>
+<p>[支撑向量](<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/a2c9ab800946">SVM系列第五讲–支撑向量 - 简书 (jianshu.com)</a>)</p>
+</li>
+</ol>
+<img title="" src="file:///C:/Users/田晓滨/AppData/Roaming/marktext/images/2022-11-17-21-08-35-image.png" alt="" width="292" data-align="center">
+
+<ol start="11">
+<li><p>过拟合和欠拟合</p>
+<blockquote>
+<p>过拟合：当学习器把训练样本<strong>学的“太好”了的</strong>时候，很可能已经把训练样本自身的一些特点当作了所有潜在样本都会具有的一般性质，这样就会导致泛化性能下降，这种现象称为过拟合。</p>
+<p>欠拟合：欠拟合是指对训练样本的一般性质尚未学好。在训练集及测试集上的表现都不好</p>
+</blockquote>
+</li>
+</ol>
+<p>        <a href="%5B(7%E6%9D%A1%E6%B6%88%E6%81%AF">过拟合和欠拟合</a> 过拟合与欠拟合_Minouio的博客-CSDN博客](<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42012732/article/details/107318550">https://blog.csdn.net/qq_42012732/article/details/107318550</a>))</p>
+<ol start="12">
+<li><p>决策树节点划分</p>
+<blockquote>
+<p><font color=Red>ID3使用最大信息熵增益</font></p>
+<p>信息熵Entropy或Info。熵反应了物体内部的混乱程度，而信息熵反应了不同类的样本的占比，也就是节点的纯度。信息熵越大，说明样本的分布节点的纯度越低，信息量越少；相反，信息熵越小，说明样本的角度越高，信息量越大。</p>
+<p><strong>根据信息熵的含义，我们知道我们要选择能使节点内部纯度高、也就是信息熵最小的特征作为划分依据，我们就计算以某个特征划分自己之后当前节点划分之后各个节点的信息熵之和，并且要是这个和与当前节点划分前的信息熵减小的尽可能多。而这个差也就是信息增益</strong></p>
+<p>$\color{red}{C4.5使用信息增益比率}$</p>
+<p>增益比率在信息熵增益的基础上除以每个划分的信息熵(Split Information)，从而消除这种有大量的子节点、但每个子节点的样本数量很少的情况的影响。</p>
+<p>$\color{green}{CART使用基尼指数}$</p>
+<p>CART使用基尼系数（GINI）作为划分依据。选择GINI系数最小的特征作为当前的分割数据的特征。基尼系数反映了从样本集中随机抽取两个样本，其类别不一样的概率。基尼系数越大，也就意味着从样本集中随机抽两个样本的类别不相同的概率越大，也就是样本的纯度越小，即对应这信息熵越大。</p>
+</blockquote>
+</li>
+</ol>
+<p>        <a href="%5B(7%E6%9D%A1%E6%B6%88%E6%81%AF">信息熵、不纯度</a> 决策树算法笔记整理1 - 如何划分？（信息熵，不纯度及信息增益）_sevieryang的博客-CSDN博客](<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42442369/article/details/86625591">https://blog.csdn.net/qq_42442369/article/details/86625591</a>))</p>
+<ol start="13">
+<li><p>决策树策略</p>
+<blockquote>
+<p>类别非纯度、<strong>梯度下降</strong>、<strong>信息增益率</strong>、<strong>基尼指数</strong></p>
+</blockquote>
+</li>
+<li><p>集成学习中集分类器如何选择使其效率更好</p>
+<blockquote>
+<p>在集成学习中，算法不要求每个学习器性能最好，但是期望它们对问题具有不同的看法，即<strong>分类器多样且差异大</strong></p>
+</blockquote>
+</li>
+</ol>
+<p>        [分类器的选择](<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/105038453">经典机器学习系列之【集成学习】 - 知乎 (zhihu.com)</a>)</p>
+<ol start="15">
+<li><p>集成学习中每个集分类器的正确率最低要求为50%</p>
+<blockquote>
+<p>每个基分类器的错误率都应当低于0.5，否则集成的结果反而会提高错误率。</p>
+<p>每个基分类器应该尽可能相互独立，这是因为如果每个基分类器分类结果差不多，则集成后的分类器整体和单个分类器做出的决策实际上没有什么差异。</p>
+</blockquote>
+</li>
+</ol>
+<p>        <a href="%5B(7%E6%9D%A1%E6%B6%88%E6%81%AF">集成学习前提</a> 采用集成学习算法提高分类器的准确性_永永夜的博客-CSDN博客](<a target="_blank" rel="noopener" href="https://blog.csdn.net/jerr__y/article/details/52955148">https://blog.csdn.net/jerr__y/article/details/52955148</a>))</p>
+<ol start="16">
+<li><p>Bagging学习特点</p>
+<blockquote>
+<p>构造训练集采用Bootstrap方式</p>
+<p>随机有放回采样，每轮训练样本权重相同</p>
+<p>分类器可以并行训练</p>
+<p>预测权重相等</p>
+</blockquote>
+</li>
+<li><p>Boosting学习特点</p>
+<blockquote>
+<p>构造训练集不变，只是训练集中每个样例在分类器中的权重发生变化。而权值是根据上一轮的分类结果进行调整</p>
+<p>根据错误率不断调整样例的权值，错误率越大则权重越大</p>
+<p>每个弱分类器都有相应的权重，对于分类误差小的分类器会有更大的权重</p>
+<p>各个预测函数只能顺序生成，因为后一个模型参数需要前一轮模型的结果</p>
+</blockquote>
+</li>
+</ol>
+<p>        [Bagging和Boosting](<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/37730184">从0开始机器学习-Bagging和Boosting - 知乎 (zhihu.com)</a>)</p>
+<ol start="18">
+<li><p>随机森林方法</p>
+<blockquote>
+<p>随机森林算法（Random Forest简称RF）是Bagging算法的进阶。其优化：</p>
+<p>Bagging的基学习器不一定是同质的，也不一定是决策树；但RF以CART为基学习器。</p>
+<p>RF在训练过程中，引入了随机特征选择。RF在Bagging的数据样本扰动的基础上，增加了输入特征扰动，提高了模型的泛化能力。具体来说，传统决策树在选择划分特征时，在当前结点的特征集合中选择一个最优划分特征；而在RF中，是对基决策树的每个结点，先从该结点的特征集合中随机选择一个含有个特征的子集，然后再从该子集选择最优划分特征。越小，模型越健壮，同时对训练集的拟合程度会变差，也就是说，越小，模型方差越小，偏差越大。</p>
+</blockquote>
+</li>
+<li><p>软间隔SVM的阈值趋于无穷</p>
+<blockquote>
+<p> 软间隔：放宽SVM的限制，可以允许存在一些误分类的点</p>
+<p>即C无穷大，在如此高的误分类惩罚下，不会存在软间隔分类超平面，因为一点错误都不可能发生。</p>
+<p>代价参数的大小决定了SVM能允许的误分类程度。<br>C的值小：优化的目标是得到一个尽可能光滑的决策平面。<br>C的值大：模型只允许出现很小数量的误分类点。<br>它可以简单的看做是对误分类的惩罚。</p>
+</blockquote>
+</li>
+</ol>
+<p>        [SVM测试](<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1169308#:~:text=1%20%E5%8F%AA%E8%A6%81%E6%9C%80%E4%BD%B3%E5%88%86%E7%B1%BB%E8%B6%85%E5%B9%B3%E9%9D%A2%E5%AD%98%E5%9C%A8%EF%BC%8C%E5%AE%83%E5%B0%B1%E8%83%BD%E5%B0%86%E6%89%80%E6%9C%89%E6%95%B0%E6%8D%AE%E5%85%A8%E9%83%A8%E6%AD%A3%E7%A1%AE%E5%88%86%E7%B1%BB%202,%E8%BD%AF%E9%97%B4%E9%9A%94SVM%E5%88%86%E7%B1%BB%E5%99%A8%E5%B0%86%E6%AD%A3%E7%A1%AE%E5%88%86%E7%B1%BB%E6%95%B0%E6%8D%AE%203%20%E4%BA%8C%E8%80%85%E9%83%BD%E4%B8%8D%E5%AF%B9">独家 | 25道SVM题目，测一测你的基础如何?（附资源） - 腾讯云开发者社区-腾讯云 (tencent.com)</a>)</p>
+<ol start="20">
+<li><p>回归问题和分类问题的区别</p>
+<blockquote>
+<p>连续即回归，离散即分类</p>
+</blockquote>
+</li>
+</ol>
+<img title="" src="file:///C:/Users/田晓滨/AppData/Roaming/marktext/images/2022-11-17-23-10-14-image.png" alt="" width="556" data-align="center">
+
+<p>        [分类和回归](<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/21329754">(30 封私信 &#x2F; 80 条消息) 分类与回归区别是什么？ - 知乎 (zhihu.com)</a>)</p>
+<ol start="21">
+<li><p>最小二乘回归方法的等效回归方法</p>
+<blockquote>
+<p>最小二乘法是在寻找观测数据与回归超平面之间的误差距离最小的参数。最大似然估计是最大化观测数据发生的概率</p>
+</blockquote>
+</li>
+</ol>
+<p>        [最小二乘回归和最大似然回归](<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/143416436">最大似然估计：从概率角度理解线性回归的优化目标 - 知乎 (zhihu.com)</a>)</p>
+<ol start="22">
+<li>正则化的回归分析</li>
+</ol>
+<blockquote>
+<p>当数据量少，特征也少的时候，我们训练的模型是<strong>欠拟合</strong>，这时候我们会通过<strong>交叉验证</strong>来弥补。<br>当数据量少，特征非常多的时候，容易出现<strong>过拟合</strong>，这时要通过<strong>正则化</strong>调整。</p>
+</blockquote>
+<p>        <a href="%5B(7%E6%9D%A1%E6%B6%88%E6%81%AF">正则化线性回归</a> 正则化(线性回归)_小星爷的博客-CSDN博客](<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_23371241/article/details/78373888">https://blog.csdn.net/qq_23371241/article/details/78373888</a>))</p>
+<ol start="23">
+<li><p>关联分析</p>
+</li>
+<li><p>混合高斯聚类</p>
+<blockquote>
+<p>$\color{red}{EM算法}$：期望最大化算法，被用来学习高斯混合模型（Gaussian mixture model，简称GMM）的参数；隐式马尔科夫算法（HMM）、LDA主题模型的变分推断等等。</p>
+<p>EM算法是一种迭代优化策略，由于它的计算方法中每一次迭代都分两步，其中一个为<strong>期望步（E步）</strong>，另一个为<strong>极大步（M步）</strong>，所以算法被称为EM算法。EM算法受到缺失思想影响，最初是为了<strong>解决数据缺失情况</strong>下的参数估计问题，其算法基础和收敛有效性等问题在Dempster、Laird和Rubin三人于1977年所做的文章《Maximum likelihood from incomplete data via the EM algorithm》中给出了详细的阐述。其基本思想是：<strong>首先根据己经给出的观测数据，估计出模型参数的值；然后再依据上一步估计出的参数值估计缺失数据的值，再根据估计出的缺失数据加上之前己经观测到的数据重新再对参数值进行估计，然后反复迭代，直至最后收敛，迭代结束</strong>。</p>
+</blockquote>
+<p><a href="%5B(7%E6%9D%A1%E6%B6%88%E6%81%AF">混合高斯聚类理解</a> 【机器学习笔记】通俗易懂解释高斯混合聚类原理_lotusng的博客-CSDN博客](<a target="_blank" rel="noopener" href="https://blog.csdn.net/lotusng/article/details/79990724">https://blog.csdn.net/lotusng/article/details/79990724</a>))</p>
+</li>
+</ol>
+<p>       [EM算法](<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/40991784">EM算法详解 - 知乎 (zhihu.com)</a>)</p>
+<ol start="25">
+<li><p>主成分分析是一种降维方法</p>
+</li>
+<li><p>PCA做降维处理时，优先处理 中心化样本的协方差矩阵的最大特征值对应特征向量</p>
+<blockquote>
+<p>$\color{red}{PCA}$(Principal Component Analysis)，即主成分分析方法，是一种使用最广泛的数据降维算法。PCA的主要思想是将n维特征映射到k维上，这k维是全新的正交特征也被称为主成分，是在原有n维特征的基础上重新构造出来的k维特征。PCA的工作就是<strong>从原始的空间中顺序地找一组相互正交的坐标轴，新的坐标轴的选择与数据本身是密切相关的。其中，第一个新坐标轴选择是原始数据中方差最大的方向，第二个新坐标轴选取是与第一个坐标轴正交的平面中使得方差最大的，第三个轴是与第1,2个轴正交的平面中方差最大的</strong>。依次类推，可以得到n个这样的坐标轴。通过这种方式获得的新的坐标轴，我们发现，大部分方差都包含在前面k个坐标轴中，后面的坐标轴所含的方差几乎为0。于是，我们可以忽略余下的坐标轴，只保留前面k个含有绝大部分方差的坐标轴。事实上，这相当于只保留包含绝大部分方差的维度特征，而忽略包含方差几乎为0的特征维度，实现对数据特征的降维处理。</p>
+</blockquote>
+<blockquote>
+<p>[PCA](<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/37777074">主成分分析（PCA）原理详解 - 知乎 (zhihu.com)</a>)</p>
+</blockquote>
+</li>
+<li><p>过拟合：训练样本测试误差小，测试样本正确识别率很低</p>
+</li>
+<li><p>马尔科夫链</p>
+</li>
+<li><p>pass</p>
+</li>
+<li><p>pass</p>
+</li>
+<li><p>pass</p>
+</li>
+<li><p>梯度下降算法正确步骤</p>
+<blockquote>
+<p>原理：<strong>寻找损失函数的最低点</strong>，就像我们在山谷里行走，希望找到山谷里最低的地方。那么如何寻找损失函数的最低点呢？在这里，我们使用了微积分里导数，通过求出函数导数的值，从而找到函数下降的方向或者是最低点（极值点）</p>
+</blockquote>
+<blockquote>
+<p>步骤：</p>
+<ol>
+<li>初始化随即权重和偏差</li>
+<li>将输入传入网络，得到输出值</li>
+<li>计算预测值于真实值之间的误差</li>
+<li>对产生误差的神经元，改变相应权重值以减小误差</li>
+<li>迭代更新，直到找到最佳权重</li>
+</ol>
+<p>    $w_{i+1}&#x3D;w_{i}-\alpha*\frac{L}{dw_i}$</p>
+<p>    $b_{i+1}&#x3D;b_i-\alpha*\frac{dL}{db_i}$</p>
+</blockquote>
+</li>
+</ol>
+<p>       <a href="%5B(8%E6%9D%A1%E6%B6%88%E6%81%AF">markdown数学公式总结</a> markdown最全数学公式速查_xkgjfl的博客-CSDN博客](<a target="_blank" rel="noopener" href="https://blog.csdn.net/jyfu2_12/article/details/79207643#:~:text=Markdown%20%E6%95%B0%E5%AD%A6%E8%AF%AD%E6%B3%95%201.%E5%9F%BA%E6%9C%AC%E6%A0%BC%E5%BC%8F%201.%E8%A1%8C%E5%86%85%E5%85%AC%E5%BC%8F%20%E4%BB%A5%20%24%20%E5%BC%80%E5%A4%B4%EF%BC%8C%E4%BB%A5,%24%20%E7%BB%93%E5%B0%BE%E3%80%82%20eg%3A%20aba%5Ebab%20%24a%5Eb%24%202.%E5%9D%97%E7%BA%A7%E5%85%AC%E5%BC%8F%E2%80%93%E8%A1%8C%E9%97%B4%E5%85%AC%E5%BC%8F%20%E4%BB%A5">https://blog.csdn.net/jyfu2_12/article/details/79207643#:~:text=Markdown%20%E6%95%B0%E5%AD%A6%E8%AF%AD%E6%B3%95%201.%E5%9F%BA%E6%9C%AC%E6%A0%BC%E5%BC%8F%201.%E8%A1%8C%E5%86%85%E5%85%AC%E5%BC%8F%20%E4%BB%A5%20%24%20%E5%BC%80%E5%A4%B4%EF%BC%8C%E4%BB%A5,%24%20%E7%BB%93%E5%B0%BE%E3%80%82%20eg%3A%20aba%5Ebab%20%24a%5Eb%24%202.%E5%9D%97%E7%BA%A7%E5%85%AC%E5%BC%8F%E2%80%93%E8%A1%8C%E9%97%B4%E5%85%AC%E5%BC%8F%20%E4%BB%A5</a>))</p>
+<p>       <a href="%5B(8%E6%9D%A1%E6%B6%88%E6%81%AF">markdown常见公式</a> 一、markdown 常见公式_林重言的博客-CSDN博客](<a target="_blank" rel="noopener" href="https://blog.csdn.net/linshen1213/article/details/115330264?spm=1001.2101.3001.6661.1&utm_medium=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~Rate-1-115330264-blog-79207643.pc_relevant_recovery_v2&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~Rate-1-115330264-blog-79207643.pc_relevant_recovery_v2&utm_relevant_index=1">https://blog.csdn.net/linshen1213/article/details/115330264?spm=1001.2101.3001.6661.1&amp;utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-115330264-blog-79207643.pc_relevant_recovery_v2&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-115330264-blog-79207643.pc_relevant_recovery_v2&amp;utm_relevant_index=1</a>))</p>
+<p>       [梯度下降算法](<a target="_blank" rel="noopener" href="https://cn.bing.com/search?q=%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%AE%97%E6%B3%95&qs=n&form=QBRE&sp=-1&pq=%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%AE%97%E6%B3%95&sc=10-6&sk=&cvid=08A6A8953DF24DDAA898BBE01BC20C51&ghsh=0&ghacc=0&ghpl=">梯度下降算法 - 搜索 (bing.com)</a>)</p>
+<ol start="33">
+<li><p>岭回归</p>
+<blockquote>
+<p>$\color {red} {方差}$： 都是围着数据中心的，方差越大则表示距离数据中心分布的越分散，越小说明越近越集中</p>
+<p>$\color{red}{偏差}$： 偏离数据中心， 偏差越大，说明整个数据距离中心越远，偏差越小，说明距离数据中心越近。</p>
+<p>这两者的关系通常是<strong>矛盾</strong>的，降低偏差会提高方差，降低方差会提高偏差。所有一个好的模型就是对这点的一个平衡。 </p>
+</blockquote>
+<blockquote>
+<p>$\color{red}{岭回归}$ :针对高方差，即过拟合的模型，解决办法之一就是对模型进行正则化：限制参数大小。当线性回归过拟合时，权重系数wj就会非常的大，岭回归就是要解决这样的问题。岭回归可以理解为在线性回归的损失函数的基础上，加,入一个L2正则项，来限制W不要过大。其中λ&gt;0，通过确定λ的值可以使得模型在偏差和方差之间达到平衡，<strong>随着λ的增大，模型的方差减小，偏差增大</strong>。</p>
+</blockquote>
+</li>
+</ol>
+<img title="" src="file:///C:/Users/田晓滨/AppData/Roaming/marktext/images/2022-11-19-12-00-31-image.png" alt="" data-align="center" width="324">
+
+<p>        [岭回归](<a target="_blank" rel="noopener" href="https://www.cnblogs.com/hechangchun/p/15194557.html#:~:text=%E5%B2%AD%E5%9B%9E%E5%BD%92%EF%BC%88Ridge,Regression%EF%BC%89%E5%8F%AF%E4%BB%A5%E7%90%86%E8%A7%A3%E4%B8%BA%E5%9C%A8%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E7%9A%84%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E7%9A%84%E5%9F%BA%E7%A1%80%E4%B8%8A%EF%BC%8C%E5%8A%A0%2C%E5%85%A5%E4%B8%80%E4%B8%AAL2%E6%AD%A3%E5%88%99%E9%A1%B9%EF%BC%8C%E6%9D%A5%E9%99%90%E5%88%B6W%E4%B8%8D%E8%A6%81%E8%BF%87%E5%A4%A7%E3%80%82%20%E5%85%B6%E4%B8%AD%CE%BB%3E0%EF%BC%8C%E9%80%9A%E8%BF%87%E7%A1%AE%E5%AE%9A%CE%BB%E7%9A%84%E5%80%BC%E5%8F%AF%E4%BB%A5%E4%BD%BF%E5%BE%97%E6%A8%A1%E5%9E%8B%E5%9C%A8%E5%81%8F%E5%B7%AE%E5%92%8C%E6%96%B9%E5%B7%AE%E4%B9%8B%E9%97%B4%E8%BE%BE%E5%88%B0%E5%B9%B3%E8%A1%A1%EF%BC%8C%E9%9A%8F%E7%9D%80%CE%BB%E7%9A%84%E5%A2%9E%E5%A4%A7%EF%BC%8C%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%96%B9%E5%B7%AE%E5%87%8F%E5%B0%8F%EF%BC%8C%E5%81%8F%E5%B7%AE%E5%A2%9E%E5%A4%A7%E3%80%82">学习笔记233—岭回归和Lasso回归区别 - 何弈 - 博客园 (cnblogs.com)</a>)</p>
+<ol start="34">
+<li><p>增加模型的欠拟合风险</p>
+<blockquote>
+<p>$\color{red}{过拟合}$</p>
+<p>原因：</p>
+<p>训练数据中<strong>噪音干扰过大</strong>，使得学习器认为部分噪音是特征从而扰乱学习规则。</p>
+<p>建模<strong>样本选取有误</strong>，例如训练数据太少，抽样方法错误，样本label错误等，导致样本不能代表整体。</p>
+<p><strong>模型不合理</strong>，或假设成立的条件与实际不符。</p>
+<p><strong>特征维度&#x2F;参数太多</strong>，导致模型复杂度太高。  </p>
+<p> 解决方法：</p>
+<p><strong>从数据源头获取更多数据</strong></p>
+<p><strong>根据当前数据集估计数据分布参数，使用该分布产生更多数据</strong>。这个方法一般不用，因为估计参数分布的过程也会带入抽样误差。</p>
+<p><strong>数据增强</strong>（Data Augmentation）:通过一定规则扩充数据。如物体在图像中的位置、姿态、尺度、整体图片明暗度等都不会影响分类结果。我们可以通过图像平移、反转、缩放、切割等手段将数据库成倍扩充</p>
+<p><strong>保留验证集</strong></p>
+<p><strong>获取额外数据进行交叉验证</strong></p>
+<p><strong>降低模型复杂度</strong><br>a. 对于神经网络：减少网络的层数、神经元个数等均可以限制网络的拟合能力。dropout，在向前传播的时候，让某个神经元的激活值以一定的概率p停止工作，这样可以使模型的泛化性更强，因为它不会太依赖某些局部的特征。。<br>b. 对于决策树：限制树深，剪枝，限制叶节点数量。<br>c. 增大分割平面间隔</p>
+<p><strong>特征选择、特征降维</strong></p>
+<p><strong>early stopping</strong></p>
+<p><strong>正则化</strong>（限制权值weight-decay）：将权值的大小作为惩罚项加入到损失函数里。</p>
+<p><strong>增加噪声</strong><br><strong>ensemble</strong></p>
+<p>$\color{red}{欠拟合}$</p>
+<p>原因：</p>
+<p><strong>模型复杂度过低</strong><br><strong>特征量过少</strong></p>
+<p>解决方法：</p>
+<p><strong>增加特征数</strong>；<br>当特征不足或者现有特征与样本标签的相关性不强时，模型易出现欠拟合。<br>可以通过挖掘上下文特征，ID类特征，组合特征等新的特征，可以取得较好的效果。这属于特征工程相关的内容，如因子分解机，梯度提升决策树，deep_crossing都可以丰富特征。</p>
+<p><strong>增加模型复杂度</strong>；<br>模型简单时其表达能力较差，容易导致欠拟合，因此可以适当地增加模型复杂度，使模型拥有更强的拟合能力。<br>如线性模型中添加高次项，神经网络中增加网络层数或神经元个数。尝试非线性模型，比如核SVM 、决策树、DNN等模型。</p>
+<p><strong>减小正则化系数</strong>。<br>正则化是用于防止过拟合的，但是当出现欠拟合时，就有必要针对性地减小正则化系数。</p>
+</blockquote>
+</li>
+</ol>
+<p>        <a href="%5B(8%E6%9D%A1%E6%B6%88%E6%81%AF">欠拟合和过拟合原因+解决方法</a> 过拟合与欠拟合_Minouio的博客-CSDN博客](<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42012732/article/details/107318550">https://blog.csdn.net/qq_42012732/article/details/107318550</a>))</p>
+<ol start="35">
+<li><p>Bagging每轮训练的样本权重相同，而Bootsting则根据单个分类器的正确率选择权重</p>
+<p>EM算法和梯度下降都会陷于局部极小值</p>
+<p>梯度下降也可用于求混合高斯模型的参数(一般不适用)     </p>
+</li>
+<li><p>随机森林模型过拟合与决策树<strong>深度、叶节点数</strong>有关</p>
+</li>
+<li><p>pass</p>
+</li>
+<li><p>pass</p>
+</li>
+<li><p>K-means算法</p>
+<blockquote>
+<p>K均值聚类是最基础常用的聚类算法，它的基本思想是，<strong>通过迭代寻找K个簇的一种划分方案，使得聚类结果对应的损失函数最小</strong>。</p>
+<p>KMenas的优点：</p>
+<ul>
+<li>高效可伸缩，计算复杂度 为接近于线性（N是数据量，K是聚类总数，t是迭代轮数）。</li>
+<li>收敛速度快，原理相对通俗易懂，可解释性强。</li>
+</ul>
+<p>KMeans也有一些明显的缺点：</p>
+<ul>
+<li>受初始值和异常点影响，聚类结果可能不是全局最优而是局部最优。</li>
+<li>K是超参数，一般需要按经验选择</li>
+<li>样本点只能划分到单一的类中</li>
+</ul>
+<p>迭代的时间复杂度$\Omicron(n)$ </p>
+<p>K-means可以使用核函数，就是将数据点都投影到了一个高维的特征空间中（为啥要这么做呢，主要是突显出不同样本中的差异），然后再在这个高维的特征空间中，进行传统的k-means聚类</p>
+<p>K-mean适用于当簇是密集的、球状或团状的，而簇与簇之间区别明显时，使用<a target="_blank" rel="noopener" href="https://www.zhihu.com/search?q=k-mean&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra=%7B%22sourceType%22:%22answer%22,%22sourceId%22:980863878%7D">k-mean</a>聚类效果很好；在应用<a target="_blank" rel="noopener" href="https://www.zhihu.com/search?q=%E6%AC%A7%E5%BC%8F%E8%B7%9D%E7%A6%BB&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra=%7B%22sourceType%22:%22answer%22,%22sourceId%22:980863878%7D">欧式距离</a>时，只能找到数据点分布的比较均匀的簇。</p>
+</blockquote>
+</li>
+</ol>
+<p>        [K-means](<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/184686598">KMeans聚类算法详解 - 知乎 (zhihu.com)</a>)</p>
+<p>       [核K-means](<a target="_blank" rel="noopener" href="https://www.cnblogs.com/subaiBlog/p/6271315.html#:~:text=%E6%A0%B8k-means%EF%BC%8C%E6%A6%82%E6%8B%AC%E5%9C%B0%E6%9D%A5%E8%AF%B4%EF%BC%8C%E5%B0%B1%E6%98%AF%E5%B0%86%E6%95%B0%E6%8D%AE%E7%82%B9%E9%83%BD%E6%8A%95%E5%BD%B1%E5%88%B0%E4%BA%86%E4%B8%80%E4%B8%AA%E9%AB%98%E7%BB%B4%E7%9A%84%E7%89%B9%E5%BE%81%E7%A9%BA%E9%97%B4%E4%B8%AD%EF%BC%88%E4%B8%BA%E5%95%A5%E8%A6%81%E8%BF%99%E4%B9%88%E5%81%9A%E5%91%A2%EF%BC%8C%E4%B8%BB%E8%A6%81%E6%98%AF%E7%AA%81%E6%98%BE%E5%87%BA%E4%B8%8D%E5%90%8C%E6%A0%B7%E6%9C%AC%E4%B8%AD%E7%9A%84%E5%B7%AE%E5%BC%82%EF%BC%89%EF%BC%8C%E7%84%B6%E5%90%8E%E5%86%8D%E5%9C%A8%E8%BF%99%E4%B8%AA%E9%AB%98%E7%BB%B4%E7%9A%84%E7%89%B9%E5%BE%81%E7%A9%BA%E9%97%B4%E4%B8%AD%EF%BC%8C%E8%BF%9B%E8%A1%8C%E4%BC%A0%E7%BB%9F%E7%9A%84k-means%E8%81%9A%E7%B1%BB%E3%80%82%20%E4%B8%BB%E8%A6%81%E7%9A%84%E6%80%9D%E6%83%B3%E5%B0%B1%E6%98%AF%E8%BF%99%E4%B9%88%E7%AE%80%E5%8D%95%EF%BC%8C%E6%AF%94%E8%B5%B7%E4%BC%A0%E7%BB%9F%E6%99%AE%E9%80%9A%E7%9A%84k-means%E5%B0%B1%E5%A4%9A%E4%BA%86%E4%B8%80%E4%B8%AA%E6%AD%A5%E6%A0%B8%E5%87%BD%E6%95%B0%E7%9A%84%E6%93%8D%E4%BD%9C%E3%80%82%20%E6%89%80%E4%BB%A5%E5%AE%83%E7%9A%84%E5%85%AC%E5%BC%8F%E4%B9%9F%E4%B8%8E%E4%BC%A0%E7%BB%9Fk-means%E5%BE%88%E7%9B%B8%E8%BF%91%EF%BC%9A%20%E8%BF%99%E9%87%8C%E6%89%80%E8%A1%A8%E7%A4%BA%E7%9A%84%EF%BC%8C%24a_i%24%E6%98%AF%E5%90%84%E4%B8%AA%E6%A0%B7%E6%9C%AC%E7%82%B9%EF%BC%8C%E8%80%8C%24phi,%28%20%29%24%E5%87%BD%E6%95%B0%EF%BC%8C%E5%88%99%E6%98%AF%E8%A1%A8%E7%A4%BA%E5%B0%86%E6%A0%B7%E6%9C%AC%E7%82%B9%E6%98%A0%E5%B0%84%E8%87%B3%E9%AB%98%E7%BB%B4%E7%A9%BA%E9%97%B4%E3%80%82%20%E8%80%8C%E5%85%AC%E5%BC%8F%E4%B8%AD%E7%9A%84%24m_c%24%EF%BC%8C%E5%88%99%E6%98%AF%E6%AF%8F%E4%B8%AA%E7%B0%87%E4%B8%AD%E7%9A%84%E8%B4%A8%E5%BF%83%E3%80%82%20%E8%BF%99%E4%B8%AA%E5%BD%A2%E5%BC%8F%EF%BC%8C%E5%AF%B9%E6%AF%94%E8%B5%B7%E6%99%AE%E9%80%9A%E7%9A%84k-means%E6%98%AF%E4%B8%8D%E6%98%AF%E5%BE%88%E7%9B%B8%E8%BF%91%E5%92%A7%EF%BC%8C%E5%90%8C%E6%A0%B7%E6%98%AF%E6%B1%82%E5%90%84%E4%B8%AA%E9%AB%98%E7%BB%B4%E7%A9%BA%E9%97%B4%E4%B8%AD%E7%9A%84%E6%A0%B7%E6%9C%AC%E7%89%B9%E5%BE%81%EF%BC%88%E4%BC%A0%E7%BB%9Fk-means%E4%B8%AD%E6%98%AF%E6%A0%B7%E6%9C%AC%E7%82%B9%EF%BC%89%E4%B8%8E%E8%B4%A8%E5%BF%83%E7%9A%84%E8%B7%9D%E7%A6%BB%EF%BC%8C%E7%84%B6%E5%90%8E%E6%A0%B9%E6%8D%AE%E8%AF%A5%E6%A0%B7%E6%9C%AC%E7%82%B9%E5%88%B0%E4%B8%8D%E5%90%8C%E8%B4%A8%E5%BF%83%E8%B7%9D%E7%A6%BB%EF%BC%8C%E9%80%89%E6%8B%A9%E6%9C%80%E5%B0%8F%E7%9A%84%EF%BC%88%E4%B9%9F%E5%B0%B1%E6%98%AF%E8%AF%B4%E8%B7%9D%E7%A6%BB%E8%AF%A5%E6%A0%B7%E6%9C%AC%E7%82%B9%E6%9C%80%E8%BF%91%EF%BC%89%E7%9A%84%E7%B0%87%E5%BF%83%EF%BC%8C%E8%BF%9B%E8%A1%8C%E5%88%86%E9%85%8D%EF%BC%88%E5%B0%86%E8%AF%A5%E6%A0%B7%E6%9C%AC%E7%82%B9%E5%BD%92%E4%B8%BA%E8%BF%99%E4%B8%AA%E7%B0%87%EF%BC%89%E3%80%82">weighted Kernel k-means 加权核k均值算法理解及其实现（一） - 苏白 - 博客园 (cnblogs.com)</a>)</p>
+<ol start="40">
+<li><p>过拟合训练误差小，测试误差大</p>
+</li>
+<li><p>pass</p>
+</li>
+<li><p>过拟合问题 见P34</p>
+<blockquote>
+<p><strong>稀疏</strong>表示的好处在于降低表示复杂度，更直白<strong>的</strong>原因其实就是<strong>减少</strong>系数参数，通过<strong>稀疏</strong>表示，可以充分发挥数据所含有<strong>的</strong>信息，去掉冗余<strong>的</strong>数据信息，达到最大化利用数据。</p>
+<p>高斯核比线性核更复杂，使复杂度更高，容易导致过拟合问题。</p>
+</blockquote>
+</li>
+</ol>
+<p>        [高斯核和线性核](<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44492824/article/details/122546701">核函数 高斯核函数，线性核函数，多项式核函数_TranSad的博客-CSDN博客</a>)</p>
+<ol start="43">
+<li><p>无监督和监督</p>
+</li>
+<li><p>Bootstrap：Bootstrap法具体是指<strong>用原样本自身的数据</strong>抽样得出新的样本及统计量</p>
+</li>
+<li><p>Adaboost算法</p>
+<blockquote>
+<p>$\color{red}{原理}$:是从训练数据中学习出一系列的弱分类器，并将弱分类器组合成一个强分类器</p>
+<p>$\color{red}{提升树}$：采用<strong>加法</strong>模型（基函数的线性组合）与<strong>前向分布</strong>算法，同时以决策树为基函数的提升方法。对于分类问题而言是二叉分类树，但对于回归问题而言是二叉回归树</p>
+</blockquote>
+</li>
+<li><p>HMM</p>
+</li>
+<li><p>会考虑向量的方向的距离</p>
+<blockquote>
+<p>Jaccard距离：杰卡德距离</p>
+</blockquote>
+<p><a href="%5B%E6%AC%A7%E6%B0%8F%E8%B7%9D%E7%A6%BB%EF%BC%8C%E6%9B%BC%E5%93%88%E9%A1%BF%E8%B7%9D%E7%A6%BB%EF%BC%8C%E4%BD%99%E5%BC%A6%E8%B7%9D%E7%A6%BB%EF%BC%8C%E6%B1%89%E6%98%8E%E8%B7%9D%E7%A6%BB_%E5%8D%97%E6%9E%81%E6%B4%B2%E9%97%B2%E4%BA%BA%E7%9A%84%E5%8D%9A%E5%AE%A2-CSDN%E5%8D%9A%E5%AE%A2_%E6%B1%89%E6%98%8E%E8%B7%9D%E7%A6%BB%E5%92%8C%E6%AC%A7%E5%BC%8F%E8%B7%9D%E7%A6%BB%5D(https://blog.csdn.net/weixin_45965358/article/details/112992351)">四种距离</a></p>
+<p>[机器学习中的距离](<a target="_blank" rel="noopener" href="https://blog.csdn.net/hy592070616/article/details/122279515">机器学习中的数学——距离定义（十三）：杰卡德距离（Jaccard Distance）和杰卡德相似系数（Jaccard Similarity Coefficient）_von Neumann的博客-CSDN博客</a>)</p>
+</li>
+<li><p>pass</p>
+</li>
+<li><p>pass </p>
+</li>
+<li><p>pass</p>
+</li>
+<li><p>pass</p>
+</li>
+<li><p>不知道数据所带标签时，可以使用<strong>聚类</strong>技术促使带同类标签的数据与带其他标签的数据相分离</p>
+<blockquote>
+<p>聚类是无监督学习</p>
+<p>回归和分类是监督学习</p>
+</blockquote>
+</li>
+<li><p>矩阵计算pass</p>
+</li>
+<li><p><strong>最大似然估计</strong>不考虑先验分布</p>
+<blockquote>
+<p>贝叶斯公式：$P(A|B)&#x3D; \frac{P(B|A)*P(A)}{P(B)}$</p>
+</blockquote>
+</li>
+</ol>
+<p>        <a href="%5B%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1(%E4%BA%8C">最大似然估计</a>.最大似然估计 - 知乎 (zhihu.com)](<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/55791843">https://zhuanlan.zhihu.com/p/55791843</a>))</p>
+<ol start="55">
+<li><p>pass</p>
+</li>
+<li><p>pass</p>
+</li>
+<li><p>pass</p>
+</li>
+<li><p>pass</p>
+</li>
+<li><p>pass</p>
+</li>
+<li><p>pass</p>
+</li>
+<li><p>生成式模型和判别式模型</p>
+<p><img src="C:\Users\田晓滨\AppData\Roaming\marktext\images\2022-11-21-23-29-56-image.png"></p>
+</li>
+</ol>
+<p>     [生成式模型和判别式模型](<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/74586507">机器学习中的判别式模型和生成式模型 - 知乎 (zhihu.com)</a>)</p>
+<ol start="62">
+<li><p>pass</p>
+</li>
+<li><p>pass</p>
+</li>
+<li><p>条件随机场（conditional random field,CRF）是给定一组输入随机变量条件下另一组输出随机变量的<strong>条件概率分布模型（即判别模型）</strong>，其特点是假设<strong>输出随机变量构成马尔可夫随机场</strong>。条件随机场可以用于不同的预测问题，</p>
+</li>
+<li><p>KNN用于样本较少但典型性好的情况</p>
+</li>
+<li><p>过拟合在监督学习和无监督学习中都会发生。</p>
+</li>
+<li><p>大数据集上训练决策树，通过减少树的深度可以缩短时间</p>
+</li>
+<li><p>K 折交叉验证</p>
+<p><a href="%5Bk%E6%8A%98%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81_tianguiyuyu%E7%9A%84%E5%8D%9A%E5%AE%A2-CSDN%E5%8D%9A%E5%AE%A2%5D(https://blog.csdn.net/tianguiyuyu/article/details/80697223)">K 折交叉验证</a></p>
+</li>
+<li><p>pass</p>
+</li>
+<li><p>贝叶斯分类器参数估计</p>
+<blockquote>
+<p>最大间隔用于支持向量机SVM中</p>
+</blockquote>
+<p>[贝叶斯分类器](<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/149774236">贝叶斯分类器 - 知乎 (zhihu.com)</a>)</p>
+</li>
+<li><p>机器学习可解决的问题：分类、聚类和回归</p>
+</li>
+<li><p>KNN算法缺点</p>
+<blockquote>
+<p>KNN有着非常明显的优点和缺点：</p>
+<p>优点：精度高、对异常值不敏感、无数据输入假定</p>
+<p>缺点：计算复杂度高、空间复杂度高</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="计算题"><a href="#计算题" class="headerlink" title="计算题"></a>计算题</h3><ol start="13">
+<li><p>K-means</p>
+</li>
+<li><p>自底向上层次聚类</p>
+</li>
+</ol>
+
+    
+    
+    <footer class="meta">
+      
+      
+      
+    </footer>
+    
+      
+  <div class="sharing addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script src="http://s7.addthis.com/js/300/addthis_widget.js"></script>
+
+    
+    
+  </div>
+  
+</article>
+</div>
+  <footer id="footer" class="inner"><div class="social alignright">
+  
+  
+  
+  <a class="rss" href="/atom.xml" title="RSS">RSS</a>
+</div>
+<p>
+  
+  &copy; 2023 John Doe
+  
+</p>
+<div class="clearfix"></div></footer>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+
+
+<script src="/js/gallery.js"></script>
+
+
+
+
+
+
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+<script>
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<div id="phasebeam">
+  <canvas></canvas>
+  <canvas></canvas>
+  <canvas></canvas>
+</div>
+
+<script src="/js/phasebeam.js"></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body>
+</html>

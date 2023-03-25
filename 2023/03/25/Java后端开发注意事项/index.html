@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+ <html lang="en">
+<script type="text/javascript" src="/js/love.js"></script>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Hexo</title>
+  <meta name="author" content="John Doe">
+
+  
+  <meta name="description" content="Java后端开发注意事项异常处理
+
+try-catch-finally
+1234567891011121314151617try&amp;#123;    //代码可能存在异常&amp;#125;catch(Exception exception)&amp;#123;    //捕获异常    //1.异常发生时，系统将异">
+  
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <header id="header" class="inner"><nav>
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+</nav></header>
+  <div id="content" class="inner"><article class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <header>
+    
+  
+    <h1 class="p-name title" itemprop="headline name"></h1>
+  
+
+    <time class="dt-published" datetime="2023-03-25T07:42:03.246Z">
+  <span class="day">25</span><span class="month">Mar</span>
+</time>
+  </header>
+  <div class="e-content entry-content">
+    
+      <h3 id="Java后端开发注意事项"><a href="#Java后端开发注意事项" class="headerlink" title="Java后端开发注意事项"></a>Java后端开发注意事项</h3><p>异常处理</p>
+<ol>
+<li><p>try-catch-finally</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//代码可能存在异常</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">catch</span>(Exception exception)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//捕获异常</span></span><br><span class="line">    <span class="comment">//1.异常发生时，系统将异常封装成Exception对象exception</span></span><br><span class="line">    <span class="comment">//2.传值给catch</span></span><br><span class="line">    <span class="comment">//3.获取异常对象时，程序员自己处理</span></span><br><span class="line">    <span class="comment">//4.若try中代码无异常，则catch不会发生</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">finally</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//1.无论try中代码是否存在异常，始终执行finally    </span></span><br><span class="line">    <span class="comment">//2.通常将释放资源的代码，放在finally关闭</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>throws</p>
+</li>
+</ol>
+<blockquote>
+<p>main方法由JVM调用，main方法调用 f1 方法，f1 方法调用 f2 方法，如果 f2 方法发生异常，有两种方案，分别是 try-catch-finally 和 throws ，f2 使用 throws 方法，返回给 f1，f1也可以同样选择throws方法，返回给 main 方法，最终返回到 JVM。而 JVM 对处理异常的发生极为粗暴（1.输出异常信息。2. 退出程序）。</p>
+</blockquote>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> </li>
+</ul>
+
+    
+    
+    <footer class="meta">
+      
+      
+      
+    </footer>
+    
+      
+  <div class="sharing addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script src="http://s7.addthis.com/js/300/addthis_widget.js"></script>
+
+    
+    
+  </div>
+  
+</article>
+</div>
+  <footer id="footer" class="inner"><div class="social alignright">
+  
+  
+  
+  <a class="rss" href="/atom.xml" title="RSS">RSS</a>
+</div>
+<p>
+  
+  &copy; 2023 John Doe
+  
+</p>
+<div class="clearfix"></div></footer>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+
+
+<script src="/js/gallery.js"></script>
+
+
+
+
+
+
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+<script>
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<div id="phasebeam">
+  <canvas></canvas>
+  <canvas></canvas>
+  <canvas></canvas>
+</div>
+
+<script src="/js/phasebeam.js"></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body>
+</html>

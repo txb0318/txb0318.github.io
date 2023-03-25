@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+ <html lang="en">
+<script type="text/javascript" src="/js/love.js"></script>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Hexo</title>
+  <meta name="author" content="John Doe">
+
+  
+  <meta name="description" content="项目仍存在的问题
+命名ACL处理
+计算可达性按钮和显示路径结果合二为一
+前端显示多端文本textarea 标签定义多行的文本输入控件readonly 方法用于规定文本区为只读textarea用法
+点击前端按钮时，执行某方法，显示正在加载中1234567891011121314151617181920">
+  
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <header id="header" class="inner"><nav>
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+</nav></header>
+  <div id="content" class="inner"><article class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <header>
+    
+  
+    <h1 class="p-name title" itemprop="headline name"></h1>
+  
+
+    <time class="dt-published" datetime="2023-03-25T07:42:03.255Z">
+  <span class="day">25</span><span class="month">Mar</span>
+</time>
+  </header>
+  <div class="e-content entry-content">
+    
+      <h3 id="项目仍存在的问题"><a href="#项目仍存在的问题" class="headerlink" title="项目仍存在的问题"></a>项目仍存在的问题</h3><ol>
+<li>命名ACL处理</li>
+<li>计算可达性按钮和显示路径结果合二为一</li>
+<li>前端显示多端文本<br><code>textarea 标签定义多行的文本输入控件</code><br><code>readonly 方法用于规定文本区为只读</code><br><a target="_blank" rel="noopener" href="https://www.w3school.com.cn/tags/tag_textarea.asp">textarea用法</a></li>
+<li>点击前端按钮时，执行某方法，显示正在加载中<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;reachSpinner&quot; ng-show=&quot;shared.isComputingReach == true&quot;&gt;</span><br><span class="line">    &lt;img src=&quot;/netTopo/Web/picture/loading.gif&quot;/&gt;</span><br><span class="line">    &lt;h1&gt;可达性计算中&lt;/h1&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">其中添加一个reachSpinner.css类用于渲染</span><br><span class="line">#reachSpinner &#123;</span><br><span class="line">position: fixed;</span><br><span class="line">top: 0; left: 0;</span><br><span class="line">width: 100vw; height: 100vh;</span><br><span class="line">z-index: 9999;</span><br><span class="line">background: rgba(0, 0, 0, 0.7);</span><br><span class="line">transition: opacity 0.2s;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/* (B) CENTER LOADING SPINNER */</span><br><span class="line">#reachSpinner img &#123;</span><br><span class="line">    position: absolute;</span><br><span class="line">    top: 50%; left: 50%;</span><br><span class="line">    transform: translate(-50%);</span><br><span class="line">&#125;</span><br><span class="line">#reachSpinner h1 &#123;</span><br><span class="line">    color: white;</span><br><span class="line">    position: absolute;</span><br><span class="line">    top: 60%; left: 50%;</span><br><span class="line">    transform: translate(-50%);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>删除临时目录及文件  <blockquote>
+<p>不能直接使用delete命令删除存在文件的目录，需先将目录下的文件删除后，再删除该目录</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">File dir = new File(path);</span><br><span class="line">File[] listFiles = dir.listFiles();</span><br><span class="line">if(listFiles != null)</span><br><span class="line">&#123;</span><br><span class="line">    for(File file : listFiles)</span><br><span class="line">    &#123;</span><br><span class="line">        file.delete();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">dir.delete();</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+    
+    
+    <footer class="meta">
+      
+      
+      
+    </footer>
+    
+      
+  <div class="sharing addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script src="http://s7.addthis.com/js/300/addthis_widget.js"></script>
+
+    
+    
+  </div>
+  
+</article>
+</div>
+  <footer id="footer" class="inner"><div class="social alignright">
+  
+  
+  
+  <a class="rss" href="/atom.xml" title="RSS">RSS</a>
+</div>
+<p>
+  
+  &copy; 2023 John Doe
+  
+</p>
+<div class="clearfix"></div></footer>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+
+
+<script src="/js/gallery.js"></script>
+
+
+
+
+
+
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+<script>
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<div id="phasebeam">
+  <canvas></canvas>
+  <canvas></canvas>
+  <canvas></canvas>
+</div>
+
+<script src="/js/phasebeam.js"></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body>
+</html>

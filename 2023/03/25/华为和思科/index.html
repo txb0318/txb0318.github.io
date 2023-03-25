@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+ <html lang="en">
+<script type="text/javascript" src="/js/love.js"></script>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Hexo</title>
+  <meta name="author" content="John Doe">
+
+  
+  <meta name="description" content="本次针对华为网络和思科网络不同进行总结
+
+区别
+ACL配置
+这是我遇到的第一个问题
+Cisco中ACL默认语句:deny ip any any
+华为中ACL默认语句:permit ip any any
+ACL命令
+常用的Cisco网络命令
+
+
+路由器口令配置
+1234567891011router&amp;">
+  
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <header id="header" class="inner"><nav>
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+</nav></header>
+  <div id="content" class="inner"><article class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <header>
+    
+  
+    <h1 class="p-name title" itemprop="headline name"></h1>
+  
+
+    <time class="dt-published" datetime="2023-03-25T07:42:03.258Z">
+  <span class="day">25</span><span class="month">Mar</span>
+</time>
+  </header>
+  <div class="e-content entry-content">
+    
+      <h3 id="本次针对华为网络和思科网络不同进行总结">本次针对华为网络和思科网络不同进行总结</h3>
+<hr>
+<h2 id="区别">区别</h2>
+<h3 id="ACL配置">ACL配置</h3>
+<p>这是我遇到的第一个问题<br>
+<code>Cisco中ACL默认语句:deny ip any any</code><br>
+<code>华为中ACL默认语句:permit ip any any</code></p>
+<h3 id="ACL命令">ACL命令</h3>
+<h4 id="常用的Cisco网络命令">常用的Cisco网络命令</h4>
+<ol>
+<li class="lvl-3">
+<p>路由器口令配置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">router&gt;enable </span><br><span class="line">router#config terminal 进入全局配置模式</span><br><span class="line">router(config)#hostname 设置交换机的主机名</span><br><span class="line">router(config)#enable secret xxx 设置特权加密口令</span><br><span class="line">router(config)#enable password xxb 设置特权非密口令</span><br><span class="line">router(config)#line console 0 进入控制台口</span><br><span class="line">router(config-line)#line vty 0 4 进入虚拟终端</span><br><span class="line">router(config-line)#login 要求口令验证</span><br><span class="line">router(config-line)#password xx 设置登录口令xx</span><br><span class="line">router(config)#(Ctrl+z) 返回特权模式</span><br><span class="line">router#exit 返回命令</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-3">
+<p>路由器配置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">router(config)#int s0/0 进入Serail接口</span><br><span class="line">router(config-if)#no shutdown 激活当前接口</span><br><span class="line">router(config-if)#clock rate 64000 设置同步时钟</span><br><span class="line">router(config-if)#ip address 设置IP地址</span><br><span class="line">router(config-if)#ip address second 设置第二个IP</span><br><span class="line">router(config-if)#int f0/0.1 进入子接口</span><br><span class="line">router(config-subif.1)#ip address 设置子接口IP</span><br><span class="line">router(config-subif.1)#encapsulation dot1q 绑定vlan中继协议</span><br><span class="line">router(config)#config-register 0x2142 跳过配置文件</span><br><span class="line">router(config)#config-register 0x2102 正常使用配置文件</span><br><span class="line">router#reload 重新引导</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-3">
+<p>路由器文件操作</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">router#copy running-config startup-config 保存配置</span><br><span class="line">router#copy running-config tftp 保存配置到tftp</span><br><span class="line">router#copy startup-config tftp 开机配置存到tftp</span><br><span class="line">router#copy tftp flash: 下传文件到flash</span><br><span class="line">router#copy tftp startup-config 下载配置文件</span><br><span class="line">ROM状态：</span><br><span class="line">Ctrl+Break 进入ROM监控状态</span><br><span class="line">rommon&gt;confreg 0x2142 跳过配置文件</span><br><span class="line">rommon&gt;confreg 0x2102 恢复配置文件</span><br><span class="line">rommon&gt;reset 重新引导</span><br><span class="line">rommon&gt;copy xmodem: flash: 从console传输文件</span><br><span class="line">rommon&gt;IP_ADDRESS=10.65.1.2 设置路由器IP</span><br><span class="line">rommon&gt;IP_SUBNET_MASK=255.255.0.0 设置路由器掩码</span><br><span class="line">rommon&gt;TFTP_SERVER=10.65.1.1 指定TFTP服务器IP</span><br><span class="line">rommon&gt;TFTP_FILE=c2600.bin 指定下载的文件</span><br><span class="line">rommon&gt;tftpdnld 从tftp下载</span><br><span class="line">rommon&gt;dir flash: 查看闪存内容</span><br><span class="line">rommon&gt;boot 引导IOS</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-3">
+<p>路由</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ip route 命令格式</span><br><span class="line">router(config)#ip route 2.0.0.0 255.0.0.0 1.1.1.2 静态路由举例</span><br><span class="line">router(config)#ip route 0.0.0.0 0.0.0.0 1.1.1.2 默认路由举例</span><br><span class="line">router(config)#ip routing 启动路由转发</span><br><span class="line">router(config)#router rip 启动RIP路由协议。</span><br><span class="line">router(config-router)#network 设置发布路由</span><br><span class="line">router(config-router)#negihbor 点对点帧中继用。</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-3">
+<p>帧中继命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">router(config)#frame-relay switching 使能帧中继交换</span><br><span class="line">router(config-s0)#encapsulation frame-relay 使能帧中继</span><br><span class="line">router(config-s0)#fram-relay lmi-type cisco 设置管理类型</span><br><span class="line">router(config-s0)#frame-relay intf-type DCE 设置为DCE</span><br><span class="line">router(config-s0)#frame-relay dlci 16</span><br><span class="line">router(config-s0)#frame-relay local-dlci 20 设置虚电路号</span><br><span class="line">router(config-s0)#frame-relay interface-dlci 16</span><br><span class="line">router(config)#log-adjacency-changes 记录邻接变化</span><br><span class="line">router(config)#int s0/0.1 point-to-point 设置子接口点对点</span><br><span class="line">router#show frame pvc 显示永久虚电路</span><br><span class="line">router#show frame map 显示映射</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-3">
+<p>访问控制列表ACL</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">router(config)#access-list permit|deny</span><br><span class="line">router(config)#interface ；default:deny any</span><br><span class="line">router(config-if)#ip access-group in|out ；defaultut</span><br><span class="line">例1</span><br><span class="line">router(config)#access-list 1 deny host 10.65.1.1</span><br><span class="line">router(config)#access-list 1 permit any</span><br><span class="line">router(config)#int f0/0</span><br><span class="line">router(config-if)#ip access-group 4 in</span><br><span class="line">例2</span><br><span class="line">router(config)#access-list 4 permit 10.8.1.1</span><br><span class="line">router(config)#access-list 4 deny 10.8.1.0 0.0.0.255</span><br><span class="line">router(config)#access-list 4 permit 10.8.0.0 0.0.255.255</span><br><span class="line">router(config)#access-list 4 deny 10.0.0.0 0.255.255.255</span><br><span class="line">router(config)#access-list 4 permit any</span><br><span class="line">router(config)#int f0/1</span><br><span class="line">router(config-if)#ip access-group 4 in</span><br><span class="line">   </span><br><span class="line">access-list permit|deny icmp [type]</span><br><span class="line">access-list permit|deny tcp [port]</span><br><span class="line">例1</span><br><span class="line">router(config)#access-list 101 deny icmp any 10.64.0.2 0.0.0.0 echo</span><br><span class="line">router(config)#access-list 101 permit ip any any</span><br><span class="line">router(config)#int s0/0</span><br><span class="line">router(config-if)#ip access-group 101 in</span><br><span class="line">例2</span><br><span class="line">router(config)#access-list 102 deny tcp any 10.65.0.2 0.0.0.0 eq 80</span><br><span class="line">router(config)#access-list 102 permit ip any any</span><br><span class="line">router(config)#interface s0/1</span><br><span class="line">router(config-if)#ip access-group 102 out</span><br><span class="line">删除访问控制例表</span><br><span class="line">router(config)#no access-list 102</span><br><span class="line">router(config-if)#no ip access-group 101 in</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-3">
+<p>路由器的NAT配置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Router(config-if)#ip nat inside 当前接口指定为内部接口</span><br><span class="line">Router(config-if)#ip nat outside 当前接口指定为外部接口</span><br><span class="line">Router(config)#ip nat inside source static [p] &lt;私有IP&gt;&lt;公网IP&gt; [port]</span><br><span class="line">Router(config)#ip nat inside source static 10.65.1.2 60.1.1.1</span><br><span class="line">Router(config)#ip nat inside source static tcp 10.65.1.3 80 60.1.1.1 80</span><br><span class="line">Router(config)#ip nat pool p1 60.1.1.1 60.1.1.20 255.255.255.0</span><br><span class="line">Router(config)#ip nat inside source list 1 pool p1</span><br><span class="line">Router(config)#ip nat inside destination list 2 pool p2</span><br><span class="line">Router(config)#ip nat inside source list 2 interface s0/0 overload</span><br><span class="line">Router(config)#ip nat pool p2 10.65.1.2 10.65.1.4 255.255.255.0 type rotary</span><br><span class="line">Router#show ip nat translation</span><br><span class="line">rotary 参数是轮流的意思，地址池中的IP轮流与NAT分配的地址匹配。</span><br><span class="line">overload参数用于PAT 将内部IP映射到一个公网IP不同的端口上。</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-3">
+<p>外部网关协议配置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">routerA(config)#router bgp 100</span><br><span class="line">routerA(config-router)#network 19.0.0.0</span><br><span class="line">routerA(config-router)#neighbor 8.1.1.2 remote-as 200</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-3">
+<p>常用查询</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">show ip route ；查看路由表</span><br><span class="line">show vlan     查看vlan配置信息</span><br><span class="line">show interface  查看端口信息</span><br><span class="line">show running-config ；查看当前设备配置</span><br><span class="line">show access-list ；查看访问控制列表配置及匹配数据包数量</span><br><span class="line">show vtp status  查看vtp配置信息 </span><br><span class="line">show running-config  查看当前配置信息</span><br><span class="line">show int f0/0  查看指定端口信息 </span><br><span class="line">dir flash:  查看闪存</span><br><span class="line">show version  查看当前版本信息</span><br><span class="line">show cdp cisco  设备发现协议（可以查看聆接设备）</span><br><span class="line">show cdp traffic  查看接收和发送的cdp包统计信息</span><br><span class="line">show interface f0/1 switchport  查看有关switchport的配置</span><br><span class="line">show cdp neighbors  查看与该设备相邻的cisco设备</span><br><span class="line">show interface stats ；查看交换机所有接口当前接口流量</span><br><span class="line">show version ；查看IOS版本信息及设备正常运行时间</span><br><span class="line">show clock ；查看设备时钟信息</span><br><span class="line">show vtp status ；查看交换机vtp配置模式</span><br><span class="line">show vtp password ；查看交换机vtp配置口令</span><br><span class="line">show env all ；查看设备温度，电源和风扇运转参数及是否报警</span><br><span class="line">show inventory ；调取设备内部板卡出厂模块型号及序列号</span><br><span class="line">show spanning-tree root ；查看交换机生成树根位置</span><br><span class="line">show cdp neighbors ；查看邻接cisco设备基本信息</span><br><span class="line">show cdp neighbors detail ；查看邻接cisco设备详细信息</span><br><span class="line">show interface status ；查看交换机接口状态是否存在errordisable接口disable接口</span><br><span class="line">show interface summary` ；查看交换机所有接口当前接口流量</span><br><span class="line">show interface | i errors|FastEthernet|GigabitEthernet ；查看接口是否存在大量input或output errors包错误</span><br><span class="line">show processes cpu ；查看设备cpu负载</span><br><span class="line">show processes mem ；查看设备mem负载</span><br><span class="line">show logging ；查看本机内部日志记录情况</span><br><span class="line">show firewall ；检查防火墙的工作模式</span><br><span class="line">show conn count ；检查防火墙并发数</span><br><span class="line">show xlate count ；检查防火墙nat工作状态</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://www.sohu.com/a/313842412_120146424#:~:text=%E6%80%9D%E7%A7%91%20%28Cisco%29%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93%201%20router%3Eenable%20%E8%BF%9B%E5%85%A5%E7%89%B9%E6%9D%83%E6%A8%A1%E5%BC%8F%202%20router%23config%20terminal,0%204%20%E8%BF%9B%E5%85%A5%E8%99%9A%E6%8B%9F%E7%BB%88%E7%AB%AF%208%20router%20%28config-line%29%23login%20%E8%A6%81%E6%B1%82%E5%8F%A3%E4%BB%A4%E9%AA%8C%E8%AF%81%20%E6%9B%B4%E5%A4%9A%E9%A1%B9%E7%9B%AE">Cisco常用命令</a><br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/385018975#:~:text=CISCO%E4%BA%A4%E6%8D%A2%E6%9C%BA%E5%B7%A1%E6%A3%80%E5%91%BD%E4%BB%A4%201%E3%80%81show%20interface%20stats,%EF%BC%9B%E6%9F%A5%E7%9C%8B%E4%BA%A4%E6%8D%A2%E6%9C%BA%E6%89%80%E6%9C%89%E6%8E%A5%E5%8F%A3%E5%BD%93%E5%89%8D%E6%8E%A5%E5%8F%A3%E6%B5%81%E9%87%8F%202%E3%80%81show%20running-config%20%EF%BC%9B%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8D%E8%AE%BE%E5%A4%87%E9%85%8D%E7%BD%AE">Cisco常用命令1</a></p>
+<h4 id="常用的华为网络命令">常用的华为网络命令</h4>
+</li>
+<li class="lvl-4">
+<p>用户视图</p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">指令</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">display ip interface brief</td>
+<td style="text-align:center">查看端口IP信息</td>
+</tr>
+<tr>
+<td style="text-align:center">display arp</td>
+<td style="text-align:center">查看ARP表</td>
+</tr>
+<tr>
+<td style="text-align:center">rebot</td>
+<td style="text-align:center">重启设备</td>
+</tr>
+<tr>
+<td style="text-align:center">reset saved-configuration</td>
+<td style="text-align:center">重置设备配置</td>
+</tr>
+<tr>
+<td style="text-align:center">system-view</td>
+<td style="text-align:center">进入系统视图</td>
+</tr>
+<tr>
+<td style="text-align:center">save</td>
+<td style="text-align:center">保存设备信息</td>
+</tr>
+<tr>
+<td style="text-align:center">2. 系统视图</td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">指令</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">aaa</td>
+<td style="text-align:center">进入3A视图</td>
+</tr>
+<tr>
+<td style="text-align:center">acl [数字]</td>
+<td style="text-align:center">创建并进入acl规则视图，acl数字从2000开始为基础的规则，从3000开始为扩展规则</td>
+</tr>
+<tr>
+<td style="text-align:center">capwap source interface vlanif [VLAN编号]</td>
+<td style="text-align:center">建立capwap隧道</td>
+</tr>
+<tr>
+<td style="text-align:center">clear configuration interface [接口]</td>
+<td style="text-align:center">清除指定接口上的配置</td>
+</tr>
+<tr>
+<td style="text-align:center">dhcp enable</td>
+<td style="text-align:center">开启设备的DHCP（动态主机配置协议）功能</td>
+</tr>
+<tr>
+<td style="text-align:center">dhcp select global</td>
+<td style="text-align:center">开启基于地址池分配IP的功能</td>
+</tr>
+<tr>
+<td style="text-align:center">dhcp server excluded-ip-address [IP地址]</td>
+<td style="text-align:center">将指定的IP地址排除出IP地址池之外</td>
+</tr>
+<tr>
+<td style="text-align:center">dhcp snooping enable</td>
+<td style="text-align:center">开启DHCP的snooping功能</td>
+</tr>
+<tr>
+<td style="text-align:center">dhcp snooping enable vlan [数字]</td>
+<td style="text-align:center">在指定的VLAN中开启DHCP功能，属于该VLAN的DHCP功能将被允许</td>
+</tr>
+<tr>
+<td style="text-align:center">dhcp relay server-ip [IP地址]</td>
+<td style="text-align:center">设置DHCP服务器的端口地址</td>
+</tr>
+<tr>
+<td style="text-align:center">display acl all</td>
+<td style="text-align:center">显示当前所有的ACL规则</td>
+</tr>
+<tr>
+<td style="text-align:center">display ap all</td>
+<td style="text-align:center">查看所有AP设备的上线情况</td>
+</tr>
+<tr>
+<td style="text-align:center">display bridge mac-address</td>
+<td style="text-align:center">显示路由交换机的MAC地址</td>
+</tr>
+<tr>
+<td style="text-align:center">display current-configuration interface [端口信息]</td>
+<td style="text-align:center">显示防火墙的指定端口配置信息</td>
+</tr>
+<tr>
+<td style="text-align:center">display firewall session aging-time</td>
+<td style="text-align:center">查看防火墙会话表的老化时间</td>
+</tr>
+<tr>
+<td style="text-align:center">display firewall session table</td>
+<td style="text-align:center">查看防火墙会话表简要信息</td>
+</tr>
+<tr>
+<td style="text-align:center">display firewall session table verbose</td>
+<td style="text-align:center">查看防火墙会话表详细信息</td>
+</tr>
+<tr>
+<td style="text-align:center">display hrp state</td>
+<td style="text-align:center">显示hrp状态信息</td>
+</tr>
+<tr>
+<td style="text-align:center">display ip interface brief</td>
+<td style="text-align:center">显示防火墙接口配置信息</td>
+</tr>
+<tr>
+<td style="text-align:center">display ip routing-table</td>
+<td style="text-align:center">显示路由表</td>
+</tr>
+<tr>
+<td style="text-align:center">display mac-address</td>
+<td style="text-align:center">查看MAC表</td>
+</tr>
+<tr>
+<td style="text-align:center">display mac-address aging-time</td>
+<td style="text-align:center">查看MAC表老化时间</td>
+</tr>
+<tr>
+<td style="text-align:center">display saved-configuration</td>
+<td style="text-align:center">查看当前已保存配置</td>
+</tr>
+<tr>
+<td style="text-align:center">display this</td>
+<td style="text-align:center">显示当前配置</td>
+</tr>
+<tr>
+<td style="text-align:center">display vrrp</td>
+<td style="text-align:center">显示vrrp信息</td>
+</tr>
+<tr>
+<td style="text-align:center">display vrrp brief</td>
+<td style="text-align:center">查看当前vrrp备份组信息</td>
+</tr>
+<tr>
+<td style="text-align:center">firewall zone trust</td>
+<td style="text-align:center">进入防火墙的信任区视图</td>
+</tr>
+<tr>
+<td style="text-align:center">firewall zone untrust</td>
+<td style="text-align:center">进入防火墙的非信任区视图</td>
+</tr>
+<tr>
+<td style="text-align:center">hrp enable</td>
+<td style="text-align:center">开启HRP备份功能</td>
+</tr>
+<tr>
+<td style="text-align:center">hrp interface [接口名] [端口] remote [IP地址]</td>
+<td style="text-align:center">为vrrp设备指定心跳口，IP地址为端口的地址</td>
+</tr>
+<tr>
+<td style="text-align:center">interface [接口名] [端口]</td>
+<td style="text-align:center">进入某接口的视图</td>
+</tr>
+<tr>
+<td style="text-align:center">interface vlanif [网段]</td>
+<td style="text-align:center">进入指定VLAN的SVI虚拟接口</td>
+</tr>
+<tr>
+<td style="text-align:center">ip pool [名称]</td>
+<td style="text-align:center">创建并进入IP地址池</td>
+</tr>
+<tr>
+<td style="text-align:center">ip route-static [下一跳网段] [掩码] [下一跳IP地址]</td>
+<td style="text-align:center">设置静态路由，IP地址为下一跳路由器端口地址</td>
+</tr>
+<tr>
+<td style="text-align:center">ip route-static 0.0.0.0 0 [下一跳IP地址]</td>
+<td style="text-align:center">设置默认路由，IP地址为下一跳路由器端口地址。注意第四个0和第五个0中间是空格不是小数点，第五个0也可以写成0.0.0.0表示完全匹配</td>
+</tr>
+<tr>
+<td style="text-align:center">mac-address aging-time [时间]</td>
+<td style="text-align:center">设置MAC地址表老化时间，默认老化时间为300秒</td>
+</tr>
+<tr>
+<td style="text-align:center">mac-address static [MAC地址] [端口]vlan 1</td>
+<td style="text-align:center">将MAC地址绑定到指定端口，交换机中所有的接口默认vlan 1</td>
+</tr>
+<tr>
+<td style="text-align:center">port-group group-member [端口1] to [端口2]</td>
+<td style="text-align:center">将多个端口创建成临时的端口组，并进入该端口组</td>
+</tr>
+<tr>
+<td style="text-align:center">quit</td>
+<td style="text-align:center">返回上一级视图，即用户视图</td>
+</tr>
+<tr>
+<td style="text-align:center">return</td>
+<td style="text-align:center">返回上一级视图，即用户视图</td>
+</tr>
+<tr>
+<td style="text-align:center">rsa local-key-pair create</td>
+<td style="text-align:center">创建本地密钥对</td>
+</tr>
+<tr>
+<td style="text-align:center">security-policy</td>
+<td style="text-align:center">进入防火墙安全策略</td>
+</tr>
+<tr>
+<td style="text-align:center">stelnet server enable</td>
+<td style="text-align:center">开启SSH服务</td>
+</tr>
+<tr>
+<td style="text-align:center">sysname [名称]</td>
+<td style="text-align:center">修改设备名称</td>
+</tr>
+<tr>
+<td style="text-align:center">telnet server enable</td>
+<td style="text-align:center">开启telnet服务</td>
+</tr>
+<tr>
+<td style="text-align:center">undo info-center enable</td>
+<td style="text-align:center">关闭信息中心日志</td>
+</tr>
+<tr>
+<td style="text-align:center">undo mac-address</td>
+<td style="text-align:center">清空MAC表</td>
+</tr>
+<tr>
+<td style="text-align:center">user-bind static ip-address [IP地址] mac-address [MAC地址] interface [接口信息] vlan [数字]</td>
+<td style="text-align:center">创建用户绑定表，绑定IP、MAC、端口和VLAN</td>
+</tr>
+<tr>
+<td style="text-align:center">user-interface console 0</td>
+<td style="text-align:center">进入console接口</td>
+</tr>
+<tr>
+<td style="text-align:center">user-interface vty 0 4</td>
+<td style="text-align:center">进入VTY接口，VTY即虚拟终端</td>
+</tr>
+<tr>
+<td style="text-align:center">vlan [网段]</td>
+<td style="text-align:center">创建并进入VLAN视图</td>
+</tr>
+<tr>
+<td style="text-align:center">vlan batch [网段1] [网段2] [网段3] …</td>
+<td style="text-align:center">创建多个VLAN</td>
+</tr>
+<tr>
+<td style="text-align:center">wlan</td>
+<td style="text-align:center">进入wlan视图</td>
+</tr>
+<tr>
+<td style="text-align:center">3. 接口视图</td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">指令</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">action permit</td>
+<td style="text-align:center">在安全策略规则视图下，将已设置的规则提交</td>
+</tr>
+<tr>
+<td style="text-align:center">active</td>
+<td style="text-align:center">在vrrp视图下，将设备加入到active的VGMP管理组</td>
+</tr>
+<tr>
+<td style="text-align:center">add interface [接口信息]</td>
+<td style="text-align:center">在信任区/非信任区视图下，将该接口划入信任区/非信任区</td>
+</tr>
+<tr>
+<td style="text-align:center">ap auth-mode mac-auth</td>
+<td style="text-align:center">在wlan视图下，设置AP设备的认证模式为MAC认证</td>
+</tr>
+<tr>
+<td style="text-align:center">ap-id [编号]</td>
+<td style="text-align:center">创建并进入指定的AP视图</td>
+</tr>
+<tr>
+<td style="text-align:center">ap-mac [MAC地址]</td>
+<td style="text-align:center">在ap视图下，配置ap设备的物理/MAC地址</td>
+</tr>
+<tr>
+<td style="text-align:center">ap-name [名称]</td>
+<td style="text-align:center">在ap视图下，设置ap视图的名称</td>
+</tr>
+<tr>
+<td style="text-align:center">ap-group [ap组名称]</td>
+<td style="text-align:center">在ap视图下，将当前的ap模板添加到ap组中</td>
+</tr>
+<tr>
+<td style="text-align:center">ap-group name [模板名称]</td>
+<td style="text-align:center">在wlan视图下，创建ap组，进入ap组视图</td>
+</tr>
+<tr>
+<td style="text-align:center">authentication-mode aaa</td>
+<td style="text-align:center">在VTY接口视图下，设置3A模式</td>
+</tr>
+<tr>
+<td style="text-align:center">authentication-mode password</td>
+<td style="text-align:center">在cosole接口下，当指令输入完毕，提示设置本地设备密码</td>
+</tr>
+<tr>
+<td style="text-align:center">bind manager-user [用户名] role system-admin</td>
+<td style="text-align:center">在3a视图下，绑定指定用户为系统管理员</td>
+</tr>
+<tr>
+<td style="text-align:center">country-code [国家码]</td>
+<td style="text-align:center">在domain视图下，设置国家码，中国的国家码为cn</td>
+</tr>
+<tr>
+<td style="text-align:center">destination-zone [trust                                                                                                                                                                                         untrust]</td>
+<td style="text-align:center">在安全策略规则视图下，设置规则的目的为信任区域/非信任区</td>
+</tr>
+<tr>
+<td style="text-align:center">dhcp select relay</td>
+<td style="text-align:center">在端口视图下，开启端口的DHCP中继功能</td>
+</tr>
+<tr>
+<td style="text-align:center">dhcp snooping trusted</td>
+<td style="text-align:center">在端口视图下，将该接口设置为信任模式</td>
+</tr>
+<tr>
+<td style="text-align:center">display this</td>
+<td style="text-align:center">在端口视图下，显示当前配置</td>
+</tr>
+<tr>
+<td style="text-align:center">dns-list [IP地址]</td>
+<td style="text-align:center">在IP地址池视图下，设置地址池默认的DNS服务器</td>
+</tr>
+<tr>
+<td style="text-align:center">excluded-ip-address [IP地址a] [IP地址b]</td>
+<td style="text-align:center">在IP地址池视图下，将IP地址范围a到b的地址排除在IP地址池外</td>
+</tr>
+<tr>
+<td style="text-align:center">forward-mode [转发方式]</td>
+<td style="text-align:center">在vap视图下，转发方式为tunnel表示隧道转发，direct-forward表示直接转发</td>
+</tr>
+<tr>
+<td style="text-align:center">gateway-list [IP地址]</td>
+<td style="text-align:center">在IP地址池视图下，设置默认网关地址</td>
+</tr>
+<tr>
+<td style="text-align:center">idle-timeout [分钟] [秒]</td>
+<td style="text-align:center">在console0视图下，设置用户连接的超时时长，如果不填参数的话默认的时长为10分钟，如果设置成idle-timeout 0表示经过任何时长用户都不会退出登录。</td>
+</tr>
+<tr>
+<td style="text-align:center">ip address [IP地址] [掩码]</td>
+<td style="text-align:center">在接口视图下，设置接口的IP地址</td>
+</tr>
+<tr>
+<td style="text-align:center">level [数字]</td>
+<td style="text-align:center">在3a模式的用户视图下，设置用户等级</td>
+</tr>
+<tr>
+<td style="text-align:center">mac-address learning disable action [discard                                                                forward]</td>
+<td style="text-align:center">在接口视图下，关闭接口的自动学习功能，若不填写action及后面的参数discard时默认为forward。discard表示不学习也不转发报文，设置为forward时不会自动学习但会转发报文。</td>
+</tr>
+<tr>
+<td style="text-align:center">mac-vlan mac-address [MAC地址]</td>
+<td style="text-align:center">在VLAN视图下，将MAC地址与该VLAN进行绑定</td>
+</tr>
+<tr>
+<td style="text-align:center">manager-user [用户名]</td>
+<td style="text-align:center">在aaa视图下，创建并进入指定用户视图</td>
+</tr>
+<tr>
+<td style="text-align:center">net work [IP地址] mask [掩码]</td>
+<td style="text-align:center">在IP地址池视图下，设置地址池可分配的IP地址范围</td>
+</tr>
+<tr>
+<td style="text-align:center">password</td>
+<td style="text-align:center">在3a模式的用户视图下，设置指定用户的密码</td>
+</tr>
+<tr>
+<td style="text-align:center">port default vlan [网段]</td>
+<td style="text-align:center">在接口视图下，为接口分配VLAN</td>
+</tr>
+<tr>
+<td style="text-align:center">port hybrid pvid vlan [网段]</td>
+<td style="text-align:center">在接口视图下，设置接口的VLAN</td>
+</tr>
+<tr>
+<td style="text-align:center">port hybrid [ tagged                                                                                                                                                                             untagged ] vlan [网段1] [网段2] …</td>
+<td style="text-align:center">在端口视图下，设置经过该端口的网段报文将会被添加tag或去除tag</td>
+</tr>
+<tr>
+<td style="text-align:center">port link-type [access                                                                                                                                                                              or                            trunk  or hybrid]</td>
+<td style="text-align:center">设置接口的VLAN类型，access类型用于主机和交换机间，trunk类型用于交换机和交换机之间, hybrid是华为交换机特有的接口类型兼容了access和trunk</td>
+</tr>
+<tr>
+<td style="text-align:center">port-security enable</td>
+<td style="text-align:center">在接口视图下，开启接口的安全功能</td>
+</tr>
+<tr>
+<td style="text-align:center">port-security mac-address sticky</td>
+<td style="text-align:center">在接口视图下，设置安全功能，当第一次学习到MAC地址就会绑定对应的端口</td>
+</tr>
+<tr>
+<td style="text-align:center">port-security max-mac-num [个数]</td>
+<td style="text-align:center">在端口视图下，设置端口安全功能的MAC地址最大学习数</td>
+</tr>
+<tr>
+<td style="text-align:center">port-security protect-action [protect                                                                                                             restrict                                                                         shutdown]</td>
+<td style="text-align:center">在端口视图下，设置端口安全功能中学习到MAC超过限制或出现静态MAC地址漂移时的保护动作，shutdown为关闭端口可用于泛洪攻击的防御手段。</td>
+</tr>
+<tr>
+<td style="text-align:center">port trunk allow-pass vlan [网段1] [网段2] [网段3] …</td>
+<td style="text-align:center">在接口视图下，设置trunk口允许通过的VLAN网段</td>
+</tr>
+<tr>
+<td style="text-align:center">preempt-mode timer delay [时长]</td>
+<td style="text-align:center">在vrrp视图下，设置抢占延迟时间，单位为秒</td>
+</tr>
+<tr>
+<td style="text-align:center">priority [优先级]</td>
+<td style="text-align:center">在vrrp视图下，设置对应的优先级，不填写优先级时默认100，数字越大优先级越高</td>
+</tr>
+<tr>
+<td style="text-align:center">protocol [inbound</td>
+<td style="text-align:center">outbound] [协议类型]    在VTY接口视图下，允许指定协议类型的报文通过，all表示所有协议类型</td>
+</tr>
+<tr>
+<td style="text-align:center">quit</td>
+<td style="text-align:center">在接口视图下，返回上一级视图，即系统视图</td>
+</tr>
+<tr>
+<td style="text-align:center">regulatory-domain-profile [domain模板名称]</td>
+<td style="text-align:center">在ap组视图下，绑定domain模板</td>
+</tr>
+<tr>
+<td style="text-align:center">regulatory-domain-profile name [模板名称]</td>
+<td style="text-align:center">在wlan视图下，创建域管理模板，进入domain视图</td>
+</tr>
+<tr>
+<td style="text-align:center">rule name [规则]</td>
+<td style="text-align:center">在安全策略视图下，创建并进入安全策略规则视图</td>
+</tr>
+<tr>
+<td style="text-align:center">rule deny ip    在</td>
+<td style="text-align:center">acl规则视图下，禁止所有的IP报文通过端口，禁止范围不包括acl规则允许的IP地址。</td>
+</tr>
+<tr>
+<td style="text-align:center">rule deny source [IP地址段] 0.0.0.255</td>
+<td style="text-align:center">在acl规则视图下，设置只禁止来自目标IP地址段的报文通过，目标IP地址段末尾为0</td>
+</tr>
+<tr>
+<td style="text-align:center">rule [deny                                                                                                                                        permit] tcp source [IP地址] 0 destination-port eq [协议类型]</td>
+<td style="text-align:center">在acl规则视图下，permit表示允许源IP地址可以使用指定的协议服务访问目标IP地址，deny表示拒绝源IP地址使用指定的协议服务访问目标IP地址。eq表示两个等于号，0表示完全匹配。</td>
+</tr>
+<tr>
+<td style="text-align:center">rule [deny                                                                                                                                                             permit] source [IP地址段] 0.0.0.0.255</td>
+<td style="text-align:center">在acl规则视图下，permit表示只允许来自目标IP地址段的报文通过，deny表示只禁止来自目标IP地址段的报文通过，目标IP地址段末尾为0</td>
+</tr>
+<tr>
+<td style="text-align:center">security [安全策略] [接入认证方式] pass-phrase [wifi密码] [加密方式]</td>
+<td style="text-align:center">在sec视图下，设置wifi的信息，安全策略常用wpa-wpa2，接入认证方式采用psk，加密方式采用aes</td>
+</tr>
+<tr>
+<td style="text-align:center">security-profile [sec模板名称]</td>
+<td style="text-align:center">在vap视图下，绑定sec模板</td>
+</tr>
+<tr>
+<td style="text-align:center">security-profile name [模板名称]</td>
+<td style="text-align:center">在wlan视图下，创建sec模板，进入sec视图</td>
+</tr>
+<tr>
+<td style="text-align:center">service-manage [协议类型] permit</td>
+<td style="text-align:center">在接口视图下，允许指定协议类型的报文通过。如果需要使用网页登录防火墙时，可设置https类型报文通过。如果需要使用telnet登录防火墙时，就允许telnet类型报文通过。all类型表示所有协议</td>
+</tr>
+<tr>
+<td style="text-align:center">service-type [协议类型]</td>
+<td style="text-align:center">在3a模式的用户视图下，允许指定协议报文通过</td>
+</tr>
+<tr>
+<td style="text-align:center">source-zone [trust                                                                                                                                                                                           untrust]</td>
+<td style="text-align:center">在安全策略规则视图下，设置规则的来源为信任区域/非信任区</td>
+</tr>
+<tr>
+<td style="text-align:center">ssid [wifi名称]</td>
+<td style="text-align:center">在ssid视图下，设置wifi的名称</td>
+</tr>
+<tr>
+<td style="text-align:center">ssid-profile [ssid模板名称]</td>
+<td style="text-align:center">在vap视图下，绑定ssid模板</td>
+</tr>
+<tr>
+<td style="text-align:center">ssid-profile name [模板名称]</td>
+<td style="text-align:center">在wlan视图下，创建模板ssid，进入ssid视图</td>
+</tr>
+<tr>
+<td style="text-align:center">traffic-filter [inbound                                                                                                                                                                    outbound] acl [数字]</td>
+<td style="text-align:center">在端口视图下，使用指定的ACL规则，inbound表示应用在进入端口的报文，outbound表示应用在从端口出去的报文</td>
+</tr>
+<tr>
+<td style="text-align:center">user privilege level [数字]</td>
+<td style="text-align:center">在VTY接口视图下，设置用户的权限等级</td>
+</tr>
+<tr>
+<td style="text-align:center">vap-profile name [模板名称]</td>
+<td style="text-align:center">在wlan视图下，创建vap模板，进入vap视图</td>
+</tr>
+<tr>
+<td style="text-align:center">vap-profile [vap模板名称] wlan [wlan编号] radio [射频参数]</td>
+<td style="text-align:center">在ap视图或ap组视图下，绑定vap模板，设置wlan，设置射频参数，参数为0表示2.4G赫兹，参数为1表示5G赫兹</td>
+</tr>
+<tr>
+<td style="text-align:center">virtual-ip [IP地址]</td>
+<td style="text-align:center">在vrrp视图下，配置虚拟IP地址</td>
+</tr>
+<tr>
+<td style="text-align:center">&lt;br/                                                                                                                 vrrp vrid [编号]</td>
+<td style="text-align:center">在接口视图下，创建并进入指定编号的vrrp备份组，若已存在则直接进入对应的vrrp视图</td>
+</tr>
+<tr>
+<td style="text-align:center">4. 常用查询命令</td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">指令</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">display ip int brief</td>
+<td style="text-align:center">查看接口ip地址</td>
+</tr>
+<tr>
+<td style="text-align:center">display interface brief</td>
+<td style="text-align:center">查看接口的简要信息</td>
+</tr>
+<tr>
+<td style="text-align:center">display current-configuration</td>
+<td style="text-align:center">显示当前配置文件</td>
+</tr>
+<tr>
+<td style="text-align:center">display current-configuration</td>
+<td style="text-align:center">关键词（查看关键词的配置）</td>
+</tr>
+<tr>
+<td style="text-align:center">display saved-configuration</td>
+<td style="text-align:center">显示保存的配置文件</td>
+</tr>
+<tr>
+<td style="text-align:center">display ip routing-table</td>
+<td style="text-align:center">查看路由表</td>
+</tr>
+<tr>
+<td style="text-align:center">display ospf peer</td>
+<td style="text-align:center">查看ospf邻居关系</td>
+</tr>
+<tr>
+<td style="text-align:center">display ospf lsdb</td>
+<td style="text-align:center">查看转发表</td>
+</tr>
+<tr>
+<td style="text-align:center">display fib</td>
+<td style="text-align:center">查看系统当前时间</td>
+</tr>
+<tr>
+<td style="text-align:center">display this</td>
+<td style="text-align:center">查看当前模式下的配置，比如在接口上敲这条命令就可以看到当前接口下的信息</td>
+</tr>
+<tr>
+<td style="text-align:center">display vlan</td>
+<td style="text-align:center">查看VLAN</td>
+</tr>
+<tr>
+<td style="text-align:center">display arp</td>
+<td style="text-align:center">查看ARP表</td>
+</tr>
+<tr>
+<td style="text-align:center">display mac-address</td>
+<td style="text-align:center">查看MAC地址表</td>
+</tr>
+<tr>
+<td style="text-align:center">display bridge mac-address</td>
+<td style="text-align:center">查看本机MAC地址</td>
+</tr>
+<tr>
+<td style="text-align:center"><a target="_blank" rel="noopener" href="https://dreamisland.blog.csdn.net/article/details/116003497?spm=1001.2101.3001.6650.4&amp;utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EESLANDING%7Edefault-4-116003497-blog-121360387.pc_relevant_landingrelevant&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EESLANDING%7Edefault-4-116003497-blog-121360387.pc_relevant_landingrelevant&amp;utm_relevant_index=9">华为常用命令参考</a></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43955429/article/details/89054488">华为常用查询命令参考</a></td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<h4 id="流策略与简化流策略">流策略与简化流策略</h4>
+<blockquote>
+<p>这两个是Cisco网络所没有的，</p>
+</blockquote>
+
+    
+    
+    <footer class="meta">
+      
+      
+      
+    </footer>
+    
+      
+  <div class="sharing addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script src="http://s7.addthis.com/js/300/addthis_widget.js"></script>
+
+    
+    
+  </div>
+  
+</article>
+</div>
+  <footer id="footer" class="inner"><div class="social alignright">
+  
+  
+  
+  <a class="rss" href="/atom.xml" title="RSS">RSS</a>
+</div>
+<p>
+  
+  &copy; 2023 John Doe
+  
+</p>
+<div class="clearfix"></div></footer>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+
+
+<script src="/js/gallery.js"></script>
+
+
+
+
+
+
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+<script>
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<div id="phasebeam">
+  <canvas></canvas>
+  <canvas></canvas>
+  <canvas></canvas>
+</div>
+
+<script src="/js/phasebeam.js"></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body>
+</html>

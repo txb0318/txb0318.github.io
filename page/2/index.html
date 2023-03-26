@@ -262,197 +262,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3 id="计算机网络">计算机网络</h3>
-<p>瓶颈带宽、链路带宽、可用带宽</p>
-<blockquote>
-<p>瓶颈带宽：源节点与目的节点之间处理能力最低的链路所能提供的最大数据传输速率</p>
-<p>链路带宽：链路上最大数据传输速率</p>
-<p>可用带宽：网络在不影响其他业务流的情况下，所能给一个业务流提供的最大数据传输速率</p>
-</blockquote>
-<p>网络加载慢</p>
-<blockquote>
-<p>服务器负载大</p>
-<p>网络拥塞</p>
-<p>服务器带宽不足</p>
-</blockquote>
-<p>TCP/IP体系结构对移动性支持不好</p>
-<blockquote>
-<p>$\color{red}{原因}$</p>
-<ol>
-<li class="lvl-3">
-<p>IP地址既表示位置又表示身份，移动时位置发生改变，身份不会改变。</p>
-</li>
-<li class="lvl-3">
-<p>复杂的网络协议和系统无法支持快速组网</p>
-</li>
-<li class="lvl-3">
-<p>不支持地址和身份的动态绑定，移动过程中会切换地址</p>
-</li>
-</ol>
-<p>$\color{red}{解决方案}$</p>
-<ol>
-<li class="lvl-3">
-<p>Mobile TP</p>
-<ol>
-<li class="lvl-6">
-<p>移动主机存在一个永久的IP地址identifier，移动时网络前缀不变</p>
-</li>
-<li class="lvl-6">
-<p>主机移动时，分配新的IP地址locator</p>
-</li>
-<li class="lvl-6">
-<p>两个地址共存，locator负责数据接收，identifier负责解复用数据</p>
-</li>
-</ol>
-</li>
-<li class="lvl-3">
-<p>连接和IP地址解绑定</p>
-<ol>
-<li class="lvl-6">
-<p>当IP地址发生改变时，移动一方通告对方自己新的地址</p>
-</li>
-<li class="lvl-6">
-<p>两端应用连接断开</p>
-</li>
-</ol>
-</li>
-<li class="lvl-3">
-<p>使用NDN机制</p>
-</li>
-</ol>
-</blockquote>
-<p>超时重传</p>
-<blockquote>
-<p>$\color{red}{概念}$</p>
-<p>超时重传是TCP保证可靠性传输的重要机制。当发送端发送一个报文，TCP会为其保留一个副本，设定一个计时器并等待确认信息，当计时器过期并且发送端发送的报文中数据未获得确认时，TCP会重传该报文，直到成功为止。</p>
-</blockquote>
-<p>输入网址，跳转网页过程</p>
-<blockquote>
-<ul class="lvl-1">
-<li class="lvl-2">
-<p>DNS解析网址对应的IP地址</p>
-</li>
-<li class="lvl-2">
-<p>构建HTTP请求，封装TCP/IP数据包</p>
-</li>
-<li class="lvl-2">
-<p>根据IP地址查找网关和下一跳IP地址</p>
-</li>
-<li class="lvl-2">
-<p>根据下一跳IP地址寻找下一跳MAC地址</p>
-</li>
-<li class="lvl-2">
-<p>将数据包发送到网关</p>
-</li>
-<li class="lvl-2">
-<p>根据路由寻址抵达网页服务器</p>
-</li>
-<li class="lvl-2">
-<p>服务器解析请求，返回指定的页面</p>
-</li>
-</ul>
-</blockquote>
-<p>下图是 OpenFlow 局域网络拓扑，S1 的流表包含一条转发规则，Controller 持有全局网络的拓扑信息，请描述 Packet 1 从 C1 到 H2 的转发过程，包含流表查询、流表安装流程以及具体的流表转发规则。</p>
-<p><img src="C:%5CUsers%5C%E7%94%B0%E6%99%93%E6%BB%A8%5CAppData%5CRoaming%5Cmarktext%5Cimages%5C2022-11-23-14-58-18-image.png" alt=""></p>
-<blockquote>
-<ol>
-<li class="lvl-3">
-<p>Packet1从C1的唯一端口转发到S1中去</p>
-</li>
-<li class="lvl-3">
-<p>到达S1，查S1流表，发现无匹配项。将该数据包缓存，查询控制器Controller</p>
-</li>
-<li class="lvl-3">
-<p>控制器下发规则到S1，内容为&quot;DstIP=H2,Output=2&quot;</p>
-</li>
-<li class="lvl-3">
-<p>S1按照规则从S1的port2转发到S2</p>
-</li>
-<li class="lvl-3">
-<p>到达S2，查S2流表，发现无匹配项。将该数据包缓存，查询控制器Controller</p>
-</li>
-<li class="lvl-3">
-<p>控制器下发规则到S2，内容为&quot;DstIP=H2,Output=2&quot;</p>
-</li>
-<li class="lvl-3">
-<p>S2按照规则从S2的port2转发到H2</p>
-</li>
-</ol>
-</blockquote>
-<p>为什么 RSA 算法是有效的非对称加密算法？什么是数字签名？数字签名认证的过程是什么</p>
-<blockquote>
-<p>RSA为有效的非对称加密算法。知道公钥(e,n),，很难知道私钥(d,n)，要想获得私钥，必须知道z=(p-1)*(q-1)，而n=pq，p、q都为大质数，因此除了试错法之外，没有有效的方法将n分解，大数分解难题产生的不对称性也是RSA的理论基础。</p>
-<p>$\color{red}{数字签名}$</p>
-<p>设计一个可以代替手迹签名的方案。从根本上讲，我们需要一种这样的系统，一方通过该系统可以采用以下方式将已签名的文件发送给接受方：</p>
-<ul class="lvl-1">
-<li class="lvl-2">
-<p>接收方要能验证发送方的宣称的身份</p>
-</li>
-<li class="lvl-2">
-<p>发送方不能否认发送的报文</p>
-</li>
-<li class="lvl-2">
-<p>接收方不能伪造数字签名</p>
-</li>
-</ul>
-<p>过程</p>
-<ul class="lvl-1">
-<li class="lvl-2">
-<p>发送方共享公钥</p>
-</li>
-<li class="lvl-2">
-<p>发送方哈希数据</p>
-</li>
-<li class="lvl-2">
-<p>将哈希值用私钥加密</p>
-</li>
-<li class="lvl-2">
-<p>接收方用公钥解密</p>
-</li>
-<li class="lvl-2">
-<p>用哈希将接受数据哈希</p>
-</li>
-<li class="lvl-2">
-<p>将两个哈希值比对，判断是否被篡改</p>
-</li>
-</ul>
-</blockquote>
-<p>数据中心网络内部构成一个网络，请从网络管理，协议设计的角度，定性对比数据中心网络和互联网网络。</p>
-<table>
-<thead>
-<tr>
-<th>互联网</th>
-<th style="text-align:center">数据中心网络</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>分布式控制/路由</td>
-<td style="text-align:center">中心式控制和路由选择</td>
-</tr>
-<tr>
-<td>改变需达成共识</td>
-<td style="text-align:center">改变不需要达成共识</td>
-</tr>
-<tr>
-<td>标准传输TCP和UDP</td>
-<td style="text-align:center">多种传输协议</td>
-</tr>
-<tr>
-<td>难以测量</td>
-<td style="text-align:center">容易测量</td>
-</tr>
-<tr>
-<td>多个自治系统</td>
-<td style="text-align:center">一个管理域</td>
-</tr>
-<tr>
-<td>单个最短路径</td>
-<td style="text-align:center">源到目的有多条路径</td>
-</tr>
-</tbody>
-</table>
-
+              <h3 id="计算机网络">计算机网络</h3>
+          
       
       
     </div>
@@ -466,6 +277,10 @@
         <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a  href="/2023/03/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/#more">大航海 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -609,23 +424,10 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <hr>
+              <hr>
 <h2 id="title-Hello-World">title: Hello World</h2>
 <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start">Quick Start</h2>
-<h3 id="Create-a-new-post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
+          
       
       
     </div>
@@ -635,6 +437,10 @@
       
 
       
+      
+        <p class="article-more-link">
+          <a  href="/2023/03/24/hello-world/#more">大航海 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -759,4 +565,8 @@
   </div>
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body>
 <script type="text/javascript" src="/js/love.js"></script>
+<!--动态线条背景-->
+<script type="text/javascript"
+color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
+</script>
 </html>

@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>机器学习 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="机器学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习">
+<meta property="og:url" content="http://example.com/2023/03/26/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="机器学习">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="file:///C:/Users/%E7%94%B0%E6%99%93%E6%BB%A8/AppData/Roaming/marktext/images/2022-11-17-21-08-35-image.png">
+<meta property="og:image" content="file:///C:/Users/%E7%94%B0%E6%99%93%E6%BB%A8/AppData/Roaming/marktext/images/2022-11-17-23-10-14-image.png">
+<meta property="og:image" content="file:///C:/Users/%E7%94%B0%E6%99%93%E6%BB%A8/AppData/Roaming/marktext/images/2022-11-19-12-00-31-image.png">
+<meta property="og:image" content="c:%5CUsers%5C%E7%94%B0%E6%99%93%E6%BB%A8%5CAppData%5CRoaming%5Cmarktext%5Cimages%5C2022-11-21-23-29-56-image.png">
+<meta property="article:published_time" content="2023-03-26T01:53:45.000Z">
+<meta property="article:modified_time" content="2023-03-26T02:20:57.023Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="机器学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="file:///C:/Users/%E7%94%B0%E6%99%93%E6%BB%A8/AppData/Roaming/marktext/images/2022-11-17-21-08-35-image.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+      
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+<!--             <img lazy-src="//img/head1.jpg" class="js-avatar"> -->
+            <img src="/img/head1.jpg" class="js-avatar show">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/" title="Hi Mate"></a></h1>
+        </hgroup>
+
+        
+<!--          -->
+<!--             <form> -->
+<!--                 <input type="text" class="st-default-search-input search" id="search" placeholder=" Search..."> -->
+<!--             </form> -->
+<!--          -->
+        
+            <!-- <form>
+                <input type="text" class="st-default-search-input search" id="search" placeholder=" Search...">
+            </form> -->
+
+            <form id="search-form"> <!-- 搜索框相关 -->
+                <input type="text" id="local-search-input" name="q" results="0" placeholder="Search..." class="search form-control" autocomplete="off" autocorrect="off"/>
+                <i class="fa fa-times" onclick="resetSearch()"></i> <!-- 清空/重置搜索框 -->
+            </form>
+            <div id="local-search-result"></div> <!-- 搜索结果区 -->
+            <p class='no-result'>No results found </p> <!-- 无匹配时显示，注意请在 CSS 中设置默认隐藏 -->
+        
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/Home">博客首页</a></li>
+                        
+                            <li><a href="/works">作品展示</a></li>
+                        
+                            <li><a href="/about">留言打卡</a></li>
+                        
+                            <li><a href="/FrontEndGuide">前端导航</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=PAkNDgsKBQ4MCnxNTRJfU1E" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/luuman" title="github">github</a>
+                            
+                                <a class="fl zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+                            
+                                <a class="fl weibo" target="_blank" href="#" title="weibo">weibo</a>
+                            
+                                <a class="fl google" target="_blank" href="#" title="google">google</a>
+                            
+                                <a class="fl twitter" target="_blank" href="#" title="twitter">twitter</a>
+                            
+                                <a class="fl linkedin" target="_blank" href="#" title="linkedin">linkedin</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/netTopo%E9%A1%B9%E7%9B%AE/" style="font-size: 15px;">netTopo项目</a> <a href="/tags/%E4%BD%BF%E7%94%A8%E7%AE%80%E4%BB%8B/" style="font-size: 10px;">使用简介</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">前端学习</a> <a href="/tags/%E5%90%8E%E7%AB%AF%E5%AD%A6%E4%B9%A0/" style="font-size: 15px;">后端学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E5%91%BD%E4%BB%A4/" style="font-size: 10px;">系统命令</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 20px;">网络</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://luuman.github.io/">name</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">纯海迷、爱运动、爱交友、爱旅行、喜欢接触新鲜事物、迎接新的挑战，更爱游离于错综复杂的编码与逻辑中</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me"></a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="//img/head1.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me"></a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/Home">博客首页</a></li>
+                
+                    <li><a href="/works">作品展示</a></li>
+                
+                    <li><a href="/about">留言打卡</a></li>
+                
+                    <li><a href="/FrontEndGuide">前端导航</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=PAkNDgsKBQ4MCnxNTRJfU1E" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/luuman" title="github">github</a>
+                    
+                        <a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+                    
+                        <a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+                    
+                        <a class="google" target="_blank" href="#" title="google">google</a>
+                    
+                        <a class="twitter" target="_blank" href="#" title="twitter">twitter</a>
+                    
+                        <a class="linkedin" target="_blank" href="#" title="linkedin">linkedin</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-机器学习" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2023/03/26/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="article-date">
+      <time datetime="2023-03-26T01:53:45.000Z" itemprop="datePublished">2023-03-26</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      机器学习
+    </h1>
+  
+
+      
+        <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">5.3k字</span>
+      </span>
+    </span>
+    &nbsp; | &nbsp;
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">18分</span>
+      </span>
+    </span>
+</div>
+
+        
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h3 id="机器学习">机器学习</h3>
+<span id="more"></span>
+<ol start="9">
+<li class="lvl-3">
+<p>支持向量机的对偶问题</p>
+</li>
+</ol>
+<p>[支持向量机的对偶问题](<a target="_blank" rel="noopener" href="https://blog.csdn.net/randompeople/article/details/92083294">(7条消息) 支持向量机（SVM）中的对偶问题_予亭的博客-CSDN博客_支持向量机对偶问题</a>)</p>
+<p>[凸集、凸函数、凸优化问题，线性规划，二次规划](<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/263126963">凸集，凸函数，凸优化问题，线性规划，二次规划，二次约束二次规划，半正定规划 - 知乎 (zhihu.com)</a>)</p>
+<p><strong>凸优化</strong>：</p>
+<blockquote>
+<ol>
+<li class="lvl-3">
+<p>在最小化（最大化）的要求下</p>
+</li>
+<li class="lvl-3">
+<p>目标函数是一个凸函数（凹函数）</p>
+</li>
+<li class="lvl-3">
+<p>约束条件所形成的可行域集合是一个凸集</p>
+</li>
+</ol>
+</blockquote>
+<p>仿射函数</p>
+<p>$F (x) = A x + b$</p>
+<ol start="10">
+<li class="lvl-4">
+<p>支持向量机中支撑向量</p>
+<p>[支撑向量](<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/a2c9ab800946">SVM系列第五讲–支撑向量 - 简书 (jianshu.com)</a>)</p>
+</li>
+</ol>
+<img title="" src="file:///C:/Users/田晓滨/AppData/Roaming/marktext/images/2022-11-17-21-08-35-image.png" alt="" width="292" data-align="center">
+<ol start="11">
+<li class="lvl-4">
+<p>过拟合和欠拟合</p>
+<blockquote>
+<p>过拟合：当学习器把训练样本<strong>学的“太好”了的</strong>时候，很可能已经把训练样本自身的一些特点当作了所有潜在样本都会具有的一般性质，这样就会导致泛化性能下降，这种现象称为过拟合。</p>
+<p>欠拟合：欠拟合是指对训练样本的一般性质尚未学好。在训练集及测试集上的表现都不好</p>
+</blockquote>
+</li>
+</ol>
+<p>[过拟合和欠拟合](<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42012732/article/details/107318550">(7条消息) 过拟合与欠拟合_Minouio的博客-CSDN博客</a>)</p>
+<ol start="12">
+<li class="lvl-4">
+<p>决策树节点划分</p>
+<blockquote>
+<p><font color=Red>ID3使用最大信息熵增益</font></p>
+<p>信息熵Entropy或Info。熵反应了物体内部的混乱程度，而信息熵反应了不同类的样本的占比，也就是节点的纯度。信息熵越大，说明样本的分布节点的纯度越低，信息量越少；相反，信息熵越小，说明样本的角度越高，信息量越大。</p>
+<p><strong>根据信息熵的含义，我们知道我们要选择能使节点内部纯度高、也就是信息熵最小的特征作为划分依据，我们就计算以某个特征划分自己之后当前节点划分之后各个节点的信息熵之和，并且要是这个和与当前节点划分前的信息熵减小的尽可能多。而这个差也就是信息增益</strong></p>
+<p>$\color{red}{C4.5使用信息增益比率}$</p>
+<p>增益比率在信息熵增益的基础上除以每个划分的信息熵(Split Information)，从而消除这种有大量的子节点、但每个子节点的样本数量很少的情况的影响。</p>
+<p>$\color{green}{CART使用基尼指数}$</p>
+<p>CART使用基尼系数（GINI）作为划分依据。选择GINI系数最小的特征作为当前的分割数据的特征。基尼系数反映了从样本集中随机抽取两个样本，其类别不一样的概率。基尼系数越大，也就意味着从样本集中随机抽两个样本的类别不相同的概率越大，也就是样本的纯度越小，即对应这信息熵越大。</p>
+</blockquote>
+</li>
+</ol>
+<p>[信息熵、不纯度](<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42442369/article/details/86625591">(7条消息) 决策树算法笔记整理1 - 如何划分？（信息熵，不纯度及信息增益）_sevieryang的博客-CSDN博客</a>)</p>
+<ol start="13">
+<li class="lvl-4">
+<p>决策树策略</p>
+<blockquote>
+<p>类别非纯度、<strong>梯度下降</strong>、<strong>信息增益率</strong>、<strong>基尼指数</strong></p>
+</blockquote>
+</li>
+<li class="lvl-4">
+<p>集成学习中集分类器如何选择使其效率更好</p>
+<blockquote>
+<p>在集成学习中，算法不要求每个学习器性能最好，但是期望它们对问题具有不同的看法，即<strong>分类器多样且差异大</strong></p>
+</blockquote>
+</li>
+</ol>
+<p>[分类器的选择](<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/105038453">经典机器学习系列之【集成学习】 - 知乎 (zhihu.com)</a>)</p>
+<ol start="15">
+<li class="lvl-4">
+<p>集成学习中每个集分类器的正确率最低要求为50%</p>
+<blockquote>
+<p>每个基分类器的错误率都应当低于0.5，否则集成的结果反而会提高错误率。</p>
+<p>每个基分类器应该尽可能相互独立，这是因为如果每个基分类器分类结果差不多，则集成后的分类器整体和单个分类器做出的决策实际上没有什么差异。</p>
+</blockquote>
+</li>
+</ol>
+<p>[集成学习前提](<a target="_blank" rel="noopener" href="https://blog.csdn.net/jerr__y/article/details/52955148">(7条消息) 采用集成学习算法提高分类器的准确性_永永夜的博客-CSDN博客</a>)</p>
+<ol start="16">
+<li class="lvl-4">
+<p>Bagging学习特点</p>
+<blockquote>
+<p>构造训练集采用Bootstrap方式</p>
+<p>随机有放回采样，每轮训练样本权重相同</p>
+<p>分类器可以并行训练</p>
+<p>预测权重相等</p>
+</blockquote>
+</li>
+<li class="lvl-4">
+<p>Boosting学习特点</p>
+<blockquote>
+<p>构造训练集不变，只是训练集中每个样例在分类器中的权重发生变化。而权值是根据上一轮的分类结果进行调整</p>
+<p>根据错误率不断调整样例的权值，错误率越大则权重越大</p>
+<p>每个弱分类器都有相应的权重，对于分类误差小的分类器会有更大的权重</p>
+<p>各个预测函数只能顺序生成，因为后一个模型参数需要前一轮模型的结果</p>
+</blockquote>
+</li>
+</ol>
+<p>[Bagging和Boosting](<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/37730184">从0开始机器学习-Bagging和Boosting - 知乎 (zhihu.com)</a>)</p>
+<ol start="18">
+<li class="lvl-4">
+<p>随机森林方法</p>
+<blockquote>
+<p>随机森林算法（Random Forest简称RF）是Bagging算法的进阶。其优化：</p>
+<p>Bagging的基学习器不一定是同质的，也不一定是决策树；但RF以CART为基学习器。</p>
+<p>RF在训练过程中，引入了随机特征选择。RF在Bagging的数据样本扰动的基础上，增加了输入特征扰动，提高了模型的泛化能力。具体来说，传统决策树在选择划分特征时，在当前结点的特征集合中选择一个最优划分特征；而在RF中，是对基决策树的每个结点，先从该结点的特征集合中随机选择一个含有个特征的子集，然后再从该子集选择最优划分特征。越小，模型越健壮，同时对训练集的拟合程度会变差，也就是说，越小，模型方差越小，偏差越大。</p>
+</blockquote>
+</li>
+<li class="lvl-4">
+<p>软间隔SVM的阈值趋于无穷</p>
+<blockquote>
+<p>软间隔：放宽SVM的限制，可以允许存在一些误分类的点</p>
+<p>即C无穷大，在如此高的误分类惩罚下，不会存在软间隔分类超平面，因为一点错误都不可能发生。</p>
+<p>代价参数的大小决定了SVM能允许的误分类程度。<br>
+C的值小：优化的目标是得到一个尽可能光滑的决策平面。<br>
+C的值大：模型只允许出现很小数量的误分类点。它可以简单的看做是对误分类的惩罚。</p>
+</blockquote>
+</li>
+</ol>
+<p>[SVM测试](<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1169308#:~:text=1%20%E5%8F%AA%E8%A6%81%E6%9C%80%E4%BD%B3%E5%88%86%E7%B1%BB%E8%B6%85%E5%B9%B3%E9%9D%A2%E5%AD%98%E5%9C%A8%EF%BC%8C%E5%AE%83%E5%B0%B1%E8%83%BD%E5%B0%86%E6%89%80%E6%9C%89%E6%95%B0%E6%8D%AE%E5%85%A8%E9%83%A8%E6%AD%A3%E7%A1%AE%E5%88%86%E7%B1%BB%202,%E8%BD%AF%E9%97%B4%E9%9A%94SVM%E5%88%86%E7%B1%BB%E5%99%A8%E5%B0%86%E6%AD%A3%E7%A1%AE%E5%88%86%E7%B1%BB%E6%95%B0%E6%8D%AE%203%20%E4%BA%8C%E8%80%85%E9%83%BD%E4%B8%8D%E5%AF%B9">独家 | 25道SVM题目，测一测你的基础如何?（附资源） - 腾讯云开发者社区-腾讯云 (tencent.com)</a>)</p>
+<ol start="20">
+<li class="lvl-4">
+<p>回归问题和分类问题的区别</p>
+<blockquote>
+<p>连续即回归，离散即分类</p>
+</blockquote>
+</li>
+</ol>
+<img title="" src="file:///C:/Users/田晓滨/AppData/Roaming/marktext/images/2022-11-17-23-10-14-image.png" alt="" width="556" data-align="center">
+<p>[分类和回归](<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/21329754">(30 封私信 / 80 条消息) 分类与回归区别是什么？ - 知乎 (zhihu.com)</a>)</p>
+<ol start="21">
+<li class="lvl-4">
+<p>最小二乘回归方法的等效回归方法</p>
+<blockquote>
+<p>最小二乘法是在寻找观测数据与回归超平面之间的误差距离最小的参数。最大似然估计是最大化观测数据发生的概率</p>
+</blockquote>
+</li>
+</ol>
+<p>[最小二乘回归和最大似然回归](<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/143416436">最大似然估计：从概率角度理解线性回归的优化目标 - 知乎 (zhihu.com)</a>)</p>
+<ol start="22">
+<li class="lvl-4">
+<p>正则化的回归分析</p>
+</li>
+</ol>
+<blockquote>
+<p>当数据量少，特征也少的时候，我们训练的模型是<strong>欠拟合</strong>，这时候我们会通过<strong>交叉验证</strong>来弥补。<br>
+当数据量少，特征非常多的时候，容易出现<strong>过拟合</strong>，这时要通过<strong>正则化</strong>调整。</p>
+</blockquote>
+<p>[正则化线性回归](<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_23371241/article/details/78373888">(7条消息) 正则化(线性回归)_小星爷的博客-CSDN博客</a>)</p>
+<ol start="23">
+<li class="lvl-4">
+<p>关联分析</p>
+</li>
+<li class="lvl-4">
+<p>混合高斯聚类</p>
+<blockquote>
+<p>$\color{red}{EM算法}$：期望最大化算法，被用来学习高斯混合模型（Gaussian mixture model，简称GMM）的参数；隐式马尔科夫算法（HMM）、LDA主题模型的变分推断等等。</p>
+<p>EM算法是一种迭代优化策略，由于它的计算方法中每一次迭代都分两步，其中一个为<strong>期望步（E步）</strong>，另一个为<strong>极大步（M步）</strong>，所以算法被称为EM算法。EM算法受到缺失思想影响，最初是为了<strong>解决数据缺失情况</strong>下的参数估计问题，其算法基础和收敛有效性等问题在Dempster、Laird和Rubin三人于1977年所做的文章《Maximum likelihood from incomplete data via the EM algorithm》中给出了详细的阐述。其基本思想是：<strong>首先根据己经给出的观测数据，估计出模型参数的值；然后再依据上一步估计出的参数值估计缺失数据的值，再根据估计出的缺失数据加上之前己经观测到的数据重新再对参数值进行估计，然后反复迭代，直至最后收敛，迭代结束</strong>。</p>
+</blockquote>
+<p>[混合高斯聚类理解](<a target="_blank" rel="noopener" href="https://blog.csdn.net/lotusng/article/details/79990724">(7条消息) 【机器学习笔记】通俗易懂解释高斯混合聚类原理_lotusng的博客-CSDN博客</a>)</p>
+</li>
+</ol>
+<p>[EM算法](<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/40991784">EM算法详解 - 知乎 (zhihu.com)</a>)</p>
+<ol start="25">
+<li class="lvl-4">
+<p>主成分分析是一种降维方法</p>
+</li>
+<li class="lvl-4">
+<p>PCA做降维处理时，优先处理 中心化样本的协方差矩阵的最大特征值对应特征向量</p>
+<blockquote>
+<p>$\color{red}{PCA}$(Principal Component Analysis)，即主成分分析方法，是一种使用最广泛的数据降维算法。PCA的主要思想是将n维特征映射到k维上，这k维是全新的正交特征也被称为主成分，是在原有n维特征的基础上重新构造出来的k维特征。PCA的工作就是<strong>从原始的空间中顺序地找一组相互正交的坐标轴，新的坐标轴的选择与数据本身是密切相关的。其中，第一个新坐标轴选择是原始数据中方差最大的方向，第二个新坐标轴选取是与第一个坐标轴正交的平面中使得方差最大的，第三个轴是与第1,2个轴正交的平面中方差最大的</strong>。依次类推，可以得到n个这样的坐标轴。通过这种方式获得的新的坐标轴，我们发现，大部分方差都包含在前面k个坐标轴中，后面的坐标轴所含的方差几乎为0。于是，我们可以忽略余下的坐标轴，只保留前面k个含有绝大部分方差的坐标轴。事实上，这相当于只保留包含绝大部分方差的维度特征，而忽略包含方差几乎为0的特征维度，实现对数据特征的降维处理。</p>
+</blockquote>
+<blockquote>
+<p>[PCA](<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/37777074">主成分分析（PCA）原理详解 - 知乎 (zhihu.com)</a>)</p>
+</blockquote>
+</li>
+<li class="lvl-4">
+<p>过拟合：训练样本测试误差小，测试样本正确识别率很低</p>
+</li>
+<li class="lvl-4">
+<p>马尔科夫链</p>
+</li>
+<li class="lvl-4">
+<p>pass</p>
+</li>
+<li class="lvl-4">
+<p>pass</p>
+</li>
+<li class="lvl-4">
+<p>pass</p>
+</li>
+<li class="lvl-4">
+<p>梯度下降算法正确步骤</p>
+<blockquote>
+<p>原理：<strong>寻找损失函数的最低点</strong>，就像我们在山谷里行走，希望找到山谷里最低的地方。那么如何寻找损失函数的最低点呢？在这里，我们使用了微积分里导数，通过求出函数导数的值，从而找到函数下降的方向或者是最低点（极值点）</p>
+</blockquote>
+<blockquote>
+<p>步骤：</p>
+<ol>
+<li class="lvl-3">初始化随即权重和偏差</li>
+<li class="lvl-3">将输入传入网络，得到输出值</li>
+<li class="lvl-3">计算预测值于真实值之间的误差</li>
+<li class="lvl-3">对产生误差的神经元，改变相应权重值以减小误差</li>
+<li class="lvl-3">迭代更新，直到找到最佳权重</li>
+</ol>
+<p>$w_{i+1}=w_{i}-\alpha*\frac{L}{dw_i}$</p>
+<p>$b_{i+1}=b_i-\alpha*\frac{dL}{db_i}$</p>
+</blockquote>
+</li>
+</ol>
+<p>[markdown数学公式总结](<a target="_blank" rel="noopener" href="https://blog.csdn.net/jyfu2_12/article/details/79207643#:~:text=Markdown%20%E6%95%B0%E5%AD%A6%E8%AF%AD%E6%B3%95%201.%E5%9F%BA%E6%9C%AC%E6%A0%BC%E5%BC%8F%201.%E8%A1%8C%E5%86%85%E5%85%AC%E5%BC%8F%20%E4%BB%A5%20%24%20%E5%BC%80%E5%A4%B4%EF%BC%8C%E4%BB%A5,%24%20%E7%BB%93%E5%B0%BE%E3%80%82%20eg%3A%20aba%5Ebab%20%24a%5Eb%24%202.%E5%9D%97%E7%BA%A7%E5%85%AC%E5%BC%8F%E2%80%93%E8%A1%8C%E9%97%B4%E5%85%AC%E5%BC%8F%20%E4%BB%A5">(8条消息) markdown最全数学公式速查_xkgjfl的博客-CSDN博客</a>)</p>
+<p>[markdown常见公式](<a target="_blank" rel="noopener" href="https://blog.csdn.net/linshen1213/article/details/115330264?spm=1001.2101.3001.6661.1&amp;utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-115330264-blog-79207643.pc_relevant_recovery_v2&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-115330264-blog-79207643.pc_relevant_recovery_v2&amp;utm_relevant_index=1">(8条消息) 一、markdown 常见公式_林重言的博客-CSDN博客</a>)</p>
+<p>[梯度下降算法](<a target="_blank" rel="noopener" href="https://cn.bing.com/search?q=%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%AE%97%E6%B3%95&amp;qs=n&amp;form=QBRE&amp;sp=-1&amp;pq=%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%AE%97%E6%B3%95&amp;sc=10-6&amp;sk=&amp;cvid=08A6A8953DF24DDAA898BBE01BC20C51&amp;ghsh=0&amp;ghacc=0&amp;ghpl=">梯度下降算法 - 搜索 (bing.com)</a>)</p>
+<ol start="33">
+<li class="lvl-4">
+<p>岭回归</p>
+<blockquote>
+<p>$\color {red} {方差}$： 都是围着数据中心的，方差越大则表示距离数据中心分布的越分散，越小说明越近越集中</p>
+<p>$\color{red}{偏差}$： 偏离数据中心， 偏差越大，说明整个数据距离中心越远，偏差越小，说明距离数据中心越近。</p>
+<p>这两者的关系通常是<strong>矛盾</strong>的，降低偏差会提高方差，降低方差会提高偏差。所有一个好的模型就是对这点的一个平衡。</p>
+</blockquote>
+<blockquote>
+<p>$\color{red}{岭回归}$ :针对高方差，即过拟合的模型，解决办法之一就是对模型进行正则化：限制参数大小。当线性回归过拟合时，权重系数wj就会非常的大，岭回归就是要解决这样的问题。岭回归可以理解为在线性回归的损失函数的基础上，加,入一个L2正则项，来限制W不要过大。其中λ&gt;0，通过确定λ的值可以使得模型在偏差和方差之间达到平衡，<strong>随着λ的增大，模型的方差减小，偏差增大</strong>。</p>
+</blockquote>
+</li>
+</ol>
+<img title="" src="file:///C:/Users/田晓滨/AppData/Roaming/marktext/images/2022-11-19-12-00-31-image.png" alt="" data-align="center" width="324">
+<p>[岭回归](<a target="_blank" rel="noopener" href="https://www.cnblogs.com/hechangchun/p/15194557.html#:~:text=%E5%B2%AD%E5%9B%9E%E5%BD%92%EF%BC%88Ridge,Regression%EF%BC%89%E5%8F%AF%E4%BB%A5%E7%90%86%E8%A7%A3%E4%B8%BA%E5%9C%A8%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E7%9A%84%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E7%9A%84%E5%9F%BA%E7%A1%80%E4%B8%8A%EF%BC%8C%E5%8A%A0%2C%E5%85%A5%E4%B8%80%E4%B8%AAL2%E6%AD%A3%E5%88%99%E9%A1%B9%EF%BC%8C%E6%9D%A5%E9%99%90%E5%88%B6W%E4%B8%8D%E8%A6%81%E8%BF%87%E5%A4%A7%E3%80%82%20%E5%85%B6%E4%B8%AD%CE%BB%3E0%EF%BC%8C%E9%80%9A%E8%BF%87%E7%A1%AE%E5%AE%9A%CE%BB%E7%9A%84%E5%80%BC%E5%8F%AF%E4%BB%A5%E4%BD%BF%E5%BE%97%E6%A8%A1%E5%9E%8B%E5%9C%A8%E5%81%8F%E5%B7%AE%E5%92%8C%E6%96%B9%E5%B7%AE%E4%B9%8B%E9%97%B4%E8%BE%BE%E5%88%B0%E5%B9%B3%E8%A1%A1%EF%BC%8C%E9%9A%8F%E7%9D%80%CE%BB%E7%9A%84%E5%A2%9E%E5%A4%A7%EF%BC%8C%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%96%B9%E5%B7%AE%E5%87%8F%E5%B0%8F%EF%BC%8C%E5%81%8F%E5%B7%AE%E5%A2%9E%E5%A4%A7%E3%80%82">学习笔记233—岭回归和Lasso回归区别 - 何弈 - 博客园 (cnblogs.com)</a>)</p>
+<ol start="34">
+<li class="lvl-4">
+<p>增加模型的欠拟合风险</p>
+<blockquote>
+<p>$\color{red}{过拟合}$</p>
+<p>原因：</p>
+<p>训练数据中<strong>噪音干扰过大</strong>，使得学习器认为部分噪音是特征从而扰乱学习规则。</p>
+<p>建模<strong>样本选取有误</strong>，例如训练数据太少，抽样方法错误，样本label错误等，导致样本不能代表整体。</p>
+<p><strong>模型不合理</strong>，或假设成立的条件与实际不符。</p>
+<p><strong>特征维度/参数太多</strong>，导致模型复杂度太高。</p>
+<p>解决方法：</p>
+<p><strong>从数据源头获取更多数据</strong></p>
+<p><strong>根据当前数据集估计数据分布参数，使用该分布产生更多数据</strong>。这个方法一般不用，因为估计参数分布的过程也会带入抽样误差。</p>
+<p><strong>数据增强</strong>（Data Augmentation）:通过一定规则扩充数据。如物体在图像中的位置、姿态、尺度、整体图片明暗度等都不会影响分类结果。我们可以通过图像平移、反转、缩放、切割等手段将数据库成倍扩充</p>
+<p><strong>保留验证集</strong></p>
+<p><strong>获取额外数据进行交叉验证</strong></p>
+<p><strong>降低模型复杂度</strong><br>
+a. 对于神经网络：减少网络的层数、神经元个数等均可以限制网络的拟合能力。dropout，在向前传播的时候，让某个神经元的激活值以一定的概率p停止工作，这样可以使模型的泛化性更强，因为它不会太依赖某些局部的特征。。<br>
+b. 对于决策树：限制树深，剪枝，限制叶节点数量。<br>
+c. 增大分割平面间隔</p>
+<p><strong>特征选择、特征降维</strong></p>
+<p><strong>early stopping</strong></p>
+<p><strong>正则化</strong>（限制权值weight-decay）：将权值的大小作为惩罚项加入到损失函数里。</p>
+<p><strong>增加噪声</strong><br>
+<strong>ensemble</strong></p>
+<p>$\color{red}{欠拟合}$</p>
+<p>原因：</p>
+<p><strong>模型复杂度过低</strong><br>
+<strong>特征量过少</strong></p>
+<p>解决方法：</p>
+<p><strong>增加特征数</strong>；当特征不足或者现有特征与样本标签的相关性不强时，模型易出现欠拟合。可以通过挖掘上下文特征，ID类特征，组合特征等新的特征，可以取得较好的效果。这属于特征工程相关的内容，如因子分解机，梯度提升决策树，deep_crossing都可以丰富特征。</p>
+<p><strong>增加模型复杂度</strong>；模型简单时其表达能力较差，容易导致欠拟合，因此可以适当地增加模型复杂度，使模型拥有更强的拟合能力。如线性模型中添加高次项，神经网络中增加网络层数或神经元个数。尝试非线性模型，比如核SVM 、决策树、DNN等模型。</p>
+<p><strong>减小正则化系数</strong>。正则化是用于防止过拟合的，但是当出现欠拟合时，就有必要针对性地减小正则化系数。</p>
+</blockquote>
+</li>
+</ol>
+<p>[欠拟合和过拟合原因+解决方法](<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42012732/article/details/107318550">(8条消息) 过拟合与欠拟合_Minouio的博客-CSDN博客</a>)</p>
+<ol start="35">
+<li class="lvl-4">
+<p>Bagging每轮训练的样本权重相同，而Bootsting则根据单个分类器的正确率选择权重</p>
+<p>EM算法和梯度下降都会陷于局部极小值</p>
+<p>梯度下降也可用于求混合高斯模型的参数(一般不适用)</p>
+</li>
+<li class="lvl-4">
+<p>随机森林模型过拟合与决策树<strong>深度、叶节点数</strong>有关</p>
+</li>
+<li class="lvl-4">
+<p>pass</p>
+</li>
+<li class="lvl-4">
+<p>pass</p>
+</li>
+<li class="lvl-4">
+<p>K-means算法</p>
+<blockquote>
+<p>K均值聚类是最基础常用的聚类算法，它的基本思想是，<strong>通过迭代寻找K个簇的一种划分方案，使得聚类结果对应的损失函数最小</strong>。</p>
+<p>KMenas的优点：</p>
+<ul class="lvl-3">
+<li class="lvl-2">
+<p>高效可伸缩，计算复杂度 为接近于线性（N是数据量，K是聚类总数，t是迭代轮数）。</p>
+</li>
+<li class="lvl-2">
+<p>收敛速度快，原理相对通俗易懂，可解释性强。</p>
+</li>
+</ul>
+<p>KMeans也有一些明显的缺点：</p>
+<ul class="lvl-3">
+<li class="lvl-2">
+<p>受初始值和异常点影响，聚类结果可能不是全局最优而是局部最优。</p>
+</li>
+<li class="lvl-2">
+<p>K是超参数，一般需要按经验选择</p>
+</li>
+<li class="lvl-2">
+<p>样本点只能划分到单一的类中</p>
+</li>
+</ul>
+<p>迭代的时间复杂度$\Omicron(n)$</p>
+<p>K-means可以使用核函数，就是将数据点都投影到了一个高维的特征空间中（为啥要这么做呢，主要是突显出不同样本中的差异），然后再在这个高维的特征空间中，进行传统的k-means聚类</p>
+<p>K-mean适用于当簇是密集的、球状或团状的，而簇与簇之间区别明显时，使用<a target="_blank" rel="noopener" href="https://www.zhihu.com/search?q=k-mean&amp;search_source=Entity&amp;hybrid_search_source=Entity&amp;hybrid_search_extra=%7B%22sourceType%22%3A%22answer%22%2C%22sourceId%22%3A980863878%7D">k-mean</a>聚类效果很好；在应用<a target="_blank" rel="noopener" href="https://www.zhihu.com/search?q=%E6%AC%A7%E5%BC%8F%E8%B7%9D%E7%A6%BB&amp;search_source=Entity&amp;hybrid_search_source=Entity&amp;hybrid_search_extra=%7B%22sourceType%22%3A%22answer%22%2C%22sourceId%22%3A980863878%7D">欧式距离</a>时，只能找到数据点分布的比较均匀的簇。</p>
+</blockquote>
+</li>
+</ol>
+<p>[K-means](<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/184686598">KMeans聚类算法详解 - 知乎 (zhihu.com)</a>)</p>
+<p>[核K-means](<a target="_blank" rel="noopener" href="https://www.cnblogs.com/subaiBlog/p/6271315.html#:~:text=%E6%A0%B8k-means%EF%BC%8C%E6%A6%82%E6%8B%AC%E5%9C%B0%E6%9D%A5%E8%AF%B4%EF%BC%8C%E5%B0%B1%E6%98%AF%E5%B0%86%E6%95%B0%E6%8D%AE%E7%82%B9%E9%83%BD%E6%8A%95%E5%BD%B1%E5%88%B0%E4%BA%86%E4%B8%80%E4%B8%AA%E9%AB%98%E7%BB%B4%E7%9A%84%E7%89%B9%E5%BE%81%E7%A9%BA%E9%97%B4%E4%B8%AD%EF%BC%88%E4%B8%BA%E5%95%A5%E8%A6%81%E8%BF%99%E4%B9%88%E5%81%9A%E5%91%A2%EF%BC%8C%E4%B8%BB%E8%A6%81%E6%98%AF%E7%AA%81%E6%98%BE%E5%87%BA%E4%B8%8D%E5%90%8C%E6%A0%B7%E6%9C%AC%E4%B8%AD%E7%9A%84%E5%B7%AE%E5%BC%82%EF%BC%89%EF%BC%8C%E7%84%B6%E5%90%8E%E5%86%8D%E5%9C%A8%E8%BF%99%E4%B8%AA%E9%AB%98%E7%BB%B4%E7%9A%84%E7%89%B9%E5%BE%81%E7%A9%BA%E9%97%B4%E4%B8%AD%EF%BC%8C%E8%BF%9B%E8%A1%8C%E4%BC%A0%E7%BB%9F%E7%9A%84k-means%E8%81%9A%E7%B1%BB%E3%80%82%20%E4%B8%BB%E8%A6%81%E7%9A%84%E6%80%9D%E6%83%B3%E5%B0%B1%E6%98%AF%E8%BF%99%E4%B9%88%E7%AE%80%E5%8D%95%EF%BC%8C%E6%AF%94%E8%B5%B7%E4%BC%A0%E7%BB%9F%E6%99%AE%E9%80%9A%E7%9A%84k-means%E5%B0%B1%E5%A4%9A%E4%BA%86%E4%B8%80%E4%B8%AA%E6%AD%A5%E6%A0%B8%E5%87%BD%E6%95%B0%E7%9A%84%E6%93%8D%E4%BD%9C%E3%80%82%20%E6%89%80%E4%BB%A5%E5%AE%83%E7%9A%84%E5%85%AC%E5%BC%8F%E4%B9%9F%E4%B8%8E%E4%BC%A0%E7%BB%9Fk-means%E5%BE%88%E7%9B%B8%E8%BF%91%EF%BC%9A%20%E8%BF%99%E9%87%8C%E6%89%80%E8%A1%A8%E7%A4%BA%E7%9A%84%EF%BC%8C%24a_i%24%E6%98%AF%E5%90%84%E4%B8%AA%E6%A0%B7%E6%9C%AC%E7%82%B9%EF%BC%8C%E8%80%8C%24phi,%28%20%29%24%E5%87%BD%E6%95%B0%EF%BC%8C%E5%88%99%E6%98%AF%E8%A1%A8%E7%A4%BA%E5%B0%86%E6%A0%B7%E6%9C%AC%E7%82%B9%E6%98%A0%E5%B0%84%E8%87%B3%E9%AB%98%E7%BB%B4%E7%A9%BA%E9%97%B4%E3%80%82%20%E8%80%8C%E5%85%AC%E5%BC%8F%E4%B8%AD%E7%9A%84%24m_c%24%EF%BC%8C%E5%88%99%E6%98%AF%E6%AF%8F%E4%B8%AA%E7%B0%87%E4%B8%AD%E7%9A%84%E8%B4%A8%E5%BF%83%E3%80%82%20%E8%BF%99%E4%B8%AA%E5%BD%A2%E5%BC%8F%EF%BC%8C%E5%AF%B9%E6%AF%94%E8%B5%B7%E6%99%AE%E9%80%9A%E7%9A%84k-means%E6%98%AF%E4%B8%8D%E6%98%AF%E5%BE%88%E7%9B%B8%E8%BF%91%E5%92%A7%EF%BC%8C%E5%90%8C%E6%A0%B7%E6%98%AF%E6%B1%82%E5%90%84%E4%B8%AA%E9%AB%98%E7%BB%B4%E7%A9%BA%E9%97%B4%E4%B8%AD%E7%9A%84%E6%A0%B7%E6%9C%AC%E7%89%B9%E5%BE%81%EF%BC%88%E4%BC%A0%E7%BB%9Fk-means%E4%B8%AD%E6%98%AF%E6%A0%B7%E6%9C%AC%E7%82%B9%EF%BC%89%E4%B8%8E%E8%B4%A8%E5%BF%83%E7%9A%84%E8%B7%9D%E7%A6%BB%EF%BC%8C%E7%84%B6%E5%90%8E%E6%A0%B9%E6%8D%AE%E8%AF%A5%E6%A0%B7%E6%9C%AC%E7%82%B9%E5%88%B0%E4%B8%8D%E5%90%8C%E8%B4%A8%E5%BF%83%E8%B7%9D%E7%A6%BB%EF%BC%8C%E9%80%89%E6%8B%A9%E6%9C%80%E5%B0%8F%E7%9A%84%EF%BC%88%E4%B9%9F%E5%B0%B1%E6%98%AF%E8%AF%B4%E8%B7%9D%E7%A6%BB%E8%AF%A5%E6%A0%B7%E6%9C%AC%E7%82%B9%E6%9C%80%E8%BF%91%EF%BC%89%E7%9A%84%E7%B0%87%E5%BF%83%EF%BC%8C%E8%BF%9B%E8%A1%8C%E5%88%86%E9%85%8D%EF%BC%88%E5%B0%86%E8%AF%A5%E6%A0%B7%E6%9C%AC%E7%82%B9%E5%BD%92%E4%B8%BA%E8%BF%99%E4%B8%AA%E7%B0%87%EF%BC%89%E3%80%82">weighted Kernel k-means 加权核k均值算法理解及其实现（一） - 苏白 - 博客园 (cnblogs.com)</a>)</p>
+<ol start="40">
+<li class="lvl-4">
+<p>过拟合训练误差小，测试误差大</p>
+</li>
+<li class="lvl-4">
+<p>pass</p>
+</li>
+<li class="lvl-4">
+<p>过拟合问题 见P34</p>
+<blockquote>
+<p><strong>稀疏</strong>表示的好处在于降低表示复杂度，更直白<strong>的</strong>原因其实就是<strong>减少</strong>系数参数，通过<strong>稀疏</strong>表示，可以充分发挥数据所含有<strong>的</strong>信息，去掉冗余<strong>的</strong>数据信息，达到最大化利用数据。</p>
+<p>高斯核比线性核更复杂，使复杂度更高，容易导致过拟合问题。</p>
+</blockquote>
+</li>
+</ol>
+<p>[高斯核和线性核](<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44492824/article/details/122546701">核函数 高斯核函数，线性核函数，多项式核函数_TranSad的博客-CSDN博客</a>)</p>
+<ol start="43">
+<li class="lvl-4">
+<p>无监督和监督</p>
+</li>
+<li class="lvl-4">
+<p>Bootstrap：Bootstrap法具体是指<strong>用原样本自身的数据</strong>抽样得出新的样本及统计量</p>
+</li>
+<li class="lvl-4">
+<p>Adaboost算法</p>
+<blockquote>
+<p>$\color{red}{原理}$:是从训练数据中学习出一系列的弱分类器，并将弱分类器组合成一个强分类器</p>
+<p>$\color{red}{提升树}$：采用<strong>加法</strong>模型（基函数的线性组合）与<strong>前向分布</strong>算法，同时以决策树为基函数的提升方法。对于分类问题而言是二叉分类树，但对于回归问题而言是二叉回归树</p>
+</blockquote>
+</li>
+<li class="lvl-4">
+<p>HMM</p>
+</li>
+<li class="lvl-4">
+<p>会考虑向量的方向的距离</p>
+<blockquote>
+<p>Jaccard距离：杰卡德距离</p>
+</blockquote>
+<p><a href="%5B%E6%AC%A7%E6%B0%8F%E8%B7%9D%E7%A6%BB%EF%BC%8C%E6%9B%BC%E5%93%88%E9%A1%BF%E8%B7%9D%E7%A6%BB%EF%BC%8C%E4%BD%99%E5%BC%A6%E8%B7%9D%E7%A6%BB%EF%BC%8C%E6%B1%89%E6%98%8E%E8%B7%9D%E7%A6%BB_%E5%8D%97%E6%9E%81%E6%B4%B2%E9%97%B2%E4%BA%BA%E7%9A%84%E5%8D%9A%E5%AE%A2-CSDN%E5%8D%9A%E5%AE%A2_%E6%B1%89%E6%98%8E%E8%B7%9D%E7%A6%BB%E5%92%8C%E6%AC%A7%E5%BC%8F%E8%B7%9D%E7%A6%BB%5D(https://blog.csdn.net/weixin_45965358/article/details/112992351)">四种距离</a></p>
+<p>[机器学习中的距离](<a target="_blank" rel="noopener" href="https://blog.csdn.net/hy592070616/article/details/122279515">机器学习中的数学——距离定义（十三）：杰卡德距离（Jaccard Distance）和杰卡德相似系数（Jaccard Similarity Coefficient）_von Neumann的博客-CSDN博客</a>)</p>
+</li>
+<li class="lvl-4">
+<p>pass</p>
+</li>
+<li class="lvl-4">
+<p>pass</p>
+</li>
+<li class="lvl-4">
+<p>pass</p>
+</li>
+<li class="lvl-4">
+<p>pass</p>
+</li>
+<li class="lvl-4">
+<p>不知道数据所带标签时，可以使用<strong>聚类</strong>技术促使带同类标签的数据与带其他标签的数据相分离</p>
+<blockquote>
+<p>聚类是无监督学习</p>
+<p>回归和分类是监督学习</p>
+</blockquote>
+</li>
+<li class="lvl-4">
+<p>矩阵计算pass</p>
+</li>
+<li class="lvl-4">
+<p><strong>最大似然估计</strong>不考虑先验分布</p>
+<blockquote>
+<p>贝叶斯公式：$P(A|B)= \frac{P(B|A)*P(A)}{P(B)}$</p>
+</blockquote>
+</li>
+</ol>
+<p>[最大似然估计](<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/55791843">参数估计(二).最大似然估计 - 知乎 (zhihu.com)</a>)</p>
+<ol start="55">
+<li class="lvl-4">
+<p>pass</p>
+</li>
+<li class="lvl-4">
+<p>pass</p>
+</li>
+<li class="lvl-4">
+<p>pass</p>
+</li>
+<li class="lvl-4">
+<p>pass</p>
+</li>
+<li class="lvl-4">
+<p>pass</p>
+</li>
+<li class="lvl-4">
+<p>pass</p>
+</li>
+<li class="lvl-4">
+<p>生成式模型和判别式模型</p>
+<p><img src="C:%5CUsers%5C%E7%94%B0%E6%99%93%E6%BB%A8%5CAppData%5CRoaming%5Cmarktext%5Cimages%5C2022-11-21-23-29-56-image.png" alt=""></p>
+</li>
+</ol>
+<p>[生成式模型和判别式模型](<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/74586507">机器学习中的判别式模型和生成式模型 - 知乎 (zhihu.com)</a>)</p>
+<ol start="62">
+<li class="lvl-4">
+<p>pass</p>
+</li>
+<li class="lvl-4">
+<p>pass</p>
+</li>
+<li class="lvl-4">
+<p>条件随机场（conditional random field,CRF）是给定一组输入随机变量条件下另一组输出随机变量的<strong>条件概率分布模型（即判别模型）</strong>，其特点是假设<strong>输出随机变量构成马尔可夫随机场</strong>。条件随机场可以用于不同的预测问题，</p>
+</li>
+<li class="lvl-4">
+<p>KNN用于样本较少但典型性好的情况</p>
+</li>
+<li class="lvl-4">
+<p>过拟合在监督学习和无监督学习中都会发生。</p>
+</li>
+<li class="lvl-4">
+<p>大数据集上训练决策树，通过减少树的深度可以缩短时间</p>
+</li>
+<li class="lvl-4">
+<p>K 折交叉验证</p>
+<p><a href="%5Bk%E6%8A%98%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81_tianguiyuyu%E7%9A%84%E5%8D%9A%E5%AE%A2-CSDN%E5%8D%9A%E5%AE%A2%5D(https://blog.csdn.net/tianguiyuyu/article/details/80697223)">K 折交叉验证</a></p>
+</li>
+<li class="lvl-4">
+<p>pass</p>
+</li>
+<li class="lvl-4">
+<p>贝叶斯分类器参数估计</p>
+<blockquote>
+<p>最大间隔用于支持向量机SVM中</p>
+</blockquote>
+<p>[贝叶斯分类器](<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/149774236">贝叶斯分类器 - 知乎 (zhihu.com)</a>)</p>
+</li>
+<li class="lvl-4">
+<p>机器学习可解决的问题：分类、聚类和回归</p>
+</li>
+<li class="lvl-4">
+<p>KNN算法缺点</p>
+<blockquote>
+<p>KNN有着非常明显的优点和缺点：</p>
+<p>优点：精度高、对异常值不敏感、无数据输入假定</p>
+<p>缺点：计算复杂度高、空间复杂度高</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="计算题">计算题</h3>
+<ol start="13">
+<li class="lvl-4">
+<p>K-means</p>
+</li>
+<li class="lvl-4">
+<p>自底向上层次聚类</p>
+</li>
+</ol>
+
+      
+      
+        <div class="page-reward">
+          <p><a href="javascript:void(0)" onclick="dashangToggle()" class="dashang">赏</a></p>
+          <div class="hide_box"></div>
+          <div class="shang_box">
+            <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+            <div class="shang_tit">
+              <p>纯属好玩</p>
+            </div>
+            <div class="shang_payimg">
+              <img src="/img/alipayimg.jpg" alt="扫码支持" title="扫一扫" />
+            </div>
+              <div class="pay_explain">扫码打赏，你说多少就多少</div>
+            <div class="shang_payselect">
+              
+                <div class="pay_item checked" data-id="alipay">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/alipay.png" alt="支付宝" /></span>
+                </div>
+              
+              
+                <div class="pay_item" data-id="wechat">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/weixin.png" alt="微信" /></span>
+                </div>
+              
+            </div>
+            <div class="shang_info">
+              <p>打开<span id="shang_pay_txt">支付宝</span>扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+        <script type="text/javascript">
+          $(".pay_item").click(function(){
+            $(this).addClass('checked').siblings('.pay_item').removeClass('checked');
+            var dataid=$(this).attr('data-id');
+            $(".shang_payimg img").attr("src","/img/"+dataid+"img.jpg");
+            $("#shang_pay_txt").text(dataid=="alipay"?"支付宝":"微信");
+          });
+          function dashangToggle(){
+            
+            $(".hide_box").fadeToggle();
+            $(".shang_box").fadeToggle();
+          }
+        </script>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2023/03/26/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问  的个人博客"></a></p>
+        <p><span>发布时间:</span>2023年03月26日 - 09时53分</p>
+        <p><span>最后更新:</span>2023年03月26日 - 10时20分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2023/03/26/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" title="机器学习">http://example.com/2023/03/26/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://example.com/2023/03/26/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/　　作者: " title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/2023/03/26/%E5%8D%8E%E4%B8%BA%E6%8B%93%E6%89%91%E6%B5%8B%E8%AF%95/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          华为拓扑测试
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/03/26/%E5%BE%85%E5%AE%8C%E6%88%90/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">netTopo</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0"><span class="toc-number">1.</span> <span class="toc-text">机器学习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">计算题</span></a></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+        <div id="gitments"></div>
+<script src="/js/gitment.browser.js"></script>
+<script>
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      owner: 'luuman',
+      repo: 'luuman.github.io',
+      oauth: {
+        client_id: '',
+        client_secret: '',
+      },
+    })
+    gitment.render('gitments')
+</script>
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2023/03/26/%E5%8D%8E%E4%B8%BA%E6%8B%93%E6%89%91%E6%B5%8B%E8%AF%95/" title="上一篇: 华为拓扑测试">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2023/03/26/%E5%BE%85%E5%AE%8C%E6%88%90/" title="下一篇: netTopo">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2023/03/26/Java%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">Java后端开发注意事项</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/26/JAVA%E5%BC%80%E5%8F%91/">JAVA开发</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/26/learning/">markdown的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/26/windows%E4%B8%8B%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/">系统命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/26/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/">Echart JS</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/26/%E5%8D%8E%E4%B8%BA%E5%92%8C%E6%80%9D%E7%A7%91/">华为与Cisco</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/26/%E5%8D%8E%E4%B8%BA%E6%8B%93%E6%89%91%E6%B5%8B%E8%AF%95/">华为拓扑测试</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/26/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/26/%E5%BE%85%E5%AE%8C%E6%88%90/">netTopo</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/26/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/">netTopo</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/25/switch/">switch</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/24/My-New-Post/">My New Post</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/24/hello-world/">hello-world</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2023 John Doe
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman
+            </div>
+        </div>
+        <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+        <script>
+            var now = new Date();
+            function createtime() {
+                var grt= new Date("08/10/2018 17:38:00");//在此处修改你的建站时间，格式：月/日/年 时:分:秒
+                now.setTime(now.getTime()+250);
+                days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+                hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+                if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+                mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+                seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+                snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+                document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+                document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+            }
+        setInterval("createtime()",250);
+        </script>
+
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >海贼到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+    <i class="fas fa-chart-area"></i>
+    <span class="post-count">字数统计：14.7k</span>
+</footer>
+
+    </div>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+<!--  -->
+<!--     <script type="text/javascript"> -->
+<!--       window.onload = function(){ -->
+<!--         document.getElementById("search").onclick = function(){ -->
+<!--             console.log("search") -->
+<!--             search(); -->
+<!--         } -->
+<!--       } -->
+<!--       function search(){ -->
+<!--         (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){ -->
+<!--         (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t); -->
+<!--         e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e); -->
+<!--         })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st'); -->
+
+<!--         _st('install','A1Pz-LKMXbrzcFg2FWi6','2.0.0'); -->
+<!--       } -->
+<!--     </script> -->
+<!--  -->
+
+    <!-- <script type="text/javascript">
+      window.onload = function(){
+        document.getElementById("search").onclick = function(){
+            console.log("search")
+            search();
+        }
+      }
+      function search(){
+        (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+        (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+        e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+        })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+        _st('install','A1Pz-LKMXbrzcFg2FWi6','2.0.0');
+      }
+    </script> -->
+
+    <script type="text/javascript">
+      // 激活搜索框时才搜索
+        var inputArea = document.querySelector("#local-search-input");
+        var getSearchFile = function(){
+          // 调用搜索函数
+          var search_path = "search.xml";
+          if (search_path.length == 0) {
+             search_path = "search.xml";
+          }
+          var path = "/" + search_path;
+          searchFunc(path, 'local-search-input', 'local-search-result');
+        }
+        inputArea.onfocus = function(){ getSearchFile() }
+
+        // 搜索重置
+        var $resetButton = $("#search-form .fa-times");
+        var $resultArea = $("#local-search-result");
+        inputArea.oninput = function(){ $resetButton.show(); }
+        resetSearch = function(){
+          $resultArea.html("");
+          document.querySelector("#search-form").reset();
+          $resetButton.hide();
+          $(".no-result").hide();
+        }
+
+        // 屏蔽回车
+        inputArea.onkeydown = function(){ if(event.keyCode==13) return false}
+
+        // 无搜索结果
+        $resultArea.bind("DOMNodeRemoved DOMNodeInserted", function(e) {
+          if (!$(e.target).text()) {
+            $(".no-result").show(200);
+          } else {
+            $(".no-result").hide();
+          }
+        })
+
+        // 搜索函数
+        var searchFunc = function(path, search_id, content_id) {
+          'use strict';
+          $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function( xmlResponse ) {
+                // get the contents from search data
+                var datas = $( "entry", xmlResponse ).map(function() {
+                    return {
+                        title: $( "title", this ).text(),
+                        content: $("content",this).text(),
+                        url: $( "url" , this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function(){
+                    var str='<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function(data) {
+                        var isMatch = true;
+                        var content_index = [];
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                        var data_url = data.url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if(data_title != '' && data_content != '') {
+                            keywords.forEach(function(keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if( index_title < 0 && index_content < 0 ){
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i == 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='/"+ data_url +"' class='search-result-title' target='_blank'>"+ "> " + data_title +"</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g,"");
+                            if (first_occur >= 0) {
+                                // cut out characters
+                                var start = first_occur - 6;
+                                var end = first_occur + 6;
+                                if(start < 0){
+                                    start = 0;
+                                }
+                                if(start == 0){
+                                    end = 10;
+                                }
+                                if(end > content.length){
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function(keyword){
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">"+keyword+"</em>");
+                                })
+                                str += "<p class=\"search-result\">" + match_content +"...</p>"
+                            }
+                        }
+                    })
+                    $resultContent.innerHTML = str;
+                })
+            }
+          })
+        }
+    </script>
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body>
+<script type="text/javascript" src="/js/love.js"></script>
+<!--动态线条背景-->
+<script type="text/javascript"
+color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
+</script>
+</html>

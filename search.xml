@@ -81,6 +81,28 @@ rule 3 192.168.1.1/25  port3</p>
       </tags>
   </entry>
   <entry>
+    <title></title>
+    <url>/2023/03/24/hello-world/</url>
+    <content><![CDATA[<hr>
+<h2 id="title-Hello-World">title: Hello World</h2>
+<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<span id="more"></span>
+<h2 id="Quick-Start">Quick Start</h2>
+<h3 id="Create-a-new-post">Create a new post</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server">Run server</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files">Generate static files</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites">Deploy to remote sites</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>markdown的使用</title>
     <url>/2023/03/26/learning/</url>
     <content><![CDATA[<h1>markdown的使用</h1>
@@ -154,25 +176,10 @@ I HAVE A <em>DOG</em></p>
       </tags>
   </entry>
   <entry>
-    <title></title>
-    <url>/2023/03/24/hello-world/</url>
-    <content><![CDATA[<hr>
-<h2 id="title-Hello-World">title: Hello World</h2>
-<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<span id="more"></span>
-<h2 id="Quick-Start">Quick Start</h2>
-<h3 id="Create-a-new-post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+    <title>switch</title>
+    <url>/2023/03/25/switch/</url>
+    <content><![CDATA[<h2 id="交换机的使用方法介绍">交换机的使用方法介绍</h2>
+<p>目前，主流厂商可分为思科（Cisco）、华为、锐捷、H3C</p>
 ]]></content>
   </entry>
   <entry>
@@ -226,66 +233,6 @@ Echarts实例：<br>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line">tdBodys += `<span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;$&#123;i&#125;x&quot;</span> <span class="attr">id</span>=<span class="string">&quot;$&#123;i&#125;&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">value</span>=<span class="string">$&#123;isReachnodes&#125;</span> <span class="attr">style</span>=<span class="string">&quot;border: none;text-align: center;color: #444444;color: #444444&quot;</span> <span class="attr">readonly</span>=<span class="string">&quot;readonly&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span>`;   </span><br><span class="line">tdBodys += `<span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">onclick</span>=<span class="string">&quot;showdetails($&#123;i&#125;)&quot;</span>&gt;</span>展开<span class="tag">&lt;/<span class="name">button</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span>`;</span><br><span class="line">  </span><br><span class="line">function showdetails(i)&#123;</span><br><span class="line">  var elementById = document.getElementById(i);</span><br><span class="line">  alert(elementById.getAttribute(&quot;value&quot;));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <tags>
         <tag>前端学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>系统命令</title>
-    <url>/2023/03/26/windows%E4%B8%8B%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/</url>
-    <content><![CDATA[<h3 id="windows下文件操作">windows下文件操作</h3>
-<span id="more"></span>
-<p>查看文件MD5\SHA1\256</p>
-<blockquote>
-<p>CMD</p>
-<p>certutil -hashfile D:\emp.png MD5</p>
-<p>certutil -hashfile D:\ubuntu_18.iso SHA1</p>
-<p>certutil -hashfile D:\setup.exe SHA256</p>
-</blockquote>
-<p><img src="C:%5CUsers%5C%E7%94%B0%E6%99%93%E6%BB%A8%5CAppData%5CRoaming%5Cmarktext%5Cimages%5C2022-11-27-09-16-50-image.png" alt=""></p>
-]]></content>
-      <tags>
-        <tag>系统命令</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>switch</title>
-    <url>/2023/03/25/switch/</url>
-    <content><![CDATA[<h2 id="交换机的使用方法介绍">交换机的使用方法介绍</h2>
-<p>目前，主流厂商可分为思科（Cisco）、华为、锐捷、H3C</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>netTopo</title>
-    <url>/2023/03/26/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[<h2 id="数据库学习">数据库学习</h2>
-<h4 id="本次项目中使用的数据库为MySQL-本次项目为netTopo">本次项目中使用的数据库为MySQL 本次项目为netTopo</h4>
-<span id="more"></span>
-<blockquote>
-<p>数据库配置</p>
-<blockquote>
-<p>本次项目采用Tomcat服务器，前后端不分离</p>
-</blockquote>
-<p>项目结构</p>
-</blockquote>
-<p><img src="./temppicture/img.png" alt="项目结构"><br>
-由图中可以看到 采用的为SMV架构 其中dao是专门进行数据库处理的 为每个表划分单个类进行数据库处理<br>
-首先是数据库的基本配置(采用JDBC连接)</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Connection connection = null;</span><br><span class="line">String driver = &quot;com.mysql.jdbc.Driver&quot;;</span><br><span class="line">String url = &quot;jdbc:mysql://localhost:3306/switch_info?useUnicode=true&amp;characterEncoding=UTF-8&amp;userSSL=false&amp;serverTimezone=GMT%2B8&amp;useOldAliasMetadataBehavior=true&quot;;</span><br><span class="line">String username = &quot;root&quot;;</span><br><span class="line">String password = &quot;password&quot;;</span><br></pre></td></tr></table></figure>
-<p>数据库的查询(根据IP查找其他字段内容)</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public List&lt;FibInfo&gt; queryInfoByIp(String ip)&#123;</span><br><span class="line">    List&lt;FibInfo&gt; result=new ArrayList&lt;&gt;();</span><br><span class="line">    Connection conn =  getConnection();</span><br><span class="line">    try &#123;</span><br><span class="line">        PreparedStatement stmt = (PreparedStatement) conn.prepareStatement</span><br><span class="line">                (&quot;SELECT name,mask,port FROM fib_table where ip = ?;&quot;);</span><br><span class="line">        stmt.setString(1, ip);</span><br><span class="line">        ResultSet rs =  stmt.executeQuery();</span><br><span class="line">        while(rs.next()) &#123;</span><br><span class="line">            String name=rs.getString(&quot;name&quot;);</span><br><span class="line">            String mask=rs.getString(&quot;mask&quot;);</span><br><span class="line">            String port = rs.getString(&quot;port&quot;);</span><br><span class="line">            result.add(new FibInfo(name,ip,mask,port));</span><br><span class="line">        &#125;</span><br><span class="line">        stmt.close();</span><br><span class="line">        conn.close();</span><br><span class="line">    &#125; catch (SQLException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>数据库的增加</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public int addInfoList(List&lt;FibInfo&gt; fibTable)&#123;</span><br><span class="line">    Connection conn = getConnection();</span><br><span class="line">    PreparedStatement stmt= null;</span><br><span class="line">    String sql = &quot;insert into fib_table ( name,ip,mask,port) values(?,?,?,?)&quot;;</span><br><span class="line">    for(FibInfo fibInfo:fibTable)&#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            stmt = (PreparedStatement) conn.prepareStatement(sql);</span><br><span class="line">            stmt.setString(1,fibInfo.getName());</span><br><span class="line">            stmt.setString(2,fibInfo.getIp());</span><br><span class="line">            stmt.setString(3,fibInfo.getMask());</span><br><span class="line">            stmt.setString(4,fibInfo.getPort());</span><br><span class="line">            stmt.executeUpdate();</span><br><span class="line">        &#125; catch (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            return -1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    try &#123;</span><br><span class="line">        if(stmt!=null)</span><br><span class="line">            stmt.close();</span><br><span class="line">        conn.close();</span><br><span class="line">    &#125; catch (SQLException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>数据库的删除操作</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public boolean delInfo(String ip)&#123;</span><br><span class="line">    String sql=&quot;delete from fib_table where ip=&#x27;&quot; + ip + &quot;&#x27;&quot;;</span><br><span class="line">    return this.execute(sql);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public void deleteAllInfo()&#123;</span><br><span class="line">    String sql=&quot;truncate table fib_table&quot;;</span><br><span class="line">    this.executedelete(sql);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注意这两种方式，前者是删除fib_table，后者是清空fib_table的内容</p>
-</blockquote>
-<p>当使用多线程访问数据库时，可能会产生报错，具体原因是当一个con未释放，新的con就被申请</p>
-<blockquote>
-<p>方法：给调用数据库的方法加锁synchronized  如下：</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">synchronized public static List&lt;Vlanport&gt; getVlanPorts(String switchIp, String routeTableEcho)  &#123;</span><br><span class="line">    List&lt;Vlanport&gt; vlanRes = new ArrayList&lt;&gt;();</span><br><span class="line">    String[] lines = routeTableEcho.split(&quot;\n|\r\n|\r&quot;);</span><br><span class="line">    SqlTest h = new SqlTest();</span><br><span class="line">    con = h.getConnection();</span><br><span class="line">    String device  = h.queryData(&quot;topo_node&quot;,switchIp,&quot;ip&quot;,&quot;name&quot;);</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>netTopo项目</tag>
       </tags>
   </entry>
   <entry>
@@ -963,239 +910,21 @@ Echarts实例：<br>
       </tags>
   </entry>
   <entry>
-    <title>netTopo</title>
-    <url>/2023/03/26/%E5%BE%85%E5%AE%8C%E6%88%90/</url>
-    <content><![CDATA[<h3 id="项目仍存在的问题">项目仍存在的问题</h3>
+    <title>系统命令</title>
+    <url>/2023/03/26/windows%E4%B8%8B%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/</url>
+    <content><![CDATA[<h3 id="windows下文件操作">windows下文件操作</h3>
 <span id="more"></span>
-<ol>
-<li class="lvl-3">
-<p>命名ACL处理</p>
-</li>
-<li class="lvl-3">
-<p>计算可达性按钮和显示路径结果合二为一</p>
-</li>
-<li class="lvl-3">
-<p>前端显示多端文本<br>
-<code>textarea 标签定义多行的文本输入控件</code><br>
-<code>readonly 方法用于规定文本区为只读</code><br>
-<a href="https://www.w3school.com.cn/tags/tag_textarea.asp">textarea用法</a></p>
-</li>
-<li class="lvl-3">
-<p>点击前端按钮时，执行某方法，显示正在加载中</p>
-</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div id=&quot;reachSpinner&quot; ng-show=&quot;shared.isComputingReach == true&quot;&gt;</span><br><span class="line">    &lt;img src=&quot;/netTopo/Web/picture/loading.gif&quot;/&gt;</span><br><span class="line">    &lt;h1&gt;可达性计算中&lt;/h1&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">其中添加一个reachSpinner.css类用于渲染</span><br><span class="line">#reachSpinner &#123;</span><br><span class="line">position: fixed;</span><br><span class="line">top: 0; left: 0;</span><br><span class="line">width: 100vw; height: 100vh;</span><br><span class="line">z-index: 9999;</span><br><span class="line">background: rgba(0, 0, 0, 0.7);</span><br><span class="line">transition: opacity 0.2s;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/* (B) CENTER LOADING SPINNER */</span><br><span class="line">#reachSpinner img &#123;</span><br><span class="line">    position: absolute;</span><br><span class="line">    top: 50%; left: 50%;</span><br><span class="line">    transform: translate(-50%);</span><br><span class="line">&#125;</span><br><span class="line">#reachSpinner h1 &#123;</span><br><span class="line">    color: white;</span><br><span class="line">    position: absolute;</span><br><span class="line">    top: 60%; left: 50%;</span><br><span class="line">    transform: translate(-50%);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol start="5">
-<li class="lvl-3">
-<p>删除临时目录及文件</p>
-</li>
-</ol>
+<p>查看文件MD5\SHA1\256</p>
 <blockquote>
-<p>不能直接使用delete命令删除存在文件的目录，需先将目录下的文件删除后，再删除该目录</p>
+<p>CMD</p>
+<p>certutil -hashfile D:\emp.png MD5</p>
+<p>certutil -hashfile D:\ubuntu_18.iso SHA1</p>
+<p>certutil -hashfile D:\setup.exe SHA256</p>
 </blockquote>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">File dir = new File(path);</span><br><span class="line">File[] listFiles = dir.listFiles();</span><br><span class="line">if(listFiles != null)</span><br><span class="line">&#123;</span><br><span class="line">    for(File file : listFiles)</span><br><span class="line">    &#123;</span><br><span class="line">        file.delete();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">dir.delete();</span><br></pre></td></tr></table></figure>
+<p><img src="C:%5CUsers%5C%E7%94%B0%E6%99%93%E6%BB%A8%5CAppData%5CRoaming%5Cmarktext%5Cimages%5C2022-11-27-09-16-50-image.png" alt=""></p>
 ]]></content>
       <tags>
-        <tag>netTopo项目</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>计算机网络</title>
-    <url>/2023/03/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</url>
-    <content><![CDATA[<h3 id="计算机网络">计算机网络</h3>
-<span id="more"></span>
-<p>瓶颈带宽、链路带宽、可用带宽</p>
-<blockquote>
-<p>瓶颈带宽：源节点与目的节点之间处理能力最低的链路所能提供的最大数据传输速率</p>
-<p>链路带宽：链路上最大数据传输速率</p>
-<p>可用带宽：网络在不影响其他业务流的情况下，所能给一个业务流提供的最大数据传输速率</p>
-</blockquote>
-<p>网络加载慢</p>
-<blockquote>
-<p>服务器负载大</p>
-<p>网络拥塞</p>
-<p>服务器带宽不足</p>
-</blockquote>
-<p>TCP/IP体系结构对移动性支持不好</p>
-<blockquote>
-<p>$\color{red}{原因}$</p>
-<ol>
-<li class="lvl-3">
-<p>IP地址既表示位置又表示身份，移动时位置发生改变，身份不会改变。</p>
-</li>
-<li class="lvl-3">
-<p>复杂的网络协议和系统无法支持快速组网</p>
-</li>
-<li class="lvl-3">
-<p>不支持地址和身份的动态绑定，移动过程中会切换地址</p>
-</li>
-</ol>
-<p>$\color{red}{解决方案}$</p>
-<ol>
-<li class="lvl-3">
-<p>Mobile TP</p>
-<ol>
-<li class="lvl-6">
-<p>移动主机存在一个永久的IP地址identifier，移动时网络前缀不变</p>
-</li>
-<li class="lvl-6">
-<p>主机移动时，分配新的IP地址locator</p>
-</li>
-<li class="lvl-6">
-<p>两个地址共存，locator负责数据接收，identifier负责解复用数据</p>
-</li>
-</ol>
-</li>
-<li class="lvl-3">
-<p>连接和IP地址解绑定</p>
-<ol>
-<li class="lvl-6">
-<p>当IP地址发生改变时，移动一方通告对方自己新的地址</p>
-</li>
-<li class="lvl-6">
-<p>两端应用连接断开</p>
-</li>
-</ol>
-</li>
-<li class="lvl-3">
-<p>使用NDN机制</p>
-</li>
-</ol>
-</blockquote>
-<p>超时重传</p>
-<blockquote>
-<p>$\color{red}{概念}$</p>
-<p>超时重传是TCP保证可靠性传输的重要机制。当发送端发送一个报文，TCP会为其保留一个副本，设定一个计时器并等待确认信息，当计时器过期并且发送端发送的报文中数据未获得确认时，TCP会重传该报文，直到成功为止。</p>
-</blockquote>
-<p>输入网址，跳转网页过程</p>
-<blockquote>
-<ul class="lvl-1">
-<li class="lvl-2">
-<p>DNS解析网址对应的IP地址</p>
-</li>
-<li class="lvl-2">
-<p>构建HTTP请求，封装TCP/IP数据包</p>
-</li>
-<li class="lvl-2">
-<p>根据IP地址查找网关和下一跳IP地址</p>
-</li>
-<li class="lvl-2">
-<p>根据下一跳IP地址寻找下一跳MAC地址</p>
-</li>
-<li class="lvl-2">
-<p>将数据包发送到网关</p>
-</li>
-<li class="lvl-2">
-<p>根据路由寻址抵达网页服务器</p>
-</li>
-<li class="lvl-2">
-<p>服务器解析请求，返回指定的页面</p>
-</li>
-</ul>
-</blockquote>
-<p>下图是 OpenFlow 局域网络拓扑，S1 的流表包含一条转发规则，Controller 持有全局网络的拓扑信息，请描述 Packet 1 从 C1 到 H2 的转发过程，包含流表查询、流表安装流程以及具体的流表转发规则。</p>
-<p><img src="C:%5CUsers%5C%E7%94%B0%E6%99%93%E6%BB%A8%5CAppData%5CRoaming%5Cmarktext%5Cimages%5C2022-11-23-14-58-18-image.png" alt=""></p>
-<blockquote>
-<ol>
-<li class="lvl-3">
-<p>Packet1从C1的唯一端口转发到S1中去</p>
-</li>
-<li class="lvl-3">
-<p>到达S1，查S1流表，发现无匹配项。将该数据包缓存，查询控制器Controller</p>
-</li>
-<li class="lvl-3">
-<p>控制器下发规则到S1，内容为&quot;DstIP=H2,Output=2&quot;</p>
-</li>
-<li class="lvl-3">
-<p>S1按照规则从S1的port2转发到S2</p>
-</li>
-<li class="lvl-3">
-<p>到达S2，查S2流表，发现无匹配项。将该数据包缓存，查询控制器Controller</p>
-</li>
-<li class="lvl-3">
-<p>控制器下发规则到S2，内容为&quot;DstIP=H2,Output=2&quot;</p>
-</li>
-<li class="lvl-3">
-<p>S2按照规则从S2的port2转发到H2</p>
-</li>
-</ol>
-</blockquote>
-<p>为什么 RSA 算法是有效的非对称加密算法？什么是数字签名？数字签名认证的过程是什么</p>
-<blockquote>
-<p>RSA为有效的非对称加密算法。知道公钥(e,n),，很难知道私钥(d,n)，要想获得私钥，必须知道z=(p-1)*(q-1)，而n=pq，p、q都为大质数，因此除了试错法之外，没有有效的方法将n分解，大数分解难题产生的不对称性也是RSA的理论基础。</p>
-<p>$\color{red}{数字签名}$</p>
-<p>设计一个可以代替手迹签名的方案。从根本上讲，我们需要一种这样的系统，一方通过该系统可以采用以下方式将已签名的文件发送给接受方：</p>
-<ul class="lvl-1">
-<li class="lvl-2">
-<p>接收方要能验证发送方的宣称的身份</p>
-</li>
-<li class="lvl-2">
-<p>发送方不能否认发送的报文</p>
-</li>
-<li class="lvl-2">
-<p>接收方不能伪造数字签名</p>
-</li>
-</ul>
-<p>过程</p>
-<ul class="lvl-1">
-<li class="lvl-2">
-<p>发送方共享公钥</p>
-</li>
-<li class="lvl-2">
-<p>发送方哈希数据</p>
-</li>
-<li class="lvl-2">
-<p>将哈希值用私钥加密</p>
-</li>
-<li class="lvl-2">
-<p>接收方用公钥解密</p>
-</li>
-<li class="lvl-2">
-<p>用哈希将接受数据哈希</p>
-</li>
-<li class="lvl-2">
-<p>将两个哈希值比对，判断是否被篡改</p>
-</li>
-</ul>
-</blockquote>
-<p>数据中心网络内部构成一个网络，请从网络管理，协议设计的角度，定性对比数据中心网络和互联网网络。</p>
-<table>
-<thead>
-<tr>
-<th>互联网</th>
-<th style="text-align:center">数据中心网络</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>分布式控制/路由</td>
-<td style="text-align:center">中心式控制和路由选择</td>
-</tr>
-<tr>
-<td>改变需达成共识</td>
-<td style="text-align:center">改变不需要达成共识</td>
-</tr>
-<tr>
-<td>标准传输TCP和UDP</td>
-<td style="text-align:center">多种传输协议</td>
-</tr>
-<tr>
-<td>难以测量</td>
-<td style="text-align:center">容易测量</td>
-</tr>
-<tr>
-<td>多个自治系统</td>
-<td style="text-align:center">一个管理域</td>
-</tr>
-<tr>
-<td>单个最短路径</td>
-<td style="text-align:center">源到目的有多条路径</td>
-</tr>
-</tbody>
-</table>
-]]></content>
-      <tags>
-        <tag>网络</tag>
+        <tag>系统命令</tag>
       </tags>
   </entry>
   <entry>
@@ -1269,6 +998,78 @@ Echarts实例：<br>
 ]]></content>
       <tags>
         <tag>网络</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>netTopo</title>
+    <url>/2023/03/26/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<h2 id="数据库学习">数据库学习</h2>
+<h4 id="本次项目中使用的数据库为MySQL-本次项目为netTopo">本次项目中使用的数据库为MySQL 本次项目为netTopo</h4>
+<span id="more"></span>
+<blockquote>
+<p>数据库配置</p>
+<blockquote>
+<p>本次项目采用Tomcat服务器，前后端不分离</p>
+</blockquote>
+<p>项目结构</p>
+</blockquote>
+<p><img src="./temppicture/img.png" alt="项目结构"><br>
+由图中可以看到 采用的为SMV架构 其中dao是专门进行数据库处理的 为每个表划分单个类进行数据库处理<br>
+首先是数据库的基本配置(采用JDBC连接)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Connection connection = null;</span><br><span class="line">String driver = &quot;com.mysql.jdbc.Driver&quot;;</span><br><span class="line">String url = &quot;jdbc:mysql://localhost:3306/switch_info?useUnicode=true&amp;characterEncoding=UTF-8&amp;userSSL=false&amp;serverTimezone=GMT%2B8&amp;useOldAliasMetadataBehavior=true&quot;;</span><br><span class="line">String username = &quot;root&quot;;</span><br><span class="line">String password = &quot;password&quot;;</span><br></pre></td></tr></table></figure>
+<p>数据库的查询(根据IP查找其他字段内容)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public List&lt;FibInfo&gt; queryInfoByIp(String ip)&#123;</span><br><span class="line">    List&lt;FibInfo&gt; result=new ArrayList&lt;&gt;();</span><br><span class="line">    Connection conn =  getConnection();</span><br><span class="line">    try &#123;</span><br><span class="line">        PreparedStatement stmt = (PreparedStatement) conn.prepareStatement</span><br><span class="line">                (&quot;SELECT name,mask,port FROM fib_table where ip = ?;&quot;);</span><br><span class="line">        stmt.setString(1, ip);</span><br><span class="line">        ResultSet rs =  stmt.executeQuery();</span><br><span class="line">        while(rs.next()) &#123;</span><br><span class="line">            String name=rs.getString(&quot;name&quot;);</span><br><span class="line">            String mask=rs.getString(&quot;mask&quot;);</span><br><span class="line">            String port = rs.getString(&quot;port&quot;);</span><br><span class="line">            result.add(new FibInfo(name,ip,mask,port));</span><br><span class="line">        &#125;</span><br><span class="line">        stmt.close();</span><br><span class="line">        conn.close();</span><br><span class="line">    &#125; catch (SQLException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>数据库的增加</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public int addInfoList(List&lt;FibInfo&gt; fibTable)&#123;</span><br><span class="line">    Connection conn = getConnection();</span><br><span class="line">    PreparedStatement stmt= null;</span><br><span class="line">    String sql = &quot;insert into fib_table ( name,ip,mask,port) values(?,?,?,?)&quot;;</span><br><span class="line">    for(FibInfo fibInfo:fibTable)&#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            stmt = (PreparedStatement) conn.prepareStatement(sql);</span><br><span class="line">            stmt.setString(1,fibInfo.getName());</span><br><span class="line">            stmt.setString(2,fibInfo.getIp());</span><br><span class="line">            stmt.setString(3,fibInfo.getMask());</span><br><span class="line">            stmt.setString(4,fibInfo.getPort());</span><br><span class="line">            stmt.executeUpdate();</span><br><span class="line">        &#125; catch (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            return -1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    try &#123;</span><br><span class="line">        if(stmt!=null)</span><br><span class="line">            stmt.close();</span><br><span class="line">        conn.close();</span><br><span class="line">    &#125; catch (SQLException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>数据库的删除操作</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public boolean delInfo(String ip)&#123;</span><br><span class="line">    String sql=&quot;delete from fib_table where ip=&#x27;&quot; + ip + &quot;&#x27;&quot;;</span><br><span class="line">    return this.execute(sql);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public void deleteAllInfo()&#123;</span><br><span class="line">    String sql=&quot;truncate table fib_table&quot;;</span><br><span class="line">    this.executedelete(sql);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意这两种方式，前者是删除fib_table，后者是清空fib_table的内容</p>
+</blockquote>
+<p>当使用多线程访问数据库时，可能会产生报错，具体原因是当一个con未释放，新的con就被申请</p>
+<blockquote>
+<p>方法：给调用数据库的方法加锁synchronized  如下：</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">synchronized public static List&lt;Vlanport&gt; getVlanPorts(String switchIp, String routeTableEcho)  &#123;</span><br><span class="line">    List&lt;Vlanport&gt; vlanRes = new ArrayList&lt;&gt;();</span><br><span class="line">    String[] lines = routeTableEcho.split(&quot;\n|\r\n|\r&quot;);</span><br><span class="line">    SqlTest h = new SqlTest();</span><br><span class="line">    con = h.getConnection();</span><br><span class="line">    String device  = h.queryData(&quot;topo_node&quot;,switchIp,&quot;ip&quot;,&quot;name&quot;);</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>netTopo项目</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>netTopo</title>
+    <url>/2023/03/26/%E5%BE%85%E5%AE%8C%E6%88%90/</url>
+    <content><![CDATA[<h3 id="项目仍存在的问题">项目仍存在的问题</h3>
+<span id="more"></span>
+<ol>
+<li class="lvl-3">
+<p>命名ACL处理</p>
+</li>
+<li class="lvl-3">
+<p>计算可达性按钮和显示路径结果合二为一</p>
+</li>
+<li class="lvl-3">
+<p>前端显示多端文本<br>
+<code>textarea 标签定义多行的文本输入控件</code><br>
+<code>readonly 方法用于规定文本区为只读</code><br>
+<a href="https://www.w3school.com.cn/tags/tag_textarea.asp">textarea用法</a></p>
+</li>
+<li class="lvl-3">
+<p>点击前端按钮时，执行某方法，显示正在加载中</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div id=&quot;reachSpinner&quot; ng-show=&quot;shared.isComputingReach == true&quot;&gt;</span><br><span class="line">    &lt;img src=&quot;/netTopo/Web/picture/loading.gif&quot;/&gt;</span><br><span class="line">    &lt;h1&gt;可达性计算中&lt;/h1&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">其中添加一个reachSpinner.css类用于渲染</span><br><span class="line">#reachSpinner &#123;</span><br><span class="line">position: fixed;</span><br><span class="line">top: 0; left: 0;</span><br><span class="line">width: 100vw; height: 100vh;</span><br><span class="line">z-index: 9999;</span><br><span class="line">background: rgba(0, 0, 0, 0.7);</span><br><span class="line">transition: opacity 0.2s;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/* (B) CENTER LOADING SPINNER */</span><br><span class="line">#reachSpinner img &#123;</span><br><span class="line">    position: absolute;</span><br><span class="line">    top: 50%; left: 50%;</span><br><span class="line">    transform: translate(-50%);</span><br><span class="line">&#125;</span><br><span class="line">#reachSpinner h1 &#123;</span><br><span class="line">    color: white;</span><br><span class="line">    position: absolute;</span><br><span class="line">    top: 60%; left: 50%;</span><br><span class="line">    transform: translate(-50%);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li class="lvl-3">
+<p>删除临时目录及文件</p>
+</li>
+</ol>
+<blockquote>
+<p>不能直接使用delete命令删除存在文件的目录，需先将目录下的文件删除后，再删除该目录</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">File dir = new File(path);</span><br><span class="line">File[] listFiles = dir.listFiles();</span><br><span class="line">if(listFiles != null)</span><br><span class="line">&#123;</span><br><span class="line">    for(File file : listFiles)</span><br><span class="line">    &#123;</span><br><span class="line">        file.delete();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">dir.delete();</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>netTopo项目</tag>
       </tags>
   </entry>
   <entry>
@@ -1744,6 +1545,205 @@ c. 增大分割平面间隔</p>
 ]]></content>
       <tags>
         <tag>机器学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>计算机网络</title>
+    <url>/2023/03/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</url>
+    <content><![CDATA[<h3 id="计算机网络">计算机网络</h3>
+<span id="more"></span>
+<p>瓶颈带宽、链路带宽、可用带宽</p>
+<blockquote>
+<p>瓶颈带宽：源节点与目的节点之间处理能力最低的链路所能提供的最大数据传输速率</p>
+<p>链路带宽：链路上最大数据传输速率</p>
+<p>可用带宽：网络在不影响其他业务流的情况下，所能给一个业务流提供的最大数据传输速率</p>
+</blockquote>
+<p>网络加载慢</p>
+<blockquote>
+<p>服务器负载大</p>
+<p>网络拥塞</p>
+<p>服务器带宽不足</p>
+</blockquote>
+<p>TCP/IP体系结构对移动性支持不好</p>
+<blockquote>
+<p>$\color{red}{原因}$</p>
+<ol>
+<li class="lvl-3">
+<p>IP地址既表示位置又表示身份，移动时位置发生改变，身份不会改变。</p>
+</li>
+<li class="lvl-3">
+<p>复杂的网络协议和系统无法支持快速组网</p>
+</li>
+<li class="lvl-3">
+<p>不支持地址和身份的动态绑定，移动过程中会切换地址</p>
+</li>
+</ol>
+<p>$\color{red}{解决方案}$</p>
+<ol>
+<li class="lvl-3">
+<p>Mobile TP</p>
+<ol>
+<li class="lvl-6">
+<p>移动主机存在一个永久的IP地址identifier，移动时网络前缀不变</p>
+</li>
+<li class="lvl-6">
+<p>主机移动时，分配新的IP地址locator</p>
+</li>
+<li class="lvl-6">
+<p>两个地址共存，locator负责数据接收，identifier负责解复用数据</p>
+</li>
+</ol>
+</li>
+<li class="lvl-3">
+<p>连接和IP地址解绑定</p>
+<ol>
+<li class="lvl-6">
+<p>当IP地址发生改变时，移动一方通告对方自己新的地址</p>
+</li>
+<li class="lvl-6">
+<p>两端应用连接断开</p>
+</li>
+</ol>
+</li>
+<li class="lvl-3">
+<p>使用NDN机制</p>
+</li>
+</ol>
+</blockquote>
+<p>超时重传</p>
+<blockquote>
+<p>$\color{red}{概念}$</p>
+<p>超时重传是TCP保证可靠性传输的重要机制。当发送端发送一个报文，TCP会为其保留一个副本，设定一个计时器并等待确认信息，当计时器过期并且发送端发送的报文中数据未获得确认时，TCP会重传该报文，直到成功为止。</p>
+</blockquote>
+<p>输入网址，跳转网页过程</p>
+<blockquote>
+<ul class="lvl-1">
+<li class="lvl-2">
+<p>DNS解析网址对应的IP地址</p>
+</li>
+<li class="lvl-2">
+<p>构建HTTP请求，封装TCP/IP数据包</p>
+</li>
+<li class="lvl-2">
+<p>根据IP地址查找网关和下一跳IP地址</p>
+</li>
+<li class="lvl-2">
+<p>根据下一跳IP地址寻找下一跳MAC地址</p>
+</li>
+<li class="lvl-2">
+<p>将数据包发送到网关</p>
+</li>
+<li class="lvl-2">
+<p>根据路由寻址抵达网页服务器</p>
+</li>
+<li class="lvl-2">
+<p>服务器解析请求，返回指定的页面</p>
+</li>
+</ul>
+</blockquote>
+<p>下图是 OpenFlow 局域网络拓扑，S1 的流表包含一条转发规则，Controller 持有全局网络的拓扑信息，请描述 Packet 1 从 C1 到 H2 的转发过程，包含流表查询、流表安装流程以及具体的流表转发规则。</p>
+<p><img src="C:%5CUsers%5C%E7%94%B0%E6%99%93%E6%BB%A8%5CAppData%5CRoaming%5Cmarktext%5Cimages%5C2022-11-23-14-58-18-image.png" alt=""></p>
+<blockquote>
+<ol>
+<li class="lvl-3">
+<p>Packet1从C1的唯一端口转发到S1中去</p>
+</li>
+<li class="lvl-3">
+<p>到达S1，查S1流表，发现无匹配项。将该数据包缓存，查询控制器Controller</p>
+</li>
+<li class="lvl-3">
+<p>控制器下发规则到S1，内容为&quot;DstIP=H2,Output=2&quot;</p>
+</li>
+<li class="lvl-3">
+<p>S1按照规则从S1的port2转发到S2</p>
+</li>
+<li class="lvl-3">
+<p>到达S2，查S2流表，发现无匹配项。将该数据包缓存，查询控制器Controller</p>
+</li>
+<li class="lvl-3">
+<p>控制器下发规则到S2，内容为&quot;DstIP=H2,Output=2&quot;</p>
+</li>
+<li class="lvl-3">
+<p>S2按照规则从S2的port2转发到H2</p>
+</li>
+</ol>
+</blockquote>
+<p>为什么 RSA 算法是有效的非对称加密算法？什么是数字签名？数字签名认证的过程是什么</p>
+<blockquote>
+<p>RSA为有效的非对称加密算法。知道公钥(e,n),，很难知道私钥(d,n)，要想获得私钥，必须知道z=(p-1)*(q-1)，而n=pq，p、q都为大质数，因此除了试错法之外，没有有效的方法将n分解，大数分解难题产生的不对称性也是RSA的理论基础。</p>
+<p>$\color{red}{数字签名}$</p>
+<p>设计一个可以代替手迹签名的方案。从根本上讲，我们需要一种这样的系统，一方通过该系统可以采用以下方式将已签名的文件发送给接受方：</p>
+<ul class="lvl-1">
+<li class="lvl-2">
+<p>接收方要能验证发送方的宣称的身份</p>
+</li>
+<li class="lvl-2">
+<p>发送方不能否认发送的报文</p>
+</li>
+<li class="lvl-2">
+<p>接收方不能伪造数字签名</p>
+</li>
+</ul>
+<p>过程</p>
+<ul class="lvl-1">
+<li class="lvl-2">
+<p>发送方共享公钥</p>
+</li>
+<li class="lvl-2">
+<p>发送方哈希数据</p>
+</li>
+<li class="lvl-2">
+<p>将哈希值用私钥加密</p>
+</li>
+<li class="lvl-2">
+<p>接收方用公钥解密</p>
+</li>
+<li class="lvl-2">
+<p>用哈希将接受数据哈希</p>
+</li>
+<li class="lvl-2">
+<p>将两个哈希值比对，判断是否被篡改</p>
+</li>
+</ul>
+</blockquote>
+<p>数据中心网络内部构成一个网络，请从网络管理，协议设计的角度，定性对比数据中心网络和互联网网络。</p>
+<table>
+<thead>
+<tr>
+<th>互联网</th>
+<th style="text-align:center">数据中心网络</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>分布式控制/路由</td>
+<td style="text-align:center">中心式控制和路由选择</td>
+</tr>
+<tr>
+<td>改变需达成共识</td>
+<td style="text-align:center">改变不需要达成共识</td>
+</tr>
+<tr>
+<td>标准传输TCP和UDP</td>
+<td style="text-align:center">多种传输协议</td>
+</tr>
+<tr>
+<td>难以测量</td>
+<td style="text-align:center">容易测量</td>
+</tr>
+<tr>
+<td>多个自治系统</td>
+<td style="text-align:center">一个管理域</td>
+</tr>
+<tr>
+<td>单个最短路径</td>
+<td style="text-align:center">源到目的有多条路径</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+      <tags>
+        <tag>网络</tag>
       </tags>
   </entry>
 </search>

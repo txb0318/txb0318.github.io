@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>My New Post</title>
-    <url>/2023/03/24/My-New-Post/</url>
-    <content><![CDATA[<h3 id="第一次测试博客">第一次测试博客</h3>
-<span id="more"></span>]]></content>
-  </entry>
-  <entry>
     <title>JAVA开发</title>
     <url>/2023/03/26/JAVA%E5%BC%80%E5%8F%91/</url>
     <content><![CDATA[<h3 id="JAVA开发">JAVA开发</h3>
@@ -52,28 +46,6 @@ rule 3 192.168.1.1/25  port3</p>
       <tags>
         <tag>后端学习</tag>
       </tags>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/2023/03/24/hello-world/</url>
-    <content><![CDATA[<hr>
-<h2 id="title-Hello-World">title: Hello World</h2>
-<span id="more"></span>
-<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start">Quick Start</h2>
-<h3 id="Create-a-new-post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
   </entry>
   <entry>
     <title>Java后端开发注意事项</title>
@@ -177,30 +149,40 @@ I HAVE A <em>DOG</em></p>
       </tags>
   </entry>
   <entry>
+    <title></title>
+    <url>/2023/03/24/hello-world/</url>
+    <content><![CDATA[<hr>
+<h2 id="title-Hello-World">title: Hello World</h2>
+<span id="more"></span>
+<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start">Quick Start</h2>
+<h3 id="Create-a-new-post">Create a new post</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server">Run server</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files">Generate static files</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites">Deploy to remote sites</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>My New Post</title>
+    <url>/2023/03/24/My-New-Post/</url>
+    <content><![CDATA[<h3 id="第一次测试博客">第一次测试博客</h3>
+<span id="more"></span>]]></content>
+  </entry>
+  <entry>
     <title>switch</title>
     <url>/2023/03/25/switch/</url>
     <content><![CDATA[<h3 id="交换机的使用方法介绍">交换机的使用方法介绍</h3>
 <span id="more"></span>
 <p>目前，主流厂商可分为思科（Cisco）、华为、锐捷、H3C</p>
 ]]></content>
-  </entry>
-  <entry>
-    <title>系统命令</title>
-    <url>/2023/03/26/windows%E4%B8%8B%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/</url>
-    <content><![CDATA[<h3 id="windows下文件操作">windows下文件操作</h3>
-<span id="more"></span>
-<p>查看文件MD5\SHA1\256</p>
-<blockquote>
-<p>CMD</p>
-<p>certutil -hashfile D:\emp.png MD5</p>
-<p>certutil -hashfile D:\ubuntu_18.iso SHA1</p>
-<p>certutil -hashfile D:\setup.exe SHA256</p>
-</blockquote>
-<p><img src="C:%5CUsers%5C%E7%94%B0%E6%99%93%E6%BB%A8%5CAppData%5CRoaming%5Cmarktext%5Cimages%5C2022-11-27-09-16-50-image.png" alt=""></p>
-]]></content>
-      <tags>
-        <tag>系统命令</tag>
-      </tags>
   </entry>
   <entry>
     <title>Echart JS</title>
@@ -253,6 +235,24 @@ Echarts实例：<br>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line">tdBodys += `<span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;$&#123;i&#125;x&quot;</span> <span class="attr">id</span>=<span class="string">&quot;$&#123;i&#125;&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">value</span>=<span class="string">$&#123;isReachnodes&#125;</span> <span class="attr">style</span>=<span class="string">&quot;border: none;text-align: center;color: #444444;color: #444444&quot;</span> <span class="attr">readonly</span>=<span class="string">&quot;readonly&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span>`;   </span><br><span class="line">tdBodys += `<span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">onclick</span>=<span class="string">&quot;showdetails($&#123;i&#125;)&quot;</span>&gt;</span>展开<span class="tag">&lt;/<span class="name">button</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span>`;</span><br><span class="line">  </span><br><span class="line">function showdetails(i)&#123;</span><br><span class="line">  var elementById = document.getElementById(i);</span><br><span class="line">  alert(elementById.getAttribute(&quot;value&quot;));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <tags>
         <tag>前端学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>系统命令</title>
+    <url>/2023/03/26/windows%E4%B8%8B%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/</url>
+    <content><![CDATA[<h3 id="windows下文件操作">windows下文件操作</h3>
+<span id="more"></span>
+<p>查看文件MD5\SHA1\256</p>
+<blockquote>
+<p>CMD</p>
+<p>certutil -hashfile D:\emp.png MD5</p>
+<p>certutil -hashfile D:\ubuntu_18.iso SHA1</p>
+<p>certutil -hashfile D:\setup.exe SHA256</p>
+</blockquote>
+<p><img src="C:%5CUsers%5C%E7%94%B0%E6%99%93%E6%BB%A8%5CAppData%5CRoaming%5Cmarktext%5Cimages%5C2022-11-27-09-16-50-image.png" alt=""></p>
+]]></content>
+      <tags>
+        <tag>系统命令</tag>
       </tags>
   </entry>
   <entry>
@@ -353,6 +353,41 @@ Echarts实例：<br>
 </blockquote>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">File dir = new File(path);</span><br><span class="line">File[] listFiles = dir.listFiles();</span><br><span class="line">if(listFiles != null)</span><br><span class="line">&#123;</span><br><span class="line">    for(File file : listFiles)</span><br><span class="line">    &#123;</span><br><span class="line">        file.delete();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">dir.delete();</span><br></pre></td></tr></table></figure>
 ]]></content>
+      <tags>
+        <tag>netTopo项目</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>netTopo</title>
+    <url>/2023/03/26/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<h3 id="数据库学习">数据库学习</h3>
+<span id="more"></span>
+<h4 id="本次项目中使用的数据库为MySQL-本次项目为netTopo">本次项目中使用的数据库为MySQL 本次项目为netTopo</h4>
+<blockquote>
+<p>数据库配置</p>
+<blockquote>
+<p>本次项目采用Tomcat服务器，前后端不分离</p>
+</blockquote>
+<p>项目结构</p>
+</blockquote>
+<p><img src="./temppicture/img.png" alt="项目结构"><br>
+由图中可以看到 采用的为SMV架构 其中dao是专门进行数据库处理的 为每个表划分单个类进行数据库处理<br>
+首先是数据库的基本配置(采用JDBC连接)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Connection connection = null;</span><br><span class="line">String driver = &quot;com.mysql.jdbc.Driver&quot;;</span><br><span class="line">String url = &quot;jdbc:mysql://localhost:3306/switch_info?useUnicode=true&amp;characterEncoding=UTF-8&amp;userSSL=false&amp;serverTimezone=GMT%2B8&amp;useOldAliasMetadataBehavior=true&quot;;</span><br><span class="line">String username = &quot;root&quot;;</span><br><span class="line">String password = &quot;password&quot;;</span><br></pre></td></tr></table></figure>
+<p>数据库的查询(根据IP查找其他字段内容)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public List&lt;FibInfo&gt; queryInfoByIp(String ip)&#123;</span><br><span class="line">    List&lt;FibInfo&gt; result=new ArrayList&lt;&gt;();</span><br><span class="line">    Connection conn =  getConnection();</span><br><span class="line">    try &#123;</span><br><span class="line">        PreparedStatement stmt = (PreparedStatement) conn.prepareStatement</span><br><span class="line">                (&quot;SELECT name,mask,port FROM fib_table where ip = ?;&quot;);</span><br><span class="line">        stmt.setString(1, ip);</span><br><span class="line">        ResultSet rs =  stmt.executeQuery();</span><br><span class="line">        while(rs.next()) &#123;</span><br><span class="line">            String name=rs.getString(&quot;name&quot;);</span><br><span class="line">            String mask=rs.getString(&quot;mask&quot;);</span><br><span class="line">            String port = rs.getString(&quot;port&quot;);</span><br><span class="line">            result.add(new FibInfo(name,ip,mask,port));</span><br><span class="line">        &#125;</span><br><span class="line">        stmt.close();</span><br><span class="line">        conn.close();</span><br><span class="line">    &#125; catch (SQLException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>数据库的增加</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public int addInfoList(List&lt;FibInfo&gt; fibTable)&#123;</span><br><span class="line">    Connection conn = getConnection();</span><br><span class="line">    PreparedStatement stmt= null;</span><br><span class="line">    String sql = &quot;insert into fib_table ( name,ip,mask,port) values(?,?,?,?)&quot;;</span><br><span class="line">    for(FibInfo fibInfo:fibTable)&#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            stmt = (PreparedStatement) conn.prepareStatement(sql);</span><br><span class="line">            stmt.setString(1,fibInfo.getName());</span><br><span class="line">            stmt.setString(2,fibInfo.getIp());</span><br><span class="line">            stmt.setString(3,fibInfo.getMask());</span><br><span class="line">            stmt.setString(4,fibInfo.getPort());</span><br><span class="line">            stmt.executeUpdate();</span><br><span class="line">        &#125; catch (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            return -1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    try &#123;</span><br><span class="line">        if(stmt!=null)</span><br><span class="line">            stmt.close();</span><br><span class="line">        conn.close();</span><br><span class="line">    &#125; catch (SQLException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>数据库的删除操作</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public boolean delInfo(String ip)&#123;</span><br><span class="line">    String sql=&quot;delete from fib_table where ip=&#x27;&quot; + ip + &quot;&#x27;&quot;;</span><br><span class="line">    return this.execute(sql);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public void deleteAllInfo()&#123;</span><br><span class="line">    String sql=&quot;truncate table fib_table&quot;;</span><br><span class="line">    this.executedelete(sql);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意这两种方式，前者是删除fib_table，后者是清空fib_table的内容</p>
+</blockquote>
+<p>当使用多线程访问数据库时，可能会产生报错，具体原因是当一个con未释放，新的con就被申请</p>
+<blockquote>
+<p>方法：给调用数据库的方法加锁synchronized  如下：</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">synchronized public static List&lt;Vlanport&gt; getVlanPorts(String switchIp, String routeTableEcho)  &#123;</span><br><span class="line">    List&lt;Vlanport&gt; vlanRes = new ArrayList&lt;&gt;();</span><br><span class="line">    String[] lines = routeTableEcho.split(&quot;\n|\r\n|\r&quot;);</span><br><span class="line">    SqlTest h = new SqlTest();</span><br><span class="line">    con = h.getConnection();</span><br><span class="line">    String device  = h.queryData(&quot;topo_node&quot;,switchIp,&quot;ip&quot;,&quot;name&quot;);</span><br></pre></td></tr></table></figure>]]></content>
       <tags>
         <tag>netTopo项目</tag>
       </tags>
@@ -1032,41 +1067,6 @@ Echarts实例：<br>
       </tags>
   </entry>
   <entry>
-    <title>netTopo</title>
-    <url>/2023/03/26/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[<h3 id="数据库学习">数据库学习</h3>
-<span id="more"></span>
-<h4 id="本次项目中使用的数据库为MySQL-本次项目为netTopo">本次项目中使用的数据库为MySQL 本次项目为netTopo</h4>
-<blockquote>
-<p>数据库配置</p>
-<blockquote>
-<p>本次项目采用Tomcat服务器，前后端不分离</p>
-</blockquote>
-<p>项目结构</p>
-</blockquote>
-<p><img src="./temppicture/img.png" alt="项目结构"><br>
-由图中可以看到 采用的为SMV架构 其中dao是专门进行数据库处理的 为每个表划分单个类进行数据库处理<br>
-首先是数据库的基本配置(采用JDBC连接)</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Connection connection = null;</span><br><span class="line">String driver = &quot;com.mysql.jdbc.Driver&quot;;</span><br><span class="line">String url = &quot;jdbc:mysql://localhost:3306/switch_info?useUnicode=true&amp;characterEncoding=UTF-8&amp;userSSL=false&amp;serverTimezone=GMT%2B8&amp;useOldAliasMetadataBehavior=true&quot;;</span><br><span class="line">String username = &quot;root&quot;;</span><br><span class="line">String password = &quot;password&quot;;</span><br></pre></td></tr></table></figure>
-<p>数据库的查询(根据IP查找其他字段内容)</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public List&lt;FibInfo&gt; queryInfoByIp(String ip)&#123;</span><br><span class="line">    List&lt;FibInfo&gt; result=new ArrayList&lt;&gt;();</span><br><span class="line">    Connection conn =  getConnection();</span><br><span class="line">    try &#123;</span><br><span class="line">        PreparedStatement stmt = (PreparedStatement) conn.prepareStatement</span><br><span class="line">                (&quot;SELECT name,mask,port FROM fib_table where ip = ?;&quot;);</span><br><span class="line">        stmt.setString(1, ip);</span><br><span class="line">        ResultSet rs =  stmt.executeQuery();</span><br><span class="line">        while(rs.next()) &#123;</span><br><span class="line">            String name=rs.getString(&quot;name&quot;);</span><br><span class="line">            String mask=rs.getString(&quot;mask&quot;);</span><br><span class="line">            String port = rs.getString(&quot;port&quot;);</span><br><span class="line">            result.add(new FibInfo(name,ip,mask,port));</span><br><span class="line">        &#125;</span><br><span class="line">        stmt.close();</span><br><span class="line">        conn.close();</span><br><span class="line">    &#125; catch (SQLException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>数据库的增加</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public int addInfoList(List&lt;FibInfo&gt; fibTable)&#123;</span><br><span class="line">    Connection conn = getConnection();</span><br><span class="line">    PreparedStatement stmt= null;</span><br><span class="line">    String sql = &quot;insert into fib_table ( name,ip,mask,port) values(?,?,?,?)&quot;;</span><br><span class="line">    for(FibInfo fibInfo:fibTable)&#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            stmt = (PreparedStatement) conn.prepareStatement(sql);</span><br><span class="line">            stmt.setString(1,fibInfo.getName());</span><br><span class="line">            stmt.setString(2,fibInfo.getIp());</span><br><span class="line">            stmt.setString(3,fibInfo.getMask());</span><br><span class="line">            stmt.setString(4,fibInfo.getPort());</span><br><span class="line">            stmt.executeUpdate();</span><br><span class="line">        &#125; catch (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            return -1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    try &#123;</span><br><span class="line">        if(stmt!=null)</span><br><span class="line">            stmt.close();</span><br><span class="line">        conn.close();</span><br><span class="line">    &#125; catch (SQLException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>数据库的删除操作</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public boolean delInfo(String ip)&#123;</span><br><span class="line">    String sql=&quot;delete from fib_table where ip=&#x27;&quot; + ip + &quot;&#x27;&quot;;</span><br><span class="line">    return this.execute(sql);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public void deleteAllInfo()&#123;</span><br><span class="line">    String sql=&quot;truncate table fib_table&quot;;</span><br><span class="line">    this.executedelete(sql);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注意这两种方式，前者是删除fib_table，后者是清空fib_table的内容</p>
-</blockquote>
-<p>当使用多线程访问数据库时，可能会产生报错，具体原因是当一个con未释放，新的con就被申请</p>
-<blockquote>
-<p>方法：给调用数据库的方法加锁synchronized  如下：</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">synchronized public static List&lt;Vlanport&gt; getVlanPorts(String switchIp, String routeTableEcho)  &#123;</span><br><span class="line">    List&lt;Vlanport&gt; vlanRes = new ArrayList&lt;&gt;();</span><br><span class="line">    String[] lines = routeTableEcho.split(&quot;\n|\r\n|\r&quot;);</span><br><span class="line">    SqlTest h = new SqlTest();</span><br><span class="line">    con = h.getConnection();</span><br><span class="line">    String device  = h.queryData(&quot;topo_node&quot;,switchIp,&quot;ip&quot;,&quot;name&quot;);</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>netTopo项目</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>计算机网络</title>
     <url>/2023/03/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</url>
     <content><![CDATA[<h3 id="计算机网络">计算机网络</h3>
@@ -1739,5 +1739,10 @@ c. 增大分割平面间隔</p>
       <tags>
         <tag>机器学习</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>404 Not Found：该页面无法显示</title>
+    <url>//404.html</url>
+    <content><![CDATA[]]></content>
   </entry>
 </search>

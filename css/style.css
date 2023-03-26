@@ -3471,6 +3471,29 @@ a.gitment-editor-footer-tip:hover {
   color: #808080;
   cursor: pointer;
 }
+ol.toc li.toc-item i {
+  display: inline-block;
+  margin-left: -0.9em;
+  width: 0.9em;
+  color: #b3b3b3;
+  font-weight: bold;
+  cursor: pointer;
+}
+ol.toc li.toc-item i:hover {
+  color: #000;
+}
+ol.toc li.toc-item i.hide {
+  display: none;
+}
+.toc-title.clickable {
+  cursor: pointer;
+}
+.toc-title.clickable:hover {
+  color: #88acdb;
+}
+.toc-title.clickable:active {
+  color: #d3d3d3;
+}
 @-moz-keyframes cd-bounce-1 {
   0% {
     opacity: 0;

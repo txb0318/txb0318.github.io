@@ -16,7 +16,7 @@
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
   
-    <link rel="icon" href="/img/favicon.png">
+    <link rel="icon" href="//img/favicon.png">
   
   
       
@@ -153,7 +153,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        
+                        <a href="/tags/netTopo%E9%A1%B9%E7%9B%AE/" style="font-size: 15px;">netTopo项目</a> <a href="/tags/%E4%BD%BF%E7%94%A8%E7%AE%80%E4%BB%8B/" style="font-size: 10px;">使用简介</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">前端学习</a> <a href="/tags/%E5%90%8E%E7%AB%AF%E5%AD%A6%E4%B9%A0/" style="font-size: 15px;">后端学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E5%91%BD%E4%BB%A4/" style="font-size: 10px;">系统命令</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 20px;">网络</a>
                     </div>
                 </section>
                 
@@ -235,11 +235,11 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-Java后端开发注意事项" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-计算机网络" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2023/03/25/Java%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" class="article-date">
-      <time datetime="2023-03-25T07:42:03.246Z" itemprop="datePublished">2023-03-25</time>
+      <a href="/2023/03/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="article-date">
+      <time datetime="2023-03-26T01:52:45.000Z" itemprop="datePublished">2023-03-26</time>
 </a>
     </div>
   
@@ -248,28 +248,210 @@
       <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/03/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+    </h1>
+  
+
+      </header>
+      
+    
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3 id="Java后端开发注意事项">Java后端开发注意事项</h3>
-<p>异常处理</p>
+        <h3 id="计算机网络">计算机网络</h3>
+<p>瓶颈带宽、链路带宽、可用带宽</p>
+<blockquote>
+<p>瓶颈带宽：源节点与目的节点之间处理能力最低的链路所能提供的最大数据传输速率</p>
+<p>链路带宽：链路上最大数据传输速率</p>
+<p>可用带宽：网络在不影响其他业务流的情况下，所能给一个业务流提供的最大数据传输速率</p>
+</blockquote>
+<p>网络加载慢</p>
+<blockquote>
+<p>服务器负载大</p>
+<p>网络拥塞</p>
+<p>服务器带宽不足</p>
+</blockquote>
+<p>TCP/IP体系结构对移动性支持不好</p>
+<blockquote>
+<p>$\color{red}{原因}$</p>
 <ol>
 <li class="lvl-3">
-<p>try-catch-finally</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//代码可能存在异常</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">catch</span>(Exception exception)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//捕获异常</span></span><br><span class="line">    <span class="comment">//1.异常发生时，系统将异常封装成Exception对象exception</span></span><br><span class="line">    <span class="comment">//2.传值给catch</span></span><br><span class="line">    <span class="comment">//3.获取异常对象时，程序员自己处理</span></span><br><span class="line">    <span class="comment">//4.若try中代码无异常，则catch不会发生</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">finally</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//1.无论try中代码是否存在异常，始终执行finally    </span></span><br><span class="line">    <span class="comment">//2.通常将释放资源的代码，放在finally关闭</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>IP地址既表示位置又表示身份，移动时位置发生改变，身份不会改变。</p>
 </li>
 <li class="lvl-3">
-<p>throws</p>
+<p>复杂的网络协议和系统无法支持快速组网</p>
+</li>
+<li class="lvl-3">
+<p>不支持地址和身份的动态绑定，移动过程中会切换地址</p>
 </li>
 </ol>
-<blockquote>
-<p>main方法由JVM调用，main方法调用 f1 方法，f1 方法调用 f2 方法，如果 f2 方法发生异常，有两种方案，分别是 try-catch-finally 和 throws ，f2 使用 throws 方法，返回给 f1，f1也可以同样选择throws方法，返回给 main 方法，最终返回到 JVM。而 JVM 对处理异常的发生极为粗暴（1.输出异常信息。2. 退出程序）。</p>
+<p>$\color{red}{解决方案}$</p>
+<ol>
+<li class="lvl-3">
+<p>Mobile TP</p>
+<ol>
+<li class="lvl-6">
+<p>移动主机存在一个永久的IP地址identifier，移动时网络前缀不变</p>
+</li>
+<li class="lvl-6">
+<p>主机移动时，分配新的IP地址locator</p>
+</li>
+<li class="lvl-6">
+<p>两个地址共存，locator负责数据接收，identifier负责解复用数据</p>
+</li>
+</ol>
+</li>
+<li class="lvl-3">
+<p>连接和IP地址解绑定</p>
+<ol>
+<li class="lvl-6">
+<p>当IP地址发生改变时，移动一方通告对方自己新的地址</p>
+</li>
+<li class="lvl-6">
+<p>两端应用连接断开</p>
+</li>
+</ol>
+</li>
+<li class="lvl-3">
+<p>使用NDN机制</p>
+</li>
+</ol>
 </blockquote>
-<ul class="lvl-0">
+<p>超时重传</p>
+<blockquote>
+<p>$\color{red}{概念}$</p>
+<p>超时重传是TCP保证可靠性传输的重要机制。当发送端发送一个报文，TCP会为其保留一个副本，设定一个计时器并等待确认信息，当计时器过期并且发送端发送的报文中数据未获得确认时，TCP会重传该报文，直到成功为止。</p>
+</blockquote>
+<p>输入网址，跳转网页过程</p>
+<blockquote>
+<ul class="lvl-1">
 <li class="lvl-2">
-<p>[x]</p>
+<p>DNS解析网址对应的IP地址</p>
+</li>
+<li class="lvl-2">
+<p>构建HTTP请求，封装TCP/IP数据包</p>
+</li>
+<li class="lvl-2">
+<p>根据IP地址查找网关和下一跳IP地址</p>
+</li>
+<li class="lvl-2">
+<p>根据下一跳IP地址寻找下一跳MAC地址</p>
+</li>
+<li class="lvl-2">
+<p>将数据包发送到网关</p>
+</li>
+<li class="lvl-2">
+<p>根据路由寻址抵达网页服务器</p>
+</li>
+<li class="lvl-2">
+<p>服务器解析请求，返回指定的页面</p>
 </li>
 </ul>
+</blockquote>
+<p>下图是 OpenFlow 局域网络拓扑，S1 的流表包含一条转发规则，Controller 持有全局网络的拓扑信息，请描述 Packet 1 从 C1 到 H2 的转发过程，包含流表查询、流表安装流程以及具体的流表转发规则。</p>
+<p><img src="C:%5CUsers%5C%E7%94%B0%E6%99%93%E6%BB%A8%5CAppData%5CRoaming%5Cmarktext%5Cimages%5C2022-11-23-14-58-18-image.png" alt=""></p>
+<blockquote>
+<ol>
+<li class="lvl-3">
+<p>Packet1从C1的唯一端口转发到S1中去</p>
+</li>
+<li class="lvl-3">
+<p>到达S1，查S1流表，发现无匹配项。将该数据包缓存，查询控制器Controller</p>
+</li>
+<li class="lvl-3">
+<p>控制器下发规则到S1，内容为&quot;DstIP=H2,Output=2&quot;</p>
+</li>
+<li class="lvl-3">
+<p>S1按照规则从S1的port2转发到S2</p>
+</li>
+<li class="lvl-3">
+<p>到达S2，查S2流表，发现无匹配项。将该数据包缓存，查询控制器Controller</p>
+</li>
+<li class="lvl-3">
+<p>控制器下发规则到S2，内容为&quot;DstIP=H2,Output=2&quot;</p>
+</li>
+<li class="lvl-3">
+<p>S2按照规则从S2的port2转发到H2</p>
+</li>
+</ol>
+</blockquote>
+<p>为什么 RSA 算法是有效的非对称加密算法？什么是数字签名？数字签名认证的过程是什么</p>
+<blockquote>
+<p>RSA为有效的非对称加密算法。知道公钥(e,n),，很难知道私钥(d,n)，要想获得私钥，必须知道z=(p-1)*(q-1)，而n=pq，p、q都为大质数，因此除了试错法之外，没有有效的方法将n分解，大数分解难题产生的不对称性也是RSA的理论基础。</p>
+<p>$\color{red}{数字签名}$</p>
+<p>设计一个可以代替手迹签名的方案。从根本上讲，我们需要一种这样的系统，一方通过该系统可以采用以下方式将已签名的文件发送给接受方：</p>
+<ul class="lvl-1">
+<li class="lvl-2">
+<p>接收方要能验证发送方的宣称的身份</p>
+</li>
+<li class="lvl-2">
+<p>发送方不能否认发送的报文</p>
+</li>
+<li class="lvl-2">
+<p>接收方不能伪造数字签名</p>
+</li>
+</ul>
+<p>过程</p>
+<ul class="lvl-1">
+<li class="lvl-2">
+<p>发送方共享公钥</p>
+</li>
+<li class="lvl-2">
+<p>发送方哈希数据</p>
+</li>
+<li class="lvl-2">
+<p>将哈希值用私钥加密</p>
+</li>
+<li class="lvl-2">
+<p>接收方用公钥解密</p>
+</li>
+<li class="lvl-2">
+<p>用哈希将接受数据哈希</p>
+</li>
+<li class="lvl-2">
+<p>将两个哈希值比对，判断是否被篡改</p>
+</li>
+</ul>
+</blockquote>
+<p>数据中心网络内部构成一个网络，请从网络管理，协议设计的角度，定性对比数据中心网络和互联网网络。</p>
+<table>
+<thead>
+<tr>
+<th>互联网</th>
+<th style="text-align:center">数据中心网络</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>分布式控制/路由</td>
+<td style="text-align:center">中心式控制和路由选择</td>
+</tr>
+<tr>
+<td>改变需达成共识</td>
+<td style="text-align:center">改变不需要达成共识</td>
+</tr>
+<tr>
+<td>标准传输TCP和UDP</td>
+<td style="text-align:center">多种传输协议</td>
+</tr>
+<tr>
+<td>难以测量</td>
+<td style="text-align:center">容易测量</td>
+</tr>
+<tr>
+<td>多个自治系统</td>
+<td style="text-align:center">一个管理域</td>
+</tr>
+<tr>
+<td>单个最短路径</td>
+<td style="text-align:center">源到目的有多条路径</td>
+</tr>
+</tbody>
+</table>
 
       
       
@@ -280,6 +462,10 @@
       
 
       
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li></ul>
+    </div>
+
       
       <div class="clearfix"></div>
     </div>
@@ -420,21 +606,12 @@
       <input type="hidden" class="isFancy" />
     
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/03/24/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-      
-    
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+        <hr>
+<h2 id="title-Hello-World">title: Hello World</h2>
+<p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
 <h2 id="Quick-Start">Quick Start</h2>
 <h3 id="Create-a-new-post">Create a new post</h3>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>

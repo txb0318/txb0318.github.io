@@ -3,24 +3,29 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Hexo</title>
+  <title>华为拓扑测试 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="JAVA开发 流程  初始化模型（规则树） 将规则添加到前缀树中 提取前缀树中规则 模型更新 验证  根据端口名获取端口（不存在直接添加） 123456Port p &#x3D; device.getPort(&quot;default&quot;);public Port getPort(String name) &amp;#123;    nameToPort.putIfAbsent(name, new Por">
+  <meta name="description" content="华为拓扑测试 首先创建拓扑图  设计目标   禁止192.168.30.2 访问 192.168.50.0&#x2F;24   禁止ACC4.VLAN10访问ACC6.VLAN40   禁止ACC2.VLAN30访问ACC6.VLAN40   禁止ACC3(192.168.40.2)可以从CORE的所有接口转发出去   NULL   允许 192.168.10.2 访问192.168.50.0&#x2F;24   允">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/2023/03/25/JAVA%E5%BC%80%E5%8F%91/index.html">
+<meta property="og:title" content="华为拓扑测试">
+<meta property="og:url" content="http://example.com/2023/03/26/%E5%8D%8E%E4%B8%BA%E6%8B%93%E6%89%91%E6%B5%8B%E8%AF%95/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="JAVA开发 流程  初始化模型（规则树） 将规则添加到前缀树中 提取前缀树中规则 模型更新 验证  根据端口名获取端口（不存在直接添加） 123456Port p &#x3D; device.getPort(&quot;default&quot;);public Port getPort(String name) &amp;#123;    nameToPort.putIfAbsent(name, new Por">
+<meta property="og:description" content="华为拓扑测试 首先创建拓扑图  设计目标   禁止192.168.30.2 访问 192.168.50.0&#x2F;24   禁止ACC4.VLAN10访问ACC6.VLAN40   禁止ACC2.VLAN30访问ACC6.VLAN40   禁止ACC3(192.168.40.2)可以从CORE的所有接口转发出去   NULL   允许 192.168.10.2 访问192.168.50.0&#x2F;24   允">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-03-25T07:42:03.248Z">
-<meta property="article:modified_time" content="2022-11-27T10:19:12.176Z">
+<meta property="og:image" content="c:%5CUsers%5C%E7%94%B0%E6%99%93%E6%BB%A8%5CAppData%5CRoaming%5Cmarktext%5Cimages%5C2022-11-15-15-10-16-image.png">
+<meta property="og:image" content="c:%5CUsers%5C%E7%94%B0%E6%99%93%E6%BB%A8%5CAppData%5CRoaming%5Cmarktext%5Cimages%5C2022-11-15-16-37-27-image.png">
+<meta property="og:image" content="c:%5CUsers%5C%E7%94%B0%E6%99%93%E6%BB%A8%5CAppData%5CRoaming%5Cmarktext%5Cimages%5C2022-11-15-16-35-33-image.png">
+<meta property="article:published_time" content="2023-03-26T01:53:46.000Z">
+<meta property="article:modified_time" content="2023-03-26T01:56:03.761Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="网络">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:%5CUsers%5C%E7%94%B0%E6%99%93%E6%BB%A8%5CAppData%5CRoaming%5Cmarktext%5Cimages%5C2022-11-15-15-10-16-image.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
   
-    <link rel="icon" href="/img/favicon.png">
+    <link rel="icon" href="//img/favicon.png">
   
   
       
@@ -154,7 +159,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        
+                        <a href="/tags/netTopo%E9%A1%B9%E7%9B%AE/" style="font-size: 15px;">netTopo项目</a> <a href="/tags/%E4%BD%BF%E7%94%A8%E7%AE%80%E4%BB%8B/" style="font-size: 10px;">使用简介</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">前端学习</a> <a href="/tags/%E5%90%8E%E7%AB%AF%E5%AD%A6%E4%B9%A0/" style="font-size: 15px;">后端学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E5%91%BD%E4%BB%A4/" style="font-size: 10px;">系统命令</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 20px;">网络</a>
                     </div>
                 </section>
                 
@@ -234,11 +239,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-JAVA开发" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-华为拓扑测试" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2023/03/25/JAVA%E5%BC%80%E5%8F%91/" class="article-date">
-      <time datetime="2023-03-25T07:42:03.248Z" itemprop="datePublished">2023-03-25</time>
+      <a href="/2023/03/26/%E5%8D%8E%E4%B8%BA%E6%8B%93%E6%89%91%E6%B5%8B%E8%AF%95/" class="article-date">
+      <time datetime="2023-03-26T01:53:46.000Z" itemprop="datePublished">2023-03-26</time>
 </a>
     </div>
   
@@ -247,46 +252,94 @@
       <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      华为拓扑测试
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3 id="JAVA开发">JAVA开发</h3>
-<p>流程</p>
+        <h2 id="华为拓扑测试">华为拓扑测试</h2>
+<p>首先创建拓扑图</p>
+<p><img src="C:%5CUsers%5C%E7%94%B0%E6%99%93%E6%BB%A8%5CAppData%5CRoaming%5Cmarktext%5Cimages%5C2022-11-15-15-10-16-image.png" alt=""></p>
+<h4 id="设计目标">设计目标</h4>
+<ol>
+<li class="lvl-3">
+<p>禁止192.168.30.2 访问 192.168.50.0/24</p>
+</li>
+<li class="lvl-3">
+<p>禁止ACC4.VLAN10访问ACC6.VLAN40</p>
+</li>
+<li class="lvl-3">
+<p>禁止ACC2.VLAN30访问ACC6.VLAN40</p>
+</li>
+<li class="lvl-3">
+<p>禁止ACC3(192.168.40.2)可以从CORE的所有接口转发出去</p>
+</li>
+<li class="lvl-3">
+<p>NULL</p>
+</li>
+<li class="lvl-3">
+<p>允许 192.168.10.2 访问192.168.50.0/24</p>
+</li>
+<li class="lvl-3">
+<p>允许 192.168.10.4 访问192.168.50.0/24</p>
+</li>
+<li class="lvl-3">
+<p>禁止192.168.10.0/24 访问 192.168.50.0/24</p>
+</li>
+</ol>
+<h4 id="方案">方案</h4>
+<p>ACC3上部署ACL 实现目标6 7 8</p>
 <blockquote>
-<p>初始化模型（规则树）</p>
-<p>将规则添加到前缀树中</p>
-<p>提取前缀树中规则</p>
-<p>模型更新</p>
-<p>验证</p>
+<p>使用简化流策略，作用于接口。仅使用了基本ACL，满足了基本ACL尽量离目标近</p>
 </blockquote>
-<p>根据端口名获取端口（不存在直接添加）</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Port</span> <span class="variable">p</span> <span class="operator">=</span> device.getPort(<span class="string">&quot;default&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> Port <span class="title function_">getPort</span><span class="params">(String name)</span> &#123;</span><br><span class="line">    nameToPort.putIfAbsent(name, <span class="keyword">new</span> <span class="title class_">Port</span>(name, <span class="built_in">this</span>));</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.nameToPort.get(name);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>规则插入树结构</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> IndexedRules <span class="title function_">traverseSrc</span><span class="params">(Rule rule, ArrayList&lt;Rule&gt; ret, <span class="type">int</span> size)</span> &#123;</span><br><span class="line">        <span class="type">IndexedRules</span> <span class="variable">t</span> <span class="operator">=</span> <span class="built_in">this</span>;</span><br><span class="line">        <span class="keyword">if</span> (ret != <span class="literal">null</span>) t.read(rule, ret, size);</span><br><span class="line">        <span class="type">long</span> <span class="variable">srcIp</span> <span class="operator">=</span> rule.getSrc();<span class="comment">//获取IP</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; rule.getSrcSuffix(); i++) &#123;<span class="comment">//遍历前缀</span></span><br><span class="line">            <span class="type">long</span> <span class="variable">bit</span> <span class="operator">=</span> (srcIp &gt;&gt; i) &amp; <span class="number">1</span>;右移i位 并将其结果与<span class="number">1</span>进行and运算</span><br><span class="line">            t = t.buildNext(bit == <span class="number">0</span> ? <span class="number">0</span> : <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span> (ret != <span class="literal">null</span>) t.read(rule, ret, size);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (ret != <span class="literal">null</span>) t.exploreSrc(rule, ret, size);</span><br><span class="line">        <span class="keyword">return</span> t.traverse(rule, size);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//read() method</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">read</span><span class="params">(Rule rule, ArrayList&lt;Rule&gt; ret, <span class="type">int</span> size)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">this</span>.dst == <span class="literal">null</span>) <span class="keyword">return</span>;</span><br><span class="line">        <span class="type">IndexedRules</span> <span class="variable">t</span> <span class="operator">=</span> <span class="built_in">this</span>.dst;</span><br><span class="line">        <span class="keyword">if</span> (ret != <span class="literal">null</span>) ret.addAll(t.getRules());</span><br><span class="line">        <span class="type">long</span> <span class="variable">dstIp</span> <span class="operator">=</span> rule.getMatch().longValue();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; rule.getPrefix() - (<span class="number">32</span> - size); i++) &#123;</span><br><span class="line">            <span class="type">long</span> <span class="variable">bit</span> <span class="operator">=</span> (dstIp &gt;&gt; (size - <span class="number">1</span> - i)) &amp; <span class="number">1</span>;</span><br><span class="line">            t = (bit == <span class="number">0</span>) ? t.left : t.right;</span><br><span class="line">            <span class="keyword">if</span> (t == <span class="literal">null</span>) <span class="keyword">return</span>;</span><br><span class="line">            <span class="keyword">if</span> (ret != <span class="literal">null</span>) ret.addAll(t.getRules());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (ret != <span class="literal">null</span>) t.explore(ret);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//buildNext() method</span></span><br><span class="line">    <span class="keyword">private</span> IndexedRules <span class="title function_">buildNext</span><span class="params">(<span class="type">int</span> flag)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (flag == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">this</span>.left == <span class="literal">null</span>) &#123;</span><br><span class="line">                <span class="built_in">this</span>.left = <span class="keyword">new</span> <span class="title class_">IndexedRules</span>();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">this</span>.left;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">this</span>.right == <span class="literal">null</span>) &#123;</span><br><span class="line">                <span class="built_in">this</span>.right = <span class="keyword">new</span> <span class="title class_">IndexedRules</span>();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">this</span>.right;    </span><br><span class="line">&#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//explore() method</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">explore</span><span class="params">(ArrayList&lt;Rule&gt; ret)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">this</span>.left != <span class="literal">null</span>) <span class="built_in">this</span>.left.explore(ret);</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">this</span>.right != <span class="literal">null</span>) <span class="built_in">this</span>.right.explore(ret);</span><br><span class="line">        ret.addAll(<span class="built_in">this</span>.getRules());</span><br><span class="line"> &#125;</span><br><span class="line"><span class="comment">//traverse() method</span></span><br><span class="line">    <span class="keyword">public</span> IndexedRules <span class="title function_">traverse</span><span class="params">(Rule rule, <span class="type">int</span> size)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">this</span>.dst == <span class="literal">null</span>) <span class="built_in">this</span>.dst = <span class="keyword">new</span> <span class="title class_">IndexedRules</span>();</span><br><span class="line">        <span class="type">IndexedRules</span> <span class="variable">t</span> <span class="operator">=</span> <span class="built_in">this</span>.dst;</span><br><span class="line"></span><br><span class="line">        <span class="type">long</span> <span class="variable">dstIp</span> <span class="operator">=</span> rule.getMatch().longValue();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; rule.getPrefix() - (<span class="number">32</span> - size); i++) &#123;</span><br><span class="line">            <span class="type">long</span> <span class="variable">bit</span> <span class="operator">=</span> (dstIp &gt;&gt; (size - <span class="number">1</span> - i)) &amp; <span class="number">1</span>;</span><br><span class="line">            t = t.buildNext(bit == <span class="number">0</span> ? <span class="number">0</span> : <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> t;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//exploreSrc() method</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">exploreSrc</span><span class="params">(Rule rule, ArrayList&lt;Rule&gt; ret, <span class="type">int</span> size)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">this</span>.left != <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="built_in">this</span>.left.read(rule, ret, size);</span><br><span class="line">            <span class="built_in">this</span>.left.exploreSrc(rule, ret, size);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">this</span>.right != <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="built_in">this</span>.right.read(rule, ret, size);</span><br><span class="line">            <span class="built_in">this</span>.right.exploreSrc(rule, ret, size);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">test</span></span><br><span class="line"><span class="comment">default rule 0/0 32 -&gt;srcIp=0 getSrcSuffix=0 size=32</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">acl name acl3 2001;</span><br><span class="line">rule 5 permit source 192.168.10.4 0;</span><br><span class="line">rule 10 permit source 192.168.10.2 0;</span><br><span class="line">rule 15 deny source 192.168.10.0 0.0.0.255;</span><br><span class="line"></span><br><span class="line">interface ge0/0/3</span><br><span class="line">traffic-filter inbound acl name acl3 </span><br></pre></td></tr></table></figure>
+<p>CORE上部署ACL 实现目标1 3 4</p>
 <blockquote>
-<p>模拟测试</p>
-<p>假设存在三条转发规则</p>
-<p>rule 1 192.168.1.1/24  port1<br>
-rule 2 192.168.1.2/16  port2<br>
-rule 3 192.168.1.1/25  port3</p>
-<p>存在默认规则</p>
-<p>rule default 0.0/24 default</p>
-<p>过程</p>
-<p>1.添加默认规则</p>
-<p>调用traverseSrc(default, null, 32)</p>
-<blockquote>
-<p>调用traverse(default,32)</p>
+<p>使用流策略，既作用于接口又作用于VLAN。仅使用扩展ACL，扩展ACL离源设备近</p>
 </blockquote>
-<p>t = t.dst</p>
-<p>2.添加规则rule 1 rule 2 rule 3</p>
-<p>for循环遍历规则集合[rule 1,rule 2,rule 3]</p>
-<p>添加规则rule 1</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">acl number 3002;</span><br><span class="line">rule 5 deny ip source 192.168.30.0 0.0.0.255 destination 192.168.50.0 0.0.0.255</span><br><span class="line">acl number 3003;</span><br><span class="line">rule 10 deny ip source 192.168.30.0 0.0.0.255 destination 192.168.40.0 0.0.0.255</span><br><span class="line">acl number 3004;</span><br><span class="line">rule 5 deny ip destination 192.168.40.2 0</span><br><span class="line"></span><br><span class="line">#配置流分类</span><br><span class="line">traffic classifier c1;</span><br><span class="line">if-match acl 3002;</span><br><span class="line">traffic classifier c2;</span><br><span class="line">if-match acl 3003;</span><br><span class="line">traffic classifier c3;</span><br><span class="line">if-match acl 3004;</span><br><span class="line">#配置流行为</span><br><span class="line">traffic behavior b1;</span><br><span class="line">permit;</span><br><span class="line">#配置流策略</span><br><span class="line">traffic policy p1;</span><br><span class="line">classifier c1 behavior b1;</span><br><span class="line">traffic policy p2;</span><br><span class="line">classifier c2 behavior b1;</span><br><span class="line">traffic policy p3;</span><br><span class="line">classifier c3 behavior b1;</span><br><span class="line">traffic-policy p3 global outbound;#全局视图</span><br><span class="line">#应用流策略</span><br><span class="line">int g0/0/2</span><br><span class="line">traffic-policy p1 inbound</span><br><span class="line">vlan 30</span><br><span class="line">traffic-policy p2 inbound</span><br></pre></td></tr></table></figure>
+<p>ACC1上部署ACL 实现目标2</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">acl number 3005;</span><br><span class="line">rule 5 deny ip source 192.168.10.0 0.0.0.255 destination 192.168.40.0 0.0.0.255</span><br><span class="line"></span><br><span class="line">#配置流分类</span><br><span class="line">traffic classifier c1;</span><br><span class="line">if-match acl 3005;</span><br><span class="line">#配置流行为</span><br><span class="line">traffic behavior b1;</span><br><span class="line">permit;</span><br><span class="line">#配置流策略</span><br><span class="line">traffic policy p1;</span><br><span class="line">classifier c1 behavior b1;</span><br><span class="line">#应用流策略</span><br><span class="line">vlan 10</span><br><span class="line">traffic-policy p1 inbound</span><br></pre></td></tr></table></figure>
+<h4 id="Ensp中删除ACL及流策略、简化流策略">Ensp中删除ACL及流策略、简化流策略</h4>
+<p><img src="C:%5CUsers%5C%E7%94%B0%E6%99%93%E6%BB%A8%5CAppData%5CRoaming%5Cmarktext%5Cimages%5C2022-11-15-16-37-27-image.png" alt=""></p>
+<p>删除流策略</p>
 <blockquote>
-<p>调用traverseSrc(default, null, 32)</p>
+<p>如果需要删除的流策略已经应用到全局、接口或VLAN，则不允许直接删除该策略，需要先在相应的视图下执行<strong>undo traffic-policy</strong>命令取消对该策略的应用，然后再到全局执行<strong>undo traffic policy</strong>命令完成删除。如果没有应用，则可以直接删除。</p>
+</blockquote>
+<p><img src="C:%5CUsers%5C%E7%94%B0%E6%99%93%E6%BB%A8%5CAppData%5CRoaming%5Cmarktext%5Cimages%5C2022-11-15-16-35-33-image.png" alt=""></p>
+<p>删除ACL规则</p>
 <blockquote>
-<p>执行</p>
+<p>执行命令<strong>undo acl</strong> { [ <strong>number</strong> ] <em>acl-number</em> | <strong>all</strong> }或<strong>undo acl</strong> <strong>name</strong> <em>acl-name</em>，删除ACL。</p>
+<p>执行命令<strong>undo acl ipv6</strong> { <strong>all</strong> | [ <strong>number</strong> ] <em>acl6-number</em> }或<strong>undo acl ipv6</strong> <strong>name</strong> <em>acl6-name</em>，删除ACL6。</p>
 </blockquote>
+<p>删除简化流策略</p>
+<blockquote>
+<p>进入相应的视图下执行命令undo traffic-filter inbound acl aclnum</p>
 </blockquote>
+<p>保存配置</p>
+<blockquote>
+<p>华为保存配置时，需要输入save；</p>
+<p>Cisco保存配置时，需要输入copy running-config start-config</p>
 </blockquote>
 
       
@@ -343,13 +396,13 @@ rule 3 192.168.1.1/25  port3</p>
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2023/03/25/JAVA%E5%BC%80%E5%8F%91/"></a></p>
+        <p><span>本文标题:</span><a href="/2023/03/26/%E5%8D%8E%E4%B8%BA%E6%8B%93%E6%89%91%E6%B5%8B%E8%AF%95/">华为拓扑测试</a></p>
         <p><span>文章作者:</span><a href="/" title="访问  的个人博客"></a></p>
-        <p><span>发布时间:</span>2023年03月25日 - 15时42分</p>
-        <p><span>最后更新:</span>2022年11月27日 - 18时19分</p>
+        <p><span>发布时间:</span>2023年03月26日 - 09时53分</p>
+        <p><span>最后更新:</span>2023年03月26日 - 09时56分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2023/03/25/JAVA%E5%BC%80%E5%8F%91/" title="">http://example.com/2023/03/25/JAVA%E5%BC%80%E5%8F%91/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://example.com/2023/03/25/JAVA%E5%BC%80%E5%8F%91/　　作者: " title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2023/03/26/%E5%8D%8E%E4%B8%BA%E6%8B%93%E6%89%91%E6%B5%8B%E8%AF%95/" title="华为拓扑测试">http://example.com/2023/03/26/%E5%8D%8E%E4%B8%BA%E6%8B%93%E6%89%91%E6%B5%8B%E8%AF%95/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://example.com/2023/03/26/%E5%8D%8E%E4%B8%BA%E6%8B%93%E6%89%91%E6%B5%8B%E8%AF%95/　　作者: " title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -362,18 +415,18 @@ rule 3 192.168.1.1/25  port3</p>
 
 <nav id="article-nav">
   
-    <a href="/2023/03/25/learning/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2023/03/26/%E5%8D%8E%E4%B8%BA%E5%92%8C%E6%80%9D%E7%A7%91/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          (no title)
+          华为与Cisco
         
       </div>
     </a>
   
   
-    <a href="/2023/03/25/Java%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title"></div>
+    <a href="/2023/03/26/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">机器学习</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -384,7 +437,7 @@ rule 3 192.168.1.1/25  port3</p>
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#JAVA%E5%BC%80%E5%8F%91"><span class="toc-number">1.</span> <span class="toc-text">JAVA开发</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%8E%E4%B8%BA%E6%8B%93%E6%89%91%E6%B5%8B%E8%AF%95"><span class="toc-number">1.</span> <span class="toc-text">华为拓扑测试</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E7%9B%AE%E6%A0%87"><span class="toc-number">1.0.1.</span> <span class="toc-text">设计目标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%A1%88"><span class="toc-number">1.0.2.</span> <span class="toc-text">方案</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ensp%E4%B8%AD%E5%88%A0%E9%99%A4ACL%E5%8F%8A%E6%B5%81%E7%AD%96%E7%95%A5%E3%80%81%E7%AE%80%E5%8C%96%E6%B5%81%E7%AD%96%E7%95%A5"><span class="toc-number">1.0.3.</span> <span class="toc-text">Ensp中删除ACL及流策略、简化流策略</span></a></li></ol></li></ol></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -452,18 +505,18 @@ rule 3 192.168.1.1/25  port3</p>
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2023/03/25/learning/" title="上一篇: ">
+            <a href="/2023/03/26/%E5%8D%8E%E4%B8%BA%E5%92%8C%E6%80%9D%E7%A7%91/" title="上一篇: 华为与Cisco">
                 <i class="fa fa-angle-left"></i>
             </a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/2023/03/25/Java%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" title="下一篇: ">
+            <a href="/2023/03/26/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" title="下一篇: 机器学习">
                 <i class="fa fa-angle-right"></i>
             </a>
         
     </div>
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2023/03/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/">数据库学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/25/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/">前端学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/25/%E5%8D%8E%E4%B8%BA%E6%8B%93%E6%89%91%E6%B5%8B%E8%AF%95/">华为拓扑测试</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/25/%E5%8D%8E%E4%B8%BA%E5%92%8C%E6%80%9D%E7%A7%91/">华为和思科</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/25/%E5%BE%85%E5%AE%8C%E6%88%90/">待完成</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/25/windows%E4%B8%8B%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/">windows下文件操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/25/learning/">learning</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/25/JAVA%E5%BC%80%E5%8F%91/">JAVA开发</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/25/Java%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">Java后端开发注意事项</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/25/switch/">switch</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/24/My-New-Post/">My New Post</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/24/hello-world/">Hello World</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2023/03/26/Java%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">Java后端开发注意事项</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/26/JAVA%E5%BC%80%E5%8F%91/">JAVA开发</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/26/learning/">markdown的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/26/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/">Echart JS</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/26/windows%E4%B8%8B%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/">系统命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/26/%E5%8D%8E%E4%B8%BA%E5%92%8C%E6%80%9D%E7%A7%91/">华为与Cisco</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/26/%E5%8D%8E%E4%B8%BA%E6%8B%93%E6%89%91%E6%B5%8B%E8%AF%95/">华为拓扑测试</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/26/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/26/%E5%BE%85%E5%AE%8C%E6%88%90/">netTopo</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/26/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/">netTopo</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/25/switch/">switch</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/24/My-New-Post/">My New Post</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/24/hello-world/">hello-world</a></li></ul>
     <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
     <script>
         $(".post-list").addClass("toc-article");

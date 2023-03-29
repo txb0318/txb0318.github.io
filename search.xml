@@ -12,8 +12,8 @@
 <p>长尾到达：有些交换机的更新需要很长时间到达</p>
 </blockquote>
 <p>2.更新风暴示例<br>
-<img src="img_2.png" alt="img_2.png"><br>
-<img src="img_3.png" alt="img_3.png"></p>
+<img src="/2023/03/29/Flash/img_2.png" alt="img_2.png"><br>
+<img src="/2023/03/29/Flash/img_3.png" alt="img_3.png"></p>
 <blockquote>
 <p>在之前的研究工作中，互联网中单个故障可能出发BGP撤销，从而导致域内网络FIB变化</p>
 </blockquote>
@@ -44,10 +44,11 @@
 <p>k元Fat-Tree一共有k个pod，每个pod容纳k×k/4个服务器，所有pod共能容纳k×k×k/4台服务器；</p>
 <p>任意两个pod之间存在k条路径</p>
 </blockquote>
-<p>下图是k=4的胖树结构</p>
+<p>下图是k=4的胖树结构<br>
+<img src="/2023/03/29/Flash/img.png" alt="img.png"></p>
 
 <p>考虑下图中所示的场景，假设网络具有K-ary胖树拓扑结构，每个POD都有P个前缀。什么时候K=32和P=32，其中有1310720个FIB规则和71680个FIB改变是在向数据中心网络添加新的pod时通过BGP模拟生成的。下图中四个参数分别代表：胖树参数、每个pod的前缀、修改后规则总数、修改的规则数</p>
-<p><img src="img_1.png" alt="img_1.png"></p>
+<p><img src="/2023/03/29/Flash/img_1.png" alt="img_1.png"></p>
 <blockquote>
 <p>我们可以看到，在经过网络故障后，会产生大量的FIB更新</p>
 </blockquote>

@@ -13,8 +13,10 @@
 <meta property="og:description" content="Flash-解决更新风暴、长尾到达的最新数据平面验证-学习2">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://txb0318.github.io/2023/03/29/FLash-1/img.png">
+<meta property="og:image" content="http://txb0318.github.io/2023/03/29/FLash-1/1.png">
+<meta property="og:image" content="http://txb0318.github.io/2023/03/29/FLash-1/2.png">
 <meta property="article:published_time" content="2023-03-29T03:50:20.000Z">
-<meta property="article:modified_time" content="2023-03-29T06:24:16.104Z">
+<meta property="article:modified_time" content="2023-03-29T08:15:13.623Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://txb0318.github.io/2023/03/29/FLash-1/img.png">
@@ -260,7 +262,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">184字</span>
+        <span class="post-count">711字</span>
       </span>
     </span>
     &nbsp; | &nbsp;
@@ -268,7 +270,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
+        <span class="post-count">2分</span>
       </span>
     </span>
 </div>
@@ -289,11 +291,24 @@
           
         <h3 id="Flash-解决更新风暴、长尾到达的最新数据平面验证-学习2">Flash-解决更新风暴、长尾到达的最新数据平面验证-学习2</h3>
 <span id="more"></span>
-<p>一种声明性需求规范语言</p>
+<h4 id="一种声明性需求规范语言">一种声明性需求规范语言</h4>
 <img src="/2023/03/29/FLash-1/img.png" class title="FLash-1&#x2F;img.png">
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;packet_space, sources, path_set&gt;的含义</span><br><span class="line">所有数据包来自packet_space，都可以从sources中设备进入网络，并必须沿着属于指定为正则表达式的path_set的至少一个路径转发</span><br></pre></td></tr></table></figure>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">示例</span><br><span class="line">&lt;sip = 10.0.1.0/24 and dip = 10.0.2.0/24,[S],S.W.*＞$&gt;的含义</span><br><span class="line">对于在设备S处进入网络的源IP在10.0.0.0/24中且目标IP在10.0.2.0/24中的任何数据包，它必须能够在指向设备时到达至少一个具有可到达数据包目的地的外部端口的设备W</span><br></pre></td></tr></table></figure>
-
+<h4 id="IMT的形式化理论">IMT的形式化理论</h4>
+<p>基本概念</p>
+<p>计算有效断言</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">假设第1个设备只有两条规则p1和p2 </span><br><span class="line">p1=(dstip=10.0.0.0/24 pri=2 forward port1)</span><br><span class="line">p2=(dstip=10.0.0.0/16 pri=1 forward port2)</span><br><span class="line">显然 p1的优先级更高 因此p1的有效断言=transfor(10.0.0.0/24)</span><br><span class="line">但是p2的有效断言显然不是 p2的优先断言=transfor(p1∩(否定)p2)</span><br><span class="line">即p2的实际部分应该是10.0.1.0——10.0.255.255 即不包含p1 可以使用下面公式表示</span><br></pre></td></tr></table></figure>
+<img src="/2023/03/29/FLash-1/1.png" class title="Flash-1&#x2F;1.png">
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">如何进行模型转换R(基于规则的)-&gt;M(基于等价类的)，公式如下</span><br><span class="line">公式的含义就是所有规则的有效断言的union 通过这个公式就完成断言的转换</span><br></pre></td></tr></table></figure>
+<img src="/2023/03/29/FLash-1/2.png" class title="FLash-1&#x2F;2.png">
+<p>规则更新（插入或删除）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">规则更新无非有两种：插入规则与删除规则</span><br><span class="line">插入规则：设备原始规则（优先级比新规则低）有效断言减少</span><br><span class="line">删除规则：设备原始规则（优先级比新规则低）有效断言增加</span><br></pre></td></tr></table></figure>
+<p>规则逐条更新效率很低</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">原因：假设存在两条规则集r1，r2，规则集中分别包含2，3条</span><br><span class="line">r1规则集：</span><br><span class="line">r11=(dstip=10.0.0.0/24 pri=2 forward port1)</span><br><span class="line">r12=(dstip=10.1.0.0/24 pri=2 forward port1)</span><br><span class="line">r2规则集：</span><br><span class="line">r21=(dstip=10.0.0.0/16 pri=1 forward port2)</span><br><span class="line">r22=(dstip=10.1.0.0/16 pri=1 forward port2)</span><br><span class="line">r22=(dstip=10.2.0.0/16 pri=1 forward port2)</span><br><span class="line">首先计算r1的有效断言</span><br><span class="line">eff_r1 = eff_r11 ∪ eff_r12</span><br><span class="line">再计算r2的有效断言</span><br><span class="line">eff_r2 = (eff_r21 ∪ eff_r22 ∪ eff_r23) ∩ (否定)(eff_r11 ∪ eff_r12)</span><br><span class="line">我们可以注意到 eff_r11 ∪ eff_r12 已经在计算eff_r1时计算过了，如果单独更新规则集r2，则会产生冗余</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">input:数据包头部</span><br><span class="line">output:转发行为</span><br><span class="line">注意：IMT不处理具体某个input，而是处理input集合</span><br></pre></td></tr></table></figure>
+<p>定义1：(input space,predicate,selection)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">L:表示input的位数</span><br><span class="line">input space:所有可能input值的集合 X=&#123;0,1&#125;^L</span><br><span class="line">predicate:布尔函数p:X-&gt;&#123;0,1&#125;</span><br><span class="line">selection:&#123;x∈X|p(x)=1&#125;</span><br><span class="line">P:X上的断言空间 </span><br><span class="line">p0：对于x∈X，都能表示满足p0(x)=0的断言</span><br></pre></td></tr></table></figure>
       
       
         <div class="page-reward">
@@ -351,7 +366,7 @@
         <p><span>本文标题:</span><a href="/2023/03/29/FLash-1/">FLash-1</a></p>
         <p><span>文章作者:</span><a href="/" title="访问  的个人博客"></a></p>
         <p><span>发布时间:</span>2023年03月29日 - 11时50分</p>
-        <p><span>最后更新:</span>2023年03月29日 - 14时24分</p>
+        <p><span>最后更新:</span>2023年03月29日 - 16时15分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2023/03/29/FLash-1/" title="FLash-1">http://txb0318.github.io/2023/03/29/FLash-1/</a>
             <span class="copy-path" data-clipboard-text="原文: http://txb0318.github.io/2023/03/29/FLash-1/　　作者: " title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -380,7 +395,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Flash-%E8%A7%A3%E5%86%B3%E6%9B%B4%E6%96%B0%E9%A3%8E%E6%9A%B4%E3%80%81%E9%95%BF%E5%B0%BE%E5%88%B0%E8%BE%BE%E7%9A%84%E6%9C%80%E6%96%B0%E6%95%B0%E6%8D%AE%E5%B9%B3%E9%9D%A2%E9%AA%8C%E8%AF%81-%E5%AD%A6%E4%B9%A02"><span class="toc-number">1.</span> <span class="toc-text">Flash-解决更新风暴、长尾到达的最新数据平面验证-学习2</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Flash-%E8%A7%A3%E5%86%B3%E6%9B%B4%E6%96%B0%E9%A3%8E%E6%9A%B4%E3%80%81%E9%95%BF%E5%B0%BE%E5%88%B0%E8%BE%BE%E7%9A%84%E6%9C%80%E6%96%B0%E6%95%B0%E6%8D%AE%E5%B9%B3%E9%9D%A2%E9%AA%8C%E8%AF%81-%E5%AD%A6%E4%B9%A02"><span class="toc-number">1.</span> <span class="toc-text">Flash-解决更新风暴、长尾到达的最新数据平面验证-学习2</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E7%A7%8D%E5%A3%B0%E6%98%8E%E6%80%A7%E9%9C%80%E6%B1%82%E8%A7%84%E8%8C%83%E8%AF%AD%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">一种声明性需求规范语言</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IMT%E7%9A%84%E5%BD%A2%E5%BC%8F%E5%8C%96%E7%90%86%E8%AE%BA"><span class="toc-number">1.2.</span> <span class="toc-text">IMT的形式化理论</span></a></li></ol></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -534,7 +549,7 @@
         
     </div>
     <i class="fas fa-chart-area"></i>
-    <span class="post-count">字数统计：15.8k</span>
+    <span class="post-count">字数统计：16.3k</span>
 </footer>
 
     </div>

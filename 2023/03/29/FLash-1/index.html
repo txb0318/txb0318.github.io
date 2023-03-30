@@ -17,8 +17,12 @@
 <meta property="og:image" content="http://txb0318.github.io/2023/03/29/FLash-1/2.png">
 <meta property="og:image" content="http://txb0318.github.io/2023/03/29/FLash-1/3.png">
 <meta property="og:image" content="http://txb0318.github.io/2023/03/29/FLash-1/4.png">
+<meta property="og:image" content="http://txb0318.github.io/2023/03/29/FLash-1/5.png">
+<meta property="og:image" content="http://txb0318.github.io/2023/03/29/FLash-1/6.png">
+<meta property="og:image" content="http://txb0318.github.io/2023/03/29/FLash-1/7.png">
+<meta property="og:image" content="http://txb0318.github.io/2023/03/29/FLash-1/figure5.png">
 <meta property="article:published_time" content="2023-03-29T03:50:20.000Z">
-<meta property="article:modified_time" content="2023-03-30T07:22:39.061Z">
+<meta property="article:modified_time" content="2023-03-30T12:44:58.753Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://txb0318.github.io/2023/03/29/FLash-1/img.png">
@@ -264,7 +268,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">2.6k字</span>
+        <span class="post-count">4k字</span>
       </span>
     </span>
     &nbsp; | &nbsp;
@@ -272,7 +276,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">9分</span>
+        <span class="post-count">14分</span>
       </span>
     </span>
 </div>
@@ -332,7 +336,19 @@
 <p>&lt;3&gt;将潜在收敛状态（为了效率）的一致FIB更新（为了正确性）调度到同一验证器</p>
 </blockquote>
 <p>2.1识别与Epoch一致的FIB更新</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Flash使用网络状态来表示路由软件用来计算转发规则（例如，链路状态和前缀配置）的信息。</span><br><span class="line">随着网络的发展，其状态也会因不同事件（如链路故障）而发生变化。在同步状态协议中，状态更改会传播到整个网络。</span><br><span class="line"></span><br><span class="line">Flash通过将不同网络状态计算的规则更新划分为epochs来区分这些更新。</span><br><span class="line">具体来说，每个epoch表示全局网络状态的快照。</span><br><span class="line">由于仅通过查看数据平面无法确定更新是否来自同一网络状态，Flash使用代理增强了路由软件。</span><br><span class="line">代理计算标签(OpenR实现中，Flash使用密钥的哈希值和状态变量的版本作为epoch标签)，即epoch的唯一标识符，并将标签与根据状态计算的FIB更新相关联。</span><br><span class="line">Flash要求代理和调度器之间的消息传递是串行的，即，来自同一设备的更新总是以与生成更新相同的顺序接收。</span><br><span class="line">然而，Flash对来自不同设备上的代理的消息没有任何限制。</span><br><span class="line"></span><br><span class="line">通过Epoch依赖性跟踪识别潜在的聚合状态。</span><br><span class="line">由于Flash需要设备和调度器之间的严格顺序，如果调度器在接收到具有t2的更新之前在设备i上接收到具有t1的更新，则t1不能是收敛状态。</span><br><span class="line">类似地，如果我们在t3之前看到t2，即使t2是设备i上的最新标签，我们也可以推断t2不可能是收敛状态。这被称为分布式系统中的“先发生后发生”关系，表示为t1≺t2。</span><br><span class="line">Flash维护每个设备的最新标签和一组没有后续epoch的“活动”epoch。</span><br><span class="line">一旦从设备i接收到新标签tnew（其旧标签为ti＝told），Flash就从活动集中删除told，并用tnew替换tell。</span><br><span class="line">如果tnew没有被标记为非活动（由另一个设备），Flash会将tnew添加到活动集。标记在活动集中的epoch是一个潜在的收敛状态。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">Flash使用网络状态来表示路由软件用来计算转发规则（例如，链路状态和前缀配置）的信息。</span><br><span class="line">随着网络的发展，其状态也会因不同事件（如链路故障）而发生变化。在同步状态协议中，状态更改会传播到整个网络。</span><br><span class="line"></span><br><span class="line">Flash通过将不同网络状态计算的规则更新划分为epochs来区分这些更新。</span><br><span class="line">具体来说，每个epoch表示全局网络状态的快照。</span><br><span class="line">由于仅通过查看数据平面无法确定更新是否来自同一网络状态，Flash使用代理增强了路由软件。</span><br><span class="line">代理计算标签(OpenR实现中，Flash使用密钥的哈希值和状态变量的版本作为epoch标签)，即epoch的唯一标识符，并将标签与根据状态计算的FIB更新相关联。</span><br><span class="line">Flash要求代理和调度器之间的消息传递是串行的，即，来自同一设备的更新总是以与生成更新相同的顺序接收。</span><br><span class="line">然而，Flash对来自不同设备上的代理的消息没有任何限制。</span><br><span class="line"></span><br><span class="line">通过Epoch依赖性跟踪识别潜在的聚合状态。</span><br><span class="line">由于Flash需要设备和调度器之间的严格顺序，如果调度器在接收到具有t2的更新之前在设备i上接收到具有t1的更新，则t1不能是收敛状态。</span><br><span class="line">类似地，如果我们在t3之前看到t2，即使t2是设备i上的最新标签，我们也可以推断t2不可能是收敛状态。这被称为分布式系统中的“先发生后发生”关系，表示为t1≺t2。</span><br><span class="line">Flash维护每个设备的最新标签和一组没有后续epoch的“活动”epoch。</span><br><span class="line">一旦从设备i接收到新标签tnew（其旧标签为ti＝told），Flash就从活动集中删除told，并用tnew替换tell。</span><br><span class="line">如果tnew没有被标记为非活动（由另一个设备），Flash会将tnew添加到活动集。标记在活动集中的epoch是一个潜在的收敛状态。</span><br><span class="line"></span><br><span class="line">调度一致的FIB更新</span><br><span class="line">由于更新与epoch标签相关联，Flash维护了从epoch标签到验证器的映射。</span><br><span class="line">具体地，在从设备接收到具有新epoch标记t的更新时，</span><br><span class="line">Flash首先将更新附加到设备的更新队列，并检查t是否在活动集中。</span><br><span class="line">如果t不在活动集中，这意味着同一设备将来会有更新，则不需要进一步操作。</span><br><span class="line">否则，如果t在活动集中，Flash会找到（或创建一个，如果不存在）t的验证器，并将更新从设备的更新队列馈送到该验证器。</span><br><span class="line">在实践中，Flash可能需要采用退避机制，以避免由于控制平面错误或对不稳定链路的不当处理而快速创建验证器。</span><br><span class="line"></span><br><span class="line">一个示例更新设置如图3所示。考虑由两个链路故障触发的更新:(S,W)和(B,Y)。</span><br><span class="line">假设每个设备的初始标签为t0＝[0，0，…]，其中第一个/第二个元素是链路(S,W)/(B,Y)的描述。</span><br><span class="line">假设在时间T1，Flash接收来自具有标签t1＝[1，0，…]的S的更新（在看到(S,W)的故障之后），以及来自具有标签t2＝[0，1，…]（在发现(B,Y)的故障后）的交换机A和B的更新。</span><br><span class="line">在T1，t1和t2是潜在的收敛状态，并且被置于不同的验证器中。</span><br><span class="line">然而，如果在时间T2&gt;T1时，Flash从交换机S、A和B接收到更新，并且epoch标记t3=[1、1、…]，则调度程序将把T1和T2标记为非活动，并为t3创建一个新的验证器，因为t3现在处于活动状态。</span><br><span class="line">然后，如果Flash从交换机E接收到标记为t2的更新，则Flash只需将更新附加到E的队列中，而不将其发送给任何验证器。</span><br><span class="line">当它从E接收到具有t3的更新时，它将更新刷新到与标签t3相关联的验证器。</span><br><span class="line">图4（a）显示了为每个epoch构建的模型，并在底部显示了不一致状态的示例。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<img src="/2023/03/29/FLash-1/5.png" class title="FLash-1&#x2F;5.png">
+<img src="/2023/03/29/FLash-1/6.png" class title="FLash-1&#x2F;6.png">
+<p>2.2通用正则表达式需求的一致性早期检查</p>
+<blockquote>
+<p>作者首先指定了Flash如何对正则表达式中指定的一般要求执行一致的早期检测</p>
+<p>图16给出了Flash中需求规范语言的简化语法</p>
+</blockquote>
+<img src="/2023/03/29/FLash-1/7.png" class title="FLash-1&#x2F;7.png">
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">验证图和一致部分验证</span><br><span class="line">Flash计算验证图，作为网络自动机和需求表达自动机的叉积自动机Gp，用于每个数据包空间H和一组源src。</span><br><span class="line">初始验证图包含G中的所有路径，这些路径</span><br><span class="line">（1）从srcs开始</span><br><span class="line">（2）匹配所有正则表达式</span><br><span class="line">考虑图3中的网络和需求。要求是子空间中的数据包ℎ在S处进入的数据包必须沿着穿过W和Y之一的简单路径到达D。</span><br><span class="line">图4(b)显示了初始状态S1和接受状态D1的验证图。</span><br><span class="line">有了这个图，对需求表达式的验证就相当于在验证图中找到一条可以达到接受状态的路径。</span><br><span class="line">具体地说，如果存在这样一个仅由同步节点组成的路径，则该需求始终得到满足。</span><br><span class="line">如果存在一条仅由同步节点组成的路径，则拒绝状态将始终不满足要求。否则，验证结果未知。</span><br></pre></td></tr></table></figure>
+<p>2.3一致早期循环检测技术</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">简单来讲有两种方式</span><br><span class="line">1.删除非同步节点，判断同步节点间是否存在循环 -&gt; 缺点：容易错过早期检测机会</span><br><span class="line">2.保持非同步节点，假设非同步节点的所有下一跳是任意一个接口，系统美剧所有可能，计算是否存在循环 -&gt; 缺点：计算代价高</span><br><span class="line"></span><br><span class="line">Flash结合这两种方法 提出hyper node compression方法</span><br><span class="line">hyper node compression：</span><br><span class="line">未同步节点的每个连接组件都被压缩为超节点，以降低枚举成本。</span><br><span class="line">设U表示非同步节点的连通分量，该连通分量由超节点w代替。对于每个(u,v)∈E，u∉U和v∈U，移除(u,v)并向E添加边(u,w)。</span><br><span class="line">用超节点验证此图将给出与第二种方法相同的结果，但避免枚举U中的路径。</span><br><span class="line"></span><br><span class="line">请考虑图5中的示例。在图5(a)中，当sync=&#123;A,B&#125;时，我们可以将未同步的节点C和X合并为一个超节点，表示为C&amp;X。</span><br><span class="line">在这种情况下，</span><br><span class="line">可能存在一个循环，例如B→A→C&amp;X→out，是原始图中B→A→X→B，</span><br><span class="line">或者是无循环，例如B→A→C&amp;X→out，是原始图中是B→A→X→C→out，</span><br><span class="line">因此最终结果尚未确定。</span><br><span class="line">然而，如果C是同步的，如图5(b)所示，Flash报告说，只要X不丢弃数据包，就会在最终状态下出现循环。如果只验证同步节点，则无法检测到这一点。</span><br><span class="line"></span><br><span class="line">增量检测</span><br><span class="line">Flash不检测来自所有可能节点的循环，而是只检测包含刚刚同步的节点的循环。</span><br><span class="line">设VS和V&#x27;S相应地表示同步节点的旧集合和新集合。</span><br><span class="line">如果在旧图中未检测到循环，则新图中的新循环必须包含V&#x27;S\VS中的节点。</span><br><span class="line">结合超节点压缩(hyper node compression)和增量检测，Flash增量检查新的同步节点。</span><br></pre></td></tr></table></figure>
+<img src="/2023/03/29/FLash-1/figure5.png" class title="FLash-1&#x2F;figure5.png">
 <p>定义1：(input space,predicate,selection)</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">L:表示input的位数</span><br><span class="line">input space:所有可能input值的集合 X=&#123;0,1&#125;^L</span><br><span class="line">predicate:布尔函数p:X-&gt;&#123;0,1&#125;</span><br><span class="line">selection:&#123;x∈X|p(x)=1&#125;</span><br><span class="line">P:X上的断言空间 </span><br><span class="line">p0：对于x∈X，都能表示满足p0(x)=0的断言</span><br></pre></td></tr></table></figure>
       
@@ -392,7 +408,7 @@
         <p><span>本文标题:</span><a href="/2023/03/29/FLash-1/">FLash-1</a></p>
         <p><span>文章作者:</span><a href="/" title="访问  的个人博客"></a></p>
         <p><span>发布时间:</span>2023年03月29日 - 11时50分</p>
-        <p><span>最后更新:</span>2023年03月30日 - 15时22分</p>
+        <p><span>最后更新:</span>2023年03月30日 - 20时44分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2023/03/29/FLash-1/" title="FLash-1">http://txb0318.github.io/2023/03/29/FLash-1/</a>
             <span class="copy-path" data-clipboard-text="原文: http://txb0318.github.io/2023/03/29/FLash-1/　　作者: " title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -575,7 +591,7 @@
         
     </div>
     <i class="fas fa-chart-area"></i>
-    <span class="post-count">字数统计：18.2k</span>
+    <span class="post-count">字数统计：19.5k</span>
 </footer>
 
     </div>

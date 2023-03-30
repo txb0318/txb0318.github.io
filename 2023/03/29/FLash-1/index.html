@@ -18,7 +18,7 @@
 <meta property="og:image" content="http://txb0318.github.io/2023/03/29/FLash-1/3.png">
 <meta property="og:image" content="http://txb0318.github.io/2023/03/29/FLash-1/4.png">
 <meta property="article:published_time" content="2023-03-29T03:50:20.000Z">
-<meta property="article:modified_time" content="2023-03-30T04:10:22.839Z">
+<meta property="article:modified_time" content="2023-03-30T07:22:39.061Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://txb0318.github.io/2023/03/29/FLash-1/img.png">
@@ -264,7 +264,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.6k字</span>
+        <span class="post-count">2.6k字</span>
       </span>
     </span>
     &nbsp; | &nbsp;
@@ -272,7 +272,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">6分</span>
+        <span class="post-count">9分</span>
       </span>
     </span>
 </div>
@@ -314,8 +314,25 @@
 <img src="/2023/03/29/FLash-1/3.png" class title="FLash-1&#x2F;3.png">
 <h5 id="应用">应用</h5>
 <p>1.高效计算ΔM</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">以下算法是规则更新后，根据ΔR计算ΔM的算法</span><br><span class="line">输入：ΔRi:第i个设备的本地更新块 Ri:更新前已排序的初始规则</span><br><span class="line">输出：ΔMi:等价于ΔRi的原子重写集合 Ri&#x27;:更新后已排序的最终规则</span><br><span class="line">步骤</span><br><span class="line">L1:移除ΔRi中无用的更新 （先增加后删除 或 先删除后增加）</span><br><span class="line">L2:排序ΔRi按优先级降序排列</span><br><span class="line">L3:Rdiff为MergeBlockAndDiff(Ri,ΔRi)的结果</span><br><span class="line">L4:Ri&#x27;=Ri 将更新赋值于Ri&#x27;</span><br><span class="line">L5:ΔMi为CalculateAtomicOverwrite(Ri&#x27;,Rdiff)的结果</span><br><span class="line">L6:返回Ri&#x27;，ΔMi</span><br><span class="line">具体函数含义</span><br><span class="line">函数：MergeBlockAndDiff(Ri,ΔRi) 合并本地更新</span><br><span class="line">    L8-L11:初始化</span><br><span class="line">L8:Rdiff初始化为空列表</span><br><span class="line">L9:优先级较高的规则是否被删除higher初始化为false</span><br><span class="line">L10:r初始化为Ri的最高优先级</span><br><span class="line">L11:δ=(op,rδ)是ΔRi中最高优先级的更新</span><br><span class="line">    L12-L16:首先定位应该应用更新的位置。</span><br><span class="line">L12:首先判断δ是否为空，不为空（表示存在更新）</span><br><span class="line">L13:判断ΔRi中最高优先级的规则rδ是在r之后增加/删除的，如果是</span><br><span class="line">L14:判断优先级较高的规则是否被删除higher是否为true，如果是</span><br><span class="line">L15:扩展Rdiff，即Rdiff.add(r)</span><br><span class="line">L16:遍历Ri的下一条规则，并赋值于r</span><br><span class="line">    L17-L20:插入更新</span><br><span class="line">L17:如果ΔRi中最高优先级的规则rδ不是在r之后增加/删除的</span><br><span class="line">L18:如果最高优先级的动作是插入</span><br><span class="line">L19:在规则r前增加rδ</span><br><span class="line">L20:扩展Rdiff，即Rdiff.add(r)</span><br><span class="line">    L21-L24:删除更新</span><br><span class="line">L21:如果最高优先级的动作是删除</span><br><span class="line">L22:从Ri中删除r</span><br><span class="line">L23:优先级较高的规则是否被删除higher为true</span><br><span class="line">L24:遍历Ri的下一条规则，并赋值于r</span><br><span class="line">L25:获取ΔRi中下一个更新δ</span><br><span class="line">L26:若δ为空，判断优先级较高的规则是否被删除higher是否为true，如果是</span><br><span class="line">L27:将Ri中剩余规则添加到Rdiff</span><br><span class="line">L28:返回Rdiff</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">以下算法是规则更新后，根据ΔR计算ΔM的算法</span><br><span class="line">输入：ΔRi:第i个设备的本地更新块 Ri:更新前已排序的初始规则</span><br><span class="line">输出：ΔMi:等价于ΔRi的原子重写集合 Ri&#x27;:更新后已排序的最终规则</span><br><span class="line">步骤</span><br><span class="line">L1:移除ΔRi中无用的更新 （先增加后删除 或 先删除后增加）</span><br><span class="line">L2:排序ΔRi按优先级降序排列</span><br><span class="line">L3:Rdiff为MergeBlockAndDiff(Ri,ΔRi)的结果</span><br><span class="line">L4:Ri&#x27;=Ri 将更新赋值于Ri&#x27;</span><br><span class="line">L5:ΔMi为CalculateAtomicOverwrite(Ri&#x27;,Rdiff)的结果</span><br><span class="line">L6:返回Ri&#x27;，ΔMi</span><br><span class="line">具体函数含义</span><br><span class="line">函数：MergeBlockAndDiff(Ri,ΔRi) 合并本地更新</span><br><span class="line">    L8-L11:初始化</span><br><span class="line">L8:Rdiff初始化为空列表</span><br><span class="line">L9:优先级较高的规则是否被删除higher初始化为false</span><br><span class="line">L10:r初始化为Ri的最高优先级</span><br><span class="line">L11:δ=(op,rδ)是ΔRi中最高优先级的更新</span><br><span class="line">    L12-L16:首先定位应该应用更新的位置。</span><br><span class="line">L12:首先判断δ是否为空，不为空（表示存在更新）</span><br><span class="line">L13:判断ΔRi中最高优先级的规则rδ是在r之后增加/删除的，如果是</span><br><span class="line">L14:判断优先级较高的规则是否被删除higher是否为true，如果是</span><br><span class="line">L15:扩展Rdiff，即Rdiff.add(r)</span><br><span class="line">L16:遍历Ri的下一条规则，并赋值于r</span><br><span class="line">    L17-L20:插入更新</span><br><span class="line">L17:如果ΔRi中最高优先级的规则rδ不是在r之后增加/删除的</span><br><span class="line">L18:如果最高优先级的动作是插入</span><br><span class="line">L19:在规则r前增加rδ</span><br><span class="line">L20:扩展Rdiff，即Rdiff.add(r)</span><br><span class="line">    L21-L24:删除更新</span><br><span class="line">L21:如果最高优先级的动作是删除</span><br><span class="line">L22:从Ri中删除r</span><br><span class="line">L23:优先级较高的规则是否被删除higher为true</span><br><span class="line">L24:遍历Ri的下一条规则，并赋值于r</span><br><span class="line">L25:获取ΔRi中下一个更新δ</span><br><span class="line">L26:若δ为空，判断优先级较高的规则是否被删除higher是否为true，如果是</span><br><span class="line">L27:将Ri中剩余规则添加到Rdiff</span><br><span class="line">L28:返回Rdiff</span><br><span class="line"></span><br><span class="line">该算法主要是计算ΔM 即reduce1，该算法并没有实现断言的合并</span><br></pre></td></tr></table></figure>
 <img src="/2023/03/29/FLash-1/4.png" class title="FLash-1&#x2F;4.png">
+<p>2.快速IMT</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入空间分区:快速IMT的复杂性取决于反向模型和更新的大小，这两者都与数据平面中的规则数量有关。通过将空间划分为多个子空间，可以减少更新过程中有效对的数量，以及受影响规则的数量。因此，它可以大大提高模型更新的速度。</span><br><span class="line">快速查找重叠规则:计算原子重写(ΔMi)是计算每个受影响规则的有效断言。可以看出，规则的有效断言r将影响或受其他规则影响r&#x27;，只有当它们的匹配重叠时。mr∧mr&#x27;≠∅. 在一些常见的场景中，例如，当数据平面主要由最长前缀匹配规则组成时，重叠规则的数量通常远小于设备上的规则数量。为了加快原子覆盖的计算，Flash使用多维前缀Trie[24]来实现对重叠规则的快速查找。</span><br><span class="line">PAT:</span><br></pre></td></tr></table></figure>
+<h5 id="早期检查">早期检查</h5>
+<p>1.目前数据平面验证工具存在的问题</p>
+<blockquote>
+<p>问题</p>
+<p>&lt;1&gt;如何调度规则更新来构建与收敛状态一致的模型？</p>
+<p>&lt;2&gt;如何在信息不完整的情况下有效地计算验证结果？</p>
+</blockquote>
+<p>2.Flash是如何做的</p>
+<blockquote>
+<p>&lt;1&gt;识别一致的FIB更新，即从相同的网络状态计算的更新</p>
+<p>&lt;2&gt;识别潜在的收敛状态</p>
+<p>&lt;3&gt;将潜在收敛状态（为了效率）的一致FIB更新（为了正确性）调度到同一验证器</p>
+</blockquote>
+<p>2.1识别与Epoch一致的FIB更新</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Flash使用网络状态来表示路由软件用来计算转发规则（例如，链路状态和前缀配置）的信息。</span><br><span class="line">随着网络的发展，其状态也会因不同事件（如链路故障）而发生变化。在同步状态协议中，状态更改会传播到整个网络。</span><br><span class="line"></span><br><span class="line">Flash通过将不同网络状态计算的规则更新划分为epochs来区分这些更新。</span><br><span class="line">具体来说，每个epoch表示全局网络状态的快照。</span><br><span class="line">由于仅通过查看数据平面无法确定更新是否来自同一网络状态，Flash使用代理增强了路由软件。</span><br><span class="line">代理计算标签(OpenR实现中，Flash使用密钥的哈希值和状态变量的版本作为epoch标签)，即epoch的唯一标识符，并将标签与根据状态计算的FIB更新相关联。</span><br><span class="line">Flash要求代理和调度器之间的消息传递是串行的，即，来自同一设备的更新总是以与生成更新相同的顺序接收。</span><br><span class="line">然而，Flash对来自不同设备上的代理的消息没有任何限制。</span><br><span class="line"></span><br><span class="line">通过Epoch依赖性跟踪识别潜在的聚合状态。</span><br><span class="line">由于Flash需要设备和调度器之间的严格顺序，如果调度器在接收到具有t2的更新之前在设备i上接收到具有t1的更新，则t1不能是收敛状态。</span><br><span class="line">类似地，如果我们在t3之前看到t2，即使t2是设备i上的最新标签，我们也可以推断t2不可能是收敛状态。这被称为分布式系统中的“先发生后发生”关系，表示为t1≺t2。</span><br><span class="line">Flash维护每个设备的最新标签和一组没有后续epoch的“活动”epoch。</span><br><span class="line">一旦从设备i接收到新标签tnew（其旧标签为ti＝told），Flash就从活动集中删除told，并用tnew替换tell。</span><br><span class="line">如果tnew没有被标记为非活动（由另一个设备），Flash会将tnew添加到活动集。标记在活动集中的epoch是一个潜在的收敛状态。</span><br></pre></td></tr></table></figure>
 <p>定义1：(input space,predicate,selection)</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">L:表示input的位数</span><br><span class="line">input space:所有可能input值的集合 X=&#123;0,1&#125;^L</span><br><span class="line">predicate:布尔函数p:X-&gt;&#123;0,1&#125;</span><br><span class="line">selection:&#123;x∈X|p(x)=1&#125;</span><br><span class="line">P:X上的断言空间 </span><br><span class="line">p0：对于x∈X，都能表示满足p0(x)=0的断言</span><br></pre></td></tr></table></figure>
       
@@ -375,7 +392,7 @@
         <p><span>本文标题:</span><a href="/2023/03/29/FLash-1/">FLash-1</a></p>
         <p><span>文章作者:</span><a href="/" title="访问  的个人博客"></a></p>
         <p><span>发布时间:</span>2023年03月29日 - 11时50分</p>
-        <p><span>最后更新:</span>2023年03月30日 - 12时10分</p>
+        <p><span>最后更新:</span>2023年03月30日 - 15时22分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2023/03/29/FLash-1/" title="FLash-1">http://txb0318.github.io/2023/03/29/FLash-1/</a>
             <span class="copy-path" data-clipboard-text="原文: http://txb0318.github.io/2023/03/29/FLash-1/　　作者: " title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -404,7 +421,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Flash-%E8%A7%A3%E5%86%B3%E6%9B%B4%E6%96%B0%E9%A3%8E%E6%9A%B4%E3%80%81%E9%95%BF%E5%B0%BE%E5%88%B0%E8%BE%BE%E7%9A%84%E6%9C%80%E6%96%B0%E6%95%B0%E6%8D%AE%E5%B9%B3%E9%9D%A2%E9%AA%8C%E8%AF%81-%E5%AD%A6%E4%B9%A02"><span class="toc-number">1.</span> <span class="toc-text">Flash-解决更新风暴、长尾到达的最新数据平面验证-学习2</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E7%A7%8D%E5%A3%B0%E6%98%8E%E6%80%A7%E9%9C%80%E6%B1%82%E8%A7%84%E8%8C%83%E8%AF%AD%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">一种声明性需求规范语言</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IMT%E7%9A%84%E5%BD%A2%E5%BC%8F%E5%8C%96%E7%90%86%E8%AE%BA"><span class="toc-number">1.2.</span> <span class="toc-text">IMT的形式化理论</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">1.2.1.</span> <span class="toc-text">基本概念</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BA%94%E7%94%A8"><span class="toc-number">1.2.2.</span> <span class="toc-text">应用</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Flash-%E8%A7%A3%E5%86%B3%E6%9B%B4%E6%96%B0%E9%A3%8E%E6%9A%B4%E3%80%81%E9%95%BF%E5%B0%BE%E5%88%B0%E8%BE%BE%E7%9A%84%E6%9C%80%E6%96%B0%E6%95%B0%E6%8D%AE%E5%B9%B3%E9%9D%A2%E9%AA%8C%E8%AF%81-%E5%AD%A6%E4%B9%A02"><span class="toc-number">1.</span> <span class="toc-text">Flash-解决更新风暴、长尾到达的最新数据平面验证-学习2</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E7%A7%8D%E5%A3%B0%E6%98%8E%E6%80%A7%E9%9C%80%E6%B1%82%E8%A7%84%E8%8C%83%E8%AF%AD%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">一种声明性需求规范语言</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IMT%E7%9A%84%E5%BD%A2%E5%BC%8F%E5%8C%96%E7%90%86%E8%AE%BA"><span class="toc-number">1.2.</span> <span class="toc-text">IMT的形式化理论</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">1.2.1.</span> <span class="toc-text">基本概念</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BA%94%E7%94%A8"><span class="toc-number">1.2.2.</span> <span class="toc-text">应用</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%97%A9%E6%9C%9F%E6%A3%80%E6%9F%A5"><span class="toc-number">1.2.3.</span> <span class="toc-text">早期检查</span></a></li></ol></li></ol></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -558,7 +575,7 @@
         
     </div>
     <i class="fas fa-chart-area"></i>
-    <span class="post-count">字数统计：17.2k</span>
+    <span class="post-count">字数统计：18.2k</span>
 </footer>
 
     </div>

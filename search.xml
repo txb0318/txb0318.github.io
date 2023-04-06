@@ -1,10 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>My New Post</title>
-    <url>/2023/03/24/My-New-Post/</url>
-    <content><![CDATA[<h3 id="第一次测试博客">第一次测试博客</h3>
-<span id="more"></span>]]></content>
+    <title>FLash</title>
+    <url>/2023/03/29/FLash-0/</url>
+    <content><![CDATA[<h3 id="Flash-解决更新风暴、长尾到达的最新数据平面验证-学习1">Flash-解决更新风暴、长尾到达的最新数据平面验证-学习1</h3>
+<span id="more"></span>
+<h5 id="预先知识">预先知识</h5>
+<p>1.首先介绍一下更新风暴的概念与示例</p>
+<blockquote>
+<p>更新风暴：短时间内发生大量数据平面更新</p>
+<p>长尾到达：有些交换机的更新需要很长时间到达</p>
+</blockquote>
+<p>2.更新风暴示例</p>
+<img src="/2023/03/29/FLash-0/img_2.png" class title="img_2.png">
+<img src="/2023/03/29/FLash-0/img_3.png" class title="img_3.png">
+<blockquote>
+<p>在之前的研究工作中，互联网中单个故障可能出发BGP撤销，从而导致域内网络FIB变化</p>
+</blockquote>
+<blockquote>
+<p>如上图所述，考虑图a中的网络，假设它从AS-1和AS-2接收10K前缀，10K前缀的最佳路径是通过边界路由器A</p>
+<p>如图b所示。在A与Internet链路断开后，前缀从AS-1中撤回，新的最佳路径是通过路由器B转发数据包</p>
+<p>如图b所示。对于3节点拓扑，更改将触发30K FIB更新。域内的链路改变也可能触发大量的FIB更新</p>
+<p>考虑图c中的网络，当从C到B建立新的链路时，最佳域内路径从C-A-B更改为C-B。因此，它将触发所选前缀的10K更新。</p>
+<p>作者使用FRR评估了第一个图的场景，第二个图显示了当我们触发链接事件时更新的累积分布。</p>
+<p>当链接A-Internet失败时，我们在0.48秒内收到来自A的10K突发更新，而在链接B-C建立后1.36秒内，我们在0.58秒内收到C的10K突发更新.</p>
+<p>将这些条目馈送到数据平面验证器会导致长的验证时间和大的内存消耗，即使对于增量数据平面验证器来说，大量的更新也可能具有挑战性。</p>
+<p>虽然可以采用分而治之的方法，但成本取决于分区方法和数据平面的复杂性，并且仍然可能非常大</p>
+</blockquote>
+<p>3.首先介绍什么是Fat树</p>
+<p>Fat-Tree特点</p>
+<blockquote>
+<p>是以交换机为中心的拓扑</p>
+<p>支持在横向拓展的同时拓展路径数目</p>
+<p>且所有交换机均为相同端口数量的普通设备，降低了网络建设成本</p>
+</blockquote>
+<p>Fat-Tree结构共分为三层：核心层、汇聚层、接入层。</p>
+<p>一个k元的Fat-Tree可以归纳为6个特征：</p>
+<blockquote>
+<p>每台交换机都有k个端口</p>
+<p>核心层为顶层，一共有(k/2)^2个交换机</p>
+<p>一共有k个pod，每个pod有k台交换机组成。其中汇聚层和接入层各占k/2台交换机</p>
+<p>接入层每个交换机可以容纳k/2台服务器</p>
+<p>k元Fat-Tree一共有k个pod，每个pod容纳k×k/4个服务器，所有pod共能容纳k×k×k/4台服务器；</p>
+<p>任意两个pod之间存在k条路径</p>
+</blockquote>
+<p>下图是k=4的胖树结构</p>
+<img src="/2023/03/29/FLash-0/img.png" class title="img.png">
+<p>考虑下图中所示的场景，假设网络具有K-ary胖树拓扑结构，每个POD都有P个前缀。什么时候K=32和P=32，其中有1310720个FIB规则和71680个FIB改变是在向数据中心网络添加新的pod时通过BGP模拟生成的。下图中四个参数分别代表：胖树参数、每个pod的前缀、修改后规则总数、修改的规则数</p>
+<img src="/2023/03/29/FLash-0/img_1.png" class title="img_1.png">
+<blockquote>
+<p>我们可以看到，在经过网络故障后，会产生大量的FIB更新</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>FLash</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>FLash-1</title>
+    <url>/2023/03/29/FLash-1/</url>
+    <content><![CDATA[<h3 id="Flash-解决更新风暴、长尾到达的最新数据平面验证-学习2">Flash-解决更新风暴、长尾到达的最新数据平面验证-学习2</h3>
+<span id="more"></span>
+<h4 id="一种声明性需求规范语言">一种声明性需求规范语言</h4>
+<img src="/2023/03/29/FLash-1/img.png" class title="FLash-1&#x2F;img.png">
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;packet_space, sources, path_set&gt;的含义</span><br><span class="line">所有数据包来自packet_space，都可以从sources中设备进入网络，并必须沿着属于指定为正则表达式的path_set的至少一个路径转发</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">示例</span><br><span class="line">&lt;sip = 10.0.1.0/24 and dip = 10.0.2.0/24,[S],S.W.*＞$&gt;的含义</span><br><span class="line">对于在设备S处进入网络的源IP在10.0.0.0/24中且目标IP在10.0.2.0/24中的任何数据包，能够到达至少一个具有可到达数据包目的地的外部端口的设备，同时指向设备W</span><br></pre></td></tr></table></figure>
+<h4 id="IMT的形式化理论">IMT的形式化理论</h4>
+<h5 id="基本概念">基本概念</h5>
+<p>1.计算有效断言</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">假设第1个设备只有两条规则p1和p2 </span><br><span class="line">p1=(dstip=10.0.0.0/24 pri=2 forward port1)</span><br><span class="line">p2=(dstip=10.0.0.0/16 pri=1 forward port2)</span><br><span class="line">显然 p1的优先级更高 因此p1的有效断言=transfor(10.0.0.0/24)</span><br><span class="line">但是p2的有效断言显然不是 p2的优先断言=transfor(p1∩(否定)p2)</span><br><span class="line">即p2的实际部分应该是10.0.1.0——10.0.255.255 即不包含p1 可以使用下面公式表示</span><br></pre></td></tr></table></figure>
+<img src="/2023/03/29/FLash-1/1.png" class title="Flash-1&#x2F;1.png">
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">如何进行模型转换R(基于规则的)-&gt;M(基于等价类的)，公式如下</span><br><span class="line">公式的含义就是所有规则的有效断言的union 通过这个公式就完成断言的转换</span><br></pre></td></tr></table></figure>
+<img src="/2023/03/29/FLash-1/2.png" class title="FLash-1&#x2F;2.png">
+<p>2.规则更新（插入或删除）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">规则更新无非有两种：插入规则与删除规则</span><br><span class="line">插入规则：设备原始规则（优先级比新规则低）有效断言减少</span><br><span class="line">删除规则：设备原始规则（优先级比新规则低）有效断言增加</span><br></pre></td></tr></table></figure>
+<p>3.规则逐条更新效率很低</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">原因：假设存在两条规则集r1，r2，规则集中分别包含2，3条</span><br><span class="line">r1规则集：</span><br><span class="line">r11=(dstip=10.0.0.0/24 pri=2 forward port1)</span><br><span class="line">r12=(dstip=10.1.0.0/24 pri=2 forward port1)</span><br><span class="line">r2规则集：</span><br><span class="line">r21=(dstip=10.0.0.0/16 pri=1 forward port2)</span><br><span class="line">r22=(dstip=10.1.0.0/16 pri=1 forward port2)</span><br><span class="line">r22=(dstip=10.2.0.0/16 pri=1 forward port2)</span><br><span class="line">首先计算r1的有效断言</span><br><span class="line">eff_r1 = eff_r11 ∪ eff_r12</span><br><span class="line">再计算r2的有效断言</span><br><span class="line">eff_r2 = (eff_r21 ∪ eff_r22 ∪ eff_r23) ∩ (否定)(eff_r11 ∪ eff_r12)</span><br><span class="line">我们可以注意到 eff_r11 ∪ eff_r12 已经在计算eff_r1时计算过了，如果单独更新规则集r2，则会产生冗余</span><br><span class="line"></span><br><span class="line">问：作者是如何解决这个问题的？</span><br><span class="line">答：检查两个断言是否可以合并，若插入的断言p1和断言p2有相同的动作(转发到port1)，则可以创建新的断言</span><br><span class="line">p=p1∪p2，这样再计算有效断言时可以减小冗余，缩短时间</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">input:数据包头部</span><br><span class="line">output:转发行为</span><br><span class="line">注意：IMT不处理具体某个input，而是处理input集合</span><br></pre></td></tr></table></figure>
+<p>4.覆盖允许更新组合的运算符</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">新的更新（S3-S2-S1）到来后，首先发生在设备S3，即下图中ΔR3</span><br><span class="line">由于存在两条规则，因此有两次更新</span><br><span class="line">更新1：ΔR3中第一行，重写运算符就是(Δp=p4,Δy)，其中Δy指定了采取的动作，从S3到S2，写作y3=S2；</span><br><span class="line">然后将该断言与原本断言就行交集运算，判断，有以下两种情况：</span><br><span class="line">&lt;1&gt;为空，该重写运算符不起作用</span><br><span class="line">&lt;2&gt;不为空，相交的部分成为新的等价类，其余部分不变（类似于APKeep中分离断言）</span><br><span class="line">更新2：ΔR3中第二行，重写运算符就是(Δp=p5,Δy)</span><br><span class="line"></span><br><span class="line">reduce1:键是Δy，对于具有相同键(Δy)的断言，断言(Δp)被减少</span><br><span class="line">reduce2:键是Δp，对于具有相同键(Δp)的断言，断言(Δy)被减少</span><br><span class="line">这两步都能提高效率</span><br><span class="line"></span><br><span class="line">如下图所示</span><br><span class="line">在S3处reduce1 就是将p4与p5合并，即p3=p4∨p5</span><br><span class="line">reduce2 就是将ΔM1、ΔM2、ΔM3进行Δy合并，即Δy=&#123;y3=S2,y2=S1,y1=A&#125;,即&#123;A,S1,S2&#125;</span><br><span class="line"></span><br><span class="line">注意：map-reduce过程仅适用于无冲突覆盖。</span><br><span class="line">冲突覆盖的概念：</span><br><span class="line">两个覆盖运算符(Δp,Δy)和(Δp′,Δy′)存在冲突，当且仅当Δp和Δp′相交，并且它们在同一设备上写入不同的动作。</span><br></pre></td></tr></table></figure>
+<img src="/2023/03/29/FLash-1/3.png" class title="FLash-1&#x2F;3.png">
+<h5 id="应用">应用</h5>
+<p>1.高效计算ΔM</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">以下算法是规则更新后，根据ΔR计算ΔM的算法</span><br><span class="line">输入：ΔRi:第i个设备的本地更新块 Ri:更新前已排序的初始规则</span><br><span class="line">输出：ΔMi:等价于ΔRi的原子重写集合 Ri&#x27;:更新后已排序的最终规则</span><br><span class="line">步骤</span><br><span class="line">L1:移除ΔRi中无用的更新 （先增加后删除 或 先删除后增加）</span><br><span class="line">L2:排序ΔRi按优先级降序排列</span><br><span class="line">L3:Rdiff为MergeBlockAndDiff(Ri,ΔRi)的结果</span><br><span class="line">L4:Ri&#x27;=Ri 将更新赋值于Ri&#x27;</span><br><span class="line">L5:ΔMi为CalculateAtomicOverwrite(Ri&#x27;,Rdiff)的结果</span><br><span class="line">L6:返回Ri&#x27;，ΔMi</span><br><span class="line">具体函数含义</span><br><span class="line">函数：MergeBlockAndDiff(Ri,ΔRi) 合并本地更新</span><br><span class="line">    L8-L11:初始化</span><br><span class="line">L8:Rdiff初始化为空列表</span><br><span class="line">L9:优先级较高的规则是否被删除higher初始化为false</span><br><span class="line">L10:r初始化为Ri的最高优先级</span><br><span class="line">L11:δ=(op,rδ)是ΔRi中最高优先级的更新</span><br><span class="line">    L12-L16:首先定位应该应用更新的位置。</span><br><span class="line">L12:首先判断δ是否为空，不为空（表示存在更新）</span><br><span class="line">L13:判断ΔRi中最高优先级的规则rδ是在r之后增加/删除的，如果是</span><br><span class="line">L14:判断优先级较高的规则是否被删除higher是否为true，如果是</span><br><span class="line">L15:扩展Rdiff，即Rdiff.add(r)</span><br><span class="line">L16:遍历Ri的下一条规则，并赋值于r</span><br><span class="line">    L17-L20:插入更新</span><br><span class="line">L17:如果ΔRi中最高优先级的规则rδ不是在r之后增加/删除的</span><br><span class="line">L18:如果最高优先级的动作是插入</span><br><span class="line">L19:在规则r前增加rδ</span><br><span class="line">L20:扩展Rdiff，即Rdiff.add(r)</span><br><span class="line">    L21-L24:删除更新</span><br><span class="line">L21:如果最高优先级的动作是删除</span><br><span class="line">L22:从Ri中删除r</span><br><span class="line">L23:优先级较高的规则是否被删除higher为true</span><br><span class="line">L24:遍历Ri的下一条规则，并赋值于r</span><br><span class="line">L25:获取ΔRi中下一个更新δ</span><br><span class="line">L26:若δ为空，判断优先级较高的规则是否被删除higher是否为true，如果是</span><br><span class="line">L27:将Ri中剩余规则添加到Rdiff</span><br><span class="line">L28:返回Rdiff</span><br><span class="line"></span><br><span class="line">该算法主要是计算ΔM 即reduce1，该算法并没有实现断言的合并</span><br></pre></td></tr></table></figure>
+<img src="/2023/03/29/FLash-1/4.png" class title="FLash-1&#x2F;4.png">
+<p>2.快速IMT</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入空间分区:快速IMT的复杂性取决于反向模型和更新的大小，这两者都与数据平面中的规则数量有关。通过将空间划分为多个子空间，可以减少更新过程中有效对的数量，以及受影响规则的数量。因此，它可以大大提高模型更新的速度。</span><br><span class="line">快速查找重叠规则:计算原子重写(ΔMi)是计算每个受影响规则的有效断言。可以看出，规则的有效断言r将影响或受其他规则影响r&#x27;，只有当它们的匹配重叠时。mr∧mr&#x27;≠∅. 在一些常见的场景中，例如，当数据平面主要由最长前缀匹配规则组成时，重叠规则的数量通常远小于设备上的规则数量。为了加快原子覆盖的计算，Flash使用多维前缀Trie[24]来实现对重叠规则的快速查找。</span><br><span class="line">PAT:</span><br></pre></td></tr></table></figure>
+<h5 id="早期检查">早期检查</h5>
+<p>1.目前数据平面验证工具存在的问题</p>
+<blockquote>
+<p>问题</p>
+<p>&lt;1&gt;如何调度规则更新来构建与收敛状态一致的模型？</p>
+<p>&lt;2&gt;如何在信息不完整的情况下有效地计算验证结果？</p>
+</blockquote>
+<p>2.Flash是如何做的</p>
+<blockquote>
+<p>&lt;1&gt;识别一致的FIB更新，即从相同的网络状态计算的更新</p>
+<p>&lt;2&gt;识别潜在的收敛状态</p>
+<p>&lt;3&gt;将潜在收敛状态（为了效率）的一致FIB更新（为了正确性）调度到同一验证器</p>
+</blockquote>
+<p>2.1识别与Epoch一致的FIB更新</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Flash使用网络状态来表示路由软件用来计算转发规则（例如，链路状态和前缀配置）的信息。</span><br><span class="line">随着网络的发展，其状态也会因不同事件（如链路故障）而发生变化。在同步状态协议中，状态更改会传播到整个网络。</span><br><span class="line"></span><br><span class="line">Flash通过将不同网络状态计算的规则更新划分为epochs来区分这些更新。</span><br><span class="line">具体来说，每个epoch表示全局网络状态的快照。</span><br><span class="line">由于仅通过查看数据平面无法确定更新是否来自同一网络状态，Flash使用代理增强了路由软件。</span><br><span class="line">代理计算标签(OpenR实现中，Flash使用密钥的哈希值和状态变量的版本作为epoch标签)，即epoch的唯一标识符，并将标签与根据状态计算的FIB更新相关联。</span><br><span class="line">Flash要求代理和调度器之间的消息传递是串行的，即，来自同一设备的更新总是以与生成更新相同的顺序接收。</span><br><span class="line">然而，Flash对来自不同设备上的代理的消息没有任何限制。</span><br><span class="line"></span><br><span class="line">通过Epoch依赖性跟踪识别潜在的聚合状态。</span><br><span class="line">由于Flash需要设备和调度器之间的严格顺序，如果调度器在接收到具有t2的更新之前在设备i上接收到具有t1的更新，则t1不能是收敛状态。</span><br><span class="line">类似地，如果我们在t3之前看到t2，即使t2是设备i上的最新标签，我们也可以推断t2不可能是收敛状态。这被称为分布式系统中的“先发生后发生”关系，表示为t1≺t2。</span><br><span class="line">Flash维护每个设备的最新标签和一组没有后续epoch的“活动”epoch。</span><br><span class="line">一旦从设备i接收到新标签tnew（其旧标签为ti＝told），Flash就从活动集中删除told，并用tnew替换tell。</span><br><span class="line">如果tnew没有被标记为非活动（由另一个设备），Flash会将tnew添加到活动集。标记在活动集中的epoch是一个潜在的收敛状态。</span><br><span class="line"></span><br><span class="line">调度一致的FIB更新</span><br><span class="line">由于更新与epoch标签相关联，Flash维护了从epoch标签到验证器的映射。</span><br><span class="line">具体地，在从设备接收到具有新epoch标记t的更新时，</span><br><span class="line">Flash首先将更新附加到设备的更新队列，并检查t是否在活动集中。</span><br><span class="line">如果t不在活动集中，这意味着同一设备将来会有更新，则不需要进一步操作。</span><br><span class="line">否则，如果t在活动集中，Flash会找到（或创建一个，如果不存在）t的验证器，并将更新从设备的更新队列馈送到该验证器。</span><br><span class="line">在实践中，Flash可能需要采用退避机制，以避免由于控制平面错误或对不稳定链路的不当处理而快速创建验证器。</span><br><span class="line"></span><br><span class="line">一个示例更新设置如图3所示。考虑由两个链路故障触发的更新:(S,W)和(B,Y)。</span><br><span class="line">假设每个设备的初始标签为t0＝[0，0，…]，其中第一个/第二个元素是链路(S,W)/(B,Y)的描述。</span><br><span class="line">假设在时间T1，Flash接收来自具有标签t1＝[1，0，…]的S的更新（在看到(S,W)的故障之后），以及来自具有标签t2＝[0，1，…]（在发现(B,Y)的故障后）的交换机A和B的更新。</span><br><span class="line">在T1，t1和t2是潜在的收敛状态，并且被置于不同的验证器中。</span><br><span class="line">然而，如果在时间T2&gt;T1时，Flash从交换机S、A和B接收到更新，并且epoch标记t3=[1、1、…]，则调度程序将把T1和T2标记为非活动，并为t3创建一个新的验证器，因为t3现在处于活动状态。</span><br><span class="line">然后，如果Flash从交换机E接收到标记为t2的更新，则Flash只需将更新附加到E的队列中，而不将其发送给任何验证器。</span><br><span class="line">当它从E接收到具有t3的更新时，它将更新刷新到与标签t3相关联的验证器。</span><br><span class="line">图4（a）显示了为每个epoch构建的模型，并在底部显示了不一致状态的示例。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<img src="/2023/03/29/FLash-1/5.png" class title="FLash-1&#x2F;5.png">
+<img src="/2023/03/29/FLash-1/6.png" class title="FLash-1&#x2F;6.png">
+<p>2.2通用正则表达式需求的一致性早期检查</p>
+<blockquote>
+<p>作者首先指定了Flash如何对正则表达式中指定的一般要求执行一致的早期检测</p>
+<p>图16给出了Flash中需求规范语言的简化语法</p>
+</blockquote>
+<img src="/2023/03/29/FLash-1/7.png" class title="FLash-1&#x2F;7.png">
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">验证图和一致部分验证</span><br><span class="line">Flash计算验证图，作为网络自动机和需求表达自动机的叉积自动机Gp，用于每个数据包空间H和一组源src。</span><br><span class="line">初始验证图包含G中的所有路径，这些路径</span><br><span class="line">（1）从srcs开始</span><br><span class="line">（2）匹配所有正则表达式</span><br><span class="line">考虑图3中的网络和需求。要求是子空间中的数据包ℎ在S处进入的数据包必须沿着穿过W和Y之一的简单路径到达D。</span><br><span class="line">图4(b)显示了初始状态S1和接受状态D1的验证图。</span><br><span class="line">有了这个图，对需求表达式的验证就相当于在验证图中找到一条可以达到接受状态的路径。</span><br><span class="line">具体地说，如果存在这样一个仅由同步节点组成的路径，则该需求始终得到满足。</span><br><span class="line">如果存在一条仅由同步节点组成的路径，则拒绝状态将始终不满足要求。否则，验证结果未知。</span><br><span class="line"></span><br><span class="line">递减更新和可达性查询。</span><br><span class="line">随着越来越多的节点变得同步，该epoch网络中可能符合需求的路径集正在单调减少。</span><br><span class="line">考虑图3中的示例，在接收到图4（b）中的Update1之后，验证图只包含绿色区域中的节点和边。</span><br><span class="line">在进一步接收更新2之后，Gp中没有有效的路径，这意味着无论如何，都无法满足图3中的要求ℎ 由其他设备转发。</span><br><span class="line">在这种递减图中的可达性查询（即，边总是被移除，但从不添加）具有恒定的时间复杂性[41]。该算法的细节和伪代码，以及如何将其扩展为对更复杂的流量模式（例如，任意播、多播和覆盖要求[27]）执行早期检测，见附录D.2。</span><br></pre></td></tr></table></figure>
+<p>2.3一致早期循环检测技术</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">简单来讲有两种方式</span><br><span class="line">1.删除非同步节点，判断同步节点间是否存在循环 -&gt; 缺点：容易错过早期检测机会</span><br><span class="line">2.保持非同步节点，假设非同步节点的所有下一跳是任意一个接口，系统枚举所有可能，计算是否存在循环 -&gt; 缺点：计算代价高</span><br><span class="line"></span><br><span class="line">Flash结合这两种方法 提出hyper node compression方法</span><br><span class="line">hyper node compression：</span><br><span class="line">未同步节点的每个连接组件都被压缩为超节点，以降低枚举成本。</span><br><span class="line">设U表示非同步节点的连通分量，该连通分量由超节点w代替。对于每个(u,v)∈E，u∉U和v∈U，移除(u,v)并向E添加边(u,w)。</span><br><span class="line">用超节点验证此图将给出与第二种方法相同的结果，但避免枚举U中的路径。</span><br><span class="line"></span><br><span class="line">请考虑图5中的示例。在图5(a)中，当sync=&#123;A,B&#125;时，我们可以将未同步的节点C和X合并为一个超节点，表示为C&amp;X。</span><br><span class="line">在这种情况下，</span><br><span class="line">可能存在一个循环，例如B→A→C&amp;X→B，是原始图中B→A→X→B，</span><br><span class="line">或者是无循环，例如B→A→C&amp;X→out，是原始图中是B→A→X→C→out，</span><br><span class="line">因此最终结果尚未确定。</span><br><span class="line">然而，如果C是同步的，如图5(b)所示，Flash报告说，只要X不丢弃数据包，就会在最终状态下出现循环。如果只验证同步节点，则无法检测到这一点。</span><br><span class="line"></span><br><span class="line">增量检测</span><br><span class="line">Flash不检测来自所有可能节点的循环，而是只检测包含刚刚同步的节点的循环。</span><br><span class="line">设VS和V&#x27;S相应地表示同步节点的旧集合和新集合。</span><br><span class="line">如果在旧图中未检测到循环，则新图中的新循环必须包含V&#x27;S\VS中的节点。</span><br><span class="line">结合超节点压缩(hyper node compression)和增量检测，Flash增量检查新的同步节点。</span><br></pre></td></tr></table></figure>
+<img src="/2023/03/29/FLash-1/figure5.png" class title="FLash-1&#x2F;figure5.png">
+<p>定义1：(input space,predicate,selection)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">L:表示input的位数</span><br><span class="line">input space:所有可能input值的集合 X=&#123;0,1&#125;^L</span><br><span class="line">predicate:布尔函数p:X-&gt;&#123;0,1&#125;</span><br><span class="line">selection:&#123;x∈X|p(x)=1&#125;</span><br><span class="line">P:X上的断言空间 </span><br><span class="line">p0：对于x∈X，都能表示满足p0(x)=0的断言</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>FLash</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>FLash-2</title>
+    <url>/2023/03/30/FLash-2/</url>
+    <content><![CDATA[<h3 id="Flash-解决更新风暴、长尾到达的最新数据平面验证-学习3">Flash-解决更新风暴、长尾到达的最新数据平面验证-学习3</h3>
+<span id="more"></span>
+<h4 id="本次是Flash实验评估">本次是Flash实验评估</h4>
+<p>1.评估</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">回答四个关键问题</span><br><span class="line">（1）在具有大量更新的真实世界大型网络中，Flash的性能如何？Flash在不同设置下的性能有多强？（§5.2）</span><br><span class="line">（2）根据真实路由的FIB更新的到达模式，Flash的性能如何？（§5.3）</span><br><span class="line">（3）每种优化技术如何有助于整体性能的提高？（§5.4）</span><br><span class="line">（4）就计算需求而言，Flash的开销（成本）是多少？(§5.5)</span><br></pre></td></tr></table></figure>
+<p>2.实验设置</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">快速IMT命名方式：A-B，其中A代表网络拓扑，B代表FIB生成</span><br><span class="line">示例：LNet-apsp</span><br><span class="line">&lt;1&gt;该设置使用LNet拓扑，这是一种基于Fabric网络架构的专有网络</span><br><span class="line">&lt;2&gt;FIB规则是通过运行全对最短路径算法生成的。</span><br><span class="line">CE2D命名方式：A-B-C[-D]，其中A表示网络拓扑，B表示FIB生成，C表示要验证的属性（所有对可达性和环路自由度），可选的D（如果存在）表示存在长尾到达。</span><br><span class="line">示例：I2-OpenR/1buggy-loop-lt</span><br><span class="line">&lt;1&gt;使用Internet2拓扑</span><br><span class="line">&lt;2&gt;FIB规则是由真正的OpenR软件生成的，除了一个交换机，它正在运行一个有缺陷的OpenR实例</span><br><span class="line">&lt;3&gt;所述验证器被配置为检查所述循环自由度要求</span><br><span class="line">&lt;4&gt;存在长尾到达</span><br><span class="line">所有的设置如下图（包含数据集信息）</span><br><span class="line"></span><br><span class="line">实验环境设置</span><br><span class="line">8个vCPU(2.5GHz)和32GB内存的Ubuntu云服务器上进行的。</span><br><span class="line">操作系统是Ubuntu（x64）18.04。</span><br><span class="line">安装了OpenJDK v17.0.3的LTS</span><br><span class="line"></span><br><span class="line">代码配置(已开源)</span><br><span class="line">https://github.com/snlab/flash </span><br><span class="line">大约4000行java代码</span><br><span class="line"></span><br><span class="line">Flash设备代理实现</span><br><span class="line">设备代理（如果需要一致的早期检测功能）可以通过修补现实世界生产网络中采用的开源模块化路由平台来实现。特别是，在评估中以开源路由软件OpenR[33]为平台。</span><br><span class="line">OpenR：https://github.com/facebook/openr</span><br><span class="line">OpenR是一种状态同步协议，它将其状态变量（即Adj、Prefix）存储在K-V存储中，并使用决策和Fib模块计算路由。</span><br><span class="line">扩展有大约150行C++代码。通过扩展，从相同的网络状态计算的规则更新被封装到带有标签的Thrift[46]消息中，并被发送到验证系统。</span><br><span class="line"></span><br><span class="line">Flash也实现了Delta-net、APKeep、APKeep*进行实验对比</span><br></pre></td></tr></table></figure>
+<img src="/2023/03/30/FLash-2/table2.png" class title="Flash-2&#x2F;table2.png">
+<p>3.评估基准</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">评估1：在大规模网络(LNet-ecmp和LNet-smr)中评估</span><br><span class="line">作者通过将所有交换机的规则插入放在一个序列中来生成更新，将更新序列提供给验证器，并测量执行时间和内存消耗来构建反向模型。如果执行时间超过10小时，我们将终止JVM。</span><br><span class="line">实验结果图：如下图6所示</span><br><span class="line">我们很容易看到：</span><br><span class="line">LNet-ecmp和LNet-smr的Flash(绿色)分别在19秒和4秒内完成，而Delta-net*(蓝色)和APKeep*(橙色)都无法在10小时内完成。</span><br><span class="line">因此，对于LNet-smr，Flash的性能优于Delta-net*和APKeep*9000倍（10小时除以4秒）。</span><br><span class="line">Flash（绿色）的内存消耗也大大降低（在两种设置中都高达2个数量级）。虽然设置看起来很极端，但当验证器正在引导或按需运行时（例如，用于网络规划或虚拟私有云的可达性分析），确实会发生这种情况。</span><br><span class="line">因此，我们得出结论，Flash对于大规模网络中的数据平面验证来说是快速且高效的。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<img src="/2023/03/30/FLash-2/figure6.png" class title="FLash-2&#x2F;figure6.png">
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">评估2：快速IMT的优势和稳健性。</span><br><span class="line">作者分析了快速IMT作为一种独立的模型构建方法的好处，通过将子空间划分思想应用于大型网络中的Delta-net*和APKeep*，因为子空间划分可以广泛有效地用于大型网络。</span><br><span class="line">除了执行时间和内存消耗外，作者还计算了每个评估设置的断言运算数量.</span><br><span class="line">实验结果表：如下表3所示</span><br><span class="line">我们很容易看到：</span><br><span class="line">名为“LNet-smr子空间”的行显示了将子空间分区应用于LNet-smr中的所有子空间时的结果。</span><br><span class="line">我们观察到Delta-net*和APKeep*的模型更新时间更长，分别是LNet-ecmp中Flash的1.4倍（26s/19s）和1895倍，以及LNet-smr中的71倍（285s/4s）和251倍。</span><br><span class="line">在这两种设置中，Flash的内存占用空间也较小。Flash在LNet-smr中使用15MB，而Delta-net*和APKeep*分别使用6792MB和31MB。</span><br><span class="line">除了LNet-apsp子空间设置外，Flash还大幅减少了断言运算的数量（LNet-ecmp中的Delta-net*和APKeep分别为20倍和681倍，LNet-smr中分别为26倍和4倍）。</span><br><span class="line"></span><br><span class="line">完整性评估</span><br><span class="line">作者使用较小的网络，并报告文献中广泛使用的三种设置的结果：Airtel、Stanford跟和I2。</span><br><span class="line">表3的最后3行显示了结果。我们可以看到，APKeep*的模型更新时间是Flash的4.8-6.5倍。</span><br><span class="line">在这种较小的网络中，Delta-net*表现最好，模型更新时间仅为Flash的30-90%。对于一些大型网络也是如此，例如LNet-apsp子空间。</span><br><span class="line">然而，我们看到Delta-net*的断言运算数量高于Flash（在Airtel跟踪中高达141倍）。</span><br><span class="line">可能原因</span><br><span class="line">Delta-net*的效率来自于其简单、高效的数据结构，它可以有效地处理基于前缀的规则。然而，如LNet-smr和LNet-ecmp结果所示，对于非前缀规则，这种表示可能遭受显著的性能退化</span><br></pre></td></tr></table></figure>
+<img src="/2023/03/30/FLash-2/table3.png" class title="FLash-2&#x2F;table3.png">
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">评估3：与CE2D合作时块大小阈值的影响。</span><br><span class="line">由于更新可能在实际中不断到达，Flash可以选择更新反向模型，并在处理所有规则更新之前执行CE2D。</span><br><span class="line">此行为由块大小阈值（BST）参数配置B, 这迫使Flash在处理等于或大于B规则更新。</span><br><span class="line">为了了解此参数如何影响Flash的性能，作者改变了BST值，并测量了表3中使用的设置的模型构建时间。</span><br><span class="line">实验结果图：如下图7所示</span><br><span class="line">x轴表示BST值和FIB量表的比例，因为FIB量值决定了我们评估中的更新次数，并且在每个设置中变化很大。</span><br><span class="line">y轴是归一化的模型更新速度，计算为T基线/Tx，它对模型更新速度与基线相比的速度进行分类，其中BST值是无限的，并且在处理所有更新之后更新模型。</span><br><span class="line">作者观察到：</span><br><span class="line">&lt;1&gt;随着阈值的增加，总体趋势是模型更新速度将增加并保持在相对较高的水平。</span><br><span class="line">&lt;2&gt;在x≈0.04的情况下，大多数设置可以达到基线的60%以上和&gt;100%（LNet-apsp、LNet-ecmp和I2-trace）效率。</span><br><span class="line">&lt;3&gt;唯一的例外是LNet-smr子空间，当x≈0.04时，它仅达到～0.2，当x≈0.5时，它才达到＞0.8。</span><br><span class="line">&lt;4&gt;由于Flash在LNet-smr子空间中的加速大于70倍，因此Flash的速度仍然可以达到最先进的14倍以上。</span><br><span class="line">因此，我们得出结论，快速IMT在具有更大的块大小阈值的情况下更有效。然而，当阈值不小于FIB规模的4%时，仍然可以获得性能改进。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<img src="/2023/03/30/FLash-2/figure7.png" class title="FLash-2&#x2F;figure7.png">
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">评估4：CE2D评估，证明其在极端环境下的有效性、性能优势和稳健性。</span><br><span class="line">实验设计：</span><br><span class="line">&lt;1&gt;首先进行评估，以验证CE2D可以提供一致的早期检测结果。具体来说，我们使用I2OpenR循环设置运行模拟。我们使用Mininet来构建具有Internet2拓扑结构的网络。一个真正的OpenR实例在每个交换机上运行，并通过主机网络连接到Flash。</span><br><span class="line">&lt;2&gt;通过在Mininet中连续关闭两个链路（chic-alta和chic-kans）来触发FIB计算。</span><br><span class="line">作者将CE2D与两种策略进行了比较：</span><br><span class="line">&lt;1&gt;每次更新验证（PUV），它在处理单个规则更新后检查属性</span><br><span class="line">&lt;2&gt;块更新验证（BUV），其在处理更新块后检查性质。</span><br><span class="line">作者在验证器上记录每个交换机的FIB更新时间，以及验证器报告确定性结果的时间。</span><br><span class="line">实验结果图：如下图8所示</span><br><span class="line">结果分析：</span><br><span class="line">交叉点（x，y）表示在时间x接收到交换机y的FIB更新，因为链路断开事件被触发，并且颜色指示epoch标记。点（x，y）表示验证器策略y在时间x报告确定性结果，其中橙色表示有循环，蓝色表示没有循环。</span><br><span class="line">&lt;1&gt;两个同时发生的链路故障在每个交换机上多次触发FIB重新计算。对于PUV和BUV，验证器报告两个瞬态循环（橙色点），这与最终验证结果不一致。</span><br><span class="line">&lt;2&gt;Flash不会报告假阳性错误，并保证验证结果是一致的。</span><br></pre></td></tr></table></figure>
+<img src="/2023/03/30/FLash-2/figure8.png" class title="FLash-2&#x2F;figure8.png">
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">评估5：CE2D对长尾到达的好处。证明当长尾到达发生时，CE2D可以提高多少性能。</span><br><span class="line">实验设计：</span><br><span class="line">&lt;1&gt;在发生循环的两种设置中评估了CE2D的效果：I2-OpenR/1buggy-loop-lt，I2-track-loop-lt。</span><br><span class="line">&lt;2&gt;对于每个设置，我们运行50个独立的随机试验，在每个试验中，我们通过配置一个随机节点在发送更新之前延迟60秒来模拟长尾效应。</span><br><span class="line">&lt;3&gt;测量Flash报告确定性结果的时间。</span><br><span class="line">实验结果图：如下图9所示</span><br><span class="line">结果分析：</span><br><span class="line">x轴是报告时间，y轴是累积分布函数（CDF）。将x轴的范围限制为[0ms，1000ms]：如果曲线在1000ms时没有达到y=1，则在60s时，即在接收到来自阻尼节点的更新后，会获得结果。</span><br><span class="line">&lt;1&gt;点(153.7ms,0.68)位于I2-OpenR/1buggy-loop-lt的曲线上，这表明Flash在68%的试验中可以在不到153.7ms的时间内检测到环路，这比60s的基线要小得多（&gt;390×）。</span><br><span class="line">&lt;2&gt;在I2-track-loop-lt中，Flash可以在所有试验中在760ms内早期检测到环路，从而实现79倍的加速。</span><br><span class="line">因此，我们得出的结论是，在长尾到达时，CE2D的改善可能相当普遍（68%至100%）和显著（79至&gt;390）。</span><br></pre></td></tr></table></figure>
+<img src="/2023/03/30/FLash-2/figure9.png" class title="FLash-2&#x2F;figure9.png">
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">评估6：多重阻尼交换机的影响。即研究了当存在多个阻尼交换机时对CE2D的影响。</span><br><span class="line">实验设计：</span><br><span class="line">&lt;1&gt;作者使用I2-track-loop-lt设置，该设置使用来自Internet2数据集的真实网络拓扑和更新序列。</span><br><span class="line">&lt;2&gt;作者列举了阻尼设备的数量D从1到7。对于每个D，作者将Flash配置为使用CE2D检查循环，并运行50个独立的随机试验。</span><br><span class="line">实验结果图：如下图10所示</span><br><span class="line">结果分析：</span><br><span class="line">&lt;1&gt;在72.5%（即145/200）的情况下，Flash可以在800ms内检测到一致的环路，其速度是完整验证的75倍。</span><br><span class="line">&lt;2&gt;阻尼设备D随着时间的增长，成功的一致性早期检测的概率变得更低。例如，当D≤3时，CE2D在超过90%的情况下仍能在800ms内检测到误差，D=7约20%的情况下，即77.8%的交换机被阻尼。</span><br><span class="line">因此，我们得出结论，即使在数据平面的有限和部分知识的情况下，CE2D也可以早期检测到错误。</span><br></pre></td></tr></table></figure>
+<img src="/2023/03/30/FLash-2/figure10.png" class title="FLash-2&#x2F;figure10.png">
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">评估7：大规模网络中PAT的影响。</span><br><span class="line">实验设计：</span><br><span class="line">通过分析表3中的结果，我们展示了持久行动树（PAT，见§3.4）的效果。总的模型更新时间包括创建和删除等价类的时间（表示为Tec，由Flash中的持久操作树（PAT）处理，与断言操作的数量无关），以及处理断言的时间（称为Top）。</span><br><span class="line">结果分析：</span><br><span class="line">在表3中，我们看到，在前3个大规模网络设置中，模型构建时间的改进大于Flash对APKeep*的#断言运算的改进，例如，LNet-apsp分别为15x和5x。</span><br><span class="line">原因是在较小的网络中，模型构建时间由Top主导，性能增益主要来自于#断言运算的减少。同时，在大型网络中，Tec在整体性能方面占据主导地位，Flash从PAT的性能增益中获益更多</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">评估8：MR2的影响。即为了更好地理解MR2（§3.2）如何对Flash的整体性能增益做出贡献</span><br><span class="line">实验设计：</span><br><span class="line">&lt;1&gt;作者对模型构建中的3个阶段进行了细分分析：计算原子覆盖（Map）、覆盖聚合（即Reduce I/II）和应用覆盖。</span><br><span class="line">&lt;2&gt;作者测量APKeep*、Flash和Flash变体（称为Flash（逐条规则更新模式））每个阶段的总时间，其中块大小阈值设置为1。</span><br><span class="line">实验结果图：如下图11所示</span><br><span class="line">结果分析：</span><br><span class="line">图11显示了APKeep*、Flash（每次更新模式）和Flash在I2-track中的时间细分。</span><br><span class="line">&lt;1&gt;虽然Flash引入了一些覆盖聚合的开销（0.42s），但与APKeep*相比，计算原子覆盖（3.85倍）和应用覆盖（12.30倍）的速度加快了。</span><br><span class="line">&lt;2&gt;在Flash（每次更新模式）中应用覆盖所需的时间（4.84s）比APKeep*（4.55s）更长，因为交叉乘积计算并没有针对单个规则更新进行优化。</span><br><span class="line">因此，我们得出结论，通过覆盖聚合，MR2使Flash能够通过大幅减少计算无原子冲突模型覆盖和应用聚合覆盖的时间来提高性能。</span><br></pre></td></tr></table></figure>
+<img src="/2023/03/30/FLash-2/figure11.png" class title="FLash-2&#x2F;figure11.png">
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">评估9：递减验证图的效率。即展示了使用递减验证图方法（§4.2）对基于正则表达式的需求执行一致早期检测的效率</span><br><span class="line">实验设计：</span><br><span class="line">&lt;1&gt;作者使用LNet-apsp子空间设置并检查所有对ToR到ToR的可达性。</span><br><span class="line">&lt;2&gt;Flash总共生成5376个验证图，每个子空间验证器生成48个验证图。每个交换机的规则插入都打包为一个batch。</span><br><span class="line">&lt;3&gt;作者在处理每个batch次后验证可达性，并使用（1）递减图查询（DGQ，见§4.2）方法和（2）模型遍历（MT，即使用深度优先遍历从每个源ToR遍历模型）来测量单个子空间验证器的验证执行时间。</span><br><span class="line">实验结果图，如下图12所示</span><br><span class="line">结果分析：</span><br><span class="line">图12显示了验证时间的CDF。</span><br><span class="line">&lt;1&gt;DGQ（蓝色）比MT（橙色）更靠近y轴。DGQ和MT的中位数、平均值、99%和最长时间分别为0.58/0.84/4.74/19.57ms和772.98/1522.22/5513.76/7466.87ms。</span><br><span class="line">&lt;2&gt;与MT相比，Flash将99%的执行时间提高了~1163×（4.74ms vs.s.5513.76ms）。</span><br><span class="line">因此，我们可以得出结论，递减验证图方法大大提高了基于正则表达式的需求的验证性能，并实现了高效一致的早期检测。</span><br></pre></td></tr></table></figure>
+<img src="/2023/03/30/FLash-2/figure12.png" class title="FLash-2&#x2F;figure12.png">
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">评估10：计算开销</span><br><span class="line">实验设计：</span><br><span class="line">两种部署</span><br><span class="line">&lt;1&gt;部署专用服务器以进行持续验证的设置</span><br><span class="line">结果分析：</span><br><span class="line">对于LNet-ecmp，Flash为每个pod划分一个子空间，因此总共有112个子空间。</span><br><span class="line">每个子空间验证器需要1 (v)个CPU，211MB内存用于反向模型，336MB内存用于验证图，以检查所有对ToR可达性，并且每台机器需要&lt;4GB内存来运行JVM并存储规则。</span><br><span class="line">因此，总计算开销为112 (v)个CPU，&lt;62GB（61.26GB）（用于模型和验证图）+4GB（用于规则和JVM）内存。</span><br><span class="line">如果子空间验证器部署在k个具有专用资源的机器，每台机器需要112/k (v)CPU和62/k + 4GB内存。</span><br><span class="line">为了了解数据中心的资源成本，我们在2022/7/1应用了AWS EC2（美国俄亥俄州）[52]的可用性和定价，以获得Flash需要4个c6g.8xlarge（32 vCPU和64GB内存）实例。估计费用为2.74美元/小时。</span><br><span class="line">&lt;2&gt;一次性部署设置，其中操作员使用按需计算资源来验证LNet-ecmp</span><br><span class="line">结果分析：</span><br><span class="line">&lt;1&gt;选择4个c6g.8xlarge（32个vCPU和64GB内存）实例，Flash在21秒内完成一次性验证：1秒用于接收规则更新，19秒用于模型构建，939ms用于可达性检查。</span><br><span class="line">&lt;2&gt;假设每个实例运行1分钟并使用WS定价数据，则系统成本为4.352美元/小时或0.07美元/次</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>FLash</tag>
+      </tags>
   </entry>
   <entry>
     <title>JAVA开发</title>
@@ -54,6 +201,26 @@ rule 3 192.168.1.1/25  port3</p>
       </tags>
   </entry>
   <entry>
+    <title>FLash-3</title>
+    <url>/2023/04/01/FLash-3/</url>
+    <content><![CDATA[<h3 id="Flash-解决更新风暴、长尾到达的最新数据平面验证-学习4">Flash-解决更新风暴、长尾到达的最新数据平面验证-学习4</h3>
+<span id="more"></span>
+<h4 id="相关工作">相关工作</h4>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">大规模网络的网络验证。</span><br><span class="line">&lt;1&gt;由于其重要性，各种研究已经对大规模网络的网络验证进行了研究。</span><br><span class="line">&lt;2&gt;一些设计侧重于控制平面，这与Flash所关注的数据平面验证是互补的，而一些设计仅适用于特定的网络结构和特定的需求，而Flash针对的是更通用的网络和需求。</span><br><span class="line">&lt;3&gt;Libra提出通过分布式计算来扩展大规模网络的验证。它将头部空间划分为最小的原子子空间，其中每个子空间必须具有相同的转发行为，并且本质上是Flash中的等价类，并将这些子空间的验证分发给一组验证器。</span><br><span class="line">&lt;4&gt;Flash中子空间划分的设计是受Libra的启发。然而，Flash中子空间分区的主要目的是减少FIB更新的排队和内存成本。因此，Flash允许在一个子空间中验证多个EC</span><br><span class="line">&lt;5&gt;一些大型网络使用基于仿真的控制平面验证工具。Flash可以通过验证生成的规则来很好地补充这些研究。最近的研究是这一方向的先驱。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">数据平面验证。</span><br><span class="line">&lt;1&gt;数据平面表示是数据平面验证的核心数据结构。一些数据平面验证工具使用流表(SDN)表示，并在此基础上开发计算模型（例如，SAT模型[17]、头部空间代数和分组转换函数[18]以及数据日志模型[27]）。</span><br><span class="line">&lt;2&gt;另一组数据平面验证工具使用等效类作为数据平面表示。等价类将头部空间分析和需求验证解耦，如果EC的数量较少，这两个步骤都可以有效地执行。</span><br><span class="line">&lt;3&gt;最近的研究也通过维护多组EC和延迟计算叉积来缓解EC的爆炸。</span><br><span class="line">&lt;4&gt;EC方法还受益于有效的数据结构来操作头部空间：Delta-net[25]开发了一种基于间隔的数据结构，该结构在处理基于前缀的规则时是有效的，而其他方法（例如，APKeep[26]和Flash）在更通用的设置下使用二进制决策图（BDD）来提高内存效率。</span><br><span class="line">&lt;5&gt;在EC方法中，Flash是第一个设计高效数据结构来存储和操作操作的方法，只有在应用于大规模网络时，这一点才变得至关重要。</span><br><span class="line">&lt;6&gt;DNA[47]还独立开发了两种批量更新的想法。具体而言，“批量插入和删除”的想法与“删除取消更新”（算法1中的L1）相同，“同一设备上的批量转发行为”的想法类似于Flash中的“按操作聚合”（Reduce I），但限制更大：聚合的更新在更新前后必须具有相同的操作。</span><br><span class="line">&lt;7&gt;随着Flash对块更新问题进行了更深入的分析，Fast IMT中开发的优化是通用的，可以应用于其他EC实现。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">网络中的自动机理论。</span><br><span class="line">&lt;1&gt;递减验证图的想法是由将自动机理论应用于策略路由的研究推动的。这些研究将网络和路由约束建模为自动化。通过计算乘积自动机，这些研究可以识别满足路由约束的网络路径。</span><br><span class="line">&lt;2&gt;Flash也计算乘积自动机，但将其用于验证目的，并结合最近的快速可达性检查方法[41]。</span><br></pre></td></tr></table></figure>
+<h4 id="讨论">讨论</h4>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">作者Flash可能扩展的三个方面：需求规范、数据平面模型和实现。</span><br><span class="line"></span><br><span class="line">需求规范。</span><br><span class="line">&lt;1&gt;目前，Flash使用路径正则表达式（PRE）来表达需求规范。虽然PRE简单易懂，但它通常需要最短路径等假设来避免状态爆炸，并且不能轻易扩展以支持非最短路径算法。</span><br><span class="line">&lt;2&gt;由于Flash使用需求规范来构建对所有有效路径进行编码的递减验证图（DVG），因此一个潜在的扩展是直接将DVG作为输入。</span><br><span class="line">&lt;3&gt;因此，Flash可能与许多SDN编程语言（例如[42，43，55-59]）的前端接口，这些语言也计算所有有效路径的集合。</span><br><span class="line"></span><br><span class="line">数据平面模型。</span><br><span class="line">&lt;1&gt;Flash专注于数据平面模型，在该模型中，数据包仅基于报头转发，不存在报头重写，因为与运营商的讨论表明，报头重写大多发生在我们目标大规模网络中的终端主机（例如[60]）。</span><br><span class="line">&lt;2&gt;然而，可能需要将Flash扩展到有状态路由（例如，P4[61]和NPL[62]），或者支持常见的报头重写，例如NAT或隧道。</span><br><span class="line">&lt;3&gt;状态路由需要扩展到快速IMT。具体而言，转发功能模型b(ℎ) 需要修改为b(ℎ,s),其中s表示状态。</span><br><span class="line">&lt;4&gt;如果这些操作可能会更改标头或状态，则需要扩展到CE2D。有两个方向可以处理Flash中的头/状态重写。</span><br><span class="line">&lt;5&gt;第一个方向（例如，[26]）是保证任何数据包，如果被重写，在重写之前和之后都属于精确的一个EC。</span><br><span class="line">&lt;6&gt;另一个方向是启用递归查询（例如，[54]）。</span><br><span class="line">&lt;7&gt;必须扩展CE2D，例如，通过在不同EC的递减验证图之间添加链接。当可以在不同步的节点上执行报头重写时，随着不确定性的增加，CE2D的好处可能会减少。这两种方法都可以破坏子空间分区，因为头重写后的EC可能属于另一个分区，甚至属于另一台机器。</span><br><span class="line"></span><br><span class="line">实施</span><br><span class="line">&lt;1&gt;Flash已经提供了许多优化。进一步提高Flash性能优势的一个潜在扩展是利用并行性和管道技术。</span><br><span class="line">&lt;2&gt;目前，子空间验证器的快速IMT和CE2D在同一核心上运行。有了更多的CPU，我们可以将这两个步骤解耦，并并行化每个EC的需求验证。</span><br><span class="line">&lt;3&gt;快速IMT也可以通过利用最近的BDD库（例如[63]）来并行化，这些库允许高效的并发BDD/谓词操作。</span><br></pre></td></tr></table></figure>
+<h4 id="总结">总结</h4>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;1&gt;作者设计了Flash，这是一个快速且可扩展的系统，它解决了大规模网络数据平面验证中的两个重要问题：更新风暴和长尾更新到达。</span><br><span class="line">&lt;2&gt;Flash提出了两个新想法：通过优化块更新处理实现快速逆模型转换，以及通过部分完整的数据平面信息实现一致验证的一致、高效、早期检测。</span><br><span class="line">&lt;3&gt;在大规模数据集上进行的大量实验证明了其有效性和效率。</span><br></pre></td></tr></table></figure>
+<h4 id="附录">附录</h4>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">转发模型（基于规则的表示）：三部分：匹配断言r.pred∈P，优先级r.pr∈N，输出向量(r,y) -&gt; 模拟FIB转发</span><br><span class="line">逆模型（基于等价类的表示）：每个逆模型是一组(p,y)对，其中p∈P是断言，y∈Y是输出向量。显然，模型的空间是P×Y的子集。然而，逆模型必须满足约束条件，如定义6所示。我们定义了一个布尔函数im，它取P×Y的子集，如果它是逆模型，则返回1，否则返回0。</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>FLash</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Java后端开发注意事项</title>
     <url>/2023/03/26/Java%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</url>
     <content><![CDATA[<h3 id="Java后端开发注意事项">Java后端开发注意事项</h3>
@@ -80,6 +247,12 @@ rule 3 192.168.1.1/25  port3</p>
       <tags>
         <tag>后端学习</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>My New Post</title>
+    <url>/2023/03/24/My-New-Post/</url>
+    <content><![CDATA[<h3 id="第一次测试博客">第一次测试博客</h3>
+<span id="more"></span>]]></content>
   </entry>
   <entry>
     <title></title>
@@ -141,8 +314,8 @@ rule 3 192.168.1.1/25  port3</p>
 使用&lt;&gt;可以很方便地把URL或者email地址变成可点击的链接<br>
 <a href="https://www.baidu.com">https://www.baidu.com</a></p>
 <h3 id="显示图片的两种方式-一种是仅显示图片-另一种时还可以显示链接">显示图片的两种方式 一种是仅显示图片 另一种时还可以显示链接</h3>
-<p><img src="../WebRoot/Web/picture/cloud.png" alt="这是图片"><br>
-<a href="https://cn.bing.com/images/search?view=detailV2&amp;ccid=wc%2fdCG%2fK&amp;id=2A67B025EDB55DFCC3EACFBF5B0CD513CC71AE39&amp;thid=OIP.wc_dCG_KbIKZwMdtD3gL2QHaEt&amp;mediaurl=https%3a%2f%2fpic3.zhimg.com%2fv2-58d652598269710fa67ec8d1c88d8f03_r.jpg%3fsource%3d1940ef5c&amp;exph=1304&amp;expw=2048&amp;q=%e5%9b%be%e7%89%87&amp;simid=607986392600622860&amp;FORM=IRPRST&amp;ck=7906E4DE8F66609504206A4E0B045F1E&amp;selectedIndex=0&amp;ajaxhist=0&amp;ajaxserp=0"><img src="../WebRoot/Web/picture/cloud.png" alt="这是图片"></a></p>
+<p><img src="/2023/03/26/learning/WebRoot/Web/picture/cloud.png" alt="这是图片"><br>
+<a href="https://cn.bing.com/images/search?view=detailV2&amp;ccid=wc%2fdCG%2fK&amp;id=2A67B025EDB55DFCC3EACFBF5B0CD513CC71AE39&amp;thid=OIP.wc_dCG_KbIKZwMdtD3gL2QHaEt&amp;mediaurl=https%3a%2f%2fpic3.zhimg.com%2fv2-58d652598269710fa67ec8d1c88d8f03_r.jpg%3fsource%3d1940ef5c&amp;exph=1304&amp;expw=2048&amp;q=%e5%9b%be%e7%89%87&amp;simid=607986392600622860&amp;FORM=IRPRST&amp;ck=7906E4DE8F66609504206A4E0B045F1E&amp;selectedIndex=0&amp;ajaxhist=0&amp;ajaxserp=0"><img src="/2023/03/26/learning/WebRoot/Web/picture/cloud.png" alt="这是图片"></a></p>
 <h3 id="粗体-斜体-换行需要在段落后面加两个空格">粗体&quot;**&quot; 斜体&quot;*&quot; 换行需要在段落后面加两个空格</h3>
 <p>I HAVE A <strong>DOG</strong><br>
 I HAVE A <em>DOG</em></p>
@@ -177,12 +350,311 @@ I HAVE A <em>DOG</em></p>
       </tags>
   </entry>
   <entry>
+    <title>Topotest1</title>
+    <url>/2023/03/31/Topotest1/</url>
+    <content><![CDATA[<h3 id="验证ensp中可达性是否与项目中算法可达性结果一致">验证ensp中可达性是否与项目中算法可达性结果一致</h3>
+<span id="more"></span>
+<h4 id="环境准备">环境准备</h4>
+<p>1.拓扑图</p>
+<img src="/2023/03/31/Topotest1/topo.png" class title="Topotest1&#x2F;topo.png">
+<p>2.ACL图（在数据库中显示 对应于数据库2023.3.31）</p>
+<img src="/2023/03/31/Topotest1/acl.png" class title="Topotest1&#x2F;acl.png">
+<h4 id="结果比较">结果比较</h4>
+<p>1.ensp</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">源设备</th>
+<th style="text-align:center">目标含义</th>
+<th style="text-align:left">是否可达</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">ACC4.VLAN10</td>
+<td style="text-align:center">ACC5.VLAN20</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:center">ACC4.VLAN10</td>
+<td style="text-align:center">ACC2.VLAN30</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:center">ACC4.VLAN10</td>
+<td style="text-align:center">ACC6.VLAN40</td>
+<td style="text-align:left">0</td>
+</tr>
+<tr>
+<td style="text-align:center">ACC4.VLAN10</td>
+<td style="text-align:center">ACC7.VLAN50</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:center">ACC4.VLAN10</td>
+<td style="text-align:center">CORE.VLAN100</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:center">ACC5.VLAN20</td>
+<td style="text-align:center">ACC4.VLAN10</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:center">ACC5.VLAN20</td>
+<td style="text-align:center">ACC2.VLAN30</td>
+<td style="text-align:left">0</td>
+</tr>
+<tr>
+<td style="text-align:center">ACC5.VLAN20</td>
+<td style="text-align:center">ACC6.VLAN40</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:center">ACC5.VLAN20</td>
+<td style="text-align:center">ACC7.VLAN50</td>
+<td style="text-align:left">0</td>
+</tr>
+<tr>
+<td style="text-align:center">ACC5.VLAN20</td>
+<td style="text-align:center">CORE.VLAN100</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:center">ACC2.VLAN30</td>
+<td style="text-align:center">ACC4.VLAN10</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:center">ACC2.VLAN30</td>
+<td style="text-align:center">ACC5.VLAN20</td>
+<td style="text-align:left">0</td>
+</tr>
+<tr>
+<td style="text-align:center">ACC2.VLAN30</td>
+<td style="text-align:center">ACC6.VLAN40</td>
+<td style="text-align:left">0</td>
+</tr>
+<tr>
+<td style="text-align:center">ACC2.VLAN30</td>
+<td style="text-align:center">ACC7.VLAN50</td>
+<td style="text-align:left">0</td>
+</tr>
+<tr>
+<td style="text-align:center">ACC2.VLAN30</td>
+<td style="text-align:center">CORE.VLAN100</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:center">ACC6.VLAN40</td>
+<td style="text-align:center">ACC4.VLAN10</td>
+<td style="text-align:left">0</td>
+</tr>
+<tr>
+<td style="text-align:center">ACC6.VLAN40</td>
+<td style="text-align:center">ACC5.VLAN20</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:center">ACC6.VLAN40</td>
+<td style="text-align:center">ACC2.VLAN30</td>
+<td style="text-align:left">0</td>
+</tr>
+<tr>
+<td style="text-align:center">ACC6.VLAN40</td>
+<td style="text-align:center">ACC7.VLAN50</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:center">ACC6.VLAN40</td>
+<td style="text-align:center">CORE.VLAN100</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:center">ACC7.VLAN50</td>
+<td style="text-align:center">ACC4.VLAN10</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:center">ACC7.VLAN50</td>
+<td style="text-align:center">ACC5.VLAN20</td>
+<td style="text-align:left">0</td>
+</tr>
+<tr>
+<td style="text-align:center">ACC7.VLAN50</td>
+<td style="text-align:center">ACC2.VLAN30</td>
+<td style="text-align:left">0</td>
+</tr>
+<tr>
+<td style="text-align:center">ACC7.VLAN50</td>
+<td style="text-align:center">ACC6.VLAN40</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:center">ACC7.VLAN50</td>
+<td style="text-align:center">CORE.VLAN100</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:center">CORE.VLAN100</td>
+<td style="text-align:center">ACC4.VLAN10</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:center">CORE.VLAN100</td>
+<td style="text-align:center">ACC5.VLAN20</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:center">CORE.VLAN100</td>
+<td style="text-align:center">ACC2.VLAN30</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:center">CORE.VLAN100</td>
+<td style="text-align:center">ACC6.VLAN40</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:center">CORE.VLAN100</td>
+<td style="text-align:center">ACC7.VLAN50</td>
+<td style="text-align:left">1</td>
+</tr>
+</tbody>
+</table>
+<p>2.项目中可达性矩阵</p>
+<img src="/2023/03/31/Topotest1/topomatrix.png" class title="Topotest1&#x2F;topomatrix.png">
+<h4 id="结论">结论</h4>
+<p>实验结果一致</p>
+]]></content>
+  </entry>
+  <entry>
     <title>switch</title>
     <url>/2023/03/25/switch/</url>
     <content><![CDATA[<h3 id="交换机的使用方法介绍">交换机的使用方法介绍</h3>
 <span id="more"></span>
 <p>目前，主流厂商可分为思科（Cisco）、华为、锐捷、H3C</p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>系统命令</title>
+    <url>/2023/03/26/windows%E4%B8%8B%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/</url>
+    <content><![CDATA[<h3 id="windows下文件操作">windows下文件操作</h3>
+<span id="more"></span>
+<p>查看文件MD5\SHA1\256</p>
+<blockquote>
+<p>CMD</p>
+<p>certutil -hashfile D:\emp.png MD5</p>
+<p>certutil -hashfile D:\ubuntu_18.iso SHA1</p>
+<p>certutil -hashfile D:\setup.exe SHA256</p>
+</blockquote>
+<p><img src="/2023/03/26/windows%E4%B8%8B%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/C:%5CUsers%5C%E7%94%B0%E6%99%93%E6%BB%A8%5CAppData%5CRoaming%5Cmarktext%5Cimages%5C2022-11-27-09-16-50-image.png" alt></p>
+]]></content>
+      <tags>
+        <tag>系统命令</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>华为拓扑测试</title>
+    <url>/2023/03/26/%E5%8D%8E%E4%B8%BA%E6%8B%93%E6%89%91%E6%B5%8B%E8%AF%95/</url>
+    <content><![CDATA[<h3 id="华为拓扑测试">华为拓扑测试</h3>
+<span id="more"></span>
+<p>首先创建拓扑图</p>
+<p><img src="/2023/03/26/%E5%8D%8E%E4%B8%BA%E6%8B%93%E6%89%91%E6%B5%8B%E8%AF%95/C:%5CUsers%5C%E7%94%B0%E6%99%93%E6%BB%A8%5CAppData%5CRoaming%5Cmarktext%5Cimages%5C2022-11-15-15-10-16-image.png" alt></p>
+<h4 id="设计目标">设计目标</h4>
+<ol>
+<li class="lvl-3">
+<p>禁止192.168.30.2 访问 192.168.50.0/24</p>
+</li>
+<li class="lvl-3">
+<p>禁止ACC4.VLAN10访问ACC6.VLAN40</p>
+</li>
+<li class="lvl-3">
+<p>禁止ACC2.VLAN30访问ACC6.VLAN40</p>
+</li>
+<li class="lvl-3">
+<p>禁止ACC3(192.168.40.2)可以从CORE的所有接口转发出去</p>
+</li>
+<li class="lvl-3">
+<p>NULL</p>
+</li>
+<li class="lvl-3">
+<p>允许 192.168.10.2 访问192.168.50.0/24</p>
+</li>
+<li class="lvl-3">
+<p>允许 192.168.10.4 访问192.168.50.0/24</p>
+</li>
+<li class="lvl-3">
+<p>禁止192.168.10.0/24 访问 192.168.50.0/24</p>
+</li>
+</ol>
+<h4 id="方案">方案</h4>
+<p>ACC3上部署ACL 实现目标6 7 8</p>
+<blockquote>
+<p>使用简化流策略，作用于接口。仅使用了基本ACL，满足了基本ACL尽量离目标近</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">acl name acl3 2001;</span><br><span class="line">rule 5 permit source 192.168.10.4 0;</span><br><span class="line">rule 10 permit source 192.168.10.2 0;</span><br><span class="line">rule 15 deny source 192.168.10.0 0.0.0.255;</span><br><span class="line"></span><br><span class="line">interface ge0/0/3</span><br><span class="line">traffic-filter inbound acl name acl3 </span><br></pre></td></tr></table></figure>
+<p>CORE上部署ACL 实现目标1 3 4</p>
+<blockquote>
+<p>使用流策略，既作用于接口又作用于VLAN。仅使用扩展ACL，扩展ACL离源设备近</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">acl number 3002;</span><br><span class="line">rule 5 deny ip source 192.168.30.0 0.0.0.255 destination 192.168.50.0 0.0.0.255</span><br><span class="line">acl number 3003;</span><br><span class="line">rule 10 deny ip source 192.168.30.0 0.0.0.255 destination 192.168.40.0 0.0.0.255</span><br><span class="line">acl number 3004;</span><br><span class="line">rule 5 deny ip destination 192.168.40.2 0</span><br><span class="line"></span><br><span class="line">#配置流分类</span><br><span class="line">traffic classifier c1;</span><br><span class="line">if-match acl 3002;</span><br><span class="line">traffic classifier c2;</span><br><span class="line">if-match acl 3003;</span><br><span class="line">traffic classifier c3;</span><br><span class="line">if-match acl 3004;</span><br><span class="line">#配置流行为</span><br><span class="line">traffic behavior b1;</span><br><span class="line">permit;</span><br><span class="line">#配置流策略</span><br><span class="line">traffic policy p1;</span><br><span class="line">classifier c1 behavior b1;</span><br><span class="line">traffic policy p2;</span><br><span class="line">classifier c2 behavior b1;</span><br><span class="line">traffic policy p3;</span><br><span class="line">classifier c3 behavior b1;</span><br><span class="line">traffic-policy p3 global outbound;#全局视图</span><br><span class="line">#应用流策略</span><br><span class="line">int g0/0/2</span><br><span class="line">traffic-policy p1 inbound</span><br><span class="line">vlan 30</span><br><span class="line">traffic-policy p2 inbound</span><br></pre></td></tr></table></figure>
+<p>ACC1上部署ACL 实现目标2</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">acl number 3005;</span><br><span class="line">rule 5 deny ip source 192.168.10.0 0.0.0.255 destination 192.168.40.0 0.0.0.255</span><br><span class="line"></span><br><span class="line">#配置流分类</span><br><span class="line">traffic classifier c1;</span><br><span class="line">if-match acl 3005;</span><br><span class="line">#配置流行为</span><br><span class="line">traffic behavior b1;</span><br><span class="line">permit;</span><br><span class="line">#配置流策略</span><br><span class="line">traffic policy p1;</span><br><span class="line">classifier c1 behavior b1;</span><br><span class="line">#应用流策略</span><br><span class="line">vlan 10</span><br><span class="line">traffic-policy p1 inbound</span><br></pre></td></tr></table></figure>
+<h4 id="Ensp中删除ACL及流策略、简化流策略">Ensp中删除ACL及流策略、简化流策略</h4>
+<p><img src="/2023/03/26/%E5%8D%8E%E4%B8%BA%E6%8B%93%E6%89%91%E6%B5%8B%E8%AF%95/C:%5CUsers%5C%E7%94%B0%E6%99%93%E6%BB%A8%5CAppData%5CRoaming%5Cmarktext%5Cimages%5C2022-11-15-16-37-27-image.png" alt></p>
+<p>删除流策略</p>
+<blockquote>
+<p>如果需要删除的流策略已经应用到全局、接口或VLAN，则不允许直接删除该策略，需要先在相应的视图下执行<strong>undo traffic-policy</strong>命令取消对该策略的应用，然后再到全局执行<strong>undo traffic policy</strong>命令完成删除。如果没有应用，则可以直接删除。</p>
+</blockquote>
+<p><img src="/2023/03/26/%E5%8D%8E%E4%B8%BA%E6%8B%93%E6%89%91%E6%B5%8B%E8%AF%95/C:%5CUsers%5C%E7%94%B0%E6%99%93%E6%BB%A8%5CAppData%5CRoaming%5Cmarktext%5Cimages%5C2022-11-15-16-35-33-image.png" alt></p>
+<p>删除ACL规则</p>
+<blockquote>
+<p>执行命令<strong>undo acl</strong> { [ <strong>number</strong> ] <em>acl-number</em> | <strong>all</strong> }或<strong>undo acl</strong> <strong>name</strong> <em>acl-name</em>，删除ACL。</p>
+<p>执行命令<strong>undo acl ipv6</strong> { <strong>all</strong> | [ <strong>number</strong> ] <em>acl6-number</em> }或<strong>undo acl ipv6</strong> <strong>name</strong> <em>acl6-name</em>，删除ACL6。</p>
+</blockquote>
+<p>删除简化流策略</p>
+<blockquote>
+<p>进入相应的视图下执行命令undo traffic-filter inbound acl aclnum</p>
+</blockquote>
+<p>保存配置</p>
+<blockquote>
+<p>华为保存配置时，需要输入save；</p>
+<p>Cisco保存配置时，需要输入copy running-config start-config</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>网络</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>netTopo</title>
+    <url>/2023/03/26/%E5%BE%85%E5%AE%8C%E6%88%90/</url>
+    <content><![CDATA[<h3 id="项目仍存在的问题">项目仍存在的问题</h3>
+<span id="more"></span>
+<ol>
+<li class="lvl-3">命名ACL处理</li>
+<li class="lvl-3">计算可达性按钮和显示路径结果合二为一</li>
+<li class="lvl-3">前端显示多端文本<br>
+<code>textarea 标签定义多行的文本输入控件</code><br>
+<code>readonly 方法用于规定文本区为只读</code><br>
+<a href="https://www.w3school.com.cn/tags/tag_textarea.asp">textarea用法</a></li>
+<li class="lvl-3">点击前端按钮时，执行某方法，显示正在加载中</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div id=&quot;reachSpinner&quot; ng-show=&quot;shared.isComputingReach == true&quot;&gt;</span><br><span class="line">    &lt;img src=&quot;/netTopo/Web/picture/loading.gif&quot;/&gt;</span><br><span class="line">    &lt;h1&gt;可达性计算中&lt;/h1&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">其中添加一个reachSpinner.css类用于渲染</span><br><span class="line">#reachSpinner &#123;</span><br><span class="line">position: fixed;</span><br><span class="line">top: 0; left: 0;</span><br><span class="line">width: 100vw; height: 100vh;</span><br><span class="line">z-index: 9999;</span><br><span class="line">background: rgba(0, 0, 0, 0.7);</span><br><span class="line">transition: opacity 0.2s;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/* (B) CENTER LOADING SPINNER */</span><br><span class="line">#reachSpinner img &#123;</span><br><span class="line">    position: absolute;</span><br><span class="line">    top: 50%; left: 50%;</span><br><span class="line">    transform: translate(-50%);</span><br><span class="line">&#125;</span><br><span class="line">#reachSpinner h1 &#123;</span><br><span class="line">    color: white;</span><br><span class="line">    position: absolute;</span><br><span class="line">    top: 60%; left: 50%;</span><br><span class="line">    transform: translate(-50%);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li class="lvl-3">
+<p>删除临时目录及文件</p>
+</li>
+</ol>
+<blockquote>
+<p>不能直接使用delete命令删除存在文件的目录，需先将目录下的文件删除后，再删除该目录</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">File dir = new File(path);</span><br><span class="line">File[] listFiles = dir.listFiles();</span><br><span class="line">if(listFiles != null)</span><br><span class="line">&#123;</span><br><span class="line">    for(File file : listFiles)</span><br><span class="line">    &#123;</span><br><span class="line">        file.delete();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">dir.delete();</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>netTopo项目</tag>
+      </tags>
   </entry>
   <entry>
     <title>Echart JS</title>
@@ -238,126 +710,6 @@ Echarts实例：<br>
       </tags>
   </entry>
   <entry>
-    <title>系统命令</title>
-    <url>/2023/03/26/windows%E4%B8%8B%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/</url>
-    <content><![CDATA[<h3 id="windows下文件操作">windows下文件操作</h3>
-<span id="more"></span>
-<p>查看文件MD5\SHA1\256</p>
-<blockquote>
-<p>CMD</p>
-<p>certutil -hashfile D:\emp.png MD5</p>
-<p>certutil -hashfile D:\ubuntu_18.iso SHA1</p>
-<p>certutil -hashfile D:\setup.exe SHA256</p>
-</blockquote>
-<p><img src="C:%5CUsers%5C%E7%94%B0%E6%99%93%E6%BB%A8%5CAppData%5CRoaming%5Cmarktext%5Cimages%5C2022-11-27-09-16-50-image.png" alt=""></p>
-]]></content>
-      <tags>
-        <tag>系统命令</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>netTopo</title>
-    <url>/2023/03/26/%E5%BE%85%E5%AE%8C%E6%88%90/</url>
-    <content><![CDATA[<h3 id="项目仍存在的问题">项目仍存在的问题</h3>
-<span id="more"></span>
-<ol>
-<li class="lvl-3">命名ACL处理</li>
-<li class="lvl-3">计算可达性按钮和显示路径结果合二为一</li>
-<li class="lvl-3">前端显示多端文本<br>
-<code>textarea 标签定义多行的文本输入控件</code><br>
-<code>readonly 方法用于规定文本区为只读</code><br>
-<a href="https://www.w3school.com.cn/tags/tag_textarea.asp">textarea用法</a></li>
-<li class="lvl-3">点击前端按钮时，执行某方法，显示正在加载中</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div id=&quot;reachSpinner&quot; ng-show=&quot;shared.isComputingReach == true&quot;&gt;</span><br><span class="line">    &lt;img src=&quot;/netTopo/Web/picture/loading.gif&quot;/&gt;</span><br><span class="line">    &lt;h1&gt;可达性计算中&lt;/h1&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">其中添加一个reachSpinner.css类用于渲染</span><br><span class="line">#reachSpinner &#123;</span><br><span class="line">position: fixed;</span><br><span class="line">top: 0; left: 0;</span><br><span class="line">width: 100vw; height: 100vh;</span><br><span class="line">z-index: 9999;</span><br><span class="line">background: rgba(0, 0, 0, 0.7);</span><br><span class="line">transition: opacity 0.2s;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/* (B) CENTER LOADING SPINNER */</span><br><span class="line">#reachSpinner img &#123;</span><br><span class="line">    position: absolute;</span><br><span class="line">    top: 50%; left: 50%;</span><br><span class="line">    transform: translate(-50%);</span><br><span class="line">&#125;</span><br><span class="line">#reachSpinner h1 &#123;</span><br><span class="line">    color: white;</span><br><span class="line">    position: absolute;</span><br><span class="line">    top: 60%; left: 50%;</span><br><span class="line">    transform: translate(-50%);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol start="5">
-<li class="lvl-3">
-<p>删除临时目录及文件</p>
-</li>
-</ol>
-<blockquote>
-<p>不能直接使用delete命令删除存在文件的目录，需先将目录下的文件删除后，再删除该目录</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">File dir = new File(path);</span><br><span class="line">File[] listFiles = dir.listFiles();</span><br><span class="line">if(listFiles != null)</span><br><span class="line">&#123;</span><br><span class="line">    for(File file : listFiles)</span><br><span class="line">    &#123;</span><br><span class="line">        file.delete();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">dir.delete();</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>netTopo项目</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>华为拓扑测试</title>
-    <url>/2023/03/26/%E5%8D%8E%E4%B8%BA%E6%8B%93%E6%89%91%E6%B5%8B%E8%AF%95/</url>
-    <content><![CDATA[<h3 id="华为拓扑测试">华为拓扑测试</h3>
-<span id="more"></span>
-<p>首先创建拓扑图</p>
-<p><img src="C:%5CUsers%5C%E7%94%B0%E6%99%93%E6%BB%A8%5CAppData%5CRoaming%5Cmarktext%5Cimages%5C2022-11-15-15-10-16-image.png" alt=""></p>
-<h4 id="设计目标">设计目标</h4>
-<ol>
-<li class="lvl-3">
-<p>禁止192.168.30.2 访问 192.168.50.0/24</p>
-</li>
-<li class="lvl-3">
-<p>禁止ACC4.VLAN10访问ACC6.VLAN40</p>
-</li>
-<li class="lvl-3">
-<p>禁止ACC2.VLAN30访问ACC6.VLAN40</p>
-</li>
-<li class="lvl-3">
-<p>禁止ACC3(192.168.40.2)可以从CORE的所有接口转发出去</p>
-</li>
-<li class="lvl-3">
-<p>NULL</p>
-</li>
-<li class="lvl-3">
-<p>允许 192.168.10.2 访问192.168.50.0/24</p>
-</li>
-<li class="lvl-3">
-<p>允许 192.168.10.4 访问192.168.50.0/24</p>
-</li>
-<li class="lvl-3">
-<p>禁止192.168.10.0/24 访问 192.168.50.0/24</p>
-</li>
-</ol>
-<h4 id="方案">方案</h4>
-<p>ACC3上部署ACL 实现目标6 7 8</p>
-<blockquote>
-<p>使用简化流策略，作用于接口。仅使用了基本ACL，满足了基本ACL尽量离目标近</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">acl name acl3 2001;</span><br><span class="line">rule 5 permit source 192.168.10.4 0;</span><br><span class="line">rule 10 permit source 192.168.10.2 0;</span><br><span class="line">rule 15 deny source 192.168.10.0 0.0.0.255;</span><br><span class="line"></span><br><span class="line">interface ge0/0/3</span><br><span class="line">traffic-filter inbound acl name acl3 </span><br></pre></td></tr></table></figure>
-<p>CORE上部署ACL 实现目标1 3 4</p>
-<blockquote>
-<p>使用流策略，既作用于接口又作用于VLAN。仅使用扩展ACL，扩展ACL离源设备近</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">acl number 3002;</span><br><span class="line">rule 5 deny ip source 192.168.30.0 0.0.0.255 destination 192.168.50.0 0.0.0.255</span><br><span class="line">acl number 3003;</span><br><span class="line">rule 10 deny ip source 192.168.30.0 0.0.0.255 destination 192.168.40.0 0.0.0.255</span><br><span class="line">acl number 3004;</span><br><span class="line">rule 5 deny ip destination 192.168.40.2 0</span><br><span class="line"></span><br><span class="line">#配置流分类</span><br><span class="line">traffic classifier c1;</span><br><span class="line">if-match acl 3002;</span><br><span class="line">traffic classifier c2;</span><br><span class="line">if-match acl 3003;</span><br><span class="line">traffic classifier c3;</span><br><span class="line">if-match acl 3004;</span><br><span class="line">#配置流行为</span><br><span class="line">traffic behavior b1;</span><br><span class="line">permit;</span><br><span class="line">#配置流策略</span><br><span class="line">traffic policy p1;</span><br><span class="line">classifier c1 behavior b1;</span><br><span class="line">traffic policy p2;</span><br><span class="line">classifier c2 behavior b1;</span><br><span class="line">traffic policy p3;</span><br><span class="line">classifier c3 behavior b1;</span><br><span class="line">traffic-policy p3 global outbound;#全局视图</span><br><span class="line">#应用流策略</span><br><span class="line">int g0/0/2</span><br><span class="line">traffic-policy p1 inbound</span><br><span class="line">vlan 30</span><br><span class="line">traffic-policy p2 inbound</span><br></pre></td></tr></table></figure>
-<p>ACC1上部署ACL 实现目标2</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">acl number 3005;</span><br><span class="line">rule 5 deny ip source 192.168.10.0 0.0.0.255 destination 192.168.40.0 0.0.0.255</span><br><span class="line"></span><br><span class="line">#配置流分类</span><br><span class="line">traffic classifier c1;</span><br><span class="line">if-match acl 3005;</span><br><span class="line">#配置流行为</span><br><span class="line">traffic behavior b1;</span><br><span class="line">permit;</span><br><span class="line">#配置流策略</span><br><span class="line">traffic policy p1;</span><br><span class="line">classifier c1 behavior b1;</span><br><span class="line">#应用流策略</span><br><span class="line">vlan 10</span><br><span class="line">traffic-policy p1 inbound</span><br></pre></td></tr></table></figure>
-<h4 id="Ensp中删除ACL及流策略、简化流策略">Ensp中删除ACL及流策略、简化流策略</h4>
-<p><img src="C:%5CUsers%5C%E7%94%B0%E6%99%93%E6%BB%A8%5CAppData%5CRoaming%5Cmarktext%5Cimages%5C2022-11-15-16-37-27-image.png" alt=""></p>
-<p>删除流策略</p>
-<blockquote>
-<p>如果需要删除的流策略已经应用到全局、接口或VLAN，则不允许直接删除该策略，需要先在相应的视图下执行<strong>undo traffic-policy</strong>命令取消对该策略的应用，然后再到全局执行<strong>undo traffic policy</strong>命令完成删除。如果没有应用，则可以直接删除。</p>
-</blockquote>
-<p><img src="C:%5CUsers%5C%E7%94%B0%E6%99%93%E6%BB%A8%5CAppData%5CRoaming%5Cmarktext%5Cimages%5C2022-11-15-16-35-33-image.png" alt=""></p>
-<p>删除ACL规则</p>
-<blockquote>
-<p>执行命令<strong>undo acl</strong> { [ <strong>number</strong> ] <em>acl-number</em> | <strong>all</strong> }或<strong>undo acl</strong> <strong>name</strong> <em>acl-name</em>，删除ACL。</p>
-<p>执行命令<strong>undo acl ipv6</strong> { <strong>all</strong> | [ <strong>number</strong> ] <em>acl6-number</em> }或<strong>undo acl ipv6</strong> <strong>name</strong> <em>acl6-name</em>，删除ACL6。</p>
-</blockquote>
-<p>删除简化流策略</p>
-<blockquote>
-<p>进入相应的视图下执行命令undo traffic-filter inbound acl aclnum</p>
-</blockquote>
-<p>保存配置</p>
-<blockquote>
-<p>华为保存配置时，需要输入save；</p>
-<p>Cisco保存配置时，需要输入copy running-config start-config</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>网络</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>机器学习</title>
     <url>/2023/03/26/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</url>
     <content><![CDATA[<h3 id="机器学习">机器学习</h3>
@@ -391,7 +743,7 @@ Echarts实例：<br>
 <p>[支撑向量](<a href="https://www.jianshu.com/p/a2c9ab800946">SVM系列第五讲–支撑向量 - 简书 (jianshu.com)</a>)</p>
 </li>
 </ol>
-<img title="" src="file:///C:/Users/田晓滨/AppData/Roaming/marktext/images/2022-11-17-21-08-35-image.png" alt="" width="292" data-align="center">
+<img title src="file:///C:/Users/田晓滨/AppData/Roaming/marktext/images/2022-11-17-21-08-35-image.png" alt width="292" data-align="center">
 <ol start="11">
 <li class="lvl-4">
 <p>过拟合和欠拟合</p>
@@ -406,7 +758,7 @@ Echarts实例：<br>
 <li class="lvl-4">
 <p>决策树节点划分</p>
 <blockquote>
-<p><font color=Red>ID3使用最大信息熵增益</font></p>
+<p><font color="Red">ID3使用最大信息熵增益</font></p>
 <p>信息熵Entropy或Info。熵反应了物体内部的混乱程度，而信息熵反应了不同类的样本的占比，也就是节点的纯度。信息熵越大，说明样本的分布节点的纯度越低，信息量越少；相反，信息熵越小，说明样本的角度越高，信息量越大。</p>
 <p><strong>根据信息熵的含义，我们知道我们要选择能使节点内部纯度高、也就是信息熵最小的特征作为划分依据，我们就计算以某个特征划分自己之后当前节点划分之后各个节点的信息熵之和，并且要是这个和与当前节点划分前的信息熵减小的尽可能多。而这个差也就是信息增益</strong></p>
 <p>$\color{red}{C4.5使用信息增益比率}$</p>
@@ -492,7 +844,7 @@ C的值大：模型只允许出现很小数量的误分类点。它可以简单�
 </blockquote>
 </li>
 </ol>
-<img title="" src="file:///C:/Users/田晓滨/AppData/Roaming/marktext/images/2022-11-17-23-10-14-image.png" alt="" width="556" data-align="center">
+<img title src="file:///C:/Users/田晓滨/AppData/Roaming/marktext/images/2022-11-17-23-10-14-image.png" alt width="556" data-align="center">
 <p>[分类和回归](<a href="https://www.zhihu.com/question/21329754">(30 封私信 / 80 条消息) 分类与回归区别是什么？ - 知乎 (zhihu.com)</a>)</p>
 <ol start="21">
 <li class="lvl-4">
@@ -590,7 +942,7 @@ C的值大：模型只允许出现很小数量的误分类点。它可以简单�
 </blockquote>
 </li>
 </ol>
-<img title="" src="file:///C:/Users/田晓滨/AppData/Roaming/marktext/images/2022-11-19-12-00-31-image.png" alt="" data-align="center" width="324">
+<img title src="file:///C:/Users/田晓滨/AppData/Roaming/marktext/images/2022-11-19-12-00-31-image.png" alt data-align="center" width="324">
 <p>[岭回归](<a href="https://www.cnblogs.com/hechangchun/p/15194557.html#:~:text=%E5%B2%AD%E5%9B%9E%E5%BD%92%EF%BC%88Ridge,Regression%EF%BC%89%E5%8F%AF%E4%BB%A5%E7%90%86%E8%A7%A3%E4%B8%BA%E5%9C%A8%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E7%9A%84%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E7%9A%84%E5%9F%BA%E7%A1%80%E4%B8%8A%EF%BC%8C%E5%8A%A0%2C%E5%85%A5%E4%B8%80%E4%B8%AAL2%E6%AD%A3%E5%88%99%E9%A1%B9%EF%BC%8C%E6%9D%A5%E9%99%90%E5%88%B6W%E4%B8%8D%E8%A6%81%E8%BF%87%E5%A4%A7%E3%80%82%20%E5%85%B6%E4%B8%AD%CE%BB%3E0%EF%BC%8C%E9%80%9A%E8%BF%87%E7%A1%AE%E5%AE%9A%CE%BB%E7%9A%84%E5%80%BC%E5%8F%AF%E4%BB%A5%E4%BD%BF%E5%BE%97%E6%A8%A1%E5%9E%8B%E5%9C%A8%E5%81%8F%E5%B7%AE%E5%92%8C%E6%96%B9%E5%B7%AE%E4%B9%8B%E9%97%B4%E8%BE%BE%E5%88%B0%E5%B9%B3%E8%A1%A1%EF%BC%8C%E9%9A%8F%E7%9D%80%CE%BB%E7%9A%84%E5%A2%9E%E5%A4%A7%EF%BC%8C%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%96%B9%E5%B7%AE%E5%87%8F%E5%B0%8F%EF%BC%8C%E5%81%8F%E5%B7%AE%E5%A2%9E%E5%A4%A7%E3%80%82">学习笔记233—岭回归和Lasso回归区别 - 何弈 - 博客园 (cnblogs.com)</a>)</p>
 <ol start="34">
 <li class="lvl-4">
@@ -769,7 +1121,7 @@ c. 增大分割平面间隔</p>
 </li>
 <li class="lvl-4">
 <p>生成式模型和判别式模型</p>
-<p><img src="C:%5CUsers%5C%E7%94%B0%E6%99%93%E6%BB%A8%5CAppData%5CRoaming%5Cmarktext%5Cimages%5C2022-11-21-23-29-56-image.png" alt=""></p>
+<p><img src="/2023/03/26/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/C:%5CUsers%5C%E7%94%B0%E6%99%93%E6%BB%A8%5CAppData%5CRoaming%5Cmarktext%5Cimages%5C2022-11-21-23-29-56-image.png" alt></p>
 </li>
 </ol>
 <p>[生成式模型和判别式模型](<a href="https://zhuanlan.zhihu.com/p/74586507">机器学习中的判别式模型和生成式模型 - 知乎 (zhihu.com)</a>)</p>
@@ -830,41 +1182,6 @@ c. 增大分割平面间隔</p>
 ]]></content>
       <tags>
         <tag>机器学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>netTopo</title>
-    <url>/2023/03/26/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[<h3 id="数据库学习">数据库学习</h3>
-<span id="more"></span>
-<h4 id="本次项目中使用的数据库为MySQL-本次项目为netTopo">本次项目中使用的数据库为MySQL 本次项目为netTopo</h4>
-<blockquote>
-<p>数据库配置</p>
-<blockquote>
-<p>本次项目采用Tomcat服务器，前后端不分离</p>
-</blockquote>
-<p>项目结构</p>
-</blockquote>
-  
-<p>由图中可以看到 采用的为SMV架构 其中dao是专门进行数据库处理的 为每个表划分单个类进行数据库处理<br>
-首先是数据库的基本配置(采用JDBC连接)</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Connection connection = null;</span><br><span class="line">String driver = &quot;com.mysql.jdbc.Driver&quot;;</span><br><span class="line">String url = &quot;jdbc:mysql://localhost:3306/switch_info?useUnicode=true&amp;characterEncoding=UTF-8&amp;userSSL=false&amp;serverTimezone=GMT%2B8&amp;useOldAliasMetadataBehavior=true&quot;;</span><br><span class="line">String username = &quot;root&quot;;</span><br><span class="line">String password = &quot;password&quot;;</span><br></pre></td></tr></table></figure>
-<p>数据库的查询(根据IP查找其他字段内容)</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public List&lt;FibInfo&gt; queryInfoByIp(String ip)&#123;</span><br><span class="line">    List&lt;FibInfo&gt; result=new ArrayList&lt;&gt;();</span><br><span class="line">    Connection conn =  getConnection();</span><br><span class="line">    try &#123;</span><br><span class="line">        PreparedStatement stmt = (PreparedStatement) conn.prepareStatement</span><br><span class="line">                (&quot;SELECT name,mask,port FROM fib_table where ip = ?;&quot;);</span><br><span class="line">        stmt.setString(1, ip);</span><br><span class="line">        ResultSet rs =  stmt.executeQuery();</span><br><span class="line">        while(rs.next()) &#123;</span><br><span class="line">            String name=rs.getString(&quot;name&quot;);</span><br><span class="line">            String mask=rs.getString(&quot;mask&quot;);</span><br><span class="line">            String port = rs.getString(&quot;port&quot;);</span><br><span class="line">            result.add(new FibInfo(name,ip,mask,port));</span><br><span class="line">        &#125;</span><br><span class="line">        stmt.close();</span><br><span class="line">        conn.close();</span><br><span class="line">    &#125; catch (SQLException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>数据库的增加</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public int addInfoList(List&lt;FibInfo&gt; fibTable)&#123;</span><br><span class="line">    Connection conn = getConnection();</span><br><span class="line">    PreparedStatement stmt= null;</span><br><span class="line">    String sql = &quot;insert into fib_table ( name,ip,mask,port) values(?,?,?,?)&quot;;</span><br><span class="line">    for(FibInfo fibInfo:fibTable)&#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            stmt = (PreparedStatement) conn.prepareStatement(sql);</span><br><span class="line">            stmt.setString(1,fibInfo.getName());</span><br><span class="line">            stmt.setString(2,fibInfo.getIp());</span><br><span class="line">            stmt.setString(3,fibInfo.getMask());</span><br><span class="line">            stmt.setString(4,fibInfo.getPort());</span><br><span class="line">            stmt.executeUpdate();</span><br><span class="line">        &#125; catch (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            return -1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    try &#123;</span><br><span class="line">        if(stmt!=null)</span><br><span class="line">            stmt.close();</span><br><span class="line">        conn.close();</span><br><span class="line">    &#125; catch (SQLException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>数据库的删除操作</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public boolean delInfo(String ip)&#123;</span><br><span class="line">    String sql=&quot;delete from fib_table where ip=&#x27;&quot; + ip + &quot;&#x27;&quot;;</span><br><span class="line">    return this.execute(sql);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public void deleteAllInfo()&#123;</span><br><span class="line">    String sql=&quot;truncate table fib_table&quot;;</span><br><span class="line">    this.executedelete(sql);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注意这两种方式，前者是删除fib_table，后者是清空fib_table的内容</p>
-</blockquote>
-<p>当使用多线程访问数据库时，可能会产生报错，具体原因是当一个con未释放，新的con就被申请</p>
-<blockquote>
-<p>方法：给调用数据库的方法加锁synchronized  如下：</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">synchronized public static List&lt;Vlanport&gt; getVlanPorts(String switchIp, String routeTableEcho)  &#123;</span><br><span class="line">    List&lt;Vlanport&gt; vlanRes = new ArrayList&lt;&gt;();</span><br><span class="line">    String[] lines = routeTableEcho.split(&quot;\n|\r\n|\r&quot;);</span><br><span class="line">    SqlTest h = new SqlTest();</span><br><span class="line">    con = h.getConnection();</span><br><span class="line">    String device  = h.queryData(&quot;topo_node&quot;,switchIp,&quot;ip&quot;,&quot;name&quot;);</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>netTopo项目</tag>
       </tags>
   </entry>
   <entry>
@@ -962,7 +1279,7 @@ c. 增大分割平面间隔</p>
 </ul>
 </blockquote>
 <p>下图是 OpenFlow 局域网络拓扑，S1 的流表包含一条转发规则，Controller 持有全局网络的拓扑信息，请描述 Packet 1 从 C1 到 H2 的转发过程，包含流表查询、流表安装流程以及具体的流表转发规则。</p>
-<p><img src="C:%5CUsers%5C%E7%94%B0%E6%99%93%E6%BB%A8%5CAppData%5CRoaming%5Cmarktext%5Cimages%5C2022-11-23-14-58-18-image.png" alt=""></p>
+<p><img src="/2023/03/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/C:%5CUsers%5C%E7%94%B0%E6%99%93%E6%BB%A8%5CAppData%5CRoaming%5Cmarktext%5Cimages%5C2022-11-23-14-58-18-image.png" alt></p>
 <blockquote>
 <ol>
 <li class="lvl-3">
@@ -1741,355 +2058,38 @@ c. 增大分割平面间隔</p>
       </tags>
   </entry>
   <entry>
-    <title>FLash</title>
-    <url>/2023/03/29/FLash-0/</url>
-    <content><![CDATA[<h3 id="Flash-解决更新风暴、长尾到达的最新数据平面验证-学习1">Flash-解决更新风暴、长尾到达的最新数据平面验证-学习1</h3>
+    <title>netTopo</title>
+    <url>/2023/03/26/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<h3 id="数据库学习">数据库学习</h3>
 <span id="more"></span>
-<h5 id="预先知识">预先知识</h5>
-<p>1.首先介绍一下更新风暴的概念与示例</p>
+<h4 id="本次项目中使用的数据库为MySQL-本次项目为netTopo">本次项目中使用的数据库为MySQL 本次项目为netTopo</h4>
 <blockquote>
-<p>更新风暴：短时间内发生大量数据平面更新</p>
-<p>长尾到达：有些交换机的更新需要很长时间到达</p>
-</blockquote>
-<p>2.更新风暴示例</p>
-<img src="/2023/03/29/FLash-0/img_2.png" class title="img_2.png">
-<img src="/2023/03/29/FLash-0/img_3.png" class title="img_3.png">
+<p>数据库配置</p>
 <blockquote>
-<p>在之前的研究工作中，互联网中单个故障可能出发BGP撤销，从而导致域内网络FIB变化</p>
+<p>本次项目采用Tomcat服务器，前后端不分离</p>
 </blockquote>
+<p>项目结构</p>
+</blockquote>
+  
+<p>由图中可以看到 采用的为SMV架构 其中dao是专门进行数据库处理的 为每个表划分单个类进行数据库处理<br>
+首先是数据库的基本配置(采用JDBC连接)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Connection connection = null;</span><br><span class="line">String driver = &quot;com.mysql.jdbc.Driver&quot;;</span><br><span class="line">String url = &quot;jdbc:mysql://localhost:3306/switch_info?useUnicode=true&amp;characterEncoding=UTF-8&amp;userSSL=false&amp;serverTimezone=GMT%2B8&amp;useOldAliasMetadataBehavior=true&quot;;</span><br><span class="line">String username = &quot;root&quot;;</span><br><span class="line">String password = &quot;password&quot;;</span><br></pre></td></tr></table></figure>
+<p>数据库的查询(根据IP查找其他字段内容)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public List&lt;FibInfo&gt; queryInfoByIp(String ip)&#123;</span><br><span class="line">    List&lt;FibInfo&gt; result=new ArrayList&lt;&gt;();</span><br><span class="line">    Connection conn =  getConnection();</span><br><span class="line">    try &#123;</span><br><span class="line">        PreparedStatement stmt = (PreparedStatement) conn.prepareStatement</span><br><span class="line">                (&quot;SELECT name,mask,port FROM fib_table where ip = ?;&quot;);</span><br><span class="line">        stmt.setString(1, ip);</span><br><span class="line">        ResultSet rs =  stmt.executeQuery();</span><br><span class="line">        while(rs.next()) &#123;</span><br><span class="line">            String name=rs.getString(&quot;name&quot;);</span><br><span class="line">            String mask=rs.getString(&quot;mask&quot;);</span><br><span class="line">            String port = rs.getString(&quot;port&quot;);</span><br><span class="line">            result.add(new FibInfo(name,ip,mask,port));</span><br><span class="line">        &#125;</span><br><span class="line">        stmt.close();</span><br><span class="line">        conn.close();</span><br><span class="line">    &#125; catch (SQLException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>数据库的增加</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public int addInfoList(List&lt;FibInfo&gt; fibTable)&#123;</span><br><span class="line">    Connection conn = getConnection();</span><br><span class="line">    PreparedStatement stmt= null;</span><br><span class="line">    String sql = &quot;insert into fib_table ( name,ip,mask,port) values(?,?,?,?)&quot;;</span><br><span class="line">    for(FibInfo fibInfo:fibTable)&#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            stmt = (PreparedStatement) conn.prepareStatement(sql);</span><br><span class="line">            stmt.setString(1,fibInfo.getName());</span><br><span class="line">            stmt.setString(2,fibInfo.getIp());</span><br><span class="line">            stmt.setString(3,fibInfo.getMask());</span><br><span class="line">            stmt.setString(4,fibInfo.getPort());</span><br><span class="line">            stmt.executeUpdate();</span><br><span class="line">        &#125; catch (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            return -1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    try &#123;</span><br><span class="line">        if(stmt!=null)</span><br><span class="line">            stmt.close();</span><br><span class="line">        conn.close();</span><br><span class="line">    &#125; catch (SQLException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>数据库的删除操作</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public boolean delInfo(String ip)&#123;</span><br><span class="line">    String sql=&quot;delete from fib_table where ip=&#x27;&quot; + ip + &quot;&#x27;&quot;;</span><br><span class="line">    return this.execute(sql);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public void deleteAllInfo()&#123;</span><br><span class="line">    String sql=&quot;truncate table fib_table&quot;;</span><br><span class="line">    this.executedelete(sql);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>如上图所述，考虑图a中的网络，假设它从AS-1和AS-2接收10K前缀，10K前缀的最佳路径是通过边界路由器A</p>
-<p>如图b所示。在A与Internet链路断开后，前缀从AS-1中撤回，新的最佳路径是通过路由器B转发数据包</p>
-<p>如图b所示。对于3节点拓扑，更改将触发30K FIB更新。域内的链路改变也可能触发大量的FIB更新</p>
-<p>考虑图c中的网络，当从C到B建立新的链路时，最佳域内路径从C-A-B更改为C-B。因此，它将触发所选前缀的10K更新。</p>
-<p>作者使用FRR评估了第一个图的场景，第二个图显示了当我们触发链接事件时更新的累积分布。</p>
-<p>当链接A-Internet失败时，我们在0.48秒内收到来自A的10K突发更新，而在链接B-C建立后1.36秒内，我们在0.58秒内收到C的10K突发更新.</p>
-<p>将这些条目馈送到数据平面验证器会导致长的验证时间和大的内存消耗，即使对于增量数据平面验证器来说，大量的更新也可能具有挑战性。</p>
-<p>虽然可以采用分而治之的方法，但成本取决于分区方法和数据平面的复杂性，并且仍然可能非常大</p>
+<p>注意这两种方式，前者是删除fib_table，后者是清空fib_table的内容</p>
 </blockquote>
-<p>3.首先介绍什么是Fat树</p>
-<p>Fat-Tree特点</p>
+<p>当使用多线程访问数据库时，可能会产生报错，具体原因是当一个con未释放，新的con就被申请</p>
 <blockquote>
-<p>是以交换机为中心的拓扑</p>
-<p>支持在横向拓展的同时拓展路径数目</p>
-<p>且所有交换机均为相同端口数量的普通设备，降低了网络建设成本</p>
+<p>方法：给调用数据库的方法加锁synchronized  如下：</p>
 </blockquote>
-<p>Fat-Tree结构共分为三层：核心层、汇聚层、接入层。</p>
-<p>一个k元的Fat-Tree可以归纳为6个特征：</p>
-<blockquote>
-<p>每台交换机都有k个端口</p>
-<p>核心层为顶层，一共有(k/2)^2个交换机</p>
-<p>一共有k个pod，每个pod有k台交换机组成。其中汇聚层和接入层各占k/2台交换机</p>
-<p>接入层每个交换机可以容纳k/2台服务器</p>
-<p>k元Fat-Tree一共有k个pod，每个pod容纳k×k/4个服务器，所有pod共能容纳k×k×k/4台服务器；</p>
-<p>任意两个pod之间存在k条路径</p>
-</blockquote>
-<p>下图是k=4的胖树结构</p>
-<img src="/2023/03/29/FLash-0/img.png" class title="img.png">
-<p>考虑下图中所示的场景，假设网络具有K-ary胖树拓扑结构，每个POD都有P个前缀。什么时候K=32和P=32，其中有1310720个FIB规则和71680个FIB改变是在向数据中心网络添加新的pod时通过BGP模拟生成的。下图中四个参数分别代表：胖树参数、每个pod的前缀、修改后规则总数、修改的规则数</p>
-<img src="/2023/03/29/FLash-0/img_1.png" class title="img_1.png">
-<blockquote>
-<p>我们可以看到，在经过网络故障后，会产生大量的FIB更新</p>
-</blockquote>
-]]></content>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">synchronized public static List&lt;Vlanport&gt; getVlanPorts(String switchIp, String routeTableEcho)  &#123;</span><br><span class="line">    List&lt;Vlanport&gt; vlanRes = new ArrayList&lt;&gt;();</span><br><span class="line">    String[] lines = routeTableEcho.split(&quot;\n|\r\n|\r&quot;);</span><br><span class="line">    SqlTest h = new SqlTest();</span><br><span class="line">    con = h.getConnection();</span><br><span class="line">    String device  = h.queryData(&quot;topo_node&quot;,switchIp,&quot;ip&quot;,&quot;name&quot;);</span><br></pre></td></tr></table></figure>]]></content>
       <tags>
-        <tag>FLash</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>FLash-1</title>
-    <url>/2023/03/29/FLash-1/</url>
-    <content><![CDATA[<h3 id="Flash-解决更新风暴、长尾到达的最新数据平面验证-学习2">Flash-解决更新风暴、长尾到达的最新数据平面验证-学习2</h3>
-<span id="more"></span>
-<h4 id="一种声明性需求规范语言">一种声明性需求规范语言</h4>
-<img src="/2023/03/29/FLash-1/img.png" class title="FLash-1&#x2F;img.png">
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;packet_space, sources, path_set&gt;的含义</span><br><span class="line">所有数据包来自packet_space，都可以从sources中设备进入网络，并必须沿着属于指定为正则表达式的path_set的至少一个路径转发</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">示例</span><br><span class="line">&lt;sip = 10.0.1.0/24 and dip = 10.0.2.0/24,[S],S.W.*＞$&gt;的含义</span><br><span class="line">对于在设备S处进入网络的源IP在10.0.0.0/24中且目标IP在10.0.2.0/24中的任何数据包，能够到达至少一个具有可到达数据包目的地的外部端口的设备，同时指向设备W</span><br></pre></td></tr></table></figure>
-<h4 id="IMT的形式化理论">IMT的形式化理论</h4>
-<h5 id="基本概念">基本概念</h5>
-<p>1.计算有效断言</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">假设第1个设备只有两条规则p1和p2 </span><br><span class="line">p1=(dstip=10.0.0.0/24 pri=2 forward port1)</span><br><span class="line">p2=(dstip=10.0.0.0/16 pri=1 forward port2)</span><br><span class="line">显然 p1的优先级更高 因此p1的有效断言=transfor(10.0.0.0/24)</span><br><span class="line">但是p2的有效断言显然不是 p2的优先断言=transfor(p1∩(否定)p2)</span><br><span class="line">即p2的实际部分应该是10.0.1.0——10.0.255.255 即不包含p1 可以使用下面公式表示</span><br></pre></td></tr></table></figure>
-<img src="/2023/03/29/FLash-1/1.png" class title="Flash-1&#x2F;1.png">
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">如何进行模型转换R(基于规则的)-&gt;M(基于等价类的)，公式如下</span><br><span class="line">公式的含义就是所有规则的有效断言的union 通过这个公式就完成断言的转换</span><br></pre></td></tr></table></figure>
-<img src="/2023/03/29/FLash-1/2.png" class title="FLash-1&#x2F;2.png">
-<p>2.规则更新（插入或删除）</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">规则更新无非有两种：插入规则与删除规则</span><br><span class="line">插入规则：设备原始规则（优先级比新规则低）有效断言减少</span><br><span class="line">删除规则：设备原始规则（优先级比新规则低）有效断言增加</span><br></pre></td></tr></table></figure>
-<p>3.规则逐条更新效率很低</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">原因：假设存在两条规则集r1，r2，规则集中分别包含2，3条</span><br><span class="line">r1规则集：</span><br><span class="line">r11=(dstip=10.0.0.0/24 pri=2 forward port1)</span><br><span class="line">r12=(dstip=10.1.0.0/24 pri=2 forward port1)</span><br><span class="line">r2规则集：</span><br><span class="line">r21=(dstip=10.0.0.0/16 pri=1 forward port2)</span><br><span class="line">r22=(dstip=10.1.0.0/16 pri=1 forward port2)</span><br><span class="line">r22=(dstip=10.2.0.0/16 pri=1 forward port2)</span><br><span class="line">首先计算r1的有效断言</span><br><span class="line">eff_r1 = eff_r11 ∪ eff_r12</span><br><span class="line">再计算r2的有效断言</span><br><span class="line">eff_r2 = (eff_r21 ∪ eff_r22 ∪ eff_r23) ∩ (否定)(eff_r11 ∪ eff_r12)</span><br><span class="line">我们可以注意到 eff_r11 ∪ eff_r12 已经在计算eff_r1时计算过了，如果单独更新规则集r2，则会产生冗余</span><br><span class="line"></span><br><span class="line">问：作者是如何解决这个问题的？</span><br><span class="line">答：检查两个断言是否可以合并，若插入的断言p1和断言p2有相同的动作(转发到port1)，则可以创建新的断言</span><br><span class="line">p=p1∪p2，这样再计算有效断言时可以减小冗余，缩短时间</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">input:数据包头部</span><br><span class="line">output:转发行为</span><br><span class="line">注意：IMT不处理具体某个input，而是处理input集合</span><br></pre></td></tr></table></figure>
-<p>4.覆盖允许更新组合的运算符</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">新的更新（S3-S2-S1）到来后，首先发生在设备S3，即下图中ΔR3</span><br><span class="line">由于存在两条规则，因此有两次更新</span><br><span class="line">更新1：ΔR3中第一行，重写运算符就是(Δp=p4,Δy)，其中Δy指定了采取的动作，从S3到S2，写作y3=S2；</span><br><span class="line">然后将该断言与原本断言就行交集运算，判断，有以下两种情况：</span><br><span class="line">&lt;1&gt;为空，该重写运算符不起作用</span><br><span class="line">&lt;2&gt;不为空，相交的部分成为新的等价类，其余部分不变（类似于APKeep中分离断言）</span><br><span class="line">更新2：ΔR3中第二行，重写运算符就是(Δp=p5,Δy)</span><br><span class="line"></span><br><span class="line">reduce1:键是Δy，对于具有相同键(Δy)的断言，断言(Δp)被减少</span><br><span class="line">reduce2:键是Δp，对于具有相同键(Δp)的断言，断言(Δy)被减少</span><br><span class="line">这两步都能提高效率</span><br><span class="line"></span><br><span class="line">如下图所示</span><br><span class="line">在S3处reduce1 就是将p4与p5合并，即p3=p4∨p5</span><br><span class="line">reduce2 就是将ΔM1、ΔM2、ΔM3进行Δy合并，即Δy=&#123;y3=S2,y2=S1,y1=A&#125;,即&#123;A,S1,S2&#125;</span><br><span class="line"></span><br><span class="line">注意：map-reduce过程仅适用于无冲突覆盖。</span><br><span class="line">冲突覆盖的概念：</span><br><span class="line">两个覆盖运算符(Δp,Δy)和(Δp′,Δy′)存在冲突，当且仅当Δp和Δp′相交，并且它们在同一设备上写入不同的动作。</span><br></pre></td></tr></table></figure>
-<img src="/2023/03/29/FLash-1/3.png" class title="FLash-1&#x2F;3.png">
-<h5 id="应用">应用</h5>
-<p>1.高效计算ΔM</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">以下算法是规则更新后，根据ΔR计算ΔM的算法</span><br><span class="line">输入：ΔRi:第i个设备的本地更新块 Ri:更新前已排序的初始规则</span><br><span class="line">输出：ΔMi:等价于ΔRi的原子重写集合 Ri&#x27;:更新后已排序的最终规则</span><br><span class="line">步骤</span><br><span class="line">L1:移除ΔRi中无用的更新 （先增加后删除 或 先删除后增加）</span><br><span class="line">L2:排序ΔRi按优先级降序排列</span><br><span class="line">L3:Rdiff为MergeBlockAndDiff(Ri,ΔRi)的结果</span><br><span class="line">L4:Ri&#x27;=Ri 将更新赋值于Ri&#x27;</span><br><span class="line">L5:ΔMi为CalculateAtomicOverwrite(Ri&#x27;,Rdiff)的结果</span><br><span class="line">L6:返回Ri&#x27;，ΔMi</span><br><span class="line">具体函数含义</span><br><span class="line">函数：MergeBlockAndDiff(Ri,ΔRi) 合并本地更新</span><br><span class="line">    L8-L11:初始化</span><br><span class="line">L8:Rdiff初始化为空列表</span><br><span class="line">L9:优先级较高的规则是否被删除higher初始化为false</span><br><span class="line">L10:r初始化为Ri的最高优先级</span><br><span class="line">L11:δ=(op,rδ)是ΔRi中最高优先级的更新</span><br><span class="line">    L12-L16:首先定位应该应用更新的位置。</span><br><span class="line">L12:首先判断δ是否为空，不为空（表示存在更新）</span><br><span class="line">L13:判断ΔRi中最高优先级的规则rδ是在r之后增加/删除的，如果是</span><br><span class="line">L14:判断优先级较高的规则是否被删除higher是否为true，如果是</span><br><span class="line">L15:扩展Rdiff，即Rdiff.add(r)</span><br><span class="line">L16:遍历Ri的下一条规则，并赋值于r</span><br><span class="line">    L17-L20:插入更新</span><br><span class="line">L17:如果ΔRi中最高优先级的规则rδ不是在r之后增加/删除的</span><br><span class="line">L18:如果最高优先级的动作是插入</span><br><span class="line">L19:在规则r前增加rδ</span><br><span class="line">L20:扩展Rdiff，即Rdiff.add(r)</span><br><span class="line">    L21-L24:删除更新</span><br><span class="line">L21:如果最高优先级的动作是删除</span><br><span class="line">L22:从Ri中删除r</span><br><span class="line">L23:优先级较高的规则是否被删除higher为true</span><br><span class="line">L24:遍历Ri的下一条规则，并赋值于r</span><br><span class="line">L25:获取ΔRi中下一个更新δ</span><br><span class="line">L26:若δ为空，判断优先级较高的规则是否被删除higher是否为true，如果是</span><br><span class="line">L27:将Ri中剩余规则添加到Rdiff</span><br><span class="line">L28:返回Rdiff</span><br><span class="line"></span><br><span class="line">该算法主要是计算ΔM 即reduce1，该算法并没有实现断言的合并</span><br></pre></td></tr></table></figure>
-<img src="/2023/03/29/FLash-1/4.png" class title="FLash-1&#x2F;4.png">
-<p>2.快速IMT</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入空间分区:快速IMT的复杂性取决于反向模型和更新的大小，这两者都与数据平面中的规则数量有关。通过将空间划分为多个子空间，可以减少更新过程中有效对的数量，以及受影响规则的数量。因此，它可以大大提高模型更新的速度。</span><br><span class="line">快速查找重叠规则:计算原子重写(ΔMi)是计算每个受影响规则的有效断言。可以看出，规则的有效断言r将影响或受其他规则影响r&#x27;，只有当它们的匹配重叠时。mr∧mr&#x27;≠∅. 在一些常见的场景中，例如，当数据平面主要由最长前缀匹配规则组成时，重叠规则的数量通常远小于设备上的规则数量。为了加快原子覆盖的计算，Flash使用多维前缀Trie[24]来实现对重叠规则的快速查找。</span><br><span class="line">PAT:</span><br></pre></td></tr></table></figure>
-<h5 id="早期检查">早期检查</h5>
-<p>1.目前数据平面验证工具存在的问题</p>
-<blockquote>
-<p>问题</p>
-<p>&lt;1&gt;如何调度规则更新来构建与收敛状态一致的模型？</p>
-<p>&lt;2&gt;如何在信息不完整的情况下有效地计算验证结果？</p>
-</blockquote>
-<p>2.Flash是如何做的</p>
-<blockquote>
-<p>&lt;1&gt;识别一致的FIB更新，即从相同的网络状态计算的更新</p>
-<p>&lt;2&gt;识别潜在的收敛状态</p>
-<p>&lt;3&gt;将潜在收敛状态（为了效率）的一致FIB更新（为了正确性）调度到同一验证器</p>
-</blockquote>
-<p>2.1识别与Epoch一致的FIB更新</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Flash使用网络状态来表示路由软件用来计算转发规则（例如，链路状态和前缀配置）的信息。</span><br><span class="line">随着网络的发展，其状态也会因不同事件（如链路故障）而发生变化。在同步状态协议中，状态更改会传播到整个网络。</span><br><span class="line"></span><br><span class="line">Flash通过将不同网络状态计算的规则更新划分为epochs来区分这些更新。</span><br><span class="line">具体来说，每个epoch表示全局网络状态的快照。</span><br><span class="line">由于仅通过查看数据平面无法确定更新是否来自同一网络状态，Flash使用代理增强了路由软件。</span><br><span class="line">代理计算标签(OpenR实现中，Flash使用密钥的哈希值和状态变量的版本作为epoch标签)，即epoch的唯一标识符，并将标签与根据状态计算的FIB更新相关联。</span><br><span class="line">Flash要求代理和调度器之间的消息传递是串行的，即，来自同一设备的更新总是以与生成更新相同的顺序接收。</span><br><span class="line">然而，Flash对来自不同设备上的代理的消息没有任何限制。</span><br><span class="line"></span><br><span class="line">通过Epoch依赖性跟踪识别潜在的聚合状态。</span><br><span class="line">由于Flash需要设备和调度器之间的严格顺序，如果调度器在接收到具有t2的更新之前在设备i上接收到具有t1的更新，则t1不能是收敛状态。</span><br><span class="line">类似地，如果我们在t3之前看到t2，即使t2是设备i上的最新标签，我们也可以推断t2不可能是收敛状态。这被称为分布式系统中的“先发生后发生”关系，表示为t1≺t2。</span><br><span class="line">Flash维护每个设备的最新标签和一组没有后续epoch的“活动”epoch。</span><br><span class="line">一旦从设备i接收到新标签tnew（其旧标签为ti＝told），Flash就从活动集中删除told，并用tnew替换tell。</span><br><span class="line">如果tnew没有被标记为非活动（由另一个设备），Flash会将tnew添加到活动集。标记在活动集中的epoch是一个潜在的收敛状态。</span><br><span class="line"></span><br><span class="line">调度一致的FIB更新</span><br><span class="line">由于更新与epoch标签相关联，Flash维护了从epoch标签到验证器的映射。</span><br><span class="line">具体地，在从设备接收到具有新epoch标记t的更新时，</span><br><span class="line">Flash首先将更新附加到设备的更新队列，并检查t是否在活动集中。</span><br><span class="line">如果t不在活动集中，这意味着同一设备将来会有更新，则不需要进一步操作。</span><br><span class="line">否则，如果t在活动集中，Flash会找到（或创建一个，如果不存在）t的验证器，并将更新从设备的更新队列馈送到该验证器。</span><br><span class="line">在实践中，Flash可能需要采用退避机制，以避免由于控制平面错误或对不稳定链路的不当处理而快速创建验证器。</span><br><span class="line"></span><br><span class="line">一个示例更新设置如图3所示。考虑由两个链路故障触发的更新:(S,W)和(B,Y)。</span><br><span class="line">假设每个设备的初始标签为t0＝[0，0，…]，其中第一个/第二个元素是链路(S,W)/(B,Y)的描述。</span><br><span class="line">假设在时间T1，Flash接收来自具有标签t1＝[1，0，…]的S的更新（在看到(S,W)的故障之后），以及来自具有标签t2＝[0，1，…]（在发现(B,Y)的故障后）的交换机A和B的更新。</span><br><span class="line">在T1，t1和t2是潜在的收敛状态，并且被置于不同的验证器中。</span><br><span class="line">然而，如果在时间T2&gt;T1时，Flash从交换机S、A和B接收到更新，并且epoch标记t3=[1、1、…]，则调度程序将把T1和T2标记为非活动，并为t3创建一个新的验证器，因为t3现在处于活动状态。</span><br><span class="line">然后，如果Flash从交换机E接收到标记为t2的更新，则Flash只需将更新附加到E的队列中，而不将其发送给任何验证器。</span><br><span class="line">当它从E接收到具有t3的更新时，它将更新刷新到与标签t3相关联的验证器。</span><br><span class="line">图4（a）显示了为每个epoch构建的模型，并在底部显示了不一致状态的示例。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<img src="/2023/03/29/FLash-1/5.png" class title="FLash-1&#x2F;5.png">
-<img src="/2023/03/29/FLash-1/6.png" class title="FLash-1&#x2F;6.png">
-<p>2.2通用正则表达式需求的一致性早期检查</p>
-<blockquote>
-<p>作者首先指定了Flash如何对正则表达式中指定的一般要求执行一致的早期检测</p>
-<p>图16给出了Flash中需求规范语言的简化语法</p>
-</blockquote>
-<img src="/2023/03/29/FLash-1/7.png" class title="FLash-1&#x2F;7.png">
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">验证图和一致部分验证</span><br><span class="line">Flash计算验证图，作为网络自动机和需求表达自动机的叉积自动机Gp，用于每个数据包空间H和一组源src。</span><br><span class="line">初始验证图包含G中的所有路径，这些路径</span><br><span class="line">（1）从srcs开始</span><br><span class="line">（2）匹配所有正则表达式</span><br><span class="line">考虑图3中的网络和需求。要求是子空间中的数据包ℎ在S处进入的数据包必须沿着穿过W和Y之一的简单路径到达D。</span><br><span class="line">图4(b)显示了初始状态S1和接受状态D1的验证图。</span><br><span class="line">有了这个图，对需求表达式的验证就相当于在验证图中找到一条可以达到接受状态的路径。</span><br><span class="line">具体地说，如果存在这样一个仅由同步节点组成的路径，则该需求始终得到满足。</span><br><span class="line">如果存在一条仅由同步节点组成的路径，则拒绝状态将始终不满足要求。否则，验证结果未知。</span><br><span class="line"></span><br><span class="line">递减更新和可达性查询。</span><br><span class="line">随着越来越多的节点变得同步，该epoch网络中可能符合需求的路径集正在单调减少。</span><br><span class="line">考虑图3中的示例，在接收到图4（b）中的Update1之后，验证图只包含绿色区域中的节点和边。</span><br><span class="line">在进一步接收更新2之后，Gp中没有有效的路径，这意味着无论如何，都无法满足图3中的要求ℎ 由其他设备转发。</span><br><span class="line">在这种递减图中的可达性查询（即，边总是被移除，但从不添加）具有恒定的时间复杂性[41]。该算法的细节和伪代码，以及如何将其扩展为对更复杂的流量模式（例如，任意播、多播和覆盖要求[27]）执行早期检测，见附录D.2。</span><br></pre></td></tr></table></figure>
-<p>2.3一致早期循环检测技术</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">简单来讲有两种方式</span><br><span class="line">1.删除非同步节点，判断同步节点间是否存在循环 -&gt; 缺点：容易错过早期检测机会</span><br><span class="line">2.保持非同步节点，假设非同步节点的所有下一跳是任意一个接口，系统枚举所有可能，计算是否存在循环 -&gt; 缺点：计算代价高</span><br><span class="line"></span><br><span class="line">Flash结合这两种方法 提出hyper node compression方法</span><br><span class="line">hyper node compression：</span><br><span class="line">未同步节点的每个连接组件都被压缩为超节点，以降低枚举成本。</span><br><span class="line">设U表示非同步节点的连通分量，该连通分量由超节点w代替。对于每个(u,v)∈E，u∉U和v∈U，移除(u,v)并向E添加边(u,w)。</span><br><span class="line">用超节点验证此图将给出与第二种方法相同的结果，但避免枚举U中的路径。</span><br><span class="line"></span><br><span class="line">请考虑图5中的示例。在图5(a)中，当sync=&#123;A,B&#125;时，我们可以将未同步的节点C和X合并为一个超节点，表示为C&amp;X。</span><br><span class="line">在这种情况下，</span><br><span class="line">可能存在一个循环，例如B→A→C&amp;X→B，是原始图中B→A→X→B，</span><br><span class="line">或者是无循环，例如B→A→C&amp;X→out，是原始图中是B→A→X→C→out，</span><br><span class="line">因此最终结果尚未确定。</span><br><span class="line">然而，如果C是同步的，如图5(b)所示，Flash报告说，只要X不丢弃数据包，就会在最终状态下出现循环。如果只验证同步节点，则无法检测到这一点。</span><br><span class="line"></span><br><span class="line">增量检测</span><br><span class="line">Flash不检测来自所有可能节点的循环，而是只检测包含刚刚同步的节点的循环。</span><br><span class="line">设VS和V&#x27;S相应地表示同步节点的旧集合和新集合。</span><br><span class="line">如果在旧图中未检测到循环，则新图中的新循环必须包含V&#x27;S\VS中的节点。</span><br><span class="line">结合超节点压缩(hyper node compression)和增量检测，Flash增量检查新的同步节点。</span><br></pre></td></tr></table></figure>
-<img src="/2023/03/29/FLash-1/figure5.png" class title="FLash-1&#x2F;figure5.png">
-<p>定义1：(input space,predicate,selection)</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">L:表示input的位数</span><br><span class="line">input space:所有可能input值的集合 X=&#123;0,1&#125;^L</span><br><span class="line">predicate:布尔函数p:X-&gt;&#123;0,1&#125;</span><br><span class="line">selection:&#123;x∈X|p(x)=1&#125;</span><br><span class="line">P:X上的断言空间 </span><br><span class="line">p0：对于x∈X，都能表示满足p0(x)=0的断言</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>FLash</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>FLash-2</title>
-    <url>/2023/03/30/FLash-2/</url>
-    <content><![CDATA[<h3 id="Flash-解决更新风暴、长尾到达的最新数据平面验证-学习3">Flash-解决更新风暴、长尾到达的最新数据平面验证-学习3</h3>
-<span id="more"></span>
-<h4 id="本次是Flash实验评估">本次是Flash实验评估</h4>
-<p>1.评估</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">回答四个关键问题</span><br><span class="line">（1）在具有大量更新的真实世界大型网络中，Flash的性能如何？Flash在不同设置下的性能有多强？（§5.2）</span><br><span class="line">（2）根据真实路由的FIB更新的到达模式，Flash的性能如何？（§5.3）</span><br><span class="line">（3）每种优化技术如何有助于整体性能的提高？（§5.4）</span><br><span class="line">（4）就计算需求而言，Flash的开销（成本）是多少？(§5.5)</span><br></pre></td></tr></table></figure>
-<p>2.实验设置</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">快速IMT命名方式：A-B，其中A代表网络拓扑，B代表FIB生成</span><br><span class="line">示例：LNet-apsp</span><br><span class="line">&lt;1&gt;该设置使用LNet拓扑，这是一种基于Fabric网络架构的专有网络</span><br><span class="line">&lt;2&gt;FIB规则是通过运行全对最短路径算法生成的。</span><br><span class="line">CE2D命名方式：A-B-C[-D]，其中A表示网络拓扑，B表示FIB生成，C表示要验证的属性（所有对可达性和环路自由度），可选的D（如果存在）表示存在长尾到达。</span><br><span class="line">示例：I2-OpenR/1buggy-loop-lt</span><br><span class="line">&lt;1&gt;使用Internet2拓扑</span><br><span class="line">&lt;2&gt;FIB规则是由真正的OpenR软件生成的，除了一个交换机，它正在运行一个有缺陷的OpenR实例</span><br><span class="line">&lt;3&gt;所述验证器被配置为检查所述循环自由度要求</span><br><span class="line">&lt;4&gt;存在长尾到达</span><br><span class="line">所有的设置如下图（包含数据集信息）</span><br><span class="line"></span><br><span class="line">实验环境设置</span><br><span class="line">8个vCPU(2.5GHz)和32GB内存的Ubuntu云服务器上进行的。</span><br><span class="line">操作系统是Ubuntu（x64）18.04。</span><br><span class="line">安装了OpenJDK v17.0.3的LTS</span><br><span class="line"></span><br><span class="line">代码配置(已开源)</span><br><span class="line">https://github.com/snlab/flash </span><br><span class="line">大约4000行java代码</span><br><span class="line"></span><br><span class="line">Flash设备代理实现</span><br><span class="line">设备代理（如果需要一致的早期检测功能）可以通过修补现实世界生产网络中采用的开源模块化路由平台来实现。特别是，在评估中以开源路由软件OpenR[33]为平台。</span><br><span class="line">OpenR：https://github.com/facebook/openr</span><br><span class="line">OpenR是一种状态同步协议，它将其状态变量（即Adj、Prefix）存储在K-V存储中，并使用决策和Fib模块计算路由。</span><br><span class="line">扩展有大约150行C++代码。通过扩展，从相同的网络状态计算的规则更新被封装到带有标签的Thrift[46]消息中，并被发送到验证系统。</span><br><span class="line"></span><br><span class="line">Flash也实现了Delta-net、APKeep、APKeep*进行实验对比</span><br></pre></td></tr></table></figure>
-<img src="/2023/03/30/FLash-2/table2.png" class title="Flash-2&#x2F;table2.png">
-<p>3.评估基准</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">评估1：在大规模网络(LNet-ecmp和LNet-smr)中评估</span><br><span class="line">作者通过将所有交换机的规则插入放在一个序列中来生成更新，将更新序列提供给验证器，并测量执行时间和内存消耗来构建反向模型。如果执行时间超过10小时，我们将终止JVM。</span><br><span class="line">实验结果图：如下图6所示</span><br><span class="line">我们很容易看到：</span><br><span class="line">LNet-ecmp和LNet-smr的Flash(绿色)分别在19秒和4秒内完成，而Delta-net*(蓝色)和APKeep*(橙色)都无法在10小时内完成。</span><br><span class="line">因此，对于LNet-smr，Flash的性能优于Delta-net*和APKeep*9000倍（10小时除以4秒）。</span><br><span class="line">Flash（绿色）的内存消耗也大大降低（在两种设置中都高达2个数量级）。虽然设置看起来很极端，但当验证器正在引导或按需运行时（例如，用于网络规划或虚拟私有云的可达性分析），确实会发生这种情况。</span><br><span class="line">因此，我们得出结论，Flash对于大规模网络中的数据平面验证来说是快速且高效的。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<img src="/2023/03/30/FLash-2/figure6.png" class title="FLash-2&#x2F;figure6.png">
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">评估2：快速IMT的优势和稳健性。</span><br><span class="line">作者分析了快速IMT作为一种独立的模型构建方法的好处，通过将子空间划分思想应用于大型网络中的Delta-net*和APKeep*，因为子空间划分可以广泛有效地用于大型网络。</span><br><span class="line">除了执行时间和内存消耗外，作者还计算了每个评估设置的断言运算数量.</span><br><span class="line">实验结果表：如下表3所示</span><br><span class="line">我们很容易看到：</span><br><span class="line">名为“LNet-smr子空间”的行显示了将子空间分区应用于LNet-smr中的所有子空间时的结果。</span><br><span class="line">我们观察到Delta-net*和APKeep*的模型更新时间更长，分别是LNet-ecmp中Flash的1.4倍（26s/19s）和1895倍，以及LNet-smr中的71倍（285s/4s）和251倍。</span><br><span class="line">在这两种设置中，Flash的内存占用空间也较小。Flash在LNet-smr中使用15MB，而Delta-net*和APKeep*分别使用6792MB和31MB。</span><br><span class="line">除了LNet-apsp子空间设置外，Flash还大幅减少了断言运算的数量（LNet-ecmp中的Delta-net*和APKeep分别为20倍和681倍，LNet-smr中分别为26倍和4倍）。</span><br><span class="line"></span><br><span class="line">完整性评估</span><br><span class="line">作者使用较小的网络，并报告文献中广泛使用的三种设置的结果：Airtel、Stanford跟和I2。</span><br><span class="line">表3的最后3行显示了结果。我们可以看到，APKeep*的模型更新时间是Flash的4.8-6.5倍。</span><br><span class="line">在这种较小的网络中，Delta-net*表现最好，模型更新时间仅为Flash的30-90%。对于一些大型网络也是如此，例如LNet-apsp子空间。</span><br><span class="line">然而，我们看到Delta-net*的断言运算数量高于Flash（在Airtel跟踪中高达141倍）。</span><br><span class="line">可能原因</span><br><span class="line">Delta-net*的效率来自于其简单、高效的数据结构，它可以有效地处理基于前缀的规则。然而，如LNet-smr和LNet-ecmp结果所示，对于非前缀规则，这种表示可能遭受显著的性能退化</span><br></pre></td></tr></table></figure>
-<img src="/2023/03/30/FLash-2/table3.png" class title="FLash-2&#x2F;table3.png">
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">评估3：与CE2D合作时块大小阈值的影响。</span><br><span class="line">由于更新可能在实际中不断到达，Flash可以选择更新反向模型，并在处理所有规则更新之前执行CE2D。</span><br><span class="line">此行为由块大小阈值（BST）参数配置B, 这迫使Flash在处理等于或大于B规则更新。</span><br><span class="line">为了了解此参数如何影响Flash的性能，作者改变了BST值，并测量了表3中使用的设置的模型构建时间。</span><br><span class="line">实验结果图：如下图7所示</span><br><span class="line">x轴表示BST值和FIB量表的比例，因为FIB量值决定了我们评估中的更新次数，并且在每个设置中变化很大。</span><br><span class="line">y轴是归一化的模型更新速度，计算为T基线/Tx，它对模型更新速度与基线相比的速度进行分类，其中BST值是无限的，并且在处理所有更新之后更新模型。</span><br><span class="line">作者观察到：</span><br><span class="line">&lt;1&gt;随着阈值的增加，总体趋势是模型更新速度将增加并保持在相对较高的水平。</span><br><span class="line">&lt;2&gt;在x≈0.04的情况下，大多数设置可以达到基线的60%以上和&gt;100%（LNet-apsp、LNet-ecmp和I2-trace）效率。</span><br><span class="line">&lt;3&gt;唯一的例外是LNet-smr子空间，当x≈0.04时，它仅达到～0.2，当x≈0.5时，它才达到＞0.8。</span><br><span class="line">&lt;4&gt;由于Flash在LNet-smr子空间中的加速大于70倍，因此Flash的速度仍然可以达到最先进的14倍以上。</span><br><span class="line">因此，我们得出结论，快速IMT在具有更大的块大小阈值的情况下更有效。然而，当阈值不小于FIB规模的4%时，仍然可以获得性能改进。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<img src="/2023/03/30/FLash-2/figure7.png" class title="FLash-2&#x2F;figure7.png">
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">评估4：CE2D评估，证明其在极端环境下的有效性、性能优势和稳健性。</span><br><span class="line">实验设计：</span><br><span class="line">&lt;1&gt;首先进行评估，以验证CE2D可以提供一致的早期检测结果。具体来说，我们使用I2OpenR循环设置运行模拟。我们使用Mininet来构建具有Internet2拓扑结构的网络。一个真正的OpenR实例在每个交换机上运行，并通过主机网络连接到Flash。</span><br><span class="line">&lt;2&gt;通过在Mininet中连续关闭两个链路（chic-alta和chic-kans）来触发FIB计算。</span><br><span class="line">作者将CE2D与两种策略进行了比较：</span><br><span class="line">&lt;1&gt;每次更新验证（PUV），它在处理单个规则更新后检查属性</span><br><span class="line">&lt;2&gt;块更新验证（BUV），其在处理更新块后检查性质。</span><br><span class="line">作者在验证器上记录每个交换机的FIB更新时间，以及验证器报告确定性结果的时间。</span><br><span class="line">实验结果图：如下图8所示</span><br><span class="line">结果分析：</span><br><span class="line">交叉点（x，y）表示在时间x接收到交换机y的FIB更新，因为链路断开事件被触发，并且颜色指示epoch标记。点（x，y）表示验证器策略y在时间x报告确定性结果，其中橙色表示有循环，蓝色表示没有循环。</span><br><span class="line">&lt;1&gt;两个同时发生的链路故障在每个交换机上多次触发FIB重新计算。对于PUV和BUV，验证器报告两个瞬态循环（橙色点），这与最终验证结果不一致。</span><br><span class="line">&lt;2&gt;Flash不会报告假阳性错误，并保证验证结果是一致的。</span><br></pre></td></tr></table></figure>
-<img src="/2023/03/30/FLash-2/figure8.png" class title="FLash-2&#x2F;figure8.png">
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">评估5：CE2D对长尾到达的好处。证明当长尾到达发生时，CE2D可以提高多少性能。</span><br><span class="line">实验设计：</span><br><span class="line">&lt;1&gt;在发生循环的两种设置中评估了CE2D的效果：I2-OpenR/1buggy-loop-lt，I2-track-loop-lt。</span><br><span class="line">&lt;2&gt;对于每个设置，我们运行50个独立的随机试验，在每个试验中，我们通过配置一个随机节点在发送更新之前延迟60秒来模拟长尾效应。</span><br><span class="line">&lt;3&gt;测量Flash报告确定性结果的时间。</span><br><span class="line">实验结果图：如下图9所示</span><br><span class="line">结果分析：</span><br><span class="line">x轴是报告时间，y轴是累积分布函数（CDF）。将x轴的范围限制为[0ms，1000ms]：如果曲线在1000ms时没有达到y=1，则在60s时，即在接收到来自阻尼节点的更新后，会获得结果。</span><br><span class="line">&lt;1&gt;点(153.7ms,0.68)位于I2-OpenR/1buggy-loop-lt的曲线上，这表明Flash在68%的试验中可以在不到153.7ms的时间内检测到环路，这比60s的基线要小得多（&gt;390×）。</span><br><span class="line">&lt;2&gt;在I2-track-loop-lt中，Flash可以在所有试验中在760ms内早期检测到环路，从而实现79倍的加速。</span><br><span class="line">因此，我们得出的结论是，在长尾到达时，CE2D的改善可能相当普遍（68%至100%）和显著（79至&gt;390）。</span><br></pre></td></tr></table></figure>
-<img src="/2023/03/30/FLash-2/figure9.png" class title="FLash-2&#x2F;figure9.png">
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">评估6：多重阻尼交换机的影响。即研究了当存在多个阻尼交换机时对CE2D的影响。</span><br><span class="line">实验设计：</span><br><span class="line">&lt;1&gt;作者使用I2-track-loop-lt设置，该设置使用来自Internet2数据集的真实网络拓扑和更新序列。</span><br><span class="line">&lt;2&gt;作者列举了阻尼设备的数量D从1到7。对于每个D，作者将Flash配置为使用CE2D检查循环，并运行50个独立的随机试验。</span><br><span class="line">实验结果图：如下图10所示</span><br><span class="line">结果分析：</span><br><span class="line">&lt;1&gt;在72.5%（即145/200）的情况下，Flash可以在800ms内检测到一致的环路，其速度是完整验证的75倍。</span><br><span class="line">&lt;2&gt;阻尼设备D随着时间的增长，成功的一致性早期检测的概率变得更低。例如，当D≤3时，CE2D在超过90%的情况下仍能在800ms内检测到误差，D=7约20%的情况下，即77.8%的交换机被阻尼。</span><br><span class="line">因此，我们得出结论，即使在数据平面的有限和部分知识的情况下，CE2D也可以早期检测到错误。</span><br></pre></td></tr></table></figure>
-<img src="/2023/03/30/FLash-2/figure10.png" class title="FLash-2&#x2F;figure10.png">
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">评估7：大规模网络中PAT的影响。</span><br><span class="line">实验设计：</span><br><span class="line">通过分析表3中的结果，我们展示了持久行动树（PAT，见§3.4）的效果。总的模型更新时间包括创建和删除等价类的时间（表示为Tec，由Flash中的持久操作树（PAT）处理，与断言操作的数量无关），以及处理断言的时间（称为Top）。</span><br><span class="line">结果分析：</span><br><span class="line">在表3中，我们看到，在前3个大规模网络设置中，模型构建时间的改进大于Flash对APKeep*的#断言运算的改进，例如，LNet-apsp分别为15x和5x。</span><br><span class="line">原因是在较小的网络中，模型构建时间由Top主导，性能增益主要来自于#断言运算的减少。同时，在大型网络中，Tec在整体性能方面占据主导地位，Flash从PAT的性能增益中获益更多</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">评估8：MR2的影响。即为了更好地理解MR2（§3.2）如何对Flash的整体性能增益做出贡献</span><br><span class="line">实验设计：</span><br><span class="line">&lt;1&gt;作者对模型构建中的3个阶段进行了细分分析：计算原子覆盖（Map）、覆盖聚合（即Reduce I/II）和应用覆盖。</span><br><span class="line">&lt;2&gt;作者测量APKeep*、Flash和Flash变体（称为Flash（逐条规则更新模式））每个阶段的总时间，其中块大小阈值设置为1。</span><br><span class="line">实验结果图：如下图11所示</span><br><span class="line">结果分析：</span><br><span class="line">图11显示了APKeep*、Flash（每次更新模式）和Flash在I2-track中的时间细分。</span><br><span class="line">&lt;1&gt;虽然Flash引入了一些覆盖聚合的开销（0.42s），但与APKeep*相比，计算原子覆盖（3.85倍）和应用覆盖（12.30倍）的速度加快了。</span><br><span class="line">&lt;2&gt;在Flash（每次更新模式）中应用覆盖所需的时间（4.84s）比APKeep*（4.55s）更长，因为交叉乘积计算并没有针对单个规则更新进行优化。</span><br><span class="line">因此，我们得出结论，通过覆盖聚合，MR2使Flash能够通过大幅减少计算无原子冲突模型覆盖和应用聚合覆盖的时间来提高性能。</span><br></pre></td></tr></table></figure>
-<img src="/2023/03/30/FLash-2/figure11.png" class title="FLash-2&#x2F;figure11.png">
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">评估9：递减验证图的效率。即展示了使用递减验证图方法（§4.2）对基于正则表达式的需求执行一致早期检测的效率</span><br><span class="line">实验设计：</span><br><span class="line">&lt;1&gt;作者使用LNet-apsp子空间设置并检查所有对ToR到ToR的可达性。</span><br><span class="line">&lt;2&gt;Flash总共生成5376个验证图，每个子空间验证器生成48个验证图。每个交换机的规则插入都打包为一个batch。</span><br><span class="line">&lt;3&gt;作者在处理每个batch次后验证可达性，并使用（1）递减图查询（DGQ，见§4.2）方法和（2）模型遍历（MT，即使用深度优先遍历从每个源ToR遍历模型）来测量单个子空间验证器的验证执行时间。</span><br><span class="line">实验结果图，如下图12所示</span><br><span class="line">结果分析：</span><br><span class="line">图12显示了验证时间的CDF。</span><br><span class="line">&lt;1&gt;DGQ（蓝色）比MT（橙色）更靠近y轴。DGQ和MT的中位数、平均值、99%和最长时间分别为0.58/0.84/4.74/19.57ms和772.98/1522.22/5513.76/7466.87ms。</span><br><span class="line">&lt;2&gt;与MT相比，Flash将99%的执行时间提高了~1163×（4.74ms vs.s.5513.76ms）。</span><br><span class="line">因此，我们可以得出结论，递减验证图方法大大提高了基于正则表达式的需求的验证性能，并实现了高效一致的早期检测。</span><br></pre></td></tr></table></figure>
-<img src="/2023/03/30/FLash-2/figure12.png" class title="FLash-2&#x2F;figure12.png">
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">评估10：计算开销</span><br><span class="line">实验设计：</span><br><span class="line">两种部署</span><br><span class="line">&lt;1&gt;部署专用服务器以进行持续验证的设置</span><br><span class="line">结果分析：</span><br><span class="line">对于LNet-ecmp，Flash为每个pod划分一个子空间，因此总共有112个子空间。</span><br><span class="line">每个子空间验证器需要1 (v)个CPU，211MB内存用于反向模型，336MB内存用于验证图，以检查所有对ToR可达性，并且每台机器需要&lt;4GB内存来运行JVM并存储规则。</span><br><span class="line">因此，总计算开销为112 (v)个CPU，&lt;62GB（61.26GB）（用于模型和验证图）+4GB（用于规则和JVM）内存。</span><br><span class="line">如果子空间验证器部署在k个具有专用资源的机器，每台机器需要112/k (v)CPU和62/k + 4GB内存。</span><br><span class="line">为了了解数据中心的资源成本，我们在2022/7/1应用了AWS EC2（美国俄亥俄州）[52]的可用性和定价，以获得Flash需要4个c6g.8xlarge（32 vCPU和64GB内存）实例。估计费用为2.74美元/小时。</span><br><span class="line">&lt;2&gt;一次性部署设置，其中操作员使用按需计算资源来验证LNet-ecmp</span><br><span class="line">结果分析：</span><br><span class="line">&lt;1&gt;选择4个c6g.8xlarge（32个vCPU和64GB内存）实例，Flash在21秒内完成一次性验证：1秒用于接收规则更新，19秒用于模型构建，939ms用于可达性检查。</span><br><span class="line">&lt;2&gt;假设每个实例运行1分钟并使用WS定价数据，则系统成本为4.352美元/小时或0.07美元/次</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>FLash</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Topotest1</title>
-    <url>/2023/03/31/Topotest1/</url>
-    <content><![CDATA[<h3 id="验证ensp中可达性是否与项目中算法可达性结果一致">验证ensp中可达性是否与项目中算法可达性结果一致</h3>
-<span id="more"></span>
-<h4 id="环境准备">环境准备</h4>
-<p>1.拓扑图</p>
-<img src="/2023/03/31/Topotest1/topo.png" class title="Topotest1&#x2F;topo.png">
-<p>2.ACL图（在数据库中显示 对应于数据库2023.3.31）</p>
-<img src="/2023/03/31/Topotest1/acl.png" class title="Topotest1&#x2F;acl.png">
-<h4 id="结果比较">结果比较</h4>
-<p>1.ensp</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">源设备</th>
-<th style="text-align:center">目标含义</th>
-<th style="text-align:left">是否可达</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">ACC4.VLAN10</td>
-<td style="text-align:center">ACC5.VLAN20</td>
-<td style="text-align:left">1</td>
-</tr>
-<tr>
-<td style="text-align:center">ACC4.VLAN10</td>
-<td style="text-align:center">ACC2.VLAN30</td>
-<td style="text-align:left">1</td>
-</tr>
-<tr>
-<td style="text-align:center">ACC4.VLAN10</td>
-<td style="text-align:center">ACC6.VLAN40</td>
-<td style="text-align:left">0</td>
-</tr>
-<tr>
-<td style="text-align:center">ACC4.VLAN10</td>
-<td style="text-align:center">ACC7.VLAN50</td>
-<td style="text-align:left">1</td>
-</tr>
-<tr>
-<td style="text-align:center">ACC4.VLAN10</td>
-<td style="text-align:center">CORE.VLAN100</td>
-<td style="text-align:left">1</td>
-</tr>
-<tr>
-<td style="text-align:center">ACC5.VLAN20</td>
-<td style="text-align:center">ACC4.VLAN10</td>
-<td style="text-align:left">1</td>
-</tr>
-<tr>
-<td style="text-align:center">ACC5.VLAN20</td>
-<td style="text-align:center">ACC2.VLAN30</td>
-<td style="text-align:left">0</td>
-</tr>
-<tr>
-<td style="text-align:center">ACC5.VLAN20</td>
-<td style="text-align:center">ACC6.VLAN40</td>
-<td style="text-align:left">1</td>
-</tr>
-<tr>
-<td style="text-align:center">ACC5.VLAN20</td>
-<td style="text-align:center">ACC7.VLAN50</td>
-<td style="text-align:left">0</td>
-</tr>
-<tr>
-<td style="text-align:center">ACC5.VLAN20</td>
-<td style="text-align:center">CORE.VLAN100</td>
-<td style="text-align:left">1</td>
-</tr>
-<tr>
-<td style="text-align:center">ACC2.VLAN30</td>
-<td style="text-align:center">ACC4.VLAN10</td>
-<td style="text-align:left">1</td>
-</tr>
-<tr>
-<td style="text-align:center">ACC2.VLAN30</td>
-<td style="text-align:center">ACC5.VLAN20</td>
-<td style="text-align:left">0</td>
-</tr>
-<tr>
-<td style="text-align:center">ACC2.VLAN30</td>
-<td style="text-align:center">ACC6.VLAN40</td>
-<td style="text-align:left">0</td>
-</tr>
-<tr>
-<td style="text-align:center">ACC2.VLAN30</td>
-<td style="text-align:center">ACC7.VLAN50</td>
-<td style="text-align:left">0</td>
-</tr>
-<tr>
-<td style="text-align:center">ACC2.VLAN30</td>
-<td style="text-align:center">CORE.VLAN100</td>
-<td style="text-align:left">1</td>
-</tr>
-<tr>
-<td style="text-align:center">ACC6.VLAN40</td>
-<td style="text-align:center">ACC4.VLAN10</td>
-<td style="text-align:left">0</td>
-</tr>
-<tr>
-<td style="text-align:center">ACC6.VLAN40</td>
-<td style="text-align:center">ACC5.VLAN20</td>
-<td style="text-align:left">1</td>
-</tr>
-<tr>
-<td style="text-align:center">ACC6.VLAN40</td>
-<td style="text-align:center">ACC2.VLAN30</td>
-<td style="text-align:left">0</td>
-</tr>
-<tr>
-<td style="text-align:center">ACC6.VLAN40</td>
-<td style="text-align:center">ACC7.VLAN50</td>
-<td style="text-align:left">1</td>
-</tr>
-<tr>
-<td style="text-align:center">ACC6.VLAN40</td>
-<td style="text-align:center">CORE.VLAN100</td>
-<td style="text-align:left">1</td>
-</tr>
-<tr>
-<td style="text-align:center">ACC7.VLAN50</td>
-<td style="text-align:center">ACC4.VLAN10</td>
-<td style="text-align:left">1</td>
-</tr>
-<tr>
-<td style="text-align:center">ACC7.VLAN50</td>
-<td style="text-align:center">ACC5.VLAN20</td>
-<td style="text-align:left">0</td>
-</tr>
-<tr>
-<td style="text-align:center">ACC7.VLAN50</td>
-<td style="text-align:center">ACC2.VLAN30</td>
-<td style="text-align:left">0</td>
-</tr>
-<tr>
-<td style="text-align:center">ACC7.VLAN50</td>
-<td style="text-align:center">ACC6.VLAN40</td>
-<td style="text-align:left">1</td>
-</tr>
-<tr>
-<td style="text-align:center">ACC7.VLAN50</td>
-<td style="text-align:center">CORE.VLAN100</td>
-<td style="text-align:left">1</td>
-</tr>
-<tr>
-<td style="text-align:center">CORE.VLAN100</td>
-<td style="text-align:center">ACC4.VLAN10</td>
-<td style="text-align:left">1</td>
-</tr>
-<tr>
-<td style="text-align:center">CORE.VLAN100</td>
-<td style="text-align:center">ACC5.VLAN20</td>
-<td style="text-align:left">1</td>
-</tr>
-<tr>
-<td style="text-align:center">CORE.VLAN100</td>
-<td style="text-align:center">ACC2.VLAN30</td>
-<td style="text-align:left">1</td>
-</tr>
-<tr>
-<td style="text-align:center">CORE.VLAN100</td>
-<td style="text-align:center">ACC6.VLAN40</td>
-<td style="text-align:left">1</td>
-</tr>
-<tr>
-<td style="text-align:center">CORE.VLAN100</td>
-<td style="text-align:center">ACC7.VLAN50</td>
-<td style="text-align:left">1</td>
-</tr>
-</tbody>
-</table>
-<p>2.项目中可达性矩阵</p>
-<img src="/2023/03/31/Topotest1/topomatrix.png" class title="Topotest1&#x2F;topomatrix.png">
-<h4 id="结论">结论</h4>
-<p>实验结果一致</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>FLash-3</title>
-    <url>/2023/04/01/FLash-3/</url>
-    <content><![CDATA[<h3 id="Flash-解决更新风暴、长尾到达的最新数据平面验证-学习4">Flash-解决更新风暴、长尾到达的最新数据平面验证-学习4</h3>
-<span id="more"></span>
-<h4 id="相关工作">相关工作</h4>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">大规模网络的网络验证。</span><br><span class="line">&lt;1&gt;由于其重要性，各种研究已经对大规模网络的网络验证进行了研究。</span><br><span class="line">&lt;2&gt;一些设计侧重于控制平面，这与Flash所关注的数据平面验证是互补的，而一些设计仅适用于特定的网络结构和特定的需求，而Flash针对的是更通用的网络和需求。</span><br><span class="line">&lt;3&gt;Libra提出通过分布式计算来扩展大规模网络的验证。它将头部空间划分为最小的原子子空间，其中每个子空间必须具有相同的转发行为，并且本质上是Flash中的等价类，并将这些子空间的验证分发给一组验证器。</span><br><span class="line">&lt;4&gt;Flash中子空间划分的设计是受Libra的启发。然而，Flash中子空间分区的主要目的是减少FIB更新的排队和内存成本。因此，Flash允许在一个子空间中验证多个EC</span><br><span class="line">&lt;5&gt;一些大型网络使用基于仿真的控制平面验证工具。Flash可以通过验证生成的规则来很好地补充这些研究。最近的研究是这一方向的先驱。</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">数据平面验证。</span><br><span class="line">&lt;1&gt;数据平面表示是数据平面验证的核心数据结构。一些数据平面验证工具使用流表(SDN)表示，并在此基础上开发计算模型（例如，SAT模型[17]、头部空间代数和分组转换函数[18]以及数据日志模型[27]）。</span><br><span class="line">&lt;2&gt;另一组数据平面验证工具使用等效类作为数据平面表示。等价类将头部空间分析和需求验证解耦，如果EC的数量较少，这两个步骤都可以有效地执行。</span><br><span class="line">&lt;3&gt;最近的研究也通过维护多组EC和延迟计算叉积来缓解EC的爆炸。</span><br><span class="line">&lt;4&gt;EC方法还受益于有效的数据结构来操作头部空间：Delta-net[25]开发了一种基于间隔的数据结构，该结构在处理基于前缀的规则时是有效的，而其他方法（例如，APKeep[26]和Flash）在更通用的设置下使用二进制决策图（BDD）来提高内存效率。</span><br><span class="line">&lt;5&gt;在EC方法中，Flash是第一个设计高效数据结构来存储和操作操作的方法，只有在应用于大规模网络时，这一点才变得至关重要。</span><br><span class="line">&lt;6&gt;DNA[47]还独立开发了两种批量更新的想法。具体而言，“批量插入和删除”的想法与“删除取消更新”（算法1中的L1）相同，“同一设备上的批量转发行为”的想法类似于Flash中的“按操作聚合”（Reduce I），但限制更大：聚合的更新在更新前后必须具有相同的操作。</span><br><span class="line">&lt;7&gt;随着Flash对块更新问题进行了更深入的分析，Fast IMT中开发的优化是通用的，可以应用于其他EC实现。</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">网络中的自动机理论。</span><br><span class="line">&lt;1&gt;递减验证图的想法是由将自动机理论应用于策略路由的研究推动的。这些研究将网络和路由约束建模为自动化。通过计算乘积自动机，这些研究可以识别满足路由约束的网络路径。</span><br><span class="line">&lt;2&gt;Flash也计算乘积自动机，但将其用于验证目的，并结合最近的快速可达性检查方法[41]。</span><br></pre></td></tr></table></figure>
-<h4 id="讨论">讨论</h4>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">作者Flash可能扩展的三个方面：需求规范、数据平面模型和实现。</span><br><span class="line"></span><br><span class="line">需求规范。</span><br><span class="line">&lt;1&gt;目前，Flash使用路径正则表达式（PRE）来表达需求规范。虽然PRE简单易懂，但它通常需要最短路径等假设来避免状态爆炸，并且不能轻易扩展以支持非最短路径算法。</span><br><span class="line">&lt;2&gt;由于Flash使用需求规范来构建对所有有效路径进行编码的递减验证图（DVG），因此一个潜在的扩展是直接将DVG作为输入。</span><br><span class="line">&lt;3&gt;因此，Flash可能与许多SDN编程语言（例如[42，43，55-59]）的前端接口，这些语言也计算所有有效路径的集合。</span><br><span class="line"></span><br><span class="line">数据平面模型。</span><br><span class="line">&lt;1&gt;Flash专注于数据平面模型，在该模型中，数据包仅基于报头转发，不存在报头重写，因为与运营商的讨论表明，报头重写大多发生在我们目标大规模网络中的终端主机（例如[60]）。</span><br><span class="line">&lt;2&gt;然而，可能需要将Flash扩展到有状态路由（例如，P4[61]和NPL[62]），或者支持常见的报头重写，例如NAT或隧道。</span><br><span class="line">&lt;3&gt;状态路由需要扩展到快速IMT。具体而言，转发功能模型b(ℎ) 需要修改为b(ℎ,s),其中s表示状态。</span><br><span class="line">&lt;4&gt;如果这些操作可能会更改标头或状态，则需要扩展到CE2D。有两个方向可以处理Flash中的头/状态重写。</span><br><span class="line">&lt;5&gt;第一个方向（例如，[26]）是保证任何数据包，如果被重写，在重写之前和之后都属于精确的一个EC。</span><br><span class="line">&lt;6&gt;另一个方向是启用递归查询（例如，[54]）。</span><br><span class="line">&lt;7&gt;必须扩展CE2D，例如，通过在不同EC的递减验证图之间添加链接。当可以在不同步的节点上执行报头重写时，随着不确定性的增加，CE2D的好处可能会减少。这两种方法都可以破坏子空间分区，因为头重写后的EC可能属于另一个分区，甚至属于另一台机器。</span><br><span class="line"></span><br><span class="line">实施</span><br><span class="line">&lt;1&gt;Flash已经提供了许多优化。进一步提高Flash性能优势的一个潜在扩展是利用并行性和管道技术。</span><br><span class="line">&lt;2&gt;目前，子空间验证器的快速IMT和CE2D在同一核心上运行。有了更多的CPU，我们可以将这两个步骤解耦，并并行化每个EC的需求验证。</span><br><span class="line">&lt;3&gt;快速IMT也可以通过利用最近的BDD库（例如[63]）来并行化，这些库允许高效的并发BDD/谓词操作。</span><br></pre></td></tr></table></figure>
-<h4 id="总结">总结</h4>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;1&gt;作者设计了Flash，这是一个快速且可扩展的系统，它解决了大规模网络数据平面验证中的两个重要问题：更新风暴和长尾更新到达。</span><br><span class="line">&lt;2&gt;Flash提出了两个新想法：通过优化块更新处理实现快速逆模型转换，以及通过部分完整的数据平面信息实现一致验证的一致、高效、早期检测。</span><br><span class="line">&lt;3&gt;在大规模数据集上进行的大量实验证明了其有效性和效率。</span><br></pre></td></tr></table></figure>
-<h4 id="附录">附录</h4>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">转发模型（基于规则的表示）：三部分：匹配断言r.pred∈P，优先级r.pr∈N，输出向量(r,y) -&gt; 模拟FIB转发</span><br><span class="line">逆模型（基于等价类的表示）：每个逆模型是一组(p,y)对，其中p∈P是断言，y∈Y是输出向量。显然，模型的空间是P×Y的子集。然而，逆模型必须满足约束条件，如定义6所示。我们定义了一个布尔函数im，它取P×Y的子集，如果它是逆模型，则返回1，否则返回0。</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>FLash</tag>
+        <tag>netTopo项目</tag>
       </tags>
   </entry>
   <entry>

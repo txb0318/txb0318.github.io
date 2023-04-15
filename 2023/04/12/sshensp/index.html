@@ -24,7 +24,7 @@
 <meta property="og:image" content="http://txb0318.github.io/2023/04/12/sshensp/9.png">
 <meta property="og:image" content="http://txb0318.github.io/2023/04/12/sshensp/10.png">
 <meta property="article:published_time" content="2023-04-12T03:05:22.000Z">
-<meta property="article:modified_time" content="2023-04-15T03:47:43.776Z">
+<meta property="article:modified_time" content="2023-04-15T03:50:58.603Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="ensp">
 <meta name="twitter:card" content="summary">
@@ -271,7 +271,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">258字</span>
+        <span class="post-count">244字</span>
       </span>
     </span>
     &nbsp; | &nbsp;
@@ -307,58 +307,33 @@
 <h3 id="环境搭建">环境搭建</h3>
 <p>首先是在ensp搭建拓扑 并使用cloud连接，建议使用loopback</p>
 <h4 id="loopback的创建">loopback的创建</h4>
-<blockquote>
-<p>1.桌面右键此电脑，点击“属性”</p>
-</blockquote>
+<h5 id="桌面右键此电脑，点击“属性”">桌面右键此电脑，点击“属性”</h5>
 <img src="/2023/04/12/sshensp/img.png" class title="img.png">
-<blockquote>
-<p>2.打开设备管理器</p>
-</blockquote>
+<h5 id="打开设备管理器">打开设备管理器</h5>
 <img src="/2023/04/12/sshensp/1.png" class title="img.png">>
-<blockquote>
-<p>3.先选择网络适配器，再点击菜单栏”操作“→”添加过时硬件“</p>
-</blockquote>
+<h5 id="先选择网络适配器，再点击菜单栏”操作“→”添加过时硬件“">先选择网络适配器，再点击菜单栏”操作“→”添加过时硬件“</h5>
 <img src="/2023/04/12/sshensp/2.png" class title="img.png">
-<blockquote>
-<p>4.点击下一步</p>
-</blockquote>
+<h5 id="点击下一步">点击下一步</h5>
 <img src="/2023/04/12/sshensp/3.png" class title="img.png">
-<blockquote>
-<p>5.选择“安装我手动从列表选择的硬件（高级）”，然后下一步</p>
-</blockquote>
+<h5 id="选择“安装我手动从列表选择的硬件（高级）”，然后下一步">选择“安装我手动从列表选择的硬件（高级）”，然后下一步</h5>
 <img src="/2023/04/12/sshensp/4.png" class title="img.png">
-<blockquote>
-<p>6.选择添加类型为”网络适配器“，然后下一步</p>
-</blockquote>
+<h5 id="选择添加类型为”网络适配器“，然后下一步">选择添加类型为”网络适配器“，然后下一步</h5>
 <img src="/2023/04/12/sshensp/5.png" class title="img.png">
-<blockquote>
-<p>7.选择厂商为“Microsoft”，型号为“Microsoft KM-TEST环回适配器”，然后下一步</p>
-</blockquote>
+<h5 id="选择厂商为“Microsoft”，型号为“Microsoft-KM-TEST环回适配器”，然后下一步">选择厂商为“Microsoft”，型号为“Microsoft KM-TEST环回适配器”，然后下一步</h5>
 <img src="/2023/04/12/sshensp/6.png" class title="img.png">
-<blockquote>
-<p>8.等待安装完成即可<br>
-9.安装完成后，打开”网络和Internet“，点击高级网络设置</p>
-</blockquote>
+<h5 id="等待安装完成即可">等待安装完成即可</h5>
+<h5 id="安装完成后，打开”网络和Internet“，点击高级网络设置">安装完成后，打开”网络和Internet“，点击高级网络设置</h5>
 <img src="/2023/04/12/sshensp/7.png" class title="img.png">
-<blockquote>
-<p>10.点击更多网络适配器选项</p>
-</blockquote>
+<h5 id="点击更多网络适配器选项">点击更多网络适配器选项</h5>
 <img src="/2023/04/12/sshensp/8.png" class title="img.png">
-<blockquote>
-<p>11.可以看到已经存在我们添加的网络适配器，右键点击属性</p>
-</blockquote>
+<h5 id="可以看到已经存在我们添加的网络适配器，右键点击属性">可以看到已经存在我们添加的网络适配器，右键点击属性</h5>
 <img src="/2023/04/12/sshensp/9.png" class title="img.png">
-<blockquote>
-<p>12.点击Internet协议版本4</p>
-</blockquote>
+<h5 id="点击Internet协议版本4">点击Internet协议版本4</h5>
 <img src="/2023/04/12/sshensp/10.png" class title="img.png">
-<blockquote>
-<p>13.配置相应的IP信息即可</p>
-</blockquote>
+<h5 id="配置相应的IP信息即可">配置相应的IP信息即可</h5>
 <h4 id="完成loopback的创建后，然后下一步是在ensp添加该loopback">完成loopback的创建后，然后下一步是在ensp添加该loopback</h4>
-<blockquote>
-<p>1.拖拽cloud到拓扑中</p>
-</blockquote>
+<h5 id="拖拽cloud到拓扑中">拖拽cloud到拓扑中</h5>
+<blockquote></blockquote>
 
       
       
@@ -417,7 +392,7 @@
         <p><span>本文标题:</span><a href="/2023/04/12/sshensp/">sshensp</a></p>
         <p><span>文章作者:</span><a href="/" title="访问  的个人博客"></a></p>
         <p><span>发布时间:</span>2023年04月12日 - 11时05分</p>
-        <p><span>最后更新:</span>2023年04月15日 - 11时47分</p>
+        <p><span>最后更新:</span>2023年04月15日 - 11时50分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2023/04/12/sshensp/" title="sshensp">http://txb0318.github.io/2023/04/12/sshensp/</a>
             <span class="copy-path" data-clipboard-text="原文: http://txb0318.github.io/2023/04/12/sshensp/　　作者: " title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -455,7 +430,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8java-ssh%E8%BF%9E%E6%8E%A5ensp"><span class="toc-number">1.</span> <span class="toc-text">使用java ssh连接ensp</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-number">1.1.</span> <span class="toc-text">环境搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#loopback%E7%9A%84%E5%88%9B%E5%BB%BA"><span class="toc-number">1.1.1.</span> <span class="toc-text">loopback的创建</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%8C%E6%88%90loopback%E7%9A%84%E5%88%9B%E5%BB%BA%E5%90%8E%EF%BC%8C%E7%84%B6%E5%90%8E%E4%B8%8B%E4%B8%80%E6%AD%A5%E6%98%AF%E5%9C%A8ensp%E6%B7%BB%E5%8A%A0%E8%AF%A5loopback"><span class="toc-number">1.1.2.</span> <span class="toc-text">完成loopback的创建后，然后下一步是在ensp添加该loopback</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8java-ssh%E8%BF%9E%E6%8E%A5ensp"><span class="toc-number">1.</span> <span class="toc-text">使用java ssh连接ensp</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-number">1.1.</span> <span class="toc-text">环境搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#loopback%E7%9A%84%E5%88%9B%E5%BB%BA"><span class="toc-number">1.1.1.</span> <span class="toc-text">loopback的创建</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%A1%8C%E9%9D%A2%E5%8F%B3%E9%94%AE%E6%AD%A4%E7%94%B5%E8%84%91%EF%BC%8C%E7%82%B9%E5%87%BB%E2%80%9C%E5%B1%9E%E6%80%A7%E2%80%9D"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">桌面右键此电脑，点击“属性”</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%89%93%E5%BC%80%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86%E5%99%A8"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">打开设备管理器</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%88%E9%80%89%E6%8B%A9%E7%BD%91%E7%BB%9C%E9%80%82%E9%85%8D%E5%99%A8%EF%BC%8C%E5%86%8D%E7%82%B9%E5%87%BB%E8%8F%9C%E5%8D%95%E6%A0%8F%E2%80%9D%E6%93%8D%E4%BD%9C%E2%80%9C%E2%86%92%E2%80%9D%E6%B7%BB%E5%8A%A0%E8%BF%87%E6%97%B6%E7%A1%AC%E4%BB%B6%E2%80%9C"><span class="toc-number">1.1.1.3.</span> <span class="toc-text">先选择网络适配器，再点击菜单栏”操作“→”添加过时硬件“</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%82%B9%E5%87%BB%E4%B8%8B%E4%B8%80%E6%AD%A5"><span class="toc-number">1.1.1.4.</span> <span class="toc-text">点击下一步</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E2%80%9C%E5%AE%89%E8%A3%85%E6%88%91%E6%89%8B%E5%8A%A8%E4%BB%8E%E5%88%97%E8%A1%A8%E9%80%89%E6%8B%A9%E7%9A%84%E7%A1%AC%E4%BB%B6%EF%BC%88%E9%AB%98%E7%BA%A7%EF%BC%89%E2%80%9D%EF%BC%8C%E7%84%B6%E5%90%8E%E4%B8%8B%E4%B8%80%E6%AD%A5"><span class="toc-number">1.1.1.5.</span> <span class="toc-text">选择“安装我手动从列表选择的硬件（高级）”，然后下一步</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E6%B7%BB%E5%8A%A0%E7%B1%BB%E5%9E%8B%E4%B8%BA%E2%80%9D%E7%BD%91%E7%BB%9C%E9%80%82%E9%85%8D%E5%99%A8%E2%80%9C%EF%BC%8C%E7%84%B6%E5%90%8E%E4%B8%8B%E4%B8%80%E6%AD%A5"><span class="toc-number">1.1.1.6.</span> <span class="toc-text">选择添加类型为”网络适配器“，然后下一步</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E5%8E%82%E5%95%86%E4%B8%BA%E2%80%9CMicrosoft%E2%80%9D%EF%BC%8C%E5%9E%8B%E5%8F%B7%E4%B8%BA%E2%80%9CMicrosoft-KM-TEST%E7%8E%AF%E5%9B%9E%E9%80%82%E9%85%8D%E5%99%A8%E2%80%9D%EF%BC%8C%E7%84%B6%E5%90%8E%E4%B8%8B%E4%B8%80%E6%AD%A5"><span class="toc-number">1.1.1.7.</span> <span class="toc-text">选择厂商为“Microsoft”，型号为“Microsoft KM-TEST环回适配器”，然后下一步</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%AD%89%E5%BE%85%E5%AE%89%E8%A3%85%E5%AE%8C%E6%88%90%E5%8D%B3%E5%8F%AF"><span class="toc-number">1.1.1.8.</span> <span class="toc-text">等待安装完成即可</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E5%AE%8C%E6%88%90%E5%90%8E%EF%BC%8C%E6%89%93%E5%BC%80%E2%80%9D%E7%BD%91%E7%BB%9C%E5%92%8CInternet%E2%80%9C%EF%BC%8C%E7%82%B9%E5%87%BB%E9%AB%98%E7%BA%A7%E7%BD%91%E7%BB%9C%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.1.1.9.</span> <span class="toc-text">安装完成后，打开”网络和Internet“，点击高级网络设置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%82%B9%E5%87%BB%E6%9B%B4%E5%A4%9A%E7%BD%91%E7%BB%9C%E9%80%82%E9%85%8D%E5%99%A8%E9%80%89%E9%A1%B9"><span class="toc-number">1.1.1.10.</span> <span class="toc-text">点击更多网络适配器选项</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%88%B0%E5%B7%B2%E7%BB%8F%E5%AD%98%E5%9C%A8%E6%88%91%E4%BB%AC%E6%B7%BB%E5%8A%A0%E7%9A%84%E7%BD%91%E7%BB%9C%E9%80%82%E9%85%8D%E5%99%A8%EF%BC%8C%E5%8F%B3%E9%94%AE%E7%82%B9%E5%87%BB%E5%B1%9E%E6%80%A7"><span class="toc-number">1.1.1.11.</span> <span class="toc-text">可以看到已经存在我们添加的网络适配器，右键点击属性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%82%B9%E5%87%BBInternet%E5%8D%8F%E8%AE%AE%E7%89%88%E6%9C%AC4"><span class="toc-number">1.1.1.12.</span> <span class="toc-text">点击Internet协议版本4</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%BA%94%E7%9A%84IP%E4%BF%A1%E6%81%AF%E5%8D%B3%E5%8F%AF"><span class="toc-number">1.1.1.13.</span> <span class="toc-text">配置相应的IP信息即可</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%8C%E6%88%90loopback%E7%9A%84%E5%88%9B%E5%BB%BA%E5%90%8E%EF%BC%8C%E7%84%B6%E5%90%8E%E4%B8%8B%E4%B8%80%E6%AD%A5%E6%98%AF%E5%9C%A8ensp%E6%B7%BB%E5%8A%A0%E8%AF%A5loopback"><span class="toc-number">1.1.2.</span> <span class="toc-text">完成loopback的创建后，然后下一步是在ensp添加该loopback</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%8B%96%E6%8B%BDcloud%E5%88%B0%E6%8B%93%E6%89%91%E4%B8%AD"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">拖拽cloud到拓扑中</span></a></li></ol></li></ol></li></ol></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -611,7 +586,7 @@
         
     </div>
     <i class="fas fa-chart-area"></i>
-    <span class="post-count">字数统计：28.5k</span>
+    <span class="post-count">字数统计：28.4k</span>
 </footer>
 
     </div>

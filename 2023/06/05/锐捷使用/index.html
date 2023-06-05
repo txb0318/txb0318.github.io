@@ -3,19 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>JAVA开发 | Hexo</title>
+  <title>ACL下发 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="JAVA开发">
+  <meta name="description" content="锐捷使用">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JAVA开发">
-<meta property="og:url" content="http://txb0318.github.io/2023/03/26/JAVA%E5%BC%80%E5%8F%91/index.html">
+<meta property="og:title" content="ACL下发">
+<meta property="og:url" content="http://txb0318.github.io/2023/06/05/%E9%94%90%E6%8D%B7%E4%BD%BF%E7%94%A8/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="JAVA开发">
+<meta property="og:description" content="锐捷使用">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-03-26T01:55:55.000Z">
-<meta property="article:modified_time" content="2023-04-15T03:40:23.697Z">
+<meta property="article:published_time" content="2023-06-05T02:30:29.000Z">
+<meta property="article:modified_time" content="2023-06-05T15:38:56.812Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="后端学习">
+<meta property="article:tag" content="网络">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -232,11 +232,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-JAVA开发" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-锐捷使用" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2023/03/26/JAVA%E5%BC%80%E5%8F%91/" class="article-date">
-      <time datetime="2023-03-26T01:55:55.000Z" itemprop="datePublished">2023-03-26</time>
+      <a href="/2023/06/05/%E9%94%90%E6%8D%B7%E4%BD%BF%E7%94%A8/" class="article-date">
+      <time datetime="2023-06-05T02:30:29.000Z" itemprop="datePublished">2023-06-05</time>
 </a>
     </div>
   
@@ -249,7 +249,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      JAVA开发
+      ACL下发
     </h1>
   
 
@@ -259,7 +259,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">580字</span>
+        <span class="post-count">474字</span>
       </span>
     </span>
     &nbsp; | &nbsp;
@@ -267,7 +267,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">3分</span>
+        <span class="post-count">2分</span>
       </span>
     </span>
 </div>
@@ -280,7 +280,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%90%8E%E7%AB%AF%E5%AD%A6%E4%B9%A0/" rel="tag">后端学习</a></li></ul>
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -290,46 +290,20 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="JAVA开发">JAVA开发</h2>
+        <h2 id="锐捷使用">锐捷使用</h2>
 <span id="more"></span>
-<h3 id="流程">流程</h3>
-<blockquote>
-<p>初始化模型（规则树）</p>
-<p>将规则添加到前缀树中</p>
-<p>提取前缀树中规则</p>
-<p>模型更新</p>
-<p>验证</p>
-</blockquote>
-<h3 id="根据端口名获取端口（不存在直接添加）">根据端口名获取端口（不存在直接添加）</h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Port</span> <span class="variable">p</span> <span class="operator">=</span> device.getPort(<span class="string">&quot;default&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> Port <span class="title function_">getPort</span><span class="params">(String name)</span> &#123;</span><br><span class="line">    nameToPort.putIfAbsent(name, <span class="keyword">new</span> <span class="title class_">Port</span>(name, <span class="built_in">this</span>));</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.nameToPort.get(name);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="规则插入树结构">规则插入树结构</h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> IndexedRules <span class="title function_">traverseSrc</span><span class="params">(Rule rule, ArrayList&lt;Rule&gt; ret, <span class="type">int</span> size)</span> &#123;</span><br><span class="line">        <span class="type">IndexedRules</span> <span class="variable">t</span> <span class="operator">=</span> <span class="built_in">this</span>;</span><br><span class="line">        <span class="keyword">if</span> (ret != <span class="literal">null</span>) t.read(rule, ret, size);</span><br><span class="line">        <span class="type">long</span> <span class="variable">srcIp</span> <span class="operator">=</span> rule.getSrc();<span class="comment">//获取IP</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; rule.getSrcSuffix(); i++) &#123;<span class="comment">//遍历前缀</span></span><br><span class="line">            <span class="type">long</span> <span class="variable">bit</span> <span class="operator">=</span> (srcIp &gt;&gt; i) &amp; <span class="number">1</span>;右移i位 并将其结果与<span class="number">1</span>进行and运算</span><br><span class="line">            t = t.buildNext(bit == <span class="number">0</span> ? <span class="number">0</span> : <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span> (ret != <span class="literal">null</span>) t.read(rule, ret, size);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (ret != <span class="literal">null</span>) t.exploreSrc(rule, ret, size);</span><br><span class="line">        <span class="keyword">return</span> t.traverse(rule, size);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//read() method</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">read</span><span class="params">(Rule rule, ArrayList&lt;Rule&gt; ret, <span class="type">int</span> size)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">this</span>.dst == <span class="literal">null</span>) <span class="keyword">return</span>;</span><br><span class="line">        <span class="type">IndexedRules</span> <span class="variable">t</span> <span class="operator">=</span> <span class="built_in">this</span>.dst;</span><br><span class="line">        <span class="keyword">if</span> (ret != <span class="literal">null</span>) ret.addAll(t.getRules());</span><br><span class="line">        <span class="type">long</span> <span class="variable">dstIp</span> <span class="operator">=</span> rule.getMatch().longValue();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; rule.getPrefix() - (<span class="number">32</span> - size); i++) &#123;</span><br><span class="line">            <span class="type">long</span> <span class="variable">bit</span> <span class="operator">=</span> (dstIp &gt;&gt; (size - <span class="number">1</span> - i)) &amp; <span class="number">1</span>;</span><br><span class="line">            t = (bit == <span class="number">0</span>) ? t.left : t.right;</span><br><span class="line">            <span class="keyword">if</span> (t == <span class="literal">null</span>) <span class="keyword">return</span>;</span><br><span class="line">            <span class="keyword">if</span> (ret != <span class="literal">null</span>) ret.addAll(t.getRules());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (ret != <span class="literal">null</span>) t.explore(ret);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//buildNext() method</span></span><br><span class="line">    <span class="keyword">private</span> IndexedRules <span class="title function_">buildNext</span><span class="params">(<span class="type">int</span> flag)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (flag == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">this</span>.left == <span class="literal">null</span>) &#123;</span><br><span class="line">                <span class="built_in">this</span>.left = <span class="keyword">new</span> <span class="title class_">IndexedRules</span>();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">this</span>.left;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">this</span>.right == <span class="literal">null</span>) &#123;</span><br><span class="line">                <span class="built_in">this</span>.right = <span class="keyword">new</span> <span class="title class_">IndexedRules</span>();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">this</span>.right;    </span><br><span class="line">&#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//explore() method</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">explore</span><span class="params">(ArrayList&lt;Rule&gt; ret)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">this</span>.left != <span class="literal">null</span>) <span class="built_in">this</span>.left.explore(ret);</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">this</span>.right != <span class="literal">null</span>) <span class="built_in">this</span>.right.explore(ret);</span><br><span class="line">        ret.addAll(<span class="built_in">this</span>.getRules());</span><br><span class="line"> &#125;</span><br><span class="line"><span class="comment">//traverse() method</span></span><br><span class="line">    <span class="keyword">public</span> IndexedRules <span class="title function_">traverse</span><span class="params">(Rule rule, <span class="type">int</span> size)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">this</span>.dst == <span class="literal">null</span>) <span class="built_in">this</span>.dst = <span class="keyword">new</span> <span class="title class_">IndexedRules</span>();</span><br><span class="line">        <span class="type">IndexedRules</span> <span class="variable">t</span> <span class="operator">=</span> <span class="built_in">this</span>.dst;</span><br><span class="line"></span><br><span class="line">        <span class="type">long</span> <span class="variable">dstIp</span> <span class="operator">=</span> rule.getMatch().longValue();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; rule.getPrefix() - (<span class="number">32</span> - size); i++) &#123;</span><br><span class="line">            <span class="type">long</span> <span class="variable">bit</span> <span class="operator">=</span> (dstIp &gt;&gt; (size - <span class="number">1</span> - i)) &amp; <span class="number">1</span>;</span><br><span class="line">            t = t.buildNext(bit == <span class="number">0</span> ? <span class="number">0</span> : <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> t;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//exploreSrc() method</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">exploreSrc</span><span class="params">(Rule rule, ArrayList&lt;Rule&gt; ret, <span class="type">int</span> size)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">this</span>.left != <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="built_in">this</span>.left.read(rule, ret, size);</span><br><span class="line">            <span class="built_in">this</span>.left.exploreSrc(rule, ret, size);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">this</span>.right != <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="built_in">this</span>.right.read(rule, ret, size);</span><br><span class="line">            <span class="built_in">this</span>.right.exploreSrc(rule, ret, size);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">test</span></span><br><span class="line"><span class="comment">default rule 0/0 32 -&gt;srcIp=0 getSrcSuffix=0 size=32</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>模拟测试</p>
-<p>假设存在三条转发规则</p>
-<p>rule 1 192.168.1.1/24  port1<br>
-rule 2 192.168.1.2/16  port2<br>
-rule 3 192.168.1.1/25  port3</p>
-<p>存在默认规则</p>
-<p>rule default 0.0/24 default</p>
-<p>过程</p>
-<p>1.添加默认规则</p>
-<p>调用traverseSrc(default, null, 32)</p>
-<blockquote>
-<p>调用traverse(default,32)</p>
-</blockquote>
-<p>t = t.dst</p>
-<p>2.添加规则rule 1 rule 2 rule 3</p>
-<p>for循环遍历规则集合[rule 1,rule 2,rule 3]</p>
-<p>添加规则rule 1</p>
-<blockquote>
-<p>调用traverseSrc(default, null, 32)</p>
-<blockquote>
-<p>执行</p>
-</blockquote>
-</blockquote>
-</blockquote>
-
+<p>首先eve-ng中配置netword中manage cloud 该cloud ip即为eve-ng的ip</p>
+<h3 id="锐捷配置SSH">锐捷配置SSH</h3>
+<h4 id="开启SSH">开启SSH</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Ruijie#configure terminal</span><br><span class="line">Ruijie(config)#enable service ssh-server</span><br></pre></td></tr></table></figure>
+<h4 id="生成加密密钥">生成加密密钥</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Ruijie(config)#crypto key generate rsa ------&gt;加密方式有两种：DSA和RSA,可以随意选择</span><br><span class="line">Choose the size of the key modulus in the range of 360 to 2048 for your</span><br><span class="line">Signature Keys. Choosing a key modulus greater than 512 may take</span><br><span class="line">a few minutes.</span><br><span class="line">How many bits in the modulus [1024]: ------&gt;直接敲回车</span><br><span class="line">% Generating 512 bit DSA keys ...[ok]</span><br></pre></td></tr></table></figure>
+<h4 id="配置管理IP地址">配置管理IP地址</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Ruijie(config)#interface vlan 1</span><br><span class="line">Ruijie(config-if)# ip address 192.168.179.135 255.255.255.0  ------&gt;最好配置与cloud同一网段的设备</span><br></pre></td></tr></table></figure>
+<h4 id="SSH时仅使用密码登入交换机">SSH时仅使用密码登入交换机</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Ruijie(config)#line vty 0 4 ------&gt; 进入SSH密码配置模式，0 4表示允许共5个用户同时SSH登入到交换机</span><br><span class="line">Ruijie(config-line)#login ------&gt;启用需输入密码才能SSH成功</span><br><span class="line">Ruijie(config-line)#password ruijie ------&gt; 将SSH密码设置为ruijie</span><br><span class="line">Ruijie(config-line)#exit ------&gt; 回到全局配置模式</span><br><span class="line">Ruijie(config)#enable password ruijie ------&gt;配置进入特权模式的密码为ruijie</span><br><span class="line">Ruijie(config)#end ------&gt;退出到特权模式</span><br><span class="line">Ruijie#write ------&gt;确认配置正确，保存配置</span><br><span class="line"></span><br><span class="line">注意事项：如果要限制用户使用telnet登录，只能使用SSH登录，则需要调整配置，默认情况下telnet和SSH均可登录。</span><br><span class="line">Ruijie(config)#line vty 0 4</span><br><span class="line">Ruijie(config-line)#transport input ssh</span><br></pre></td></tr></table></figure>
+<h4 id="SSH时使用用户名及密码登入交换机">SSH时使用用户名及密码登入交换机</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Ruijie(config)#line vty 0 4 ------&gt;进入SSH密码配置模式，0 4表示允许共5个用户同时SSH登入到交换机</span><br><span class="line">Ruijie(config-line)#login local ------&gt;启用SSH时使用本地用户和密码功能</span><br><span class="line">Ruijie(config-line)#exit ------&gt;回到全局配置模式</span><br><span class="line">Ruijie(config)#username admin password ruijie ------&gt;配置远程登入的用户名为admin，密码为ruijie</span><br><span class="line">Ruijie(config)#enable password ruijie ------&gt;配置进入特权模式的密码为ruijie</span><br><span class="line">Ruijie(config)#end ------&gt;退出到特权模式</span><br><span class="line">Ruijie#write ------&gt;确认配置正确，保存配置</span><br></pre></td></tr></table></figure>
       
       
         <div class="page-reward">
@@ -384,13 +358,13 @@ rule 3 192.168.1.1/25  port3</p>
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2023/03/26/JAVA%E5%BC%80%E5%8F%91/">JAVA开发</a></p>
+        <p><span>本文标题:</span><a href="/2023/06/05/%E9%94%90%E6%8D%B7%E4%BD%BF%E7%94%A8/">ACL下发</a></p>
         <p><span>文章作者:</span><a href="/" title="访问  的个人博客"></a></p>
-        <p><span>发布时间:</span>2023年03月26日 - 09时55分</p>
-        <p><span>最后更新:</span>2023年04月15日 - 11时40分</p>
+        <p><span>发布时间:</span>2023年06月05日 - 10时30分</p>
+        <p><span>最后更新:</span>2023年06月05日 - 23时38分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2023/03/26/JAVA%E5%BC%80%E5%8F%91/" title="JAVA开发">http://txb0318.github.io/2023/03/26/JAVA%E5%BC%80%E5%8F%91/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://txb0318.github.io/2023/03/26/JAVA%E5%BC%80%E5%8F%91/　　作者: " title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2023/06/05/%E9%94%90%E6%8D%B7%E4%BD%BF%E7%94%A8/" title="ACL下发">http://txb0318.github.io/2023/06/05/%E9%94%90%E6%8D%B7%E4%BD%BF%E7%94%A8/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://txb0318.github.io/2023/06/05/%E9%94%90%E6%8D%B7%E4%BD%BF%E7%94%A8/　　作者: " title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -403,18 +377,9 @@ rule 3 192.168.1.1/25  port3</p>
 
 <nav id="article-nav">
   
-    <a href="/2023/03/26/Java%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          Java后端开发注意事项
-        
-      </div>
-    </a>
   
-  
-    <a href="/2023/03/26/learning/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">markdown的使用</div>
+    <a href="/2023/04/24/%E6%95%B0%E6%8D%AE%E5%B9%B3%E9%9D%A2%E9%AA%8C%E8%AF%81/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">数据平面验证</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -425,7 +390,7 @@ rule 3 192.168.1.1/25  port3</p>
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JAVA%E5%BC%80%E5%8F%91"><span class="toc-number">1.</span> <span class="toc-text">JAVA开发</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%81%E7%A8%8B"><span class="toc-number">1.1.</span> <span class="toc-text">流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B9%E6%8D%AE%E7%AB%AF%E5%8F%A3%E5%90%8D%E8%8E%B7%E5%8F%96%E7%AB%AF%E5%8F%A3%EF%BC%88%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9B%B4%E6%8E%A5%E6%B7%BB%E5%8A%A0%EF%BC%89"><span class="toc-number">1.2.</span> <span class="toc-text">根据端口名获取端口（不存在直接添加）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%84%E5%88%99%E6%8F%92%E5%85%A5%E6%A0%91%E7%BB%93%E6%9E%84"><span class="toc-number">1.3.</span> <span class="toc-text">规则插入树结构</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%90%E6%8D%B7%E4%BD%BF%E7%94%A8"><span class="toc-number">1.</span> <span class="toc-text">锐捷使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%90%E6%8D%B7%E9%85%8D%E7%BD%AESSH"><span class="toc-number">1.1.</span> <span class="toc-text">锐捷配置SSH</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%80%E5%90%AFSSH"><span class="toc-number">1.1.1.</span> <span class="toc-text">开启SSH</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%8A%A0%E5%AF%86%E5%AF%86%E9%92%A5"><span class="toc-number">1.1.2.</span> <span class="toc-text">生成加密密钥</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86IP%E5%9C%B0%E5%9D%80"><span class="toc-number">1.1.3.</span> <span class="toc-text">配置管理IP地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SSH%E6%97%B6%E4%BB%85%E4%BD%BF%E7%94%A8%E5%AF%86%E7%A0%81%E7%99%BB%E5%85%A5%E4%BA%A4%E6%8D%A2%E6%9C%BA"><span class="toc-number">1.1.4.</span> <span class="toc-text">SSH时仅使用密码登入交换机</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SSH%E6%97%B6%E4%BD%BF%E7%94%A8%E7%94%A8%E6%88%B7%E5%90%8D%E5%8F%8A%E5%AF%86%E7%A0%81%E7%99%BB%E5%85%A5%E4%BA%A4%E6%8D%A2%E6%9C%BA"><span class="toc-number">1.1.5.</span> <span class="toc-text">SSH时使用用户名及密码登入交换机</span></a></li></ol></li></ol></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -493,13 +458,11 @@ rule 3 192.168.1.1/25  port3</p>
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2023/03/26/Java%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" title="上一篇: Java后端开发注意事项">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/2023/03/26/learning/" title="下一篇: markdown的使用">
+            <a href="/2023/04/24/%E6%95%B0%E6%8D%AE%E5%B9%B3%E9%9D%A2%E9%AA%8C%E8%AF%81/" title="下一篇: 数据平面验证">
                 <i class="fa fa-angle-right"></i>
             </a>
         

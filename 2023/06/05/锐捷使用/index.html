@@ -13,8 +13,10 @@
 <meta property="og:description" content="锐捷使用">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://txb0318.github.io/2023/06/05/%E9%94%90%E6%8D%B7%E4%BD%BF%E7%94%A8/img.png">
+<meta property="og:image" content="http://txb0318.github.io/2023/06/05/%E9%94%90%E6%8D%B7%E4%BD%BF%E7%94%A8/3.png">
+<meta property="og:image" content="http://txb0318.github.io/2023/06/05/%E9%94%90%E6%8D%B7%E4%BD%BF%E7%94%A8/4.png">
 <meta property="article:published_time" content="2023-06-05T02:30:29.000Z">
-<meta property="article:modified_time" content="2023-06-06T02:00:31.222Z">
+<meta property="article:modified_time" content="2023-06-06T07:34:24.375Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="网络">
 <meta name="twitter:card" content="summary">
@@ -261,7 +263,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.2k字</span>
+        <span class="post-count">1.9k字</span>
       </span>
     </span>
     &nbsp; | &nbsp;
@@ -269,7 +271,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">4分</span>
+        <span class="post-count">7分</span>
       </span>
     </span>
 </div>
@@ -319,6 +321,15 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">划分：</span><br><span class="line">    1.将设备网管地址与应用类网段隔离开，如用户网段为10.16.x.x/24，则可以将设备管理地址规划为</span><br><span class="line">      192.168.x.x/24或10.x.x.x/24等</span><br><span class="line">    2.使用32位主机地址，这种情况在部署了OSPF网络中比较常见。如路由器A的网络管理地址是10.60.6.19/32</span><br><span class="line">    3.和应用类地址共用一个子网，如交换机A是信息学院5号楼办公楼子网10.8.10.0/24的接入交换机，用</span><br><span class="line">      户地址使用10.8.10.10-10.8.10.240.交换机A的网管地址是10.8.10.252</span><br><span class="line">    4.预留一部分连续的设备网关地址空间</span><br></pre></td></tr></table></figure>
 <p>5.外网地址规划</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">划分：</span><br><span class="line">    1.接入路由器或防火墙等设备的外出接口地址，与局端子网一直</span><br><span class="line">    2.用户访问外部网络需要的公网地址池，内部访问外网时会使用NAT等技术，以NAT为例，就需要为内部用户提供一个</span><br><span class="line">      公网地址或几个公网地址组成的地址池</span><br><span class="line">    3.对外提供服务的服务器需要使用公网地址，比如会有WWW、FTP、MAIL等服务器使用内部私有地址需要转换成公网地址，</span><br><span class="line">      或者把这些服务器置于DMZ区直接使用公网地址等。</span><br></pre></td></tr></table></figure>
+<h4 id="常见架构">常见架构</h4>
+<p>1.“233”架构 强烈推荐</p>
+<img src="/2023/06/05/%E9%94%90%E6%8D%B7%E4%BD%BF%E7%94%A8/3.png" class title="img.png">
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">转发过程：二层转发-&gt;三层路由-&gt;三层路由 接入层-&gt;汇聚层-&gt;核心层-&gt;汇聚层</span><br><span class="line">模型分析：</span><br><span class="line">    1.路由口到路由口模式（更推荐使用） 即汇聚层交换机和核心层交换机之间接口为路由口</span><br><span class="line">    2.Access SVI到Access SVI模式 即汇聚层交换机和核心层交换机之间接口均为同一VLAN且为access接口</span><br><span class="line">    3.Trunk SVI到Trunk SVI模式 即汇聚层交换机和核心层交换机之间接口均为同一VLAN且为trunk接口</span><br></pre></td></tr></table></figure>
+<p>2.“232”架构</p>
+<img src="/2023/06/05/%E9%94%90%E6%8D%B7%E4%BD%BF%E7%94%A8/4.png" class title="img.png">
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">转发过程：二层转发-&gt;三层路由-&gt;二层转发 接入层-&gt;汇聚层-&gt;核心层-&gt;汇聚层</span><br><span class="line">模型分析：</span><br><span class="line">    1.Access SVI到路由口模式 将核心交换机所有接口都设置为access接口且是同一VLAN</span><br><span class="line">      汇聚层交换机配置路由口且配置IP与核心交换机接口VLANIP处于同一网段</span><br><span class="line">    2.Trunk SVI到Trunk SVI模式 将核心交换机所有接口都设置为trunk接口且是同一VLAN</span><br><span class="line">      汇聚层交换机配置trunk接口且IP与核心交换机接口VLANIP处于同一网段</span><br><span class="line">故障问题：</span><br><span class="line">    1.配置模型：Access SVI到路由口模式</span><br><span class="line">      问题：</span><br><span class="line">        当主机PC ping 核心层交换机时Ping丢包或无法ping通，但PC间能够正常通信</span><br><span class="line">      分析：</span><br><span class="line">        由于汇聚层交换机的路由已经静态配置，不会更新自己的路由表，而任意两个汇聚层交换机之间的通信都会</span><br><span class="line">        导致核心交换机重定向报文产生，而每触发一个重定向报文都会占用核心交换机的CPU资源，当整个网络流量很大</span><br><span class="line">        时，CPU就会忙于处理这些重定向报文，这是如果ping核心层交换机的VLAN接口，由于CPU无法即使处理这些报</span><br><span class="line">        文导致Ping丢包甚至Ping不通</span><br><span class="line">      新的问题：</span><br><span class="line">        为什么下面用户互通没有问题？</span><br><span class="line">      分析：</span><br><span class="line">        主机流程和转发流程。主机流程是通过CPU进行转发的流程。转发流程是指交换机通过硬件直接进行转发的</span><br><span class="line">        当ping核心交换机的地址时，数据包会送往CPU，走的是交换机的主机流程，而CPU非常繁忙，来不及处理这些报文</span><br><span class="line">        当两个区域网段通信时，数据流会直接通过核心交换机的硬件来数据转发的，这是不需要CPU的干扰</span><br><span class="line">      解决方案：</span><br><span class="line">        在每个汇聚层交换即上设置到另外汇聚层交换机的静态路由或部署动态路由协议</span><br></pre></td></tr></table></figure>
+<h5 id="特殊情况">特殊情况</h5>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1.交换机的路由表是固化时 不能动态修改路由表，即不能修改其默认路由 如收到ICMP重定向数据包后</span><br></pre></td></tr></table></figure>
       
       
         <div class="page-reward">
@@ -376,7 +387,7 @@
         <p><span>本文标题:</span><a href="/2023/06/05/%E9%94%90%E6%8D%B7%E4%BD%BF%E7%94%A8/">锐捷</a></p>
         <p><span>文章作者:</span><a href="/" title="访问  的个人博客"></a></p>
         <p><span>发布时间:</span>2023年06月05日 - 10时30分</p>
-        <p><span>最后更新:</span>2023年06月06日 - 10时00分</p>
+        <p><span>最后更新:</span>2023年06月06日 - 15时34分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2023/06/05/%E9%94%90%E6%8D%B7%E4%BD%BF%E7%94%A8/" title="锐捷">http://txb0318.github.io/2023/06/05/%E9%94%90%E6%8D%B7%E4%BD%BF%E7%94%A8/</a>
             <span class="copy-path" data-clipboard-text="原文: http://txb0318.github.io/2023/06/05/%E9%94%90%E6%8D%B7%E4%BD%BF%E7%94%A8/　　作者: " title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -405,7 +416,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%90%E6%8D%B7%E4%BD%BF%E7%94%A8"><span class="toc-number">1.</span> <span class="toc-text">锐捷使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%90%E6%8D%B7%E9%85%8D%E7%BD%AESSH"><span class="toc-number">1.1.</span> <span class="toc-text">锐捷配置SSH</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%80%E5%90%AFSSH"><span class="toc-number">1.1.1.</span> <span class="toc-text">开启SSH</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%8A%A0%E5%AF%86%E5%AF%86%E9%92%A5"><span class="toc-number">1.1.2.</span> <span class="toc-text">生成加密密钥</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86IP%E5%9C%B0%E5%9D%80"><span class="toc-number">1.1.3.</span> <span class="toc-text">配置管理IP地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SSH%E6%97%B6%E4%BB%85%E4%BD%BF%E7%94%A8%E5%AF%86%E7%A0%81%E7%99%BB%E5%85%A5%E4%BA%A4%E6%8D%A2%E6%9C%BA"><span class="toc-number">1.1.4.</span> <span class="toc-text">SSH时仅使用密码登入交换机</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SSH%E6%97%B6%E4%BD%BF%E7%94%A8%E7%94%A8%E6%88%B7%E5%90%8D%E5%8F%8A%E5%AF%86%E7%A0%81%E7%99%BB%E5%85%A5%E4%BA%A4%E6%8D%A2%E6%9C%BA"><span class="toc-number">1.1.5.</span> <span class="toc-text">SSH时使用用户名及密码登入交换机</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IP%E5%9C%B0%E5%9D%80%E8%A7%84%E5%88%92"><span class="toc-number">1.2.</span> <span class="toc-text">IP地址规划</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%B0%E5%9D%80%E8%A7%84%E5%88%92%E6%80%9D%E8%B7%AF"><span class="toc-number">1.2.1.</span> <span class="toc-text">地址规划思路</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%90%E6%8D%B7%E4%BD%BF%E7%94%A8"><span class="toc-number">1.</span> <span class="toc-text">锐捷使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%90%E6%8D%B7%E9%85%8D%E7%BD%AESSH"><span class="toc-number">1.1.</span> <span class="toc-text">锐捷配置SSH</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%80%E5%90%AFSSH"><span class="toc-number">1.1.1.</span> <span class="toc-text">开启SSH</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%8A%A0%E5%AF%86%E5%AF%86%E9%92%A5"><span class="toc-number">1.1.2.</span> <span class="toc-text">生成加密密钥</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86IP%E5%9C%B0%E5%9D%80"><span class="toc-number">1.1.3.</span> <span class="toc-text">配置管理IP地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SSH%E6%97%B6%E4%BB%85%E4%BD%BF%E7%94%A8%E5%AF%86%E7%A0%81%E7%99%BB%E5%85%A5%E4%BA%A4%E6%8D%A2%E6%9C%BA"><span class="toc-number">1.1.4.</span> <span class="toc-text">SSH时仅使用密码登入交换机</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SSH%E6%97%B6%E4%BD%BF%E7%94%A8%E7%94%A8%E6%88%B7%E5%90%8D%E5%8F%8A%E5%AF%86%E7%A0%81%E7%99%BB%E5%85%A5%E4%BA%A4%E6%8D%A2%E6%9C%BA"><span class="toc-number">1.1.5.</span> <span class="toc-text">SSH时使用用户名及密码登入交换机</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IP%E5%9C%B0%E5%9D%80%E8%A7%84%E5%88%92"><span class="toc-number">1.2.</span> <span class="toc-text">IP地址规划</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%B0%E5%9D%80%E8%A7%84%E5%88%92%E6%80%9D%E8%B7%AF"><span class="toc-number">1.2.1.</span> <span class="toc-text">地址规划思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E6%9E%B6%E6%9E%84"><span class="toc-number">1.2.2.</span> <span class="toc-text">常见架构</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%89%B9%E6%AE%8A%E6%83%85%E5%86%B5"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">特殊情况</span></a></li></ol></li></ol></li></ol></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -559,7 +570,7 @@
         
     </div>
     <i class="fas fa-chart-area"></i>
-    <span class="post-count">字数统计：33.9k</span>
+    <span class="post-count">字数统计：34.7k</span>
 </footer>
 
     </div>

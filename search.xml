@@ -252,7 +252,37 @@ rule 3 192.168.1.1/25  port3</p>
 <blockquote>
 <p>java.lang.System.arraycopy() 方法从指定的源数组复制一个数组，从指定位置开始，到目标数组的指定位置。 数组组件的子序列从 src 引用的源数组复制到 dest 引用的目标数组。复制的组件数等于 length&lt; /b&gt; 参数。</p>
 </blockquote>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public static void arraycopy(Object src,</span><br><span class="line">                             int srcPos,</span><br><span class="line">                             Object dest,</span><br><span class="line">                             int destPos,</span><br><span class="line">                             int length)</span><br><span class="line">//将src数组里从索引为srcPos的元素开始, 复制到数组dest里的索引为destPos的位置, 复制的元素个数为length个. </span><br><span class="line">//example</span><br><span class="line">int[] arr1 =&#123;1,2,3,4,5&#125;;arrayCopy(arr1, 3, arr1, 2, 2);</span><br><span class="line">arr1 = &#123;1,2,4,5,4,5&#125; //相当于删除3</span><br></pre></td></tr></table></figure>]]></content>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public static void arraycopy(Object src,</span><br><span class="line">                             int srcPos,</span><br><span class="line">                             Object dest,</span><br><span class="line">                             int destPos,</span><br><span class="line">                             int length)</span><br><span class="line">//将src数组里从索引为srcPos的元素开始, 复制到数组dest里的索引为destPos的位置, 复制的元素个数为length个. </span><br><span class="line">//example</span><br><span class="line">int[] arr1 =&#123;1,2,3,4,5&#125;;arrayCopy(arr1, 3, arr1, 2, 2);</span><br><span class="line">arr1 = &#123;1,2,4,5,4,5&#125; //相当于删除3</span><br></pre></td></tr></table></figure>
+<h3 id="字符类型转换">字符类型转换</h3>
+<h4 id="ArrayList">ArrayList</h4>
+<h5 id="ArrayList转int数组（流处理）：">ArrayList转int数组（流处理）：</h5>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">List.stream().mapToInt(Integer::intValue).toArray();</span><br></pre></td></tr></table></figure>
+<h5 id="ArrayList转Integer数组（直接调用库函数）：">ArrayList转Integer数组（直接调用库函数）：</h5>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Integer[] arr = new Integer[list.size()];</span><br><span class="line">list.toArray(arr);//arr为相应的Integer数组</span><br></pre></td></tr></table></figure>
+<h5 id="ArrayList转HashSet（流处理）">ArrayList转HashSet（流处理）</h5>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(HashMap&lt;Integer&gt;)List.stream().collect(Collectors.toSet());</span><br></pre></td></tr></table></figure>
+<h4 id="HashSet">HashSet</h4>
+<h5 id="HashSet转int数组（流处理）">HashSet转int数组（流处理）</h5>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">set.stream().mapToInt(x -&gt; x).toArray();</span><br></pre></td></tr></table></figure>
+<h5 id="HashSet转Integer数组">HashSet转Integer数组</h5>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Object[] ins = set.toArray();</span><br><span class="line">Integer[] i = new Integer[ins.length];</span><br><span class="line">for(int k=0;k&lt;ins.length;k++)&#123;</span><br><span class="line">    i[k] = Integer.parseInt(ins[k].toString());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="HashSet转ArrayList：">HashSet转ArrayList：</h5>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(ArrayList&lt;Integer&gt;)set.stream().collect(Collectors.toList());</span><br></pre></td></tr></table></figure>
+<h4 id="int">int[]</h4>
+<h5 id="Int数组转ArryList">Int数组转ArryList</h5>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(ArrayList&lt;Integer&gt;) Arrays.stream(arr).boxed().collect(Collectors.toList());</span><br></pre></td></tr></table></figure>
+<h5 id="Int数组转Integer数组">Int数组转Integer数组</h5>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Arrays.stream(arr).boxed().toArray(Integer[]::new);</span><br></pre></td></tr></table></figure>
+<h5 id="Int数组转HashSet">Int数组转HashSet</h5>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(HashSet&lt;Integer&gt;) Arrays.stream(arr).boxed().collect(Collectors.toSet());</span><br></pre></td></tr></table></figure>
+<h4 id="Integer">Integer[]</h4>
+<h5 id="Integer数组转ArryList">Integer数组转ArryList</h5>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(ArrayList&lt;Integer&gt;) Arrays.stream(integers).collect(Collectors.toList());</span><br></pre></td></tr></table></figure>
+<h5 id="Integer数组转int数组">Integer数组转int数组</h5>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Arrays.stream(integers).mapToInt(Integer::valueOf).toArray(); </span><br></pre></td></tr></table></figure>
+<h5 id="Integer数组转HashSet">Integer数组转HashSet</h5>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(ArrayList&lt;Integer&gt;) Arrays.stream(integers).collect(Collectors.toSet());</span><br></pre></td></tr></table></figure>
+]]></content>
       <tags>
         <tag>后端学习</tag>
       </tags>

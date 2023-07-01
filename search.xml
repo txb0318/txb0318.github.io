@@ -275,6 +275,8 @@ rule 3 192.168.1.1/25  port3</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Arrays.stream(arr).boxed().toArray(Integer[]::new);</span><br></pre></td></tr></table></figure>
 <h5 id="Int数组转HashSet">Int数组转HashSet</h5>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(HashSet&lt;Integer&gt;) Arrays.stream(arr).boxed().collect(Collectors.toSet());</span><br></pre></td></tr></table></figure>
+<h5 id="Int数组转ArrayList">Int数组转ArrayList</h5>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Arrays.copyOfRange(int[] temp, 0, length);</span><br></pre></td></tr></table></figure>
 <h4 id="Integer">Integer[]</h4>
 <h5 id="Integer数组转ArryList">Integer数组转ArryList</h5>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(ArrayList&lt;Integer&gt;) Arrays.stream(integers).collect(Collectors.toList());</span><br></pre></td></tr></table></figure>

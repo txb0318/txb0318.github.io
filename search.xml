@@ -2436,7 +2436,104 @@ Echarts实例：<br>
 <blockquote>
 <p>思路</p>
 </blockquote>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">    本题考察字符串以及栈的使用。注意栈在java中一般有3种</span><br><span class="line">普通队列(一端进另一端出):</span><br><span class="line">    Queue queue = new LinkedList()或Deque deque = new LinkedList()</span><br><span class="line">双端队列(两端都可进出)</span><br><span class="line">    Deque deque = new LinkedList()</span><br><span class="line">堆栈</span><br><span class="line">    Deque deque = new LinkedList()</span><br><span class="line"></span><br><span class="line">具体思路：</span><br><span class="line">1.我们遍历给定的字符串 sss。当我们遇到一个左括号时，我们会期望在后续的遍历中，有一个相同类型的右括号将其闭合。</span><br><span class="line">2.由于后遇到的左括号要先闭合，因此我们可以将这个左括号放入栈顶。</span><br><span class="line">3.当我们遇到一个右括号时，我们需要将一个相同类型的左括号闭合。</span><br><span class="line">4.此时，我们可以取出栈顶的左括号并判断它们是否是相同类型的括号。</span><br><span class="line">5.如果不是相同的类型，或者栈中并没有左括号，那么字符串 sss 无效，返回 False。</span><br><span class="line">6.为了快速判断括号的类型，我们可以使用哈希表存储每一种括号。哈希表的键为右括号，值为相同类型的左括号。</span><br><span class="line">7.在遍历结束后，如果栈中没有左括号，说明我们将字符串 sss 中的所有左括号闭合，返回 True否则返回 False</span><br><span class="line">8.注意到有效字符串的长度一定为偶数，因此如果字符串的长度为奇数，我们可以直接返回 False，省去后续的遍历判断过程。</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">    本题考察字符串以及栈的使用。注意栈在java中一般有3种</span><br><span class="line">普通队列(一端进另一端出):</span><br><span class="line">    Queue queue = new LinkedList()或Deque deque = new LinkedList()</span><br><span class="line">双端队列(两端都可进出)</span><br><span class="line">    Deque deque = new LinkedList()</span><br><span class="line">堆栈</span><br><span class="line">    Deque deque = new LinkedList()</span><br><span class="line"></span><br><span class="line">具体思路：</span><br><span class="line">1.我们遍历给定的字符串 sss。当我们遇到一个左括号时，我们会期望在后续的遍历中，有一个相同类型的右括号将其闭合。</span><br><span class="line">2.由于后遇到的左括号要先闭合，因此我们可以将这个左括号放入栈顶。</span><br><span class="line">3.当我们遇到一个右括号时，我们需要将一个相同类型的左括号闭合。</span><br><span class="line">4.此时，我们可以取出栈顶的左括号并判断它们是否是相同类型的括号。</span><br><span class="line">5.如果不是相同的类型，或者栈中并没有左括号，那么字符串 sss 无效，返回 False。</span><br><span class="line">6.为了快速判断括号的类型，我们可以使用哈希表存储每一种括号。哈希表的键为右括号，值为相同类型的左括号。</span><br><span class="line">7.在遍历结束后，如果栈中没有左括号，说明我们将字符串 sss 中的所有左括号闭合，返回 True否则返回 False</span><br><span class="line">8.注意到有效字符串的长度一定为偶数，因此如果字符串的长度为奇数，我们可以直接返回 False，省去后续的遍历判断过程。</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>队列的语法学习</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">动作</th>
+<th style="text-align:center">插入第一个元素（首部）</th>
+<th>插入最后一个元素（尾部）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">插入</td>
+<td style="text-align:center">addFirst(e)</td>
+<td>addLast(e)</td>
+</tr>
+<tr>
+<td style="text-align:center">删除</td>
+<td style="text-align:center">removeFirst()</td>
+<td>addLast(e)</td>
+</tr>
+<tr>
+<td style="text-align:center">取出</td>
+<td style="text-align:center">getFirst()</td>
+<td>getLast()</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">等效性</th>
+<th style="text-align:center">Queue方法</th>
+<th>等效Deque方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:center">add(e)</td>
+<td>addLast(e)</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:center">offer(e)</td>
+<td>offerLast(e)</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:center">remove()</td>
+<td>removeFirst()</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:center">poll()</td>
+<td>pollFirst()</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:center">element()</td>
+<td>pollFirst()</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:center">peek()</td>
+<td>pollFirst()</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">等效性</th>
+<th style="text-align:center">堆栈方法</th>
+<th>等效Deque方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:center">push(e)</td>
+<td>ddFirst(e)</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:center">pop()</td>
+<td>removeFirst()</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:center">peek()</td>
+<td>removeFirst()</td>
+</tr>
+</tbody>
+</table>
+]]></content>
       <tags>
         <tag>算法学习</tag>
       </tags>

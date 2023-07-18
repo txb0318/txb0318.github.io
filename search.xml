@@ -346,11 +346,17 @@
 <h4 id="String">String</h4>
 <h5 id="String转char-字符数组">String转char[]字符数组</h5>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">str.toCharArray();</span><br></pre></td></tr></table></figure>
+<h4 id="String-2">String[]</h4>
+<h5 id="String-转ArrayList">String[]转ArrayList</h5>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">String []result = (String[])arr.toArray(new String[arr.size()]);</span><br></pre></td></tr></table></figure>
 <h4 id="char">char</h4>
 <h5 id="char转String">char转String</h5>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">String.valueOf(c);</span><br><span class="line">c+&quot;&quot;</span><br></pre></td></tr></table></figure>
 <h5 id="char转int">char转int</h5>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Integer.parseInt(String.valueOf(c));</span><br><span class="line">Integer.parseInt(c+&quot;&quot;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Integer.parseInt(String.valueOf(c));</span><br><span class="line">Integer.parseInt(c+&quot;&quot;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="HashMap">HashMap</h3>
+<h4 id="value值自加一">value值自加一</h4>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">map.compute(i, (k, v) -&gt; &#123;</span><br><span class="line">    if (v == null) &#123;</span><br><span class="line">        return 1;</span><br><span class="line">    &#125;</span><br><span class="line">    return ++v;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
       <tags>
         <tag>后端学习</tag>
       </tags>
@@ -989,7 +995,32 @@ I HAVE A <em>DOG</em></p>
 </tr>
 </tbody>
 </table>
-]]></content>
+<h4 id="键盘行">键盘行</h4>
+<blockquote>
+<p>题目：</p>
+</blockquote>
+<img src="/2023/07/15/leetcode-learnning/1.png" class title="img.png">
+<blockquote>
+<p>思路：</p>
+</blockquote>
+<ol>
+<li class="lvl-3">
+<p>将第一行、第二行字母用字符串表示（包含大小写）</p>
+</li>
+<li class="lvl-3">
+<p>由于题目要求返回String数组，而String数组不能动态更改（初始化大小后数组种会出现null），因此使用ArrayList做存储，最后将ArrayList转换即可</p>
+</li>
+<li class="lvl-3">
+<p>遍历输入的字符串数组，遍历每个字符串，用f,t,s记录一个字符串中出现第一行、第二行、第三行字母的数量，只有f<mark>0或t</mark>0或s==0时，才符合题意</p>
+</li>
+<li class="lvl-3">
+<p>最后进行ArrayList与String[]转换，即result = (String[])re.toArray(new String[re.size()]);</p>
+</li>
+</ol>
+<blockquote>
+<p>代码：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> String[] findWords(String[] words) &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">firstWords</span> <span class="operator">=</span> <span class="string">&quot;qwertyuiopQWERTYUIOP&quot;</span>;</span><br><span class="line">        <span class="type">String</span> <span class="variable">secondWords</span> <span class="operator">=</span> <span class="string">&quot;asdfghjklASDFGHJKL&quot;</span>;</span><br><span class="line">        ArrayList&lt;String&gt; re = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        String []result = <span class="keyword">new</span> <span class="title class_">String</span>[words.length];</span><br><span class="line">        <span class="keyword">for</span>(String word : words)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">f</span> <span class="operator">=</span> <span class="number">0</span> ,s = <span class="number">0</span> ,t=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span> ; i &lt; word.length() ; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>((f!=<span class="number">0</span>&amp;&amp;s!=<span class="number">0</span>)||(f!=<span class="number">0</span>&amp;&amp;t!=<span class="number">0</span>)||(t!=<span class="number">0</span>&amp;&amp;s!=<span class="number">0</span>))</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(firstWords.indexOf(word.charAt(i)) != -<span class="number">1</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    f++;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (secondWords.indexOf(word.charAt(i)) != -<span class="number">1</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    s++;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    t++;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(f == word.length() || s == word.length() || t == word.length())</span><br><span class="line">            &#123;</span><br><span class="line">                re.add(word);</span><br><span class="line">            &#125;</span><br><span class="line">            result = (String[])re.toArray(<span class="keyword">new</span> <span class="title class_">String</span>[re.size()]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <tags>
         <tag>算法学习</tag>
       </tags>

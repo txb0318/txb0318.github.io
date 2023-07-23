@@ -359,7 +359,9 @@
 <h3 id="HashMap">HashMap</h3>
 <h4 id="value值自加一">value值自加一</h4>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">map.compute(i, (k, v) -&gt; &#123;</span><br><span class="line">    if (v == null) &#123;</span><br><span class="line">        return 1;</span><br><span class="line">    &#125;</span><br><span class="line">    return ++v;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-]]></content>
+<h3 id="replace和replaceAll">replace和replaceAll</h3>
+<h4 id="区别">区别</h4>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">replace的参数是char和CharSequence，即可以支持字符的替换，也支持字符串的替换（CharSequence即字符串序列的意思,说白了也就是字符串）；</span><br><span class="line">replaceAll的参数是regex，即基于规则表达式的替换，比如：可以通过replaceAll(&quot;\\d&quot;, &quot;*&quot;)把一个字符串所有的数字字符都换成星号；</span><br><span class="line"></span><br><span class="line">相同点：都是全部替换，即把源字符串中的某一字符或字符串全部换成指定的字符或字符串；</span><br><span class="line">不同点：replaceAll支持正则表达式，因此会对参数进行解析（两个参数均是），</span><br><span class="line">如replaceAll(&quot;\\d&quot;, &quot;*&quot;)，而replace则不会，replace(&quot;\\d&quot;,&quot;*&quot;)就是替换&quot;\\d&quot;的字符串，而不会解析为正则。</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
       <tags>
         <tag>后端学习</tag>
       </tags>
